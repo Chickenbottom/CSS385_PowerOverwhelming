@@ -1,1 +1,1 @@
-this is the first line of the README
+The final project of CSS385 Game Development.
