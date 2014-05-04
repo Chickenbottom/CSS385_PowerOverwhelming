@@ -18,7 +18,7 @@ public class SquadBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		if (null == mUnitPrefab) 
-			mUnitPrefab = Resources.Load("Prefabs/SquadUnit") as GameObject;
+			mUnitPrefab = Resources.Load("SquadMovement/SquadUnit") as GameObject;
 			
 		mSquadMembers = new List<SquadUnit>();
 		

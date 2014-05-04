@@ -12,7 +12,7 @@ public class SquadManager : MonoBehaviour {
 	void Start () 
 	{
 		if (null == mSquadPrefab) 
-			mSquadPrefab = Resources.Load("Prefabs/Squad") as GameObject;
+			mSquadPrefab = Resources.Load("SquadMovement/Squad") as GameObject;
 		mSquads = new List<SquadBehavior>();
 	}
 	
