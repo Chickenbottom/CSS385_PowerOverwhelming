@@ -74,7 +74,7 @@ public class SquadBehavior : MonoBehaviour {
 		
 		List<float> randomAngles = new List<float>();
 		float anglesPerSection = 360f / numSections;
-		for (int i = 0; i < kNumMembersInSquad; ++i) {
+		for (int i = 0; i < numSections; ++i) {
 			float randomAngle = Random.Range(anglesPerSection * .2f, anglesPerSection * 0.8f);
 			randomAngle += i * anglesPerSection;
 			randomAngles.Add(randomAngle * Mathf.Deg2Rad);
