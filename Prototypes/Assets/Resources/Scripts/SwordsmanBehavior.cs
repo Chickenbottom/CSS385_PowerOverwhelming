@@ -3,15 +3,10 @@ using System.Collections;
 
 public class SwordsmanBehavior : MonoBehaviour {
 	private Vector3 mTarget;
-	private float mSpeed = 20f;
-	private float mRotationSpeed = 0f;
-	private float mAngle = 0f;
-	
+	private float mSpeed = 20f;	
 	
 	private bool isAtTarget = false;
 	
-	private float mRotationRate = 0.8f;
-	// Use this for initialization
 	void Start () {
 		mTarget = new Vector3(-80, 0, 0);
 		
@@ -80,29 +75,5 @@ public class SwordsmanBehavior : MonoBehaviour {
 		speed *= Time.smoothDeltaTime;
 		
 		transform.position += speed * targetDir;
-	}
-	
-	private void RotateTowards(Vector3 target) {
-		
-		Vector3 targetDir = target - transform.position;
-		targetDir.Normalize();
-		
-		float theta = Mathf.Acos(Vector3.Dot(transform.up, targetDir));
-		theta *= Mathf.Rad2Deg;
-		
-		
-		if (theta > 0.001f)
-		{ // if not already in the same direction
-			
-			Vector3 myDir3 = transform.up;
-			Vector3 targetDir3 = targetDir;
-			Vector3 sign = Vector3.Cross(myDir3, targetDir3);
-			
-			float angleToTarget = Mathf.Sign(sign.z) * theta;
-			//float turnRate = Mathf.Abs(angleToTarget) > kMaxRotationSpeed ? kMaxRotationSpeed * Mathf.Sign(sign.z) : angleToTarget;
-			float turnRate = angleToTarget * mRotationRate;
-			mRotationSpeed = turnRate;
-			mAngle = theta;
-		}
 	}
 }

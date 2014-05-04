@@ -46,11 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\EnemyBehavior.cs" />
-     <Compile Include="Assets\Scripts\LevelLoader.cs" />
-     <Compile Include="Assets\Scripts\ReturnToSelector.cs" />
-     <Compile Include="Assets\Scripts\SwordsmanBehavior.cs" />
-     <Compile Include="Assets\Scripts\World.cs" />
+     <Compile Include="Assets\Resources\Scripts\EnemyBehavior.cs" />
+     <Compile Include="Assets\Resources\Scripts\LevelLoader.cs" />
+     <Compile Include="Assets\Resources\Scripts\ReturnToSelector.cs" />
+     <Compile Include="Assets\Resources\Scripts\SquadBehavior.cs" />
+     <Compile Include="Assets\Resources\Scripts\SquadUnit.cs" />
+     <Compile Include="Assets\Resources\Scripts\SwordsmanBehavior.cs" />
+     <Compile Include="Assets\Resources\Scripts\World.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
