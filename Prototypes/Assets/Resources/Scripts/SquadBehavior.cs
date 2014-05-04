@@ -42,8 +42,8 @@ public class SquadBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		// only capture input in single squad prototype
-		if (!UnityEditor.EditorApplication.currentScene.Equals("Assets/Scenes/SquadMovement.unity"))
+		// only capture input in single squad movement prototype
+		if (!Application.loadedLevelName.Equals("SquadMovement"))
 			return;
 			
 		if (Input.GetMouseButtonDown(0))
