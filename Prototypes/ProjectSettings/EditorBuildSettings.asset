@@ -11,3 +11,5 @@ EditorBuildSettings:
     path: Assets/Scenes/MultipleUnitMovement.unity
   - enabled: 1
     path: Assets/Scenes/SquadMovement.unity
+  - enabled: 1
+    path: Assets/Scenes/MultipleSquadMovement.unity

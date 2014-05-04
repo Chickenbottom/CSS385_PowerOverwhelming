@@ -19,6 +19,7 @@ public class LevelLoader : MonoBehaviour {
 		
 		CreateLevelButton("Multiple Unit Movement", "MultipleUnitMovement");
 		CreateLevelButton("Squad Movement", "SquadMovement");
+		CreateLevelButton("Multiple Squad Movement", "MultipleSquadMovement");
 		
 		// Make a background box
 		GUI.Box(new Rect(10, 10, kButtonWidth + kButtonMargin, 

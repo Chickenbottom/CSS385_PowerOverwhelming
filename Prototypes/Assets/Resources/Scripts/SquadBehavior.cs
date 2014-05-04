@@ -16,7 +16,7 @@ public class SquadBehavior : MonoBehaviour {
 	private const float kSquadMemberWidth = 2.0f;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		if (null == mUnitPrefab) 
 			mUnitPrefab = Resources.Load("Prefabs/SquadUnit") as GameObject;
 			
