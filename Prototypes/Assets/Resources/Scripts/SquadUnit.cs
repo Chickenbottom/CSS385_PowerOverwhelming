@@ -6,6 +6,9 @@ public class SquadUnit : MonoBehaviour {
 	private Vector3 mTarget;
 	private float mSpeed = 20f;	
 	
+	private const float kCollisionWaitTime = .125f;
+	private float mWaitTimer;
+	
 	protected enum MovementState
 	{
 		kMoving, kIdle
@@ -30,18 +33,37 @@ public class SquadUnit : MonoBehaviour {
 	
 	}
 	
+	public void OnCollisionEnter2D()
+	{
+		// Wait for other objects to pass before continuing
+		mWaitTimer = Random.Range(0f, kCollisionWaitTime);
+		mMovementState = MovementState.kIdle;
+	}
+	
 	// Update is called once per frame
 	public void Update () 
 	{
 		switch (mMovementState)
 		{
 		case (MovementState.kIdle):
-			return;
+			UpdateCollisionWaitTimer();
+			break;
 
 		case (MovementState.kMoving):
 			UpdateMovement();
 			break;
 		}			
+	}
+	
+	public void UpdateCollisionWaitTimer()
+	{
+		if (mWaitTimer > 0)
+			mWaitTimer -= Time.deltaTime;
+		
+		if (mWaitTimer < 0) {
+			mMovementState = MovementState.kMoving;
+			UpdateMovement();
+		}		
 	}
 		
 	public void UpdateMovement()
