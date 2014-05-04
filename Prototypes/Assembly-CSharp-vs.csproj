@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\EnemyBehavior.cs" />
      <Compile Include="Assets\Scripts\LevelLoader.cs" />
+     <Compile Include="Assets\Scripts\ReturnToSelector.cs" />
      <Compile Include="Assets\Scripts\SwordsmanBehavior.cs" />
      <Compile Include="Assets\Scripts\World.cs" />
   </ItemGroup>
