@@ -42,16 +42,19 @@ public class SquadBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		// only capture input in single squad prototype
+		if (!UnityEditor.EditorApplication.currentScene.Equals("Assets/Scenes/SquadMovement.unity"))
+			return;
+			
 		if (Input.GetMouseButtonDown(0))
-			MoveSquad ();
+			MoveSquad (Camera.main.ScreenToWorldPoint(Input.mousePosition));
 	}
 	
-	void MoveSquad() 
+	public void MoveSquad(Vector3 location) 
 	{
-		Vector3 newLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		newLocation.z = 0;
+		location.z = 0;
 		
-		this.transform.position = newLocation;
+		this.transform.position = location;
 		
 		// Randomize the squad's new position around the central location
 		List<Vector3> randomPositions = 
