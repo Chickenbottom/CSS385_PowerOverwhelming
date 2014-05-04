@@ -5,24 +5,34 @@ using System.Collections;
 public class LevelLoader : MonoBehaviour {
 	
 	private const int kButtonMargin = 20;
+	
+	private const int kButtonHeight = 20;
 	private const int kButtonWidth = 250;
+	
+	private static int sNumButtons = 0;
 	
 	private string kMenuTitle = "Power Overwhelming Prototypes";
 	
 	void OnGUI () 
 	{
-		// Make a background box
-		GUI.Box(new Rect(10, 10, kButtonWidth + kButtonMargin, 90), kMenuTitle);
+		sNumButtons = 0;
 		
 		CreateLevelButton("Multiple Unit Movement", "MultipleUnitMovement");
+		CreateLevelButton("Another scene", "MultipleUnitMovement");
+		
+		// Make a background box
+		GUI.Box(new Rect(10, 10, kButtonWidth + kButtonMargin, 
+		                 (sNumButtons + 2) * kButtonHeight), kMenuTitle);
 	}
 	
 	public void CreateLevelButton(string levelName, string sceneName)
 	{
-		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-		if(GUI.Button(new Rect(20, 40, kButtonWidth, 20), levelName)) {
+		sNumButtons ++;
+		// Make the first button. If it is pressed, Application.Loadlevel (sceneName) will be executed
+		if(GUI.Button(new Rect(20, 20 + sNumButtons * kButtonHeight, kButtonWidth, kButtonHeight), levelName)) {
 			Application.LoadLevel(sceneName);
 		}
-	
+		
+
 	}
 }
