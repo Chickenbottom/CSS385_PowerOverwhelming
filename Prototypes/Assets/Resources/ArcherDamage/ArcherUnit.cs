@@ -6,8 +6,8 @@ public class ArcherUnit : MonoBehaviour
 	public float Range { get { return kRange; } }
 	private const float kRange = 65f;
 	
-	private const float kMaxChargeTime = 1.3f;
-	private const float kMinChargeTime = 2.7f;
+	private const float kMaxChargeTime = .4f;
+	private const float kMinChargeTime = 1.2f;
 	private float mChargeTimer;
 	
 	private const float kAccuracy = 0.5f;
@@ -61,6 +61,12 @@ public class ArcherUnit : MonoBehaviour
 			mMovementState = MovementState.kMoving;
 	}
 	
+	
+	void OnTriggerStay2D(Collider2D other)
+	{
+		this.OnTriggerEnter2D(other);
+	}
+		
 	// Check for enemies in sight range
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -68,7 +74,8 @@ public class ArcherUnit : MonoBehaviour
 			return;
 			
 		// TODO replace with EnemyUnit base type
-		if (other.gameObject.name == "ArcherEnemy") {
+		if (other.gameObject.name.Equals("ArcherEnemy") ||
+		    other.gameObject.name.Equals("ArcherEnemy(Clone)")) {
 		
 			if (this.Squad == null)
 				Debug.Log ("Squad not initialized for squad member");
@@ -120,18 +127,37 @@ public class ArcherUnit : MonoBehaviour
 	
 	private void EngageTarget(GameObject target)
 	{
+		if (target == null) {
+			return;
+		}
+		
+		// if in range, start firing!
+		Vector3 targetLocation = target.transform.position;
+		if (Vector3.Distance(this.transform.position, targetLocation) <= kRange) {
+			mAttackState = AttackState.kShooting;
+			return;
+		}
+		
+		
 		// First priority is to move into the firing position
 		if (Vector3.Distance(this.transform.position, mFiringPosition) > 1.0f) {
 			//Debug.Log ("Moving into position");
 			UpdateMovement(mFiringPosition, mChargeSpeed);
 		} else {
 			mAttackState = AttackState.kShooting;
-			UpdateAttack(target);
 		}
+		
 	}
 	
 	private void UpdateAttack(GameObject target)
 	{
+		if (target == null) { // target's been destroyed
+			mAttackState = AttackState.kIdle;
+			mMovementState = MovementState.kMoving;
+			this.collider2D.enabled = true;
+			return;
+		}
+		
 		// Move into firing range
 		Vector3 targetLocation = target.transform.position;
 		if (Vector3.Distance(this.transform.position, targetLocation) > kRange) {
@@ -149,6 +175,9 @@ public class ArcherUnit : MonoBehaviour
 	
 	private void FireArrow(GameObject target)
 	{
+		if (target == null)
+			return;
+			
 		mChargeTimer = Random.Range (kMinChargeTime, kMaxChargeTime);
 		
 		GameObject o = (GameObject) Instantiate(mArrowPrefab);
@@ -156,6 +185,9 @@ public class ArcherUnit : MonoBehaviour
 		
 		ArrowBehavior a = (ArrowBehavior) o.GetComponent(typeof(ArrowBehavior));
 		a.SetDestination(target.transform.position);
+	
+		ArcherEnemyBehavior e = (ArcherEnemyBehavior) target.GetComponent(typeof(ArcherEnemyBehavior));
+		e.Damage(1);			
 	}
 	
 	private void UpdateMovement(Vector3 targetLocation, float speed)

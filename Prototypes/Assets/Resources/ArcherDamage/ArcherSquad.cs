@@ -5,9 +5,10 @@ using System.Collections.Generic;
 public class ArcherSquad : MonoBehaviour 
 {
 	GameObject mUnitPrefab;
+	GameObject mEnemyPrefab;
 	
 	private List<ArcherUnit> mSquadMembers;
-	private const int kNumMembersInSquad = 6;
+	private const int kNumMembersInSquad = 4;
 	
 	// Squad members form concentric circles around the squad center
 	// the member width is used to determine the width of each band of the circles
@@ -19,6 +20,10 @@ public class ArcherSquad : MonoBehaviour
 	void Awake () {
 		if (null == mUnitPrefab) 
 			mUnitPrefab = Resources.Load("ArcherDamage/ArcherUnit") as GameObject;
+			
+		
+		if (null == mEnemyPrefab) 
+			mEnemyPrefab = Resources.Load("ArcherDamage/ArcherEnemy") as GameObject;
 		
 		mSquadMembers = new List<ArcherUnit>();
 		
@@ -66,6 +71,13 @@ public class ArcherSquad : MonoBehaviour
 		
 		if (Input.GetMouseButtonDown(0))
 			UpdateSquadDestination (Camera.main.ScreenToWorldPoint(Input.mousePosition));
+			
+		if (Input.GetButtonDown("Fire1")) {
+			GameObject o = (GameObject) Instantiate(mEnemyPrefab);
+			
+			Vector3 randomPosition = new Vector3(Random.Range(-80f, 80f), Random.Range(-100f, 100f), 0);
+			o.transform.position = randomPosition;
+		}
 	}
 	
 	public void UpdateSquadDestination(Vector3 location) 
