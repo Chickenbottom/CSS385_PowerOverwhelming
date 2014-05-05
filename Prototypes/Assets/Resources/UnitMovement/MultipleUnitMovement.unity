@@ -2253,7 +2253,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1506114509}
   - 114: {fileID: 1506114508}
-  - 114: {fileID: 1506114510}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -2269,7 +2268,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1506114507}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f963b94984fb30a4b9927e6b9a39b95b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dc48d644ec0c8b4e9f263419943f2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1506114509
@@ -2284,17 +2283,6 @@ Transform:
   m_Children:
   - {fileID: 1116295933}
   m_Father: {fileID: 0}
---- !u!114 &1506114510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1506114507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192a00c667086c94992cfeecdd5365eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1513068230
 Prefab:
   m_ObjectHideFlags: 0
