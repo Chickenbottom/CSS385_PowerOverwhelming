@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Resources/SquadMovement/SquadMovement.unity
   - enabled: 1
     path: Assets/Resources/SquadMovement/MultipleSquadMovement.unity
+  - enabled: 1
+    path: Assets/Resources/ArcherDamage/ArcherDamage.unity
