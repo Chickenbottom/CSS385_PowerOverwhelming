@@ -7,7 +7,7 @@ public class ArcherSquad : MonoBehaviour
 	GameObject mUnitPrefab;
 	
 	private List<ArcherUnit> mSquadMembers;
-	private const int kNumMembersInSquad = 8;
+	private const int kNumMembersInSquad = 6;
 	
 	// Squad members form concentric circles around the squad center
 	// the member width is used to determine the width of each band of the circles

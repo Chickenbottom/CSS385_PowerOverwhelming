@@ -4,9 +4,10 @@ using System.Collections;
 public class ArcherUnit : MonoBehaviour 
 {
 	public float Range { get { return kRange; } }
-	private const float kRange = 45f;
+	private const float kRange = 65f;
 	
-	private const float kChargeTime = 1.0f;
+	private const float kMaxChargeTime = 1.3f;
+	private const float kMinChargeTime = 2.7f;
 	private float mChargeTimer;
 	
 	private const float kAccuracy = 0.5f;
@@ -17,7 +18,7 @@ public class ArcherUnit : MonoBehaviour
 	private Vector3 mDestination;
 	
 	private float mSpeed = 20f;
-	private float mChargeSpeed = 30f;
+	private float mChargeSpeed = 20f;
 	
 	
 	public ArcherSquad Squad { get; set; }
@@ -33,8 +34,18 @@ public class ArcherUnit : MonoBehaviour
 	private MovementState mMovementState;
 	private AttackState mAttackState;
 	
+	private GameObject mArrowPrefab = null;
+	
+	void Start()
+	{
+		if (mArrowPrefab == null)
+			mArrowPrefab = Resources.Load("ArcherDamage/Arrow") as GameObject;
+	}
+	
 	void Awake ()
 	{
+		mChargeTimer = kMinChargeTime;
+		
 		mAttackState = AttackState.kIdle;
 		mAttackTarget = null;
 		
@@ -129,7 +140,22 @@ public class ArcherUnit : MonoBehaviour
 			return;
 		}
 		
+		mChargeTimer -= Time.deltaTime;
+		if (mChargeTimer < 0) {
+			FireArrow(target);
+		}
 		//Debug.Log ("In Range, firing!");
+	}
+	
+	private void FireArrow(GameObject target)
+	{
+		mChargeTimer = Random.Range (kMinChargeTime, kMaxChargeTime);
+		
+		GameObject o = (GameObject) Instantiate(mArrowPrefab);
+		o.transform.position = transform.position;
+		
+		ArrowBehavior a = (ArrowBehavior) o.GetComponent(typeof(ArrowBehavior));
+		a.SetDestination(target.transform.position);
 	}
 	
 	private void UpdateMovement(Vector3 targetLocation, float speed)
