@@ -9,12 +9,12 @@ public class UnitSpawnTower : TowerBehavior {
 		DISABLED,
 	};
 
-	SqaudManager mSquadMan;
-	const int kSquadSpawnTime;
+	//SqaudManager mSquadMan;
+	const int kSquadSpawnTime = 3;
 	TOWERTYPE mTowerType;
 	int mSquadLastSpawn;
 	float mSpawnBonus = 1;
-	Unit mUnityType;
+	//Unit mUnityType;
 	float towerHealth;
 	STATUS mStatus;
 	// Use this for initialization
@@ -40,10 +40,12 @@ public class UnitSpawnTower : TowerBehavior {
 		}
 	}
 	void OnMouseDown(){
-		if(mStatus == STATUS.ENABLED)
-			setSelected(this);
+        if (mStatus == STATUS.ENABLED)
+        {
+            //setSelected(this);
+        }
 	}
-	void Click(){
+	public override void Click(){
 		//mSquadMan.setSqaudDesination(Vector3 Click);
 	}
 	public void healTower(float h){
@@ -52,7 +54,7 @@ public class UnitSpawnTower : TowerBehavior {
 	public void hitTower(float h){
 		towerHealth -= h;
 	}
-	public TOWERTYPE getMyTowerType(){
+	public override TOWERTYPE getMyTowerType(){
 		return mTowerType;
 	}
 

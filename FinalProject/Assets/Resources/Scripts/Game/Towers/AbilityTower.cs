@@ -24,8 +24,13 @@ public class AbilityTowerBehavior: TowerBehavior {
 	public float getHealRate(){
 		return kHealRate * mHealBonus;
 	}
-	public TOWERTYPE getMyTowerType(){
+	public override TOWERTYPE getMyTowerType(){
 		return mTowerType;
 	}
+
+    public override void Click()
+    {
+        throw new System.NotImplementedException();
+    }
 
 }

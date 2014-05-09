@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TowerBehavior : MonoBehaviour {
+public abstract class TowerBehavior : MonoBehaviour {
 
-	abstract void Click();
-	abstract void getMyTowerType();
+	abstract public void Click();
+	abstract public TOWERTYPE getMyTowerType();
 
 	public enum TOWERTYPE{
 		MELEE,
@@ -30,7 +30,7 @@ public class TowerBehavior : MonoBehaviour {
 			   selectedTower != TOWERTYPE.HEAL && 
 			   spawnTower != null){
 				Vector2 destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				spawnTower.setDestination(destination);
+				//spawnTower.setDestination(destination);
 			}
 		}
 	}
@@ -48,7 +48,7 @@ public class TowerBehavior : MonoBehaviour {
 
 		if(selectedTower == TOWERTYPE.HEAL)
 			if(ST != null){
-				ST.healTower(AT.getHealRate);
+				//ST.healTower(AT.getHealRate);
 				clearSelected();
 			}
 	}
