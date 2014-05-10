@@ -86,6 +86,7 @@ public class DialogManager : MonoBehaviour {
 				else if(line.Contains("Game", System.StringComparison.CurrentCultureIgnoreCase)){
 					cur_convo = kGame
 				}
+				continue;
 			}
 			if(cur_person != -1 && cur_convo != -1)
 				Conversations[cur_person][cur_convo].Add(line);
