@@ -7,7 +7,7 @@ public class Crossbow : Weapon
 		
 	public void Awake ()
 	{
-		Damage = 3;
+		Damage = 5;
 		Range = 40f;
 		ReloadTime = 2.0f;
 		ReloadVariance = 0.3f;

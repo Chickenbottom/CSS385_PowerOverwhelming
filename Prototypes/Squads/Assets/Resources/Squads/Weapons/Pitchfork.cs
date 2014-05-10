@@ -7,9 +7,9 @@ public class Pitchfork : Weapon
 	
 	public void Awake ()
 	{
-		Damage = 1;
+		Damage = 2;
 		Range = 8f;
-		ReloadTime = 2.0f;
+		ReloadTime = 3.0f;
 		ReloadVariance = 0.5f;
 		Accuracy = 0.8f;
 		

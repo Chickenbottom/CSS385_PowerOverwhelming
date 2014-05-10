@@ -120,7 +120,8 @@ public class Unit : Target, IDamagable
 		mAttackState = AttackState.kIdle;
 		mMovementState = MovementState.kMoving;
 		
-		CurrentWeapon = (Weapon)mWeapons.GetByIndex(mWeapons.Count - 1); // longest range weapon
+		SwitchToWeapon(mWeapons.Count - 1); // longest range weapon		
+		this.collider2D.enabled = true;
 	}	
 	
 	private void UpdateTargetState()
@@ -133,6 +134,12 @@ public class Unit : Target, IDamagable
 			this.Squad.NotifyEnemyKilled(this);
 			return;
 		}
+	}
+	
+	public void SwitchToWeapon(int index)
+	{
+		CurrentWeapon.Reset();
+		CurrentWeapon = (Weapon)mWeapons.GetByIndex(index);
 	}
 	
 	private void EngageTarget(Target target)
@@ -169,18 +176,31 @@ public class Unit : Target, IDamagable
 	{
 		if (target == null)
 			return;
+		
+		Vector3 targetLocation = target.transform.position;
+		float targetDistanceSquared = Vector3.SqrMagnitude(targetLocation - this.transform.position);
+		
+		for (int i = 0; i < mWeapons.Count; ++i) {
+			Weapon w = (Weapon)mWeapons.GetByIndex(i);
+			if (w == CurrentWeapon) // can only check longer range weapons from here
+				break; 
+				
+			// a shorter range weapon can be used
+		    if (w.Range * w.Range > targetDistanceSquared) { 
+				Squad.NotifyWeaponChanged(this, i); // switch squad to this weapon
+				break;
+		    }
+		}
 			
 		// Move into range of the target
-		Vector3 targetLocation = target.transform.position;
-		if (Vector3.Distance(this.transform.position, targetLocation) > CurrentWeapon.Range) {
+		if (targetDistanceSquared > CurrentWeapon.Range * CurrentWeapon.Range) {
 			mAttackState = AttackState.kEngaging;
 			UpdateMovement(targetLocation, mChargeSpeed);
 			return;
 		}
 		
-		Weapon w = (Weapon) mWeapons.GetByIndex(0);
-		if (w != null)
-			w.Attack(this, target);
+		if (CurrentWeapon != null)
+			CurrentWeapon.Attack(this, target);
 	}
 	
 	private void UpdateMovement(Vector3 targetLocation, float speed)

@@ -46,7 +46,11 @@ public class SquadManager : MonoBehaviour {
 
 		this.transform.position = location;
 
-		for (int i = 0; i < mSquads.Count; ++i) {
+		for (int i = mSquads.Count - 1; i >= 0; --i) {
+			if (mSquads[i] == null) {
+				mSquads.RemoveAt(i);
+				continue;
+			}
 			Vector3 moveTo = location;
 			moveTo += randomPositions[i];
 			mSquads[i].UpdateSquadDestination(moveTo);

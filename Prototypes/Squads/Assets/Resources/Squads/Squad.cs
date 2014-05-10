@@ -58,6 +58,12 @@ public class Squad : MonoBehaviour
 	{
 		mSquadMembers.Remove(who);
 		NumSquadMembers --;
+		
+		if (NumSquadMembers <= 0) {
+			Destroy(this.gameObject);
+			Destroy(this);
+		}
+			
 	}
 	
 	// TODO replace GameObject with EnemyUnit base type
@@ -69,11 +75,15 @@ public class Squad : MonoBehaviour
 		AttackEnemySquad(who, u);
 	}
 	
-	public void NotifyWeaponChanged(Unit who, Weapon weapon)
+	public void NotifyWeaponChanged(Unit who, int weaponIndex)
 	{
-		for(int i = 0; i < mSquadMembers.Count; ++i) {
-			mSquadMembers[i].CurrentWeapon = weapon;
-		}
+		if (mTargetSquad.mSquadMembers.Count <= 0)
+			return;
+		
+		Debug.Log ("Weapon changed!");
+		
+		for(int i = 0; i < mSquadMembers.Count; ++i) 
+			mSquadMembers[i].SwitchToWeapon(weaponIndex);
 		
 		// TODO replace with squad center or unit agnostic matching algorithm
 		AttackEnemySquad(who, mTargetSquad.mSquadMembers[0]);
@@ -115,7 +125,7 @@ public class Squad : MonoBehaviour
 	{
 		IsEngaged = false;
 		for(int i = 0; i < mSquadMembers.Count; ++i) {
-			mSquadMembers[i].collider2D.enabled = true;
+			mSquadMembers[i].Disengage();
 		}
 	}
 	

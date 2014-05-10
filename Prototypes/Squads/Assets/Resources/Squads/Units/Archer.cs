@@ -26,7 +26,6 @@ public class Archer : Unit
 
 		mWeapons.Add (w.Range, w);
 		
-		
 		GameObject dagger = Resources.Load("Squads/Prefabs/DaggerPrefab") as GameObject;
 		GameObject t = (GameObject) Instantiate(dagger);
 		Dagger d = (Dagger) t.GetComponent(typeof(Dagger));

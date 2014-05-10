@@ -7,9 +7,9 @@ public class Dagger : Weapon
 	
 	public void Awake ()
 	{
-		Damage = 1;
+		Damage = 2;
 		Range = 8f;
-		ReloadTime = 1.0f;
+		ReloadTime = 2.0f;
 		ReloadVariance = 0.5f;
 		Accuracy = 0.8f;
 		
@@ -32,10 +32,12 @@ public class Dagger : Weapon
 		Unit e = (Unit) target.GetComponent(typeof(Unit));
 		e.Damage(this.Damage);
 		
+		/*
 		GameObject o = (GameObject) Instantiate(mProjectilePrefab);
 		Arrow a = (Arrow) o.GetComponent(typeof(Arrow));
 		
-		a.transform.position = src.transform.position;		
+		a.transform.position = src.transform.position;
 		a.SetDestination(target.transform.position);
+		*/
 	}
 }
