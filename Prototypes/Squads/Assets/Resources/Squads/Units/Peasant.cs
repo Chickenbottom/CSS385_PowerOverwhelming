@@ -9,7 +9,7 @@ public class Peasant : Unit
 	
 		mDefaultHealth = 2;
 		
-		mRange = 10f; // sword range
+		mRange = 3f; // sword range
 		mMaxReloadTime = 5.5f;
 		mMinReloadTime = 5.75f;
 		mAccuracy = 0.5f;
@@ -22,6 +22,13 @@ public class Peasant : Unit
 	
 	void Start()
 	{
+		GameObject Pitchfork = Resources.Load("Squads/Prefabs/PitchforkPrefab") as GameObject;
+		GameObject o = (GameObject) Instantiate(Pitchfork);
+		Pitchfork w = (Pitchfork) o.GetComponent(typeof(Pitchfork));
+		
+		mWeapons = new SortedList();
+		mWeapons.Add (w.Range, w);
+		
 		if (mProjectilePrefab == null)
 			mProjectilePrefab = Resources.Load("Squads/Prefabs/ArrowPrefab") as GameObject;
 		

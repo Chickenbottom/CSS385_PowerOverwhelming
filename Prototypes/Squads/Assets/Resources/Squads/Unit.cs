@@ -16,6 +16,8 @@ public class Unit : Target, IDamagable
 	protected float mChargeSpeed;   // speed used to engage enemies
 	#endregion
 	
+	protected SortedList mWeapons;
+	
 	protected float mReloadTimer;
 	protected Target mAttackTarget;
 	
@@ -175,27 +177,9 @@ public class Unit : Target, IDamagable
 			return;
 		}
 		
-		mReloadTimer -= Time.deltaTime;
-		if (mReloadTimer < 0) {
-			Attack(target);
-		}
-	}
-	
-	private void Attack(Target target)
-	{
-		if (target == null)
-			return;
-		
-		mReloadTimer = Random.Range (mMinReloadTime, mMaxReloadTime);
-		
-		GameObject o = (GameObject) Instantiate(mProjectilePrefab);
-		o.transform.position = transform.position;
-		
-		Arrow a = (Arrow) o.GetComponent(typeof(Arrow));
-		a.SetDestination(target.transform.position);
-		
-		Unit e = (Unit) target.GetComponent(typeof(Unit));
-		e.Damage(1);
+		Weapon w = (Weapon) mWeapons.GetByIndex(0);
+		if (w != null)
+			w.Attack(this, target);
 	}
 	
 	private void UpdateMovement(Vector3 targetLocation, float speed)

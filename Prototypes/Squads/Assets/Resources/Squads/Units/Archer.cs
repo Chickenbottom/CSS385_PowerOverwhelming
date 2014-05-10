@@ -21,10 +21,18 @@ public class Archer : Unit
 		mAllegiance = Allegiance.kRodelle;
 	}
 
+	
+	
 	void Start()
 	{
-		if (mProjectilePrefab == null)
-			mProjectilePrefab = Resources.Load("Squads/Prefabs/ArrowPrefab") as GameObject;
+		mWeapons = new SortedList();
+		
+		GameObject crossbow = Resources.Load("Squads/Prefabs/CrossbowPrefab") as GameObject;
+		GameObject o = (GameObject) Instantiate(crossbow);
+		Crossbow w = (Crossbow) o.GetComponent(typeof(Crossbow));
+
+		mWeapons.Add (w.Range, w);
+		
 		
 		mHealth = mDefaultHealth;
 		mPreviousHealth = mHealth;
