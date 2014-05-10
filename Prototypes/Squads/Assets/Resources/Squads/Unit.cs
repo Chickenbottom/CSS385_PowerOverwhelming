@@ -6,16 +6,12 @@ public class Unit : Target, IDamagable
 {	
 	#region Unit Stats
 	protected int mDefaultHealth;
-	
-	protected float mRange; // sword range
-	protected float mMaxReloadTime;
-	protected float mMinReloadTime;
-	protected float mAccuracy;
-	
+		
 	protected float mMovementSpeed; // units per second
 	protected float mChargeSpeed;   // speed used to engage enemies
 	#endregion
 	
+	public Weapon CurrentWeapon = null;
 	protected SortedList mWeapons;
 	
 	protected float mReloadTimer;
@@ -35,7 +31,7 @@ public class Unit : Target, IDamagable
 	
 	#region Getters and Setters
 	public Squad Squad { get; set; }
-	public float Range { get { return mRange; } }
+	public float Range { get { return CurrentWeapon.Range; } }
 	#endregion
 	
 	protected enum MovementState {
@@ -119,16 +115,21 @@ public class Unit : Target, IDamagable
 		UpdateDamageAnimation();
 	}
 	
+	public void Disengage()
+	{
+		mAttackState = AttackState.kIdle;
+		mMovementState = MovementState.kMoving;
+		
+		CurrentWeapon = (Weapon)mWeapons.GetByIndex(mWeapons.Count - 1); // longest range weapon
+	}	
+	
 	private void UpdateTargetState()
 	{
 		if (mAttackState == AttackState.kIdle) // no target present
 			return; 
 			
 		if (mAttackTarget == null) { // target's been destroyed
-			mAttackState = AttackState.kIdle;
-			mMovementState = MovementState.kMoving;
-			mReloadTimer = Random.Range (mMinReloadTime, mMaxReloadTime);
-			
+			CurrentWeapon.Reset();
 			this.Squad.NotifyEnemyKilled(this);
 			return;
 		}
@@ -147,7 +148,7 @@ public class Unit : Target, IDamagable
 		
 		// if in range, start firing!
 		// do not move away from target
-		if (Vector3.Distance(this.transform.position, targetLocation) <= mRange ||
+		if (Vector3.Distance(this.transform.position, targetLocation) <= CurrentWeapon.Range ||
 		    firingPositionDistance > targetDistance) {
 			mAttackState = AttackState.kRanged;
 			UpdateAttack(target);
@@ -171,7 +172,7 @@ public class Unit : Target, IDamagable
 			
 		// Move into range of the target
 		Vector3 targetLocation = target.transform.position;
-		if (Vector3.Distance(this.transform.position, targetLocation) > mRange) {
+		if (Vector3.Distance(this.transform.position, targetLocation) > CurrentWeapon.Range) {
 			mAttackState = AttackState.kEngaging;
 			UpdateMovement(targetLocation, mChargeSpeed);
 			return;
@@ -229,9 +230,7 @@ public class Unit : Target, IDamagable
 	}
 	
 	public void Awake ()
-	{
-		mReloadTimer = mMinReloadTime;
-		
+	{		
 		mAttackState = AttackState.kIdle;
 		mAttackTarget = null;
 		

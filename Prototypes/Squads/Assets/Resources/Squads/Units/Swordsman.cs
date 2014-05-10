@@ -9,11 +9,6 @@ public class Swordsman : Unit
 		base.Awake();
 		mDefaultHealth = 4;
 		
-		mRange = 10f; // sword range
-		mMaxReloadTime = .5f;
-		mMinReloadTime = .75f;
-		mAccuracy = 0.5f;
-		
 		mMovementSpeed = 10f; // units per second
 		mChargeSpeed = 15f;   // speed used to engage enemies
 		

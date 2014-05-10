@@ -1,17 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Pitchfork : MonoBehaviour, Weapon
+public class Pitchfork : Weapon
 {
-	public int Damage { get; set; }
-	public float Range { get; set; }
-	public float ReloadTime { get; set; }
-	
-	public float ReloadVariance { get; set; }
-	public float Accuracy { get; set; }
-	
 	private GameObject mProjectilePrefab = null;
-	private float mReloadTimer;
 	
 	public void Awake ()
 	{
@@ -30,18 +22,7 @@ public class Pitchfork : MonoBehaviour, Weapon
 			mProjectilePrefab = Resources.Load("Squads/Prefabs/ArrowPrefab") as GameObject;
 	}
 	
-	public void Attack(Target src, Target target)
-	{
-		if (target == null || src == null)
-			return;
-		
-		mReloadTimer -= Time.deltaTime;
-		if (mReloadTimer < 0) {
-			this.PerformAttack(src, target);
-		}
-	}
-	
-	protected void PerformAttack(Target src, Target target)
+	protected override void PerformAttack(Target src, Target target)
 	{
 		if (target == null)
 			return;

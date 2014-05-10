@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Crossbow : Weapon
+public class Sword : Weapon 
 {
 	private GameObject mProjectilePrefab = null;
-		
+	
 	public void Awake ()
 	{
-		Damage = 3;
-		Range = 40f;
-		ReloadTime = 2.0f;
-		ReloadVariance = 0.3f;
+		Damage = 1;
+		Range = 12f;
+		ReloadTime = 1.0f;
+		ReloadVariance = 0.5f;
 		Accuracy = 0.8f;
-	
+		
 		mReloadTimer = ReloadTime;
 	}
 	
@@ -26,7 +26,7 @@ public class Crossbow : Weapon
 	{
 		if (target == null)
 			return;
-			
+		
 		mReloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
 		
 		Unit e = (Unit) target.GetComponent(typeof(Unit));

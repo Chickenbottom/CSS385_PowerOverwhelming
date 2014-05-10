@@ -9,11 +9,6 @@ public class Peasant : Unit
 	
 		mDefaultHealth = 2;
 		
-		mRange = 3f; // sword range
-		mMaxReloadTime = 5.5f;
-		mMinReloadTime = 5.75f;
-		mAccuracy = 0.5f;
-		
 		mMovementSpeed = 8f; // units per second
 		mChargeSpeed = 10f;   // speed used to engage enemies
 		
@@ -28,6 +23,8 @@ public class Peasant : Unit
 		
 		mWeapons = new SortedList();
 		mWeapons.Add (w.Range, w);
+		
+		CurrentWeapon = w;
 		
 		if (mProjectilePrefab == null)
 			mProjectilePrefab = Resources.Load("Squads/Prefabs/ArrowPrefab") as GameObject;

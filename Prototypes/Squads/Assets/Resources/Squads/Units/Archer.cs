@@ -10,18 +10,11 @@ public class Archer : Unit
 		
 		mDefaultHealth = 4;
 		
-		mRange = 40f; // sword range
-		mMaxReloadTime = 2.5f;
-		mMinReloadTime = 3.75f;
-		mAccuracy = 0.5f;
-		
 		mMovementSpeed = 8f; // units per second
 		mChargeSpeed = 10f;   // speed used to engage enemies
 		
 		mAllegiance = Allegiance.kRodelle;
 	}
-
-	
 	
 	void Start()
 	{
@@ -33,6 +26,13 @@ public class Archer : Unit
 
 		mWeapons.Add (w.Range, w);
 		
+		
+		GameObject dagger = Resources.Load("Squads/Prefabs/DaggerPrefab") as GameObject;
+		GameObject t = (GameObject) Instantiate(dagger);
+		Dagger d = (Dagger) t.GetComponent(typeof(Dagger));
+		mWeapons.Add (d.Range, d);
+		
+		CurrentWeapon = w;
 		
 		mHealth = mDefaultHealth;
 		mPreviousHealth = mHealth;

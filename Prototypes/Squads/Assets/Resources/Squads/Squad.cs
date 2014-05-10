@@ -66,10 +66,21 @@ public class Squad : MonoBehaviour
 		IsEngaged = true;
 		Unit u = (Unit) enemyUnit.GetComponent(typeof(Unit));
 		mTargetSquad = u.Squad;
+		AttackEnemySquad(who, u);
+	}
+	
+	public void NotifyWeaponChanged(Unit who, Weapon weapon)
+	{
+		for(int i = 0; i < mSquadMembers.Count; ++i) {
+			mSquadMembers[i].CurrentWeapon = weapon;
+		}
 		
-		List<Unit> mEnemies = mTargetSquad.mSquadMembers;
-		int numEnemies = mEnemies.Count;
-		
+		// TODO replace with squad center or unit agnostic matching algorithm
+		AttackEnemySquad(who, mTargetSquad.mSquadMembers[0]);
+	}
+	
+	public void AttackEnemySquad(Unit who, Unit enemyUnit)
+	{
 		// Surround the enemy!
 		List<Vector3> positions = SurroundingPositions(
 			enemyUnit.transform.position, 
@@ -78,6 +89,10 @@ public class Squad : MonoBehaviour
 			kSquadMemberWidth * 2.0f, 
 			who.Range);
 		
+		List<Unit> mEnemies = mTargetSquad.mSquadMembers;
+		int numEnemies = mEnemies.Count;
+		
+		// engage enemies 1 to 1
 		for(int i = 0; i < mSquadMembers.Count; ++i) {
 			mSquadMembers[i].collider2D.enabled = false;
 			mSquadMembers[i].Engage(mEnemies[i % numEnemies], positions[i]);
