@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Peasant : Unit 
 {
-	public new void Awake()
+	protected new void Awake()
 	{
 		base.Awake();
 	
@@ -24,7 +24,7 @@ public class Peasant : Unit
 		mWeapons = new SortedList();
 		mWeapons.Add (w.Range, w);
 		
-		CurrentWeapon = w;
+		mCurrentWeapon = w;
 		
 		if (mProjectilePrefab == null)
 			mProjectilePrefab = Resources.Load("Squads/Prefabs/ArrowPrefab") as GameObject;

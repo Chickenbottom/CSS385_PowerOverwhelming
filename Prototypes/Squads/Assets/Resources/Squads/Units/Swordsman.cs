@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Swordsman : Unit
 {
-	public new void Awake()
+	protected new void Awake()
 	{
 		base.Awake();
 		mDefaultHealth = 4;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Archer : Unit
 {
-	public new void Awake()
+	protected new void Awake()
 	{
 		base.Awake();
 		
@@ -31,7 +31,7 @@ public class Archer : Unit
 		Dagger d = (Dagger) t.GetComponent(typeof(Dagger));
 		mWeapons.Add (d.Range, d);
 		
-		CurrentWeapon = w;
+		mCurrentWeapon = w;
 		
 		mHealth = mDefaultHealth;
 		mPreviousHealth = mHealth;

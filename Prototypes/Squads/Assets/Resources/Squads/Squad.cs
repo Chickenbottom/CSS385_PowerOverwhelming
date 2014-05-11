@@ -2,151 +2,47 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public enum SquadAction {
+	kEnemySighted, 
+	kWeaponChanged, 
+	kTargetDestroyed, 
+	kDestinationReached,
+	kUnitDied
+}
+
 public class Squad : MonoBehaviour 
 {
-	GameObject mUnitPrefab;
-	GameObject mEnemyPrefab;
-	
-	Squad mTargetSquad;
-	
-	private List<Unit> mSquadMembers;
-	
+	///////////////////////////////////////////////////////////////////////////////////
+	// Public Methods
+	///////////////////////////////////////////////////////////////////////////////////
+	public Vector3 RallyPoint;
+	public bool IsEngaged;
 	public int NumSquadMembers;
 	public string UnitPrefab;
+	public List<Unit> SquadMembers { get { return mSquadMembers; } }
 	
-	// Squad members form concentric circles around the squad center
-	// the member width is used to determine the width of each band of the circles
-	// ie. inner circle radius = kSquadMemberWidth * 1.5
-	//     2nd circle width = kSquadMemberWidth * 1.5
-	private const float kSquadMemberWidth = 3.0f;
-	
-	public Vector3 RallyPoint;
-	
-	public bool IsEngaged;
-	
-	// Use this for initialization
-	void Awake () {
-		if (null == mUnitPrefab) 
-			mUnitPrefab = Resources.Load(UnitPrefab) as GameObject;
-		
-		if (mSquadMembers != null) {
-			foreach (Unit u in mSquadMembers)
-				Destroy(u.gameObject);
-		}
+	public void Notify(SquadAction action, params object[] args)
+	{
+		switch (action) {
+		case(SquadAction.kEnemySighted):
+			AttackTarget((Unit)args[0], (Target)args[1]);
+			break;
 			
-		mSquadMembers = new List<Unit>();
-		
-		List<Vector3> randomPositions = this.RandomSectionLocations(NumSquadMembers, kSquadMemberWidth * 1.5f);
-		
-		// Instantiates and initializes the position of each member in the squad
-		// TODO fix the placement for large numbers of squad members
-		for (int i = 0; i < NumSquadMembers; ++i) {
-			// instantiate the unit from the prefab
-			GameObject o = (GameObject) Instantiate(mUnitPrefab);
-			Unit u = (Unit) o.GetComponent(typeof(Unit));
-			u.Squad = this;
-			mSquadMembers.Add (u);
+		case(SquadAction.kDestinationReached):
+			break;
 			
-			// offset from squad center
-			Vector3 memberPosition = this.transform.position;
-			memberPosition += randomPositions[i];
-			u.transform.position = memberPosition;
-		}
-	}
-	
-	public void NotifyUnitDied(Unit who)
-	{
-		mSquadMembers.Remove(who);
-		NumSquadMembers --;
-		
-		if (NumSquadMembers <= 0) {
-			Destroy(this.gameObject);
-			Destroy(this);
-		}
+		case(SquadAction.kTargetDestroyed):
+			UpdateTarget((Unit)args[0]);
+			break;
 			
-	}
-	
-	// TODO replace GameObject with EnemyUnit base type
-	public void NotifyEnemySighted(Unit who, GameObject enemyUnit)
-	{
-		IsEngaged = true;
-		Unit u = (Unit) enemyUnit.GetComponent(typeof(Unit));
-		mTargetSquad = u.Squad;
-		AttackEnemySquad(who, u);
-	}
-	
-	public void NotifyWeaponChanged(Unit who, int weaponIndex)
-	{
-		if (mTargetSquad.mSquadMembers.Count <= 0)
-			return;
-		
-		Debug.Log ("Weapon changed!");
-		
-		for(int i = 0; i < mSquadMembers.Count; ++i) 
-			mSquadMembers[i].SwitchToWeapon(weaponIndex);
-		
-		// TODO replace with squad center or unit agnostic matching algorithm
-		AttackEnemySquad(who, mTargetSquad.mSquadMembers[0]);
-	}
-	
-	public void AttackEnemySquad(Unit who, Unit enemyUnit)
-	{
-		// Surround the enemy!
-		List<Vector3> positions = SurroundingPositions(
-			enemyUnit.transform.position, 
-			who.transform.position, 
-			NumSquadMembers, 
-			kSquadMemberWidth * 2.0f, 
-			who.Range);
-		
-		List<Unit> mEnemies = mTargetSquad.mSquadMembers;
-		int numEnemies = mEnemies.Count;
-		
-		// engage enemies 1 to 1
-		for(int i = 0; i < mSquadMembers.Count; ++i) {
-			mSquadMembers[i].collider2D.enabled = false;
-			mSquadMembers[i].Engage(mEnemies[i % numEnemies], positions[i]);
-		}
-	}
-	
-	public void NotifyEnemyKilled(Unit who)
-	{
-		List<Unit> mEnemies = mTargetSquad.mSquadMembers;
-		int numEnemies = mEnemies.Count;
-		
-		if (numEnemies == 0)
-			DisengageSquad();
-		else 
-			who.Engage(mEnemies[Random.Range (0, numEnemies)]); // engage random enemy
-	}
-	
-	// re-enable the search for new enemies
-	private void DisengageSquad()
-	{
-		IsEngaged = false;
-		for(int i = 0; i < mSquadMembers.Count; ++i) {
-			mSquadMembers[i].Disengage();
-		}
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		// only capture input in squad testing scene 
-		if (!Application.loadedLevelName.Equals("SquadTest"))
-			return;
-		
-		if (this.UnitPrefab == "Squads/Prefabs/PeasantPrefab" && Input.GetButtonDown("Fire2")) {
-			this.NumSquadMembers = 10;
-			this.Awake();
-		}
-		
-		/*if (Input.GetMouseButtonDown(0))
-			UpdateSquadDestination (Camera.main.ScreenToWorldPoint(Input.mousePosition));
+		case(SquadAction.kWeaponChanged):
+			ChangeSquadWeapons((Unit)args[0], (int)args[1]);
+			break;
 			
-		if (Input.GetButtonDown("Fire2"))
-			this.Awake();
-			*/
+		case (SquadAction.kUnitDied):
+			UpdateSquadMembers((Unit)args[0]);
+			break;
+		}
 	}
 	
 	public void UpdateSquadDestination(Vector3 location) 
@@ -168,6 +64,96 @@ public class Squad : MonoBehaviour
 		}
 	}
 	
+	///////////////////////////////////////////////////////////////////////////////////
+	// Private Methods
+	///////////////////////////////////////////////////////////////////////////////////
+	private GameObject mUnitPrefab;
+	private GameObject mEnemyPrefab;
+	private Squad mTargetSquad;
+	private List<Unit> mSquadMembers;
+	
+	// Squad members form concentric circles around the squad center
+	// the member width is used to determine the width of each band of the circles
+	// ie. inner circle radius = kSquadMemberWidth * 1.5
+	//     2nd circle width = kSquadMemberWidth * 1.5
+	private const float kSquadMemberWidth = 3.0f;
+	
+	private void AttackTarget(Unit who, Target enemyUnit)
+	{
+		if (who == null || enemyUnit == null) 
+			Debug.Break();
+		
+		IsEngaged = true;
+		Unit u = (Unit) enemyUnit.GetComponent(typeof(Unit));
+		mTargetSquad = u.Squad;
+		AttackEnemySquad(who, u);
+	}
+	
+	private void UpdateTarget(Unit who)
+	{
+		List<Unit> mEnemies = mTargetSquad.mSquadMembers;
+		int numEnemies = mEnemies.Count;
+		
+		if (numEnemies == 0)
+			DisengageSquad();
+		else 
+			who.Engage(mEnemies[Random.Range (0, numEnemies)]); // engage random enemy
+	}
+	
+	private void ChangeSquadWeapons(Unit who, int weaponIndex)
+	{
+		if (mTargetSquad.mSquadMembers.Count <= 0)
+			return;
+		
+		Debug.Log ("Weapon changed!");
+		
+		for(int i = 0; i < mSquadMembers.Count; ++i) 
+			mSquadMembers[i].SwitchToWeapon(weaponIndex);
+		
+		// TODO replace with squad center or unit agnostic matching algorithm
+		AttackEnemySquad(who, mTargetSquad.mSquadMembers[0]);
+	}
+	
+	private void UpdateSquadMembers(Unit who)
+	{
+		mSquadMembers.Remove(who);
+		NumSquadMembers --;
+		
+		if (NumSquadMembers <= 0) {
+			Destroy(this.gameObject);
+			Destroy(this);
+		}
+	}
+	
+	private void AttackEnemySquad(Unit who, Unit enemyUnit)
+	{
+		// Surround the enemy!
+		List<Vector3> positions = SurroundingPositions(
+			enemyUnit.transform.position, 
+			who.transform.position, 
+			NumSquadMembers, 
+			kSquadMemberWidth * 2.0f, 
+			who.Range);
+		
+		List<Unit> mEnemies = mTargetSquad.mSquadMembers;
+		int numEnemies = mEnemies.Count;
+		
+		// engage enemies 1 to 1
+		for(int i = 0; i < mSquadMembers.Count; ++i) {
+			mSquadMembers[i].collider2D.enabled = false;
+			mSquadMembers[i].Engage(mEnemies[i % numEnemies], positions[i]);
+		}
+	}
+	
+	// re-enable the search for new enemies
+	private void DisengageSquad()
+	{
+		IsEngaged = false;
+		for(int i = 0; i < mSquadMembers.Count; ++i) {
+			mSquadMembers[i].Disengage();
+		}
+	}
+	
 	/**
 	Creates random directions for squad members to form a concentric circle around the target location
 	
@@ -175,28 +161,30 @@ public class Squad : MonoBehaviour
 	@param unitWidth: the width of each unit
 	
 	TODO fix the placement for large numbers of squad members
-	TODO create location in center for odd number of members?
-	*/
-	
-	private List<Vector3> RandomSectionLocations(int numSections, float unitWidth)
+	**/
+	private List<Vector3> RandomSectionLocations(int numSections, float circleWidth)
 	{
+		if (numSections <= 0) // return empty list
+			return new List<Vector3>();
+			
 		List<Vector3> randomLocations = new List<Vector3>();
 		
 		List<float> randomAngles = new List<float>();
-		float anglesPerSection = 360f / numSections;
+		float anglesPerSection = 360f / (numSections - 1);
 		for (int i = 0; i < numSections; ++i) {
-			float randomAngle = Random.Range(anglesPerSection * .2f, anglesPerSection * 0.8f);
+			float randomAngle = Random.Range(anglesPerSection * .3f, anglesPerSection * 0.7f);
 			randomAngle += i * anglesPerSection;
 			randomAngles.Add(randomAngle * Mathf.Deg2Rad);
 		}
 		
-		randomLocations.Add(Vector3.zero);
+		randomLocations.Add(Vector3.zero); // place first squad in center
 		// assigns a random position in the section
 		for (int i = 1; i < numSections; ++i) {
 			float angle = randomAngles[i];
 			Vector3 randomDir = new Vector3(Mathf.Cos (angle), Mathf.Sin (angle), 0f);
 			randomDir.Normalize();
-			randomDir *= Random.Range (unitWidth, unitWidth * 3f);
+			//randomDir *= circleWidth;
+			randomDir *= Random.Range (circleWidth, circleWidth * 2f);
 			randomLocations.Add(randomDir);
 		}
 		
@@ -239,10 +227,57 @@ public class Squad : MonoBehaviour
 			Vector3 newPosition = x;
 			newPosition.x = r * Mathf.Cos(angles[i]);
 			newPosition.y = r * Mathf.Sin(angles[i]);
-						
+			
 			surroundingPositions.Add (newPosition);
 		}
 		
 		return surroundingPositions;
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////
+	// Unity Overrides
+	///////////////////////////////////////////////////////////////////////////////////
+	
+	// Use this for initialization
+	void Awake () {
+		if (null == mUnitPrefab) 
+			mUnitPrefab = Resources.Load(UnitPrefab) as GameObject;
+		
+		if (mSquadMembers != null) {
+			foreach (Unit u in mSquadMembers)
+				Destroy(u.gameObject);
+		}
+			
+		mSquadMembers = new List<Unit>();
+		
+		List<Vector3> randomPositions = this.RandomSectionLocations(NumSquadMembers, kSquadMemberWidth * 1.5f);
+		
+		// Instantiates and initializes the position of each member in the squad
+		// TODO fix the placement for large numbers of squad members
+		for (int i = 0; i < NumSquadMembers; ++i) {
+			// instantiate the unit from the prefab
+			GameObject o = (GameObject) Instantiate(mUnitPrefab);
+			Unit u = (Unit) o.GetComponent(typeof(Unit));
+			u.Squad = this;
+			mSquadMembers.Add (u);
+			
+			// offset from squad center
+			Vector3 memberPosition = this.transform.position;
+			memberPosition += randomPositions[i];
+			u.transform.position = memberPosition;
+		}
+	}
+	
+	// Update is called once per frame
+	void Update () 
+	{
+		// only capture input in squad testing scene 
+		if (!Application.loadedLevelName.Equals("SquadTest"))
+			return;
+		
+		if (this.UnitPrefab == "Squads/Prefabs/PeasantPrefab" && Input.GetButtonDown("Fire2")) {
+			this.NumSquadMembers = 10;
+			this.Awake();
+		}
 	}
 }

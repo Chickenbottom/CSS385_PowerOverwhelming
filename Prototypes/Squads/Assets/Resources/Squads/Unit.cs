@@ -11,10 +11,9 @@ public class Unit : Target, IDamagable
 	protected float mChargeSpeed;   // speed used to engage enemies
 	#endregion
 	
-	public Weapon CurrentWeapon = null;
+	protected Weapon mCurrentWeapon = null;
 	protected SortedList mWeapons;
-	
-	protected float mReloadTimer;
+
 	protected Target mAttackTarget;
 	
 	protected Vector3 mAttackVector; // direction to attack target from
@@ -31,9 +30,9 @@ public class Unit : Target, IDamagable
 	
 	#region Getters and Setters
 	public Squad Squad { get; set; }
-	public float Range { get { return CurrentWeapon.Range; } }
+	public float Range { get { return mCurrentWeapon.Range; } }
 	#endregion
-	
+		
 	protected enum MovementState {
 		kMoving, kIdle
 	}
@@ -42,35 +41,29 @@ public class Unit : Target, IDamagable
 		kIdle, kEngaging, kRanged, kMelee
 	}
 	
-	public void MoveTo(Vector3 target) 
+	///////////////////////////////////////////////////////////////////////////////////
+	// Public Methods
+	///////////////////////////////////////////////////////////////////////////////////
+	
+	/// <summary>
+	/// Updates the destination of the unit.
+	/// If the unit is not engaged in combat, it will move towards this desination.
+	/// </summary>
+	/// <param name="target">Desination. The location to move towards. </param>
+	public void MoveTo(Vector3 destination) 
 	{
-		mDestination = target;
+		mDestination = destination;
 		
 		if (mAttackTarget == null) // can only move if there is no one in range
 			mMovementState = MovementState.kMoving;
 	}
 	
-	
-	void OnTriggerStay2D(Collider2D other)
-	{
-		this.OnTriggerEnter2D(other);
-	}
-	
-	// Check for enemies in sight range
-	void OnTriggerEnter2D(Collider2D other)
-	{
-		if (this.collider2D.enabled == false)
-			return;
-		
-		Target t = other.gameObject.GetComponent<Target>();
-		if (t != null && t.GetAllegiance != this.mAllegiance) {			
-			if (this.Squad == null)
-				Debug.Log ("Squad not initialized for squad member");
-			
-			this.Squad.NotifyEnemySighted(this, other.gameObject);
-		}
-	}
-	
+	/// <summary>
+	/// Engage the specified target from the given firingPosition.
+	/// Units will attempt to move towards the firingPosition before attacking enemies.
+	/// </summary>
+	/// <param name="target">Target. The target to attack.</param>
+	/// <param name="firingPosition">Firing position. The position to attack from.</param>
 	public void Engage(Target target, Vector3? firingPosition = null)
 	{
 		mAttackVector = (firingPosition != null) 
@@ -83,8 +76,53 @@ public class Unit : Target, IDamagable
 		mAttackState = AttackState.kEngaging;
 	}
 	
+	/// <summary>
+	/// Reduces the health of the unit by the given amount.
+	/// </summary>
+	/// <param name="damage">Damage. The amount of damage taken.</param>
+	public void Damage(int damage)
+	{
+		mHealth -= damage;
+		if (mHealth <= 0) {
+			this.Squad.Notify(SquadAction.kUnitDied, this);
+			Destroy(this.gameObject);
+			Destroy (this);
+		}
+	}
+	
+	/// <summary>
+	/// Switchs to weapon stored at the given index. If the index refers to an invalid weapon, no action is taken.
+	/// </summary>
+	/// <param name="index">Index.</param>
+	public void SwitchToWeapon(int index)
+	{
+		Weapon w = (Weapon)mWeapons.GetByIndex(index);
+		
+		if (w != null) {
+			mCurrentWeapon.Reset();
+			mCurrentWeapon = w;
+		}
+	}
+	
+	/// <summary>
+	/// Disenganges the unit from combat and starts them moving towrads their original destination.
+	/// The unit will begin searching for new targets and will switch to their longest ranged weapon.
+	/// </summary>
+	public void Disengage()
+	{
+		mAttackState = AttackState.kIdle;
+		mMovementState = MovementState.kMoving;
+		
+		SwitchToWeapon(mWeapons.Count - 1); // longest range weapon		
+		this.collider2D.enabled = true;
+	}	
+	
+	///////////////////////////////////////////////////////////////////////////////////
+	// Private Methods
+	///////////////////////////////////////////////////////////////////////////////////
+	
 	// Update is called once per frame
-	public void FixedUpdate () 
+	void FixedUpdate () 
 	{
 		UpdateTargetState();
 		
@@ -115,31 +153,16 @@ public class Unit : Target, IDamagable
 		UpdateDamageAnimation();
 	}
 	
-	public void Disengage()
-	{
-		mAttackState = AttackState.kIdle;
-		mMovementState = MovementState.kMoving;
-		
-		SwitchToWeapon(mWeapons.Count - 1); // longest range weapon		
-		this.collider2D.enabled = true;
-	}	
-	
 	private void UpdateTargetState()
 	{
 		if (mAttackState == AttackState.kIdle) // no target present
 			return; 
 			
 		if (mAttackTarget == null) { // target's been destroyed
-			CurrentWeapon.Reset();
-			this.Squad.NotifyEnemyKilled(this);
+			mCurrentWeapon.Reset();
+			this.Squad.Notify (SquadAction.kTargetDestroyed, this);
 			return;
 		}
-	}
-	
-	public void SwitchToWeapon(int index)
-	{
-		CurrentWeapon.Reset();
-		CurrentWeapon = (Weapon)mWeapons.GetByIndex(index);
 	}
 	
 	private void EngageTarget(Target target)
@@ -155,7 +178,7 @@ public class Unit : Target, IDamagable
 		
 		// if in range, start firing!
 		// do not move away from target
-		if (Vector3.Distance(this.transform.position, targetLocation) <= CurrentWeapon.Range ||
+		if (Vector3.Distance(this.transform.position, targetLocation) <= mCurrentWeapon.Range ||
 		    firingPositionDistance > targetDistance) {
 			mAttackState = AttackState.kRanged;
 			UpdateAttack(target);
@@ -182,31 +205,32 @@ public class Unit : Target, IDamagable
 		
 		for (int i = 0; i < mWeapons.Count; ++i) {
 			Weapon w = (Weapon)mWeapons.GetByIndex(i);
-			if (w == CurrentWeapon) // can only check longer range weapons from here
+			if (w == mCurrentWeapon) // can only check longer range weapons from here
 				break; 
 				
 			// a shorter range weapon can be used
 		    if (w.Range * w.Range > targetDistanceSquared) { 
-				Squad.NotifyWeaponChanged(this, i); // switch squad to this weapon
+				Squad.Notify(SquadAction.kWeaponChanged, this, i); // switch squad to this weapon
 				break;
 		    }
 		}
 			
 		// Move into range of the target
-		if (targetDistanceSquared > CurrentWeapon.Range * CurrentWeapon.Range) {
+		if (targetDistanceSquared > mCurrentWeapon.Range * mCurrentWeapon.Range) {
 			mAttackState = AttackState.kEngaging;
 			UpdateMovement(targetLocation, mChargeSpeed);
 			return;
 		}
 		
-		if (CurrentWeapon != null)
-			CurrentWeapon.Attack(this, target);
+		if (mCurrentWeapon != null)
+			mCurrentWeapon.Attack(this, target);
 	}
 	
 	private void UpdateMovement(Vector3 targetLocation, float speed)
 	{
 		if (Vector3.Distance(this.transform.position, targetLocation) < 1.0f) {
 			mMovementState = MovementState.kIdle;
+			this.Squad.Notify(SquadAction.kDestinationReached);
 			return;
 		}
 		
@@ -219,11 +243,8 @@ public class Unit : Target, IDamagable
 		GetComponent<SpriteRenderer> ().sortingOrder = (int)(sortingOrder);
 	}
 	
-	/////////////////////////////////////////////////////////////
-	// Damage Model
-	/////////////////////////////////////////////////////////////
-
-	void UpdateDamageAnimation() 
+	// Update sprite set to match current health
+	private void UpdateDamageAnimation() 
 	{
 		if (mSprites == null)
 			return;
@@ -239,22 +260,30 @@ public class Unit : Target, IDamagable
 		mPreviousHealth = mHealth;
 	}
 	
-	public void Damage(int damage)
-	{
-		mHealth -= damage;
-		if (mHealth <= 0) {
-			this.Squad.NotifyUnitDied(this);
-			Destroy(this.gameObject);
-			Destroy (this);
-		}
-	}
+	///////////////////////////////////////////////////////////////////////////////////
+	// Unity Overrides
+	///////////////////////////////////////////////////////////////////////////////////
 	
-	public void Awake ()
+	// Initialize variables
+	protected void Awake ()
 	{		
 		mAttackState = AttackState.kIdle;
 		mAttackTarget = null;
 		
 		mMovementState = MovementState.kIdle;
 		mDestination = new Vector3(0, 0, 0);
+	}
+	
+	// Check for enemies in sight range
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if (this.collider2D.enabled == false)
+			return;
+		
+		Target target = other.gameObject.GetComponent<Target>();
+		if (target != null && target.GetAllegiance != this.mAllegiance) {
+			this.Squad.Notify (SquadAction.kEnemySighted, this, target);
+		}
+		//this.OnTriggerEnter2D(other);
 	}
 }

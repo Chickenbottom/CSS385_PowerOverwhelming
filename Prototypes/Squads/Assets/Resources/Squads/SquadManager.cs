@@ -2,50 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SquadManager : MonoBehaviour {
-
-	private List<Squad> mSquads;
-	GameObject mSquadPrefab = null;
-	
-	private float kSquadWidth = 10f;
+public class SquadManager : MonoBehaviour 
+{
+	///////////////////////////////////////////////////////////////////////////////////
+	// Public Methods and Variables
+	///////////////////////////////////////////////////////////////////////////////////
 	
 	public string SquadPrefab;
-	
-	private Vector3 mRallyPoint;
-	
-	void Start () 
-	{
-		if (null == mSquadPrefab) 
-			mSquadPrefab = Resources.Load(SquadPrefab) as GameObject;
-		mSquads = new List<Squad>();
-		mRallyPoint = this.transform.position;
-	}
-	
-	void Update () 
-	{
-		if (Input.GetButtonDown("Fire1")) {
-			GameObject o = (GameObject) Instantiate(mSquadPrefab);
-			Squad u = (Squad) o.GetComponent(typeof(Squad));
-			mSquads.Add (u);
-			MoveSquads(mRallyPoint);
-		}
-		
-		// Move the squads to the location clicked on the screen
-		if (Input.GetMouseButtonDown(0)) {
-			mRallyPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			mRallyPoint.z = 0;
-			MoveSquads(mRallyPoint);
-		}
-	}
-	
-	private void MoveSquads(Vector3 location)
+	public void SetDestination(Vector3 location)
 	{
 		location.z = 0;
 		
 		List<Vector3> randomPositions = this.RandomSectionLocations(mSquads.Count, kSquadWidth);
-
+		
 		this.transform.position = location;
-
+		
 		for (int i = mSquads.Count - 1; i >= 0; --i) {
 			if (mSquads[i] == null) {
 				mSquads.RemoveAt(i);
@@ -57,9 +28,19 @@ public class SquadManager : MonoBehaviour {
 		}
 	}
 	
+	///////////////////////////////////////////////////////////////////////////////////
+	// Private Methods and Variables
+	///////////////////////////////////////////////////////////////////////////////////
+	
+	private List<Squad> mSquads;
+	private GameObject mSquadPrefab = null;
+	
+	private float kSquadWidth = 10f;	
+	private Vector3 mRallyPoint;
+	
 	// Creates random directions for squad members to form a concentric circle around the target location
 	// TODO fix the placement for large numbers of squad members
-	// TODO create location in center for odd number of members?
+	// TODO move this to a general utility class
 	private List<Vector3> RandomSectionLocations(int numSections, float circleWidth)
 	{
 		List<Vector3> randomLocations = new List<Vector3>();
@@ -85,4 +66,38 @@ public class SquadManager : MonoBehaviour {
 		
 		return randomLocations;
 	}
+	
+	///////////////////////////////////////////////////////////////////////////////////
+	// Unity Overrides
+	///////////////////////////////////////////////////////////////////////////////////
+	
+	void Start () 
+	{
+		if (null == mSquadPrefab) 
+			mSquadPrefab = Resources.Load(SquadPrefab) as GameObject;
+		mSquads = new List<Squad>();
+		mRallyPoint = this.transform.position;
+	}
+	
+	void Update () 
+	{
+		// only capture input in squad testing scene 
+		if (!Application.loadedLevelName.Equals("SquadTest"))
+			return;
+			
+		if (Input.GetButtonDown("Fire1")) {
+			GameObject o = (GameObject) Instantiate(mSquadPrefab);
+			Squad u = (Squad) o.GetComponent(typeof(Squad));
+			mSquads.Add (u);
+			SetDestination(mRallyPoint);
+		}
+		
+		// Move the squads to the location clicked on the screen
+		if (Input.GetMouseButtonDown(0)) {
+			mRallyPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mRallyPoint.z = 0;
+			SetDestination(mRallyPoint);
+		}
+	}
+	
 }
