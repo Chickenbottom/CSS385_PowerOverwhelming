@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TowerStore : MonoBehaviour {
-
+public class TowerStore : MonoBehaviour 
+{
+	public GUISkin GUISkin;
+	
 	protected enum Button {
 		kSwordsmanUp,
 		kSwordsmanDown,
@@ -98,6 +100,7 @@ public class TowerStore : MonoBehaviour {
 				HandleClick(button);
 		}
 		
+		GUI.skin = this.GUISkin;
 		foreach(Label label in mLabels.Keys) 
 			GUI.Label(mLabels[label].Rect, mLabels[label].Text);
 	}
