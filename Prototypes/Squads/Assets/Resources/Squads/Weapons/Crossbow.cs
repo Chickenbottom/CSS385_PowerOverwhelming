@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Crossbow : Weapon
 {
-	private GameObject mProjectilePrefab = null;
+	private static GameObject mProjectilePrefab = null;
 		
 	public Crossbow ()
 	{
