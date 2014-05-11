@@ -38,7 +38,7 @@ public class LevelLoader : MonoBehaviour
 	
 	private void LoadLevel(int level)
 	{
-	
+		GameState.LoadLevel(level);
 	}
 	
 	void OnGUI () 
