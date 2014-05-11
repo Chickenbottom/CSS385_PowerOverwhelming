@@ -25,7 +25,7 @@ public class TowerBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(Input.GetMouseButtonUp(1)){
+		if(Input.GetMouseButtonUp(1) ){
 			if(selectedTower != TOWERTYPE.NONE && 
 			   selectedTower != TOWERTYPE.HEAL && 
 			   spawnTower != null){

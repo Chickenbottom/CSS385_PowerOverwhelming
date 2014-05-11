@@ -10,7 +10,7 @@ public class UnitSpawnTower : TowerBehavior {
 	};
 
 	//SqaudManager mSquadMan;
-	TowerBehavior towerManager;
+	TowerBehavior towerManager ;
 	int kSquadSpawnTime;
 	public TOWERTYPE mTowerType;
 	int mSquadLastSpawn;

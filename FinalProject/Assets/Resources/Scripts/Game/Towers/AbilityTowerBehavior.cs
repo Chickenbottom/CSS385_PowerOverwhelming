@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AbilityTowerBehavior: TowerBehavior {
 
-	const float kHealRate = 50;
+	const float kHealRate = 50 ;
 	float mHealBonus = 1;
 	public TOWERTYPE mTowerType;
 	float mTowerHealth = 100;
