@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Weapon : MonoBehaviour
+public abstract class Weapon
 {
 	public int Damage { get; set; }
 	public float Range { get; set; }
@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 	public float Accuracy { get; set; }
 	
 	protected float mReloadTimer;
-		
+	
 	public virtual void Attack(Target src, Target target)
 	{
 		if (target == null || src == null)

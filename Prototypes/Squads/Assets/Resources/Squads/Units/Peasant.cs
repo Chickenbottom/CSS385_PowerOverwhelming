@@ -16,15 +16,12 @@ public class Peasant : Unit
 	}
 	
 	void Start()
-	{
-		GameObject Pitchfork = Resources.Load("Squads/Prefabs/PitchforkPrefab") as GameObject;
-		GameObject o = (GameObject) Instantiate(Pitchfork);
-		Pitchfork w = (Pitchfork) o.GetComponent(typeof(Pitchfork));
-		
+	{	
 		mWeapons = new SortedList();
-		mWeapons.Add (w.Range, w);
-		
-		mCurrentWeapon = w;
+			
+		Weapon pitchfork = new Pitchfork();
+		mWeapons.Add (pitchfork.Range, pitchfork);
+		mCurrentWeapon = pitchfork;
 		
 		if (mProjectilePrefab == null)
 			mProjectilePrefab = Resources.Load("Squads/Prefabs/ArrowPrefab") as GameObject;

@@ -5,7 +5,7 @@ public class Pitchfork : Weapon
 {
 	private GameObject mProjectilePrefab = null;
 	
-	public void Awake ()
+	public Pitchfork()
 	{
 		Damage = 2;
 		Range = 8f;
@@ -14,10 +14,7 @@ public class Pitchfork : Weapon
 		Accuracy = 0.8f;
 		
 		mReloadTimer = ReloadTime;
-	}
-	
-	public void Start()
-	{
+		
 		if (mProjectilePrefab == null)
 			mProjectilePrefab = Resources.Load("Squads/Prefabs/ArrowPrefab") as GameObject;
 	}
@@ -32,7 +29,7 @@ public class Pitchfork : Weapon
 		Unit e = (Unit) target.GetComponent(typeof(Unit));
 		e.Damage(this.Damage);
 		
-		GameObject o = (GameObject) Instantiate(mProjectilePrefab);
+		GameObject o = (GameObject) GameObject.Instantiate(mProjectilePrefab);
 		Arrow a = (Arrow) o.GetComponent(typeof(Arrow));
 		
 		a.transform.position = src.transform.position;		

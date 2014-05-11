@@ -16,10 +16,13 @@ public class Swordsman : Unit
 	}
 
 	void Start()
-	{
-		if (mProjectilePrefab == null)
-			mProjectilePrefab = Resources.Load("Squads/Prefabs/ArrowPrefab") as GameObject;
+	{			
+		mWeapons = new SortedList();
 		
+		Weapon sword = new Sword();
+		mCurrentWeapon = sword;
+		mWeapons.Add (sword.Range, sword);
+				
 		mHealth = mDefaultHealth;
 		mPreviousHealth = mHealth;
 		

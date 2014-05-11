@@ -20,18 +20,12 @@ public class Archer : Unit
 	{
 		mWeapons = new SortedList();
 		
-		GameObject crossbow = Resources.Load("Squads/Prefabs/CrossbowPrefab") as GameObject;
-		GameObject o = (GameObject) Instantiate(crossbow);
-		Crossbow w = (Crossbow) o.GetComponent(typeof(Crossbow));
-
-		mWeapons.Add (w.Range, w);
+		Weapon crossbow = new Crossbow();
+		mCurrentWeapon = crossbow;
+		mWeapons.Add (crossbow.Range, crossbow);
 		
-		GameObject dagger = Resources.Load("Squads/Prefabs/DaggerPrefab") as GameObject;
-		GameObject t = (GameObject) Instantiate(dagger);
-		Dagger d = (Dagger) t.GetComponent(typeof(Dagger));
-		mWeapons.Add (d.Range, d);
-		
-		mCurrentWeapon = w;
+		Weapon dagger = new Dagger();
+		mWeapons.Add (dagger.Range, dagger);
 		
 		mHealth = mDefaultHealth;
 		mPreviousHealth = mHealth;
