@@ -16,9 +16,7 @@ public class AbilityTowerBehavior: TowerBehavior {
 	
 	// Update is called once per frame
 	void Update () {
-		GameObject heal = GameObject.Find("HealGUIText");
-		GUIText gui = heal.GetComponent<GUIText>();
-		gui.text = "Heal: " +  mTowerHealth.ToString();
+
 	}
 	void OnMouseDown(){
 		towerManager.setSelected(null, this.GetComponent<AbilityTowerBehavior>());

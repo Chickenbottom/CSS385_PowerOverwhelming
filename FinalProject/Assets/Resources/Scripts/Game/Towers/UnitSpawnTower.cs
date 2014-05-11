@@ -35,26 +35,6 @@ public class UnitSpawnTower : TowerBehavior {
 				mStatus = STATUS.DISABLED;
 		}
 
-
-		string myTower = " ";
-		string Path = "";
-		if(mTowerType == TOWERTYPE.MELEE){
-			myTower = "Melee: ";
-			Path = "MeleeGUIText";
-		}
-		if(mTowerType == TOWERTYPE.RANGED){
-			myTower = "Ranged: ";
-			Path = "RangedGUIText";
-		}
-		if(mTowerType == TOWERTYPE.MAGIC){
-			myTower = "Magic: ";
-			Path = "MagicGUIText";
-
-		}
-
-		GameObject heal = GameObject.Find(Path);
-		GUIText gui = heal.GetComponent<GUIText>();
-		gui.text = myTower + mTowerHealth.ToString();
 	}
 	void spawnSquad(){
 		if(Time.realtimeSinceStartup - mSquadLastSpawn > kSquadSpawnTime * mSpawnBonus){
@@ -78,24 +58,7 @@ public class UnitSpawnTower : TowerBehavior {
 	public TOWERTYPE getMyTowerType(){
 		return mTowerType;
 	}
-	public void setDestination(Vector3 destination){
-		
-		
-		string myTower = " ";
-		string Path = "DestinationGUIText";
-		if(mTowerType == TOWERTYPE.MELEE){
-			myTower = "Melee: ";
-		}
-		if(mTowerType == TOWERTYPE.RANGED){
-			myTower = "Ranged: ";
-		}
-		if(mTowerType == TOWERTYPE.MAGIC){
-			myTower = "Magic: ";			
-		}
-		
-		GameObject heal = GameObject.Find(Path);
-		GUIText gui = heal.GetComponent<GUIText>();
-		gui.text = myTower + destination.ToString();
+	public void setDestination(Vector3 destination){		
 			//pass destination to squad 
 	}
 	public float gethealth(){
