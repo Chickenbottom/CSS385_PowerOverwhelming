@@ -10,13 +10,14 @@ public class MouseManager : MonoBehaviour
     #endregion
 
 
-    void Start () {
+    void Start()
+    {
         mSelected = false;
         mTowerSelected = null;
-	}
-	
-	void Update () {
-        Debug.Log(Input.mousePosition);
+    }
+
+    void Update()
+    {
         if (Input.GetMouseButtonDown(0) && mSelected)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -28,12 +29,12 @@ public class MouseManager : MonoBehaviour
                 mSelected = false;
             }
         }
-	}
+    }
 
     private bool ValidMousePos(Vector3 mousePos)
     {
-        // click inside game boundry
-        return true;
+        // Add a dead spot around the towers to prevent sending units when you meant to reselect a tower
+        return mousePos.x < 240f && mousePos.x > -250f && mousePos.y < 102f && mousePos.y > -169f;
     }
 
     public void Select(GameObject tower)
