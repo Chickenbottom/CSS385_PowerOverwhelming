@@ -3,8 +3,8 @@ using System.Collections;
 
 public class TowerBehavior : MonoBehaviour {
 
-	abstract void Click();
-	abstract void getMyTowerType();
+	//abstract void Click();
+	//abstract void getMyTowerType();
 
 	public enum TOWERTYPE{
 		MELEE,
@@ -25,16 +25,37 @@ public class TowerBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(Input.GetMouseButtonUp(0)){
+		if(Input.GetMouseButtonUp(1)){
 			if(selectedTower != TOWERTYPE.NONE && 
 			   selectedTower != TOWERTYPE.HEAL && 
 			   spawnTower != null){
 				Vector2 destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				spawnTower.setDestination(destination);
+				clearSelected();
+			}
+		}
+
+		if(Input.GetKey(KeyCode.A)){
+		
+			if(spawnTower != null){
+				spawnTower.hitTower(50f);
+			}
+			if(abilityTower != null){
+				abilityTower.hitTower(50f);
 			}
 		}
 	}
-	public void setSelected(AbilityTowerBehavior AT = null, UnitSpawnTower ST = null){
+	public void setSelected(UnitSpawnTower ST = null, AbilityTowerBehavior AT = null){
+
+		
+		if(selectedTower == TOWERTYPE.HEAL)
+			if(ST != null){
+				spawnTower = ST;
+				spawnTower.healTower(abilityTower.getHealRate());
+				clearSelected();
+		}
+
+		clearSelected();
 		if(selectedTower == TOWERTYPE.NONE){
 			if(AT == null){
 				spawnTower = ST;
@@ -42,15 +63,9 @@ public class TowerBehavior : MonoBehaviour {
 			}
 			else{
 				abilityTower = AT;
-				selectedTower = ST.getMyTowerType();
+				selectedTower = AT.getMyTowerType();
 			}
 		}
-
-		if(selectedTower == TOWERTYPE.HEAL)
-			if(ST != null){
-				ST.healTower(AT.getHealRate);
-				clearSelected();
-			}
 	}
 	public void clearSelected(){
 		selectedTower = TOWERTYPE.NONE;
