@@ -5,12 +5,13 @@ public class AbilityTowerBehavior: TowerBehavior {
 
     public override void Click()
     {
-        Debug.Log("YAY IT WORKED");
+        Debug.Log("YAY IT WORKED" + health + "  " + type);
     }
 
-    public override TOWERTYPE GetTowerType()
+    void Start()
     {
-        return TOWERTYPE.Ability;
+        type = TOWERTYPE.Ability;
+        health = 100;
     }
 
 }

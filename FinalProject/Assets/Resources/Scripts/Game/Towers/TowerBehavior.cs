@@ -8,21 +8,13 @@ public abstract class TowerBehavior : MonoBehaviour {
         Unit
     }
 
-    private int health;
-    private TOWERTYPE type;
+    public const int towerSpriteOffset = 4;
+
+    protected int health;
+    protected TOWERTYPE type;
+    public int towerSprite;
 
     public abstract void Click();
-    public abstract TOWERTYPE GetTowerType();
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-
-    }
 
     void OnMouseDown()
     {
@@ -31,6 +23,16 @@ public abstract class TowerBehavior : MonoBehaviour {
             Debug.Log("CLICKED TOWER!");
             GameObject.Find("GameManager").GetComponent<MouseManager>().Select(this.gameObject);
         }
+    }
+
+    public TOWERTYPE GetTowerType()
+    {
+        return type;
+    }
+
+    public void Damage(int damage)
+    {
+        // change sprite int here
     }
 
 }
