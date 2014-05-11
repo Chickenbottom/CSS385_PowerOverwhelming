@@ -16,10 +16,11 @@ public class MouseManager : MonoBehaviour
 	}
 	
 	void Update () {
+        Debug.Log(Input.mousePosition);
         if (Input.GetMouseButtonDown(0) && mSelected)
         {
-            Debug.Log("HEYO");
-            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0f;
             if (ValidMousePos(mousePos))
             {
                 // mItemSelected.Click(mousePos);
