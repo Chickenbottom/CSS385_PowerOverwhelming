@@ -5,7 +5,7 @@ public class AbilityTowerBehavior: TowerBehavior {
 
     public override void Click()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("YAY IT WORKED");
     }
 
     public override TOWERTYPE GetTowerType()

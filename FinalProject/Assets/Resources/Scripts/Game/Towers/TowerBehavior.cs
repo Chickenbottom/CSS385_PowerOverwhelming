@@ -24,10 +24,11 @@ public abstract class TowerBehavior : MonoBehaviour {
 
     }
 
-    void OnTriggerEnter2D()
+    void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("CLICKED TOWER!");
             GameObject.Find("GameManager").GetComponent<MouseManager>().Select(this.gameObject);
         }
     }

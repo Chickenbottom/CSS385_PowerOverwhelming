@@ -18,13 +18,13 @@ public class MouseManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && mSelected)
+        if (Input.GetMouseButtonDown(1) && mSelected)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0f;
             if (ValidMousePos(mousePos))
             {
-                // mItemSelected.Click(mousePos);
+                mTowerSelected.GetComponent<TowerBehavior>().Click();
                 mTowerSelected = null;
                 mSelected = false;
             }
