@@ -22,7 +22,6 @@ public class UnitSpawnTower : TowerBehavior {
 	void Start () {
 		mStatus = STATUS.ENABLED;
 		towerManager = GameObject.Find ("TowerManager").GetComponent<TowerBehavior>();
-		
 	}
 	
 	// Update is called once per frame
@@ -42,12 +41,13 @@ public class UnitSpawnTower : TowerBehavior {
 		}
 	}
 	void OnMouseDown(){
-		if(mStatus == STATUS.ENABLED)
-			towerManager.setSelected(this.GetComponent<UnitSpawnTower>());
-
+		if(mStatus == STATUS.ENABLED){
+			//towerManager.setSelected(this.GetComponent<UnitSpawnTower>());
+			mouseManager.Select(gameObject);
+		}
 	}
-	void Click(){
-		//mSquadMan.setSqaudDesination(Vector3 Click);
+	public override void Click(Vector3 destination){
+		//mSquadMan.setSqaudDesination(destination);
 	}
 	public void healTower(float h){
 		mTowerHealth += h;
@@ -58,9 +58,9 @@ public class UnitSpawnTower : TowerBehavior {
 	public TOWERTYPE getMyTowerType(){
 		return mTowerType;
 	}
-	public void setDestination(Vector3 destination){		
+	//public void setDestination(Vector3 destination){		
 			//pass destination to squad 
-	}
+	//}
 	public float gethealth(){
 		return mTowerHealth;
 	}

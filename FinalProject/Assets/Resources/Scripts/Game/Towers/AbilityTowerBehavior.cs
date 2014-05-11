@@ -8,18 +8,32 @@ public class AbilityTowerBehavior: TowerBehavior {
 	public TOWERTYPE mTowerType;
 	float mTowerHealth = 100;
 	TowerBehavior towerManager;
+	STATUS mStatus;
+
 	// Use this for initialization
 	void Start () {
 		towerManager = GameObject.Find ("TowerManager").GetComponent<TowerBehavior>();
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+		if(mTowerHealth <= 0){
+			if(mStatus == STATUS.DISABLED)
+				mStatus = STATUS.ENABLED;
+			else
+				mStatus = STATUS.DISABLED;
+
+		}
+	}
+	public override void Click(Vector3 destination){
+		//heal tower
 	}
 	void OnMouseDown(){
-		towerManager.setSelected(null, this.GetComponent<AbilityTowerBehavior>());
+		if(mStatus == STATUS.ENABLED){
+			//towerManager.setSelected(null, this.GetComponent<AbilityTowerBehavior>());
+			mouseManager.Select(gameObject);
+		}
 	}
 	public void setHealBonus(float bonus = 1){
 		mHealBonus = bonus;
