@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: ArcherSquadPrefab
+  m_Name: SwordmanSquadManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 54.2293396, y: .868891716, z: 0}
+  m_LocalPosition: {x: 87.7513046, y: 3.67152929, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -36,13 +36,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 385ca6189d4000e4ead026f8abc473a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6399b29055bcbf34bad41c08bf103128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumSquadMembers: 5
-  UnitPrefab: Squads/Prefabs/ArcherPrefab
-  RallyPoint: {x: 0, y: 0, z: 0}
-  IsEngaged: 0
+  SquadPrefab: Squads/SwordsmanSquadPrefab
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

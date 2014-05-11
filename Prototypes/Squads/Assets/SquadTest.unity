@@ -106,7 +106,7 @@ MonoBehaviour:
   RallyPoint: {x: 0, y: 0, z: 0}
   IsEngaged: 0
   NumSquadMembers: 10
-  UnitPrefab: Squads/Prefabs/PeasantPrefab
+  UnitPrefab: Units/PeasantPrefab
 --- !u!212 &37382008
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -336,71 +336,6 @@ Transform:
   m_LocalScale: {x: 11, y: 11, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!1 &391615378
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4, type: 2}
-  m_PrefabInternal: {fileID: 461739981}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 391615381}
-  - 212: {fileID: 391615380}
-  - 114: {fileID: 391615379}
-  m_Layer: 0
-  m_Name: SquadManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &391615379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4,
-    type: 2}
-  m_PrefabInternal: {fileID: 461739981}
-  m_GameObject: {fileID: 391615378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6399b29055bcbf34bad41c08bf103128, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SquadPrefab: Squads/Prefabs/SwordmanSquadPrefab
---- !u!212 &391615380
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 21200000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4,
-    type: 2}
-  m_PrefabInternal: {fileID: 461739981}
-  m_GameObject: {fileID: 391615378}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 50
-  m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: c6451dd506f706e49b7062ca4dcea953, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!4 &391615381
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4, type: 2}
-  m_PrefabInternal: {fileID: 461739981}
-  m_GameObject: {fileID: 391615378}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 87.7513046, y: 3.67152929, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &404456352
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +437,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 545f263290e26224ca8aa9550fab7758, type: 2}
       propertyPath: UnitPrefab
-      value: Squads/Prefabs/PeasantPrefab
+      value: Units/PeasantPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 545f263290e26224ca8aa9550fab7758, type: 2}
       propertyPath: NumSquadMembers
@@ -511,50 +446,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 545f263290e26224ca8aa9550fab7758, type: 2}
   m_RootGameObject: {fileID: 37382006}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
---- !u!1001 &461739981
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 87.7513046
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3.67152929
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4, type: 2}
-      propertyPath: SquadPrefab
-      value: Squads/Prefabs/SwordmanSquadPrefab
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 1aa396b6f95ab9f4695bdfec1cb181f4, type: 2}
-  m_RootGameObject: {fileID: 391615378}
   m_IsPrefabParent: 0
   m_IsExploded: 1
 --- !u!1001 &643264702
@@ -597,6 +488,71 @@ Prefab:
   m_RootGameObject: {fileID: 1971207729}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &794188044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: dc5c6a1930faebe46923acbdec0612b9, type: 2}
+  m_PrefabInternal: {fileID: 1978609386}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 794188047}
+  - 212: {fileID: 794188046}
+  - 114: {fileID: 794188045}
+  m_Layer: 0
+  m_Name: SwordmanSquadManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &794188045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: dc5c6a1930faebe46923acbdec0612b9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1978609386}
+  m_GameObject: {fileID: 794188044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6399b29055bcbf34bad41c08bf103128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SquadPrefab: Squads/SwordsmanSquadPrefab
+--- !u!212 &794188046
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: dc5c6a1930faebe46923acbdec0612b9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1978609386}
+  m_GameObject: {fileID: 794188044}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 50
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: c6451dd506f706e49b7062ca4dcea953, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!4 &794188047
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: dc5c6a1930faebe46923acbdec0612b9, type: 2}
+  m_PrefabInternal: {fileID: 1978609386}
+  m_GameObject: {fileID: 794188044}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.8214684, y: -47.6290703, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1001 &1267462021
 Prefab:
   m_ObjectHideFlags: 0
@@ -634,7 +590,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 545f263290e26224ca8aa9550fab7758, type: 2}
       propertyPath: UnitPrefab
-      value: Squads/Prefabs/PeasantPrefab
+      value: Units/PeasantPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 545f263290e26224ca8aa9550fab7758, type: 2}
       propertyPath: NumSquadMembers
@@ -833,7 +789,7 @@ MonoBehaviour:
   RallyPoint: {x: 0, y: 0, z: 0}
   IsEngaged: 0
   NumSquadMembers: 6
-  UnitPrefab: Squads/Prefabs/PeasantPrefab
+  UnitPrefab: Units/PeasantPrefab
 --- !u!212 &1537261298
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -901,7 +857,7 @@ MonoBehaviour:
   RallyPoint: {x: 0, y: 0, z: 0}
   IsEngaged: 0
   NumSquadMembers: 1
-  UnitPrefab: Squads/Prefabs/PeasantPrefab
+  UnitPrefab: Units/PeasantPrefab
 --- !u!212 &1840992734
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -974,7 +930,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 545f263290e26224ca8aa9550fab7758, type: 2}
       propertyPath: UnitPrefab
-      value: Squads/Prefabs/PeasantPrefab
+      value: Units/PeasantPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 545f263290e26224ca8aa9550fab7758, type: 2}
       propertyPath: NumSquadMembers
@@ -1015,3 +971,43 @@ Transform:
   - {fileID: 1335748186}
   - {fileID: 1530594446}
   m_Father: {fileID: 1506114509}
+--- !u!1001 &1978609386
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: dc5c6a1930faebe46923acbdec0612b9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 22.8214684
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: dc5c6a1930faebe46923acbdec0612b9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -47.6290703
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: dc5c6a1930faebe46923acbdec0612b9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: dc5c6a1930faebe46923acbdec0612b9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: dc5c6a1930faebe46923acbdec0612b9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: dc5c6a1930faebe46923acbdec0612b9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: dc5c6a1930faebe46923acbdec0612b9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: dc5c6a1930faebe46923acbdec0612b9, type: 2}
+  m_RootGameObject: {fileID: 794188044}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1

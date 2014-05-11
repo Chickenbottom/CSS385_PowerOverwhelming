@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: SwordmanSquadPrefab
+  m_Name: ArcherSquadPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   RallyPoint: {x: 0, y: 0, z: 0}
   IsEngaged: 0
   NumSquadMembers: 5
-  UnitPrefab: Squads/Prefabs/SwordsmanPrefab
+  UnitPrefab: Units/ArcherPrefab
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

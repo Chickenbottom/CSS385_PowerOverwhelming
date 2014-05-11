@@ -86,7 +86,6 @@ public class Unit : Target, IDamagable
 		if (mHealth <= 0) {
 			this.Squad.Notify(SquadAction.kUnitDied, this);
 			Destroy(this.gameObject);
-			Destroy (this);
 		}
 	}
 	

@@ -121,7 +121,6 @@ public class Squad : MonoBehaviour
 		
 		if (NumSquadMembers <= 0) {
 			Destroy(this.gameObject);
-			Destroy(this);
 		}
 	}
 	

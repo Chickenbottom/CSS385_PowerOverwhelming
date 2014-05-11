@@ -16,7 +16,7 @@ public class Pitchfork : Weapon
 		mReloadTimer = ReloadTime;
 		
 		if (mProjectilePrefab == null)
-			mProjectilePrefab = Resources.Load("Squads/Prefabs/ArrowPrefab") as GameObject;
+			mProjectilePrefab = Resources.Load("Weapons/ArrowPrefab") as GameObject;
 	}
 	
 	protected override void PerformAttack(Target src, Target target)

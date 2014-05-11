@@ -23,9 +23,6 @@ public class Peasant : Unit
 		mWeapons.Add (pitchfork.Range, pitchfork);
 		mCurrentWeapon = pitchfork;
 		
-		if (mProjectilePrefab == null)
-			mProjectilePrefab = Resources.Load("Squads/Prefabs/ArrowPrefab") as GameObject;
-		
 		mHealth = mDefaultHealth;
 		mPreviousHealth = mHealth;
 		mSprites = null;

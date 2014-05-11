@@ -16,4 +16,4 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Resources/ArcherDamage/ArcherDamage.unity
   - enabled: 1
-    path: Assets/Resources/Squads/SquadTest.unity
+    path: Assets/SquadTest.unity
