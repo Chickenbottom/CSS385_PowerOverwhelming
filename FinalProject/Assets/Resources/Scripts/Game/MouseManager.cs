@@ -16,7 +16,7 @@ public class MouseManager : MonoBehaviour
 	}
 	
 	void Update () {
-        if (Input.GetMouseButtonDown(0) && mSelected)
+        if (Input.GetMouseButtonDown(1) && mSelected)
         {
             Debug.Log("HEYO");
             Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
