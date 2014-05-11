@@ -40,13 +40,14 @@ public class DialogManager : MonoBehaviour
 
     #endregion
     #endregion
+
     // Use this for initialization
     void Start()
     {
         mFile = new StreamReader(path);
 
-        Conversations[0] = new ArrayList[3];
-        Conversations[1] = new ArrayList[3];
+        Conversations[kRod] = new ArrayList[3];
+        Conversations[kAdv] = new ArrayList[3];
 
         Conversations[kRod][kTowers].Add(RodTowerStatments);
         Conversations[kRod][kTroops].Add(RodTowerStatments);
@@ -63,47 +64,54 @@ public class DialogManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.realtimeSinceStartup - mPreviousLetter > kLetterDisplayTime)
+        if (Time.time - mPreviousLetter > kLetterDisplayTime)
         {
             printStatment();
-            mPreviousLetter = Time.realtimeSinceStartup;
-
+            mPreviousLetter = Time.time;
         }
 
     }
 
     void loadDialog()
     {
-        string[] substring;
+        System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en");
         while (!mFile.EndOfStream)
         {
             line = mFile.ReadLine();
-            //if (line.Contains("Rodelle", System.StringComparison.CurrentCultureIgnoreCase) ||
-            //   line.Contains("Adviser", System.StringComparison.CurrentCultureIgnoreCase))
-            //{
-                
-            //    if (line.Contains("Rodelle", System.StringComparison.CurrentCultureIgnoreCase))
-            //    {
-            //        cur_person = kRod;
-            //    }
-            //    else if (line.Contains("Adviser", System.StringComparison.CurrentCultureIgnoreCase))
-            //    {
-            //        cur_person = kAdv;
-            //    }
-            //    if (line.Contains("Towers", System.StringComparison.CurrentCultureIgnoreCase))
-            //    {
-            //        cur_convo = kTowers;
-            //    }
-            //    else if (line.Contains("Troops", System.StringComparison.CurrentCultureIgnoreCase))
-            //    {
-            //        cur_convo = kTroops;
-            //    }
-            //    else if (line.Contains("Game", System.StringComparison.CurrentCultureIgnoreCase))
-            //    {
-            //        cur_convo = kGame;
-            //    }
-            //    continue;
-            //}
+            int rod = ci.CompareInfo.IndexOf(line, "Rodelle", System.Globalization.CompareOptions.IgnoreCase);
+            int adv = ci.CompareInfo.IndexOf(line, "Adviser", System.Globalization.CompareOptions.IgnoreCase);
+            bool containsRod = rod >= 0;
+            bool containsAdv = adv >= 0;
+            if (containsAdv || containsRod)
+            {
+
+                if (containsRod)
+                {
+                    cur_person = kRod;
+                }
+                else if (containsAdv)
+                {
+                    cur_person = kAdv;
+                }
+
+                int tower = ci.CompareInfo.IndexOf(line, "Tower", System.Globalization.CompareOptions.IgnoreCase);
+                int troops = ci.CompareInfo.IndexOf(line, "Troops", System.Globalization.CompareOptions.IgnoreCase);
+                int game = ci.CompareInfo.IndexOf(line, "Game", System.Globalization.CompareOptions.IgnoreCase);
+
+                if (tower >= 0)
+                {
+                    cur_convo = kTowers;
+                }
+                else if (troops >= 0)
+                {
+                    cur_convo = kTroops;
+                }
+                else if (game >= 0)
+                {
+                    cur_convo = kGame;
+                }
+
+            }
             if (cur_person != -1 && cur_convo != -1)
                 Conversations[cur_person][cur_convo].Add(line);
         }
@@ -125,7 +133,7 @@ public class DialogManager : MonoBehaviour
    
     public void setStatment(int person, int subject)
     {
-        //line = Conversations[person][subject];
+        line = (string) Conversations[person][subject][0];
         index = 0;
     }
 }
