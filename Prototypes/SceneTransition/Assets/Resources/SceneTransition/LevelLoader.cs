@@ -29,6 +29,7 @@ public class LevelLoader : MonoBehaviour
 		switch(button) 
 		{
 		case(Button.kTowerStore):
+			Application.LoadLevel("TowerStore");
 			break;
 		case(Button.kMenu):
 			Application.LoadLevel("Menu");
