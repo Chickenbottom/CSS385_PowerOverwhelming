@@ -35,4 +35,9 @@ public abstract class TowerBehavior : MonoBehaviour {
         // change sprite int here
     }
 
+    protected void SharedStart()
+    {
+        GameObject.Find("GameManager").GetComponent<EnemyAIManager>().AddTarget(this.gameObject);
+    }
+
 }

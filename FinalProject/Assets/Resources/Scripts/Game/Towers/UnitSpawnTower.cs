@@ -9,6 +9,7 @@ public class UnitSpawnTower : TowerBehavior {
     {
         type = TOWERTYPE.Unit;
         health = 100;
+        SharedStart();
     }
 
     public override void Click()

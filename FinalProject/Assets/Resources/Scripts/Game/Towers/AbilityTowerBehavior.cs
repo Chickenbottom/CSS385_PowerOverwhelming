@@ -12,6 +12,7 @@ public class AbilityTowerBehavior: TowerBehavior {
     {
         type = TOWERTYPE.Ability;
         health = 100;
+        SharedStart();
     }
 
 }
