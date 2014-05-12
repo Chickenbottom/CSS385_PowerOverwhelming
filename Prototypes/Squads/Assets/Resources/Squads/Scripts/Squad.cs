@@ -10,6 +10,14 @@ public enum SquadAction {
 	kUnitDied
 }
 
+public enum UnitType {
+	kNone,
+	kSwordsman,
+	kArcher,
+	kMage,
+	kPeasant,
+}
+
 public class Squad : MonoBehaviour 
 {
 	///////////////////////////////////////////////////////////////////////////////////
@@ -17,9 +25,10 @@ public class Squad : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////////////
 	public Vector3 RallyPoint;
 	public bool IsEngaged;
-	public int NumSquadMembers;
-	public string UnitPrefab;
+	public int NumSquadMembers = 0;
 	public List<Unit> SquadMembers { get { return mSquadMembers; } }
+	
+	public UnitType UnitType;
 	
 	public void Notify(SquadAction action, params object[] args)
 	{
@@ -64,6 +73,41 @@ public class Squad : MonoBehaviour
 		}
 	}
 	
+	public void Spawn(UnitType? unitType = null)
+	{
+		if (NumSquadMembers == 0) // TODO pull default values from upgrade state
+			NumSquadMembers = 4;
+			
+		if (unitType != null)
+			UnitType = unitType.Value;
+			
+		mUnitPrefab = mUnitPrefabs[this.UnitType];
+		
+		if (mSquadMembers != null) {
+			foreach (Unit u in mSquadMembers)
+				Destroy(u.gameObject);
+		}
+		
+		mSquadMembers = new List<Unit>();
+		
+		List<Vector3> randomPositions = this.RandomSectionLocations(NumSquadMembers, kSquadMemberWidth * 1.5f);
+		
+		// Instantiates and initializes the position of each member in the squad
+		// TODO fix the placement for large numbers of squad members
+		for (int i = 0; i < NumSquadMembers; ++i) {
+			// instantiate the unit from the prefab
+			GameObject o = (GameObject) Instantiate(mUnitPrefab);
+			Unit u = (Unit) o.GetComponent(typeof(Unit));
+			u.Squad = this;
+			mSquadMembers.Add (u);
+			
+			// offset from squad center
+			Vector3 memberPosition = this.transform.position;
+			memberPosition += randomPositions[i];
+			u.transform.position = memberPosition;
+		}
+	}
+	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods
 	///////////////////////////////////////////////////////////////////////////////////
@@ -71,6 +115,8 @@ public class Squad : MonoBehaviour
 	private GameObject mEnemyPrefab;
 	private Squad mTargetSquad;
 	private List<Unit> mSquadMembers;
+	
+	static Dictionary<UnitType, GameObject> mUnitPrefabs = null;
 	
 	// Squad members form concentric circles around the squad center
 	// the member width is used to determine the width of each band of the circles
@@ -233,50 +279,30 @@ public class Squad : MonoBehaviour
 		return surroundingPositions;
 	}
 	
+	public static void InitializePrefabs()
+	{
+		mUnitPrefabs = new Dictionary<UnitType, GameObject>();
+		mUnitPrefabs.Add (UnitType.kSwordsman, Resources.Load ("Units/SwordsmanPrefab") as GameObject);
+		mUnitPrefabs.Add (UnitType.kArcher, Resources.Load ("Units/ArcherPrefab") as GameObject);
+		mUnitPrefabs.Add (UnitType.kPeasant, Resources.Load ("Units/PeasantPrefab") as GameObject);
+		mUnitPrefabs.Add (UnitType.kMage, Resources.Load ("Units/MagePrefab") as GameObject);
+	}
+	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Unity Overrides
 	///////////////////////////////////////////////////////////////////////////////////
 	
 	// Use this for initialization
-	void Awake () {
-		if (null == mUnitPrefab) 
-			mUnitPrefab = Resources.Load(UnitPrefab) as GameObject;
-		
-		if (mSquadMembers != null) {
-			foreach (Unit u in mSquadMembers)
-				Destroy(u.gameObject);
-		}
-			
-		mSquadMembers = new List<Unit>();
-		
-		List<Vector3> randomPositions = this.RandomSectionLocations(NumSquadMembers, kSquadMemberWidth * 1.5f);
-		
-		// Instantiates and initializes the position of each member in the squad
-		// TODO fix the placement for large numbers of squad members
-		for (int i = 0; i < NumSquadMembers; ++i) {
-			// instantiate the unit from the prefab
-			GameObject o = (GameObject) Instantiate(mUnitPrefab);
-			Unit u = (Unit) o.GetComponent(typeof(Unit));
-			u.Squad = this;
-			mSquadMembers.Add (u);
-			
-			// offset from squad center
-			Vector3 memberPosition = this.transform.position;
-			memberPosition += randomPositions[i];
-			u.transform.position = memberPosition;
-		}
-	}
-	
-	// Update is called once per frame
-	void Update () 
+	void Awake () 
 	{
+		if (null == mUnitPrefabs) 
+			InitializePrefabs();
+			
 		// only capture input in squad testing scene 
 		if (!Application.loadedLevelName.Equals("SquadTest"))
 			return;
-		
-		if (this.UnitPrefab == "Squads/Prefabs/PeasantPrefab" && Input.GetButtonDown("Fire2")) {
-			this.NumSquadMembers = 10;
-			this.Awake();
-		}
+			
+		if (this.UnitType == UnitType.kPeasant)
+			this.Spawn(this.UnitType);
 	}
 }

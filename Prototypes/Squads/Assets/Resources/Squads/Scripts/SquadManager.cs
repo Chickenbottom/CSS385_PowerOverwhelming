@@ -7,8 +7,8 @@ public class SquadManager : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
+	public UnitType SquadType = UnitType.kNone;
 	
-	public string SquadPrefab;
 	public void SetDestination(Vector3 location)
 	{
 		location.z = 0;
@@ -28,15 +28,45 @@ public class SquadManager : MonoBehaviour
 		}
 	}
 	
+	public void AddSquad(Squad squad)
+	{
+		mSquads.Add (squad);
+		this.SetDestination(mRallyPoint);
+	}
+	
+	public void AddSquad(UnitType unitType = UnitType.kNone)
+	{
+		// nothing to instantiate
+		if (unitType == UnitType.kNone && this.SquadType == UnitType.kNone)
+			Debug.LogError("SquadManager - spawn type not specified.");
+			
+		Squad squad;
+		if (unitType == UnitType.kNone)
+			squad = SpawnSquadFromUnitType(this.SquadType);
+		else
+			squad = SpawnSquadFromUnitType(unitType);
+			
+		mSquads.Add (squad);
+		this.SetDestination(mRallyPoint);
+	}
+	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
 	
 	private List<Squad> mSquads;
-	private GameObject mSquadPrefab = null;
-	
-	private float kSquadWidth = 10f;	
+	private float kSquadWidth = 8f; // TODO replace with function calculating width of squad
 	private Vector3 mRallyPoint;
+	private static GameObject mSquadPrefab = null;
+	
+	private Squad SpawnSquadFromUnitType(UnitType unitType)
+	{
+		GameObject o = (GameObject) Instantiate(mSquadPrefab);
+		Squad squad = (Squad) o.GetComponent(typeof(Squad));
+		squad.UnitType = unitType;
+		squad.Spawn();
+		return squad;
+	}
 	
 	// Creates random directions for squad members to form a concentric circle around the target location
 	// TODO fix the placement for large numbers of squad members
@@ -71,10 +101,11 @@ public class SquadManager : MonoBehaviour
 	// Unity Overrides
 	///////////////////////////////////////////////////////////////////////////////////
 	
-	void Start () 
+	void Awake () 
 	{
-		if (null == mSquadPrefab) 
-			mSquadPrefab = Resources.Load(SquadPrefab) as GameObject;
+		if (mSquadPrefab == null)
+			mSquadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
+		
 		mSquads = new List<Squad>();
 		mRallyPoint = this.transform.position;
 	}
@@ -86,10 +117,7 @@ public class SquadManager : MonoBehaviour
 			return;
 			
 		if (Input.GetButtonDown("Fire1")) {
-			GameObject o = (GameObject) Instantiate(mSquadPrefab);
-			Squad u = (Squad) o.GetComponent(typeof(Squad));
-			mSquads.Add (u);
-			SetDestination(mRallyPoint);
+			this.AddSquad();
 		}
 		
 		// Move the squads to the location clicked on the screen
