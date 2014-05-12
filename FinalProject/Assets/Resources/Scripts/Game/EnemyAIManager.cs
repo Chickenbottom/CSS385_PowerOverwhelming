@@ -4,15 +4,16 @@ using System.Collections;
 public class EnemyAIManager : MonoBehaviour
 {
 
+    private GameObject mEnemy;
+    private GameObject mTarget;
+
+    private ArrayList mTargets;
     private ArrayList mCurEnemies;
 
-    private GameObject mEnemy;
     private float mEnemySpawnInterval;
     private float mLastEnemySpawn;
-    private GameObject mTarget;
     private float mLastTargetChange;
     private float mTargetChangeInterval;
-    private ArrayList mTargets;
 
     void Start()
     {
@@ -35,7 +36,7 @@ public class EnemyAIManager : MonoBehaviour
         }
         if (mTargetChangeInterval < Time.time - mLastTargetChange)
         {
-
+            ChangeTarget();
         }
     }
 

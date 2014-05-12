@@ -16,27 +16,18 @@ public class DialogManager : MonoBehaviour
     const int kGame = 2;
 
     const float kLetterDisplayTime = 0.5f;
-    #endregion
-
-    int cur_person = -1;
-    int cur_convo = -1;
-    int index = 0; // used to display one letter at a time
-    float mPreviousLetter = 0f; //used for keeping time for display
 
     private const string path = "dialog.txt"; //path of the txt file
-    StreamReader mFile;
-    string line; //used to read line from mfile and arrays
-    string displayStatment; //string that builds full statment over time
+    #endregion
+
+    int cur_person;
+    int cur_convo;
+    int index; // used to display one letter at a time
+    float mPreviousLetter = 0f; //used for keeping time for display
 
     #region Arrays
 
-    ArrayList[][] Conversations = new ArrayList[2][];
-    ArrayList RodTowerStatments;
-    ArrayList AdvTowerStatments;
-    ArrayList RodTroopStatments;
-    ArrayList AdvTroopStatments;
-    ArrayList RodGameStatments;
-    ArrayList AdvGameStatments;
+    ArrayList[][] Conversations;
 
     #endregion
     #endregion
@@ -44,44 +35,62 @@ public class DialogManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        mFile = new StreamReader(path);
+        ArrayList[][] Conversations = new ArrayList[2][];
 
         Conversations[kRod] = new ArrayList[3];
         Conversations[kAdv] = new ArrayList[3];
 
-        Conversations[kRod][kTowers].Add(RodTowerStatments);
-        Conversations[kRod][kTroops].Add(RodTowerStatments);
-        Conversations[kRod][kGame].Add(RodTowerStatments);
+        Conversations[kRod][kTowers] = new ArrayList();
+        Conversations[kRod][kTroops] = new ArrayList();
+        Conversations[kRod][kGame] = new ArrayList();
 
-        Conversations[kAdv][kTowers].Add(RodTowerStatments);
-        Conversations[kAdv][kTroops].Add(RodTowerStatments);
-        Conversations[kAdv][kGame].Add(RodTowerStatments);
+        Conversations[kAdv][kTowers] = new ArrayList();
+        Conversations[kAdv][kTroops] = new ArrayList();
+        Conversations[kAdv][kGame] = new ArrayList();
 
 
-        loadDialog();
+        StreamReader mFile = null;
+        try
+        {
+            mFile = new StreamReader(path);
+        } catch (System.Exception e) {}
+       
+        if (mFile != null)
+        {
+            loadDialog(mFile);
+        }
+
+        index = -1;
+        Debug.Log(index);
+        cur_person = -1;
+        cur_convo = -1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - mPreviousLetter > kLetterDisplayTime)
+        if (Time.time - mPreviousLetter > kLetterDisplayTime && index != -1)
         {
+            Debug.Log(index);
             printStatment();
             mPreviousLetter = Time.time;
         }
 
     }
 
-    void loadDialog()
+    private void loadDialog(StreamReader mFile)
     {
         System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en");
         while (!mFile.EndOfStream)
         {
-            line = mFile.ReadLine();
+            string line = mFile.ReadLine();
             int rod = ci.CompareInfo.IndexOf(line, "Rodelle", System.Globalization.CompareOptions.IgnoreCase);
             int adv = ci.CompareInfo.IndexOf(line, "Adviser", System.Globalization.CompareOptions.IgnoreCase);
             bool containsRod = rod >= 0;
             bool containsAdv = adv >= 0;
+            int cur_convo = -1;
+            int cur_person = -1;
+
             if (containsAdv || containsRod)
             {
 
@@ -116,24 +125,26 @@ public class DialogManager : MonoBehaviour
                 Conversations[cur_person][cur_convo].Add(line);
         }
     }
-    
-    void printStatment()
+
+    private void printStatment()
     {
+        string line = (string)Conversations[cur_person][cur_convo][0];
         if (index >= line.Length)
+        {
+            index = -1;
             return;
+        }
 
-        displayStatment += line[index];
         index++;
-
         GameObject textDisplay = GameObject.Find("StatementGUIText");
         GUIText gui = textDisplay.GetComponent<GUIText>();
-        gui.text = displayStatment;
-
+        gui.text = line.Substring(0, index + 1);
     }
-   
+
     public void setStatment(int person, int subject)
     {
-        line = (string) Conversations[person][subject][0];
+        cur_person = person;
+        cur_convo = subject;
         index = 0;
     }
 }
