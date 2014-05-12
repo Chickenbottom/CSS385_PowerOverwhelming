@@ -13,7 +13,7 @@ public class UnitSpawnTower : TowerBehavior {
 
     public override void Click()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("YAY IT WORKED" + health + "  " + type);
     }
 
 }
