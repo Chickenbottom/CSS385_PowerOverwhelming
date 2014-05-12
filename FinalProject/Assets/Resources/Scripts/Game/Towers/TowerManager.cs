@@ -1,60 +1,65 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TowerBehavior : MonoBehaviour {
+public abstract class TowerBehavior : MonoBehaviour {
 
-	abstract void Click();
-	abstract void getMyTowerType();
 
-	public enum TOWERTYPE{
-		MELEE,
-		RANGED,
-		MAGIC,
-		HEAL,
-		NONE,
+	public enum SPAWNTYPE{
+		Melee,
+		Ranged,
+		Magic,
 	};
 
-	AbilityTowerBehavior abilityTower = null;
-	UnitSpawnTower spawnTower = null;
-	TOWERTYPE selectedTower;
-	// Use this for initialization
-	void Start () {
-		selectedTower = TOWERTYPE.NONE;
+	public enum TOWERTYPE{
+		Ability,
+		Unit,
+	};
+	public enum LOYALTY
+	{
+		Rodelle,
+		Peasant,
+	};
+
+	public const int towerSpriteOffset = 4;
+
+	protected TOWERTYPE type;
+	public int towerSprite;
+	protected LOYALTY loyalty;
+
+	protected GameObject rightClicked{ get; set; }
+	public float health{ get; set; }
+
+	abstract void Click();
+	//abstract void getMyTowerType();
+
+	void OnMouseDown()
+	{
+		if (Input.GetMouseButtonDown(0))
+		{
+			Debug.Log("CLICKED TOWER!");
+			GameObject.Find("GameManager").GetComponent<MouseManager>().Select(this.gameObject);
+		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	public TOWERTYPE GetTowerType()
+	{
+		return type;
+	}
 
-		if(Input.GetMouseButtonUp(0)){
-			if(selectedTower != TOWERTYPE.NONE && 
-			   selectedTower != TOWERTYPE.HEAL && 
-			   spawnTower != null){
-				Vector2 destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				spawnTower.setDestination(destination);
-			}
-		}
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if(other.name == "something(Clone)")
+			health -= GameObject.Find("something(Clone)").GetComponent<EnemyAIManager>().getDamageRate();
 	}
-	public void setSelected(AbilityTowerBehavior AT = null, UnitSpawnTower ST = null){
-		if(selectedTower == TOWERTYPE.NONE){
-			if(AT == null){
-				spawnTower = ST;
-				selectedTower = ST.getMyTowerType();
-			}
-			else{
-				abilityTower = AT;
-				selectedTower = ST.getMyTowerType();
-			}
-		}
 
-		if(selectedTower == TOWERTYPE.HEAL)
-			if(ST != null){
-				ST.healTower(AT.getHealRate);
-				clearSelected();
-			}
+	public void Damage(int damage)
+	{
+		// change sprite int here
 	}
-	public void clearSelected(){
-		selectedTower = TOWERTYPE.NONE;
-		abilityTower = null;
-		spawnTower = null;
+	
+	protected void SharedStart()
+	{
+		GameObject.Find("GameManager").GetComponent<EnemyAIManager>().AddTarget(this.gameObject);
 	}
+
 }

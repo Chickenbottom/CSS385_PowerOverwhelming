@@ -3,29 +3,40 @@ using System.Collections;
 
 public class AbilityTowerBehavior: TowerBehavior {
 
-	const float kHealRate = 50;
-	float mHealBonus = 1;
-	public TOWERTYPE mTowerType;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	void OnMouseDown(){
-		setSelected(this);
-	}
-	public void setHealBonus(float bonus = 1){
-		mHealBonus = bonus;
-	}
-	public float getHealRate(){
-		return kHealRate * mHealBonus;
-	}
-	public TOWERTYPE getMyTowerType(){
-		return mTowerType;
-	}
+	public float mAbilityCooldown = 30f;
+	float mHealingAbility = 25f;
+	float mSpawnBonus = 1f;
 
+	public float mHealthBonus{get; set;}
+
+
+	public override void Click()
+	{
+		Debug.Log("CLICKED" + type + " tower " + health );
+		try{
+			rightClicked.GetComponent<TowerBehavior>().health += mHealingAbility * mHealthBonus;
+		}
+  	   	catch(UnityException e)
+		{}
+	   
+	}
+	
+	void Start()
+	{
+		type = TOWERTYPE.Ability;
+		health = 100;
+		SharedStart();
+		InvokeRepeating("AbilityCoolDown", 1f,1f);
+	}
+	void Update()
+	{
+		if(Input.GetMouseButtonUp(1)){
+			rightClicked = this.gameObject;
+		}
+	}
+	void AbilityCoolDown(){
+		mAbilityCooldown -= 1;
+		if(mAbilityCooldown == 0)
+			mAbilityCooldown = 0;
+	}
 }

@@ -3,57 +3,40 @@ using System.Collections;
 
 public class UnitSpawnTower : TowerBehavior {
 
+	// private SquadManager squads;
+	public float mSpawnInterval = 30f;
+	public UnitType mUnityType;
+	float mPreviousSpawn = 0f;
 
-	enum STATUS{
-		ENABLED,
-		DISABLED,
-	};
 
-	SqaudManager mSquadMan;
-	const int kSquadSpawnTime;
-	TOWERTYPE mTowerType;
-	int mSquadLastSpawn;
-	float mSpawnBonus = 1;
-	Unit mUnityType;
-	float towerHealth;
-	STATUS mStatus;
-	// Use this for initialization
-	void Start () {
-		mStatus = STATUS.ENABLED;
+	public float mSpawnBonus{ get; set; }
+	public float mTowerHealthBonus{ get; set; }
+
+	SquadManager mSquadManager;
+
+
+	void Start()
+	{
+		type = TOWERTYPE.Unit;
+		loyalty = LOYALTY.Rodelle;
+		health = 100;
+		SharedStart();
+		mSquadManager = GameObject.Find("SquadManager").GetComponent<mSquadManager>();
+	}
+	void Update()
+	{
+		if ((Time.realtimeSinceStartup - previousSpawn) > mSpawnInterval * spawnBonus){
+			mSquadManager.SpawnSquadFromUnitType(mUnityType); 
+		}
+		if(Input.GetMouseButtonUp(1)){
+			rightClicked = this.gameObject;
+		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-		if(towerHealth <= 0){
-			if(mStatus == STATUS.DISABLED)
-				mStatus = STATUS.ENABLED;
-			else
-				mStatus = STATUS.DISABLED;
-		}
-
-
+	public override void Click(/*should pass mouse position*/)
+	{
+		Debug.Log("YAY IT WORKED" + health + "  " + type);
+		mSquadManager.SetDestination(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 	}
-	void spawnSquad(){
-		if(Time.realtimeSinceStartup - mSquadLastSpawn > kSquadSpawnTime * mSpawnBonus){
-			//mSquadMan.create();
-		}
-	}
-	void OnMouseDown(){
-		if(mStatus == STATUS.ENABLED)
-			setSelected(this);
-	}
-	void Click(){
-		//mSquadMan.setSqaudDesination(Vector3 Click);
-	}
-	public void healTower(float h){
-		towerHealth += h;
-	}
-	public void hitTower(float h){
-		towerHealth -= h;
-	}
-	public TOWERTYPE getMyTowerType(){
-		return mTowerType;
-	}
-
+	
 }
