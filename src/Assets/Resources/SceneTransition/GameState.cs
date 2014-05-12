@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameState {
 	private static int mGameLevel;
@@ -8,15 +9,14 @@ public class GameState {
 	public static int Score { get { return mScore; } }
 	private static int mScore = 0;
 	
-	public static int MageSquadCount { get; set; }
-	public static int SwordsmanSquadCount { get; set; }
-	public static int ArcherSquadCount { get; set; }
+	public static Dictionary<UnitType, int> UnitSquadCount { get; set; }
 	
 	static GameState()
 	{
-		MageSquadCount = 4;
-		SwordsmanSquadCount = 4;
-		ArcherSquadCount = 4;
+		UnitSquadCount = new Dictionary<UnitType, int>();
+		UnitSquadCount.Add(UnitType.kArcher, 4);
+		UnitSquadCount.Add(UnitType.kSwordsman, 4);
+		UnitSquadCount.Add(UnitType.kMage, 4);
 	}
 	
 	public static void AddToScore(int value)

@@ -61,22 +61,22 @@ public class TowerStore : MonoBehaviour
 		switch(button) 
 		{
 		case (Button.kSwordsmanUp):
-			GameState.SwordsmanSquadCount ++;
+			GameState.UnitSquadCount[UnitType.kSwordsman] ++;
 			break;
 		case (Button.kSwordsmanDown):
-			GameState.SwordsmanSquadCount --;
+			GameState.UnitSquadCount[UnitType.kSwordsman] --;
 			break;
 		case (Button.kArcherUp):
-			GameState.ArcherSquadCount ++;
+			GameState.UnitSquadCount[UnitType.kArcher]  ++;
 			break;
 		case (Button.kArcherDown):
-			GameState.ArcherSquadCount --;
+			GameState.UnitSquadCount[UnitType.kArcher]  --;
 			break;
 		case (Button.kMageUp):
-			GameState.MageSquadCount ++;
+			GameState.UnitSquadCount[UnitType.kMage]  ++;
 			break;
 		case (Button.kMageDown):
-			GameState.MageSquadCount --;
+			GameState.UnitSquadCount[UnitType.kMage]  --;
 			break;
 			
 		case (Button.kLevelSelector):
@@ -116,7 +116,7 @@ public class TowerStore : MonoBehaviour
 		              new ButtonData(new Rect(500, 260, 50, 25), "-"));
 		mLabels.Add (Label.kSwordsmanSquadCount, new LabelData(
 			new Rect(450, 245, 40, 40),
-		    delegate { return GameState.SwordsmanSquadCount; } ));
+			delegate { return GameState.UnitSquadCount[UnitType.kSwordsman]; } ));
 		              
 		mButtons.Add (Button.kArcherUp, 
 		              new ButtonData(new Rect(500, 350, 50, 25), "+"));
@@ -124,7 +124,7 @@ public class TowerStore : MonoBehaviour
 		              new ButtonData(new Rect(500, 380, 50, 25), "-"));              
 		mLabels.Add (Label.kArcherSquadCount, new LabelData(
 			new Rect(450, 365, 40, 40),
-			delegate { return GameState.ArcherSquadCount; } ));
+			delegate { return GameState.UnitSquadCount[UnitType.kArcher]; } ));
 			
 		mButtons.Add (Button.kMageUp, 
 		              new ButtonData(new Rect(500, 470, 50, 25), "+"));
@@ -132,7 +132,7 @@ public class TowerStore : MonoBehaviour
 		              new ButtonData(new Rect(500, 500, 50, 25), "-"));
 		mLabels.Add (Label.kMageSquadCount, new LabelData(
 			new Rect(450, 485, 40, 40),
-			delegate { return GameState.MageSquadCount; } ));
+			delegate { return GameState.UnitSquadCount[UnitType.kMage]; } ));
 			
 		mButtons.Add (Button.kLevelSelector,
 		              new ButtonData(new Rect(200, 650, 250, 60), "Back to Level Selection"));

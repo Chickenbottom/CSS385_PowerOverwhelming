@@ -75,11 +75,10 @@ public class Squad : MonoBehaviour
 	
 	public void Spawn(Vector3 location, UnitType? unitType = null)
 	{
-		if (NumSquadMembers == 0) // TODO pull default values from upgrade state
-			NumSquadMembers = 4;
-			
 		if (unitType != null)
 			UnitType = unitType.Value;
+		
+		NumSquadMembers = GameState.UnitSquadCount[UnitType];
 		
 		this.transform.position = location;	
 		mUnitPrefab = mUnitPrefabs[this.UnitType];
