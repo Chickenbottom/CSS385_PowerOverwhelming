@@ -12,15 +12,17 @@ public class EnemyAIManager : MonoBehaviour
 	{
 		if (mWaveSpawnInterval < Time.time - mLastEnemySpawn) {
 			mLastEnemySpawn = Time.time;
-			this.SpawnWave();
+			//this.SpawnWave();
 		}
 		
 		foreach (EnemySquad e in mUnits) {
 			e.Update();
 		}
 		
-		if (Input.GetButtonDown("Fire1"))
+		if (Input.GetButtonDown("Fire1")) {
 			SpawnWave2 ();
+			SpawnWave3 ();
+		}
 	}
 	
 	void Start()

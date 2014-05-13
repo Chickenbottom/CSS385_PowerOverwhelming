@@ -48,7 +48,7 @@ public class IceBomb : MonoBehaviour {
 			f.Freeze();
 			
 			IDamagable e = (IDamagable) target.GetComponent(typeof(IDamagable));
-			e.Damage(1);
+			e.Damage(4);
 		}
 	
 	}

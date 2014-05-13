@@ -9,8 +9,8 @@ public class Peasant : Unit
 	
 		mDefaultHealth = 5;
 		
-		mMovementSpeed = 5f; // units per second
-		mChargeSpeed = 5f;   // speed used to engage enemies
+		mMovementSpeed = 35f; // units per second
+		mChargeSpeed = 25f;   // speed used to engage enemies
 	}
 	
 	void Start()
