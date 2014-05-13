@@ -4,42 +4,8 @@ using System.Collections.Generic;
 
 public class Unit : Target, IDamagable
 {	
-	#region Unit Stats
-	protected int mDefaultHealth;
-		
-	protected float mMovementSpeed; // units per second
-	protected float mChargeSpeed;   // speed used to engage enemies
-	#endregion
-	
-	protected Weapon mCurrentWeapon = null;
-	protected SortedList mWeapons;
-
-	protected Target mAttackTarget;
-	
-	protected Vector3 mAttackVector; // direction to attack target from
-	protected Vector3 mDestination;  // location to move to when no other actions are taking place
-	
-	protected int mHealth;
-	protected int mPreviousHealth;
-	
-	protected MovementState mMovementState;
-	protected AttackState mAttackState;
-	
-	protected GameObject mProjectilePrefab = null;
-	protected List<Sprite> mSprites;
-	
-	#region Getters and Setters
 	public Squad Squad { get; set; }
 	public float Range { get { return mCurrentWeapon.Range; } }
-	#endregion
-		
-	protected enum MovementState {
-		kMoving, kIdle
-	}
-	
-	protected enum AttackState {
-		kIdle, kEngaging, kRanged, kMelee
-	}
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods
@@ -112,45 +78,42 @@ public class Unit : Target, IDamagable
 		mAttackState = AttackState.kIdle;
 		mMovementState = MovementState.kMoving;
 		
-		SwitchToWeapon(mWeapons.Count - 1); // longest range weapon		
-		this.collider2D.enabled = true;
+		SwitchToWeapon(mWeapons.Count - 1); // longest range weapon
 	}	
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods
 	///////////////////////////////////////////////////////////////////////////////////
 	
-	// Update is called once per frame
-	void FixedUpdate () 
-	{
-		UpdateTargetState();
-		
-		switch (mAttackState)
-		{
-		case (AttackState.kIdle):
-			break;
-			
-		case (AttackState.kEngaging):
-			EngageTarget(mAttackTarget);
-			break;
-			
-		case (AttackState.kRanged):
-			UpdateAttack(mAttackTarget);
-			break;
-		}
-		
-		switch (mMovementState)
-		{
-		case (MovementState.kIdle):
-			break;
-			
-		case (MovementState.kMoving):
-			UpdateMovement(mDestination, mMovementSpeed);
-			break;
-		}
-		
-		UpdateDamageAnimation();
+	protected enum MovementState {
+		kMoving, kIdle
 	}
+	
+	protected enum AttackState {
+		kIdle, kEngaging, kRanged, kMelee
+	}
+	
+	protected int mDefaultHealth;
+	
+	protected float mMovementSpeed; // units per second
+	protected float mChargeSpeed;   // speed used to engage enemies
+	
+	protected Weapon mCurrentWeapon = null;
+	protected SortedList mWeapons;
+	
+	protected Target mAttackTarget;
+	
+	protected Vector3 mAttackVector; // direction to attack target from
+	protected Vector3 mDestination;  // location to move to when no other actions are taking place
+	
+	protected int mHealth;
+	protected int mPreviousHealth;
+	
+	protected MovementState mMovementState;
+	protected AttackState mAttackState;
+	
+	protected GameObject mProjectilePrefab = null;
+	protected List<Sprite> mSprites;
 	
 	private void UpdateTargetState()
 	{
@@ -263,6 +226,38 @@ public class Unit : Target, IDamagable
 	// Unity Overrides
 	///////////////////////////////////////////////////////////////////////////////////
 	
+	// Update is called once per frame
+	void FixedUpdate () 
+	{
+		UpdateTargetState();
+		
+		switch (mAttackState)
+		{
+		case (AttackState.kIdle):
+			break;
+			
+		case (AttackState.kEngaging):
+			EngageTarget(mAttackTarget);
+			break;
+			
+		case (AttackState.kRanged):
+			UpdateAttack(mAttackTarget);
+			break;
+		}
+		
+		switch (mMovementState)
+		{
+		case (MovementState.kIdle):
+			break;
+			
+		case (MovementState.kMoving):
+			UpdateMovement(mDestination, mMovementSpeed);
+			break;
+		}
+		
+		UpdateDamageAnimation();
+	}
+	
 	// Initialize variables
 	protected void Awake ()
 	{		
@@ -271,18 +266,5 @@ public class Unit : Target, IDamagable
 		
 		mMovementState = MovementState.kIdle;
 		mDestination = new Vector3(0, 0, 0);
-	}
-	
-	// Check for enemies in sight range
-	void OnTriggerStay2D(Collider2D other)
-	{
-		if (this.collider2D.enabled == false)
-			return;
-		
-		Target target = other.gameObject.GetComponent<Target>();
-		if (target != null && target.GetAllegiance != this.mAllegiance) {
-			this.Squad.Notify (SquadAction.kEnemySighted, this, target);
-		}
-		//this.OnTriggerEnter2D(other);
 	}
 }

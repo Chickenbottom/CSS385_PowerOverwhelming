@@ -7,41 +7,48 @@ public enum SquadAction {
 	kWeaponChanged, 
 	kTargetDestroyed, 
 	kDestinationReached,
-	kUnitDied
+	kUnitDied,
 }
 
 public enum UnitType {
 	kNone,
+	kPeasant,
 	kSwordsman,
 	kArcher,
 	kMage,
-	kPeasant,
 }
 
-public class Squad : MonoBehaviour 
+public enum SquadState {
+	kIdle,
+	kEngaging,
+	kMelee,
+}
+
+public class Squad : Target
 {
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods
 	///////////////////////////////////////////////////////////////////////////////////
-	public Vector3 RallyPoint;
-	public bool IsEngaged;
 	public int NumSquadMembers = 0;
 	public List<Unit> SquadMembers { get { return mSquadMembers; } }
-	
 	public UnitType UnitType;
+	public Vector3 SquadCenter;
+	public Vector3 RallyPoint;
+	public SquadState SquadState;
 	
 	public void Notify(SquadAction action, params object[] args)
 	{
 		switch (action) {
 		case(SquadAction.kEnemySighted):
-			AttackTarget((Unit)args[0], (Target)args[1]);
+			AttackTarget((Target)args[0]);
 			break;
 			
 		case(SquadAction.kDestinationReached):
+			
 			break;
 			
 		case(SquadAction.kTargetDestroyed):
-			UpdateTarget((Unit)args[0]);
+			AssignNewTarget((Unit)args[0]);
 			break;
 			
 		case(SquadAction.kWeaponChanged):
@@ -59,15 +66,13 @@ public class Squad : MonoBehaviour
 		RallyPoint = location;
 		location.z = 0;
 		
-		this.transform.position = location;
-		
 		// Randomize the squad's new position around the central location
 		List<Vector3> randomPositions = 
 			RandomSectionLocations(NumSquadMembers, kSquadMemberWidth * 1.5f);
 		
 		// Move each squad member to their new location
 		for (int i = 0; i < NumSquadMembers; ++i) {
-			Vector3 memberPosition = this.transform.position;
+			Vector3 memberPosition = RallyPoint;
 			memberPosition += randomPositions[i];
 			mSquadMembers[i].MoveTo(memberPosition);
 		}
@@ -107,6 +112,9 @@ public class Squad : MonoBehaviour
 			memberPosition += randomPositions[i];
 			u.transform.position = memberPosition;
 		}
+		
+		if (mSquadMembers.Count > 0)
+			mAllegiance = mSquadMembers[0].Allegiance;
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////
@@ -114,31 +122,32 @@ public class Squad : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////////////
 	private GameObject mUnitPrefab;
 	private GameObject mEnemyPrefab;
-	private Squad mTargetSquad;
+	private Target mTarget;
 	private List<Unit> mSquadMembers;
-	
 	static Dictionary<UnitType, GameObject> mUnitPrefabs = null;
-	
+		
 	// Squad members form concentric circles around the squad center
 	// the member width is used to determine the width of each band of the circles
 	// ie. inner circle radius = kSquadMemberWidth * 1.5
 	//     2nd circle width = kSquadMemberWidth * 1.5
 	private const float kSquadMemberWidth = 3.0f;
 	
-	private void AttackTarget(Unit who, Target enemyUnit)
+	private void AttackTarget(Target enemyUnit)
 	{
-		if (who == null || enemyUnit == null) 
+		if (enemyUnit == null) 
 			Debug.Break();
 		
-		IsEngaged = true;
 		Unit u = (Unit) enemyUnit.GetComponent(typeof(Unit));
-		mTargetSquad = u.Squad;
-		AttackEnemySquad(who, u);
+		if (u != null) {
+			mTarget = u.Squad;
+			AttackEnemySquad(u.Squad);
+			return;
+		}
 	}
-	
-	private void UpdateTarget(Unit who)
+		
+	private void AssignNewTarget(Unit who)
 	{
-		List<Unit> mEnemies = mTargetSquad.mSquadMembers;
+		List<Unit> mEnemies = ((Squad)mTarget).mSquadMembers;
 		int numEnemies = mEnemies.Count;
 		
 		if (numEnemies == 0)
@@ -149,44 +158,46 @@ public class Squad : MonoBehaviour
 	
 	private void ChangeSquadWeapons(Unit who, int weaponIndex)
 	{
-		if (mTargetSquad.mSquadMembers.Count <= 0)
+		if (mTarget == null)
 			return;
-		
-		Debug.Log ("Weapon changed!");
 		
 		for(int i = 0; i < mSquadMembers.Count; ++i) 
 			mSquadMembers[i].SwitchToWeapon(weaponIndex);
 		
-		// TODO replace with squad center or unit agnostic matching algorithm
-		AttackEnemySquad(who, mTargetSquad.mSquadMembers[0]);
+		AttackEnemySquad((Squad)mTarget);
 	}
 	
 	private void UpdateSquadMembers(Unit who)
 	{
+		if (this.gameObject == null)
+			return;
+			
 		mSquadMembers.Remove(who);
 		NumSquadMembers --;
 		
-		if (NumSquadMembers <= 0) {
-			Destroy(this.gameObject);
+		if (mSquadMembers.Count <= 0) {
+			Destroy (this.gameObject);
 		}
 	}
 	
-	private void AttackEnemySquad(Unit who, Unit enemyUnit)
+	private void AttackEnemySquad(Squad enemySquad)
 	{
+		this.SquadState = SquadState.kEngaging;
+		
+		Unit squadUnit = this.mSquadMembers[0];
 		// Surround the enemy!
 		List<Vector3> positions = SurroundingPositions(
-			enemyUnit.transform.position, 
-			who.transform.position, 
+			enemySquad.SquadCenter,
+			this.SquadCenter, 
 			NumSquadMembers, 
 			kSquadMemberWidth * 2.0f, 
-			who.Range);
+			squadUnit.Range); // TODO add target radius for large targets
 		
-		List<Unit> mEnemies = mTargetSquad.mSquadMembers;
+		List<Unit> mEnemies = enemySquad.mSquadMembers;
 		int numEnemies = mEnemies.Count;
 		
 		// engage enemies 1 to 1
 		for(int i = 0; i < mSquadMembers.Count; ++i) {
-			mSquadMembers[i].collider2D.enabled = false;
 			mSquadMembers[i].Engage(mEnemies[i % numEnemies], positions[i]);
 		}
 	}
@@ -194,7 +205,7 @@ public class Squad : MonoBehaviour
 	// re-enable the search for new enemies
 	private void DisengageSquad()
 	{
-		IsEngaged = false;
+		this.SquadState = SquadState.kIdle;
 		for(int i = 0; i < mSquadMembers.Count; ++i) {
 			mSquadMembers[i].Disengage();
 		}
@@ -293,12 +304,56 @@ public class Squad : MonoBehaviour
 	// Unity Overrides
 	///////////////////////////////////////////////////////////////////////////////////
 	
+	void OnTriggerStay2D(Collider2D other)
+	{
+		this.OnTriggerEnter2D(other);
+	}
+	
+	// Check for enemies in sight range
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (this.SquadState != SquadState.kIdle)
+			return;
+		
+		Target target = other.gameObject.GetComponent<Target>();
+		
+		if (target is Squad) // do not target squads directly
+			return;
+		
+		if (target != null && target.Allegiance != this.mAllegiance) {
+			Notify (SquadAction.kEnemySighted, target);
+		}
+		//this.OnTriggerEnter2D(other);
+	}
+		
+	void FixedUpdate()
+	{
+		if (mSquadMembers == null)
+			return;
+		
+		if (this.SquadState == SquadState.kEngaging && mSquadMembers[0].Range <= 12f) // melee range
+			this.SquadState = SquadState.kMelee;
+		
+		float xTotal = 0;
+		float yTotal = 0;
+		float unitCount = (float) mSquadMembers.Count;
+		foreach (Unit unit in mSquadMembers) {
+			xTotal += unit.transform.position.x;
+			yTotal += unit.transform.position.y;
+		}
+		
+		// average central location
+		this.SquadCenter = new Vector3(xTotal / unitCount, yTotal / unitCount, 0f);
+		this.transform.position = SquadCenter;
+	}
+	
 	// Use this for initialization
 	void Awake () 
 	{
 		if (null == mUnitPrefabs) 
 			InitializePrefabs();
-			
+	
+		SquadState = SquadState.kIdle;
 		// only capture input in squad testing scene 
 		if (!Application.loadedLevelName.Equals("SquadTest"))
 			return;

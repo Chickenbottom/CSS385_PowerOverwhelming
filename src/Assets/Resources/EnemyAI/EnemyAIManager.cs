@@ -30,7 +30,7 @@ public class EnemyAIManager : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////	
-	private float mWaveSpawnInterval = 3.0f;
+	private float mWaveSpawnInterval = 2.0f;
 	private float mLastEnemySpawn;
 	private int mCurrentWave = 1;
 	
@@ -44,14 +44,14 @@ public class EnemyAIManager : MonoBehaviour
 			SpawnWave1();
 			break;
 		case(2):
-			SpawnWave2();
+			//SpawnWave2();
 			break;
 		case(3):
-			SpawnWave3 ();
+			//SpawnWave3 ();
 			break;
 		}
 		
-		mCurrentWave ++;
+		//mCurrentWave ++;
 	}
 	
 	

@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum Allegiance {
+	kRodelle, 
+	kAI,
+}
+
 public class Target : MonoBehaviour
 {
-	public Allegiance GetAllegiance { get { return mAllegiance; } }
+	public Allegiance Allegiance { get { return mAllegiance; } }
 	
 	protected Allegiance mAllegiance;
-	
-	public enum Allegiance {
-		kRodelle, kAI
-	}
 }
