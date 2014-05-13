@@ -39,6 +39,15 @@ public abstract class Tower : Target, IDamagable
     public void Damage(int damage)
     {
         mHealth -= damage;
+        
+        if (mHealth < 0) {
+			mHealth = 3;
+			Debug.Log ("Tower destroyed!");
+			mAllegiance = this.Allegiance == Allegiance.kRodelle
+				? Allegiance.kAI
+				: Allegiance.kRodelle;
+        }
+        
         Debug.Log ("Tower Health: " + mHealth);
     }
     

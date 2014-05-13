@@ -5,9 +5,10 @@ using System.Collections.Generic;
 public enum SquadAction {
 	kEnemySighted, 
 	kWeaponChanged, 
-	kTargetDestroyed, 
+	kUnitDestroyed,
 	kDestinationReached,
 	kUnitDied,
+	kTargetDestroyed,
 }
 
 public enum UnitType {
@@ -44,10 +45,9 @@ public class Squad : Target
 			break;
 			
 		case(SquadAction.kDestinationReached):
-			
 			break;
 			
-		case(SquadAction.kTargetDestroyed):
+		case(SquadAction.kUnitDestroyed):
 			AssignNewTarget((Unit)args[0]);
 			break;
 			
@@ -57,6 +57,10 @@ public class Squad : Target
 			
 		case (SquadAction.kUnitDied):
 			UpdateSquadMembers((Unit)args[0]);
+			break;
+			
+		case (SquadAction.kTargetDestroyed):
+			DisengageSquad();
 			break;
 		}
 	}

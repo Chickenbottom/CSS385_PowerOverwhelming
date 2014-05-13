@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -122,9 +122,15 @@ public class Unit : Target, IDamagable
 			
 		if (mAttackTarget == null) { // target's been destroyed
 			mCurrentWeapon.Reset();
-			this.Squad.Notify (SquadAction.kTargetDestroyed, this);
+			this.Squad.Notify (SquadAction.kUnitDestroyed, this);
 			return;
 		}
+		
+		if (mAttackTarget.Allegiance == this.Squad.Allegiance) {
+			this.Squad.Notify(SquadAction.kTargetDestroyed);
+			return;
+		}
+			
 	}
 	
 	private void EngageTarget(Target target)

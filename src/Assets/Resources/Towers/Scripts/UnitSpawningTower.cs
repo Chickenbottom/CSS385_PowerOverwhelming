@@ -10,7 +10,6 @@ public class UnitSpawningTower : Tower {
     void Start()
     {
         mTowerType = TowerType.kUnitSpawner;
-        mHealth = 100;
     }
 
     public override void Click()
