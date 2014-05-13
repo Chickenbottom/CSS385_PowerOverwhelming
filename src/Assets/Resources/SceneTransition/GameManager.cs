@@ -15,13 +15,4 @@ public class GameManager : MonoBehaviour {
 			
 		GUI.Label(new Rect(135, 65, 150, 50), "Left-Alt to spawn");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetButtonDown("Fire1"))
-			Debug.Log (GameState.Score);
-			
-		if (Input.GetButtonDown("Fire2"))
-			GameState.AddToScore(5);
-	}
 }

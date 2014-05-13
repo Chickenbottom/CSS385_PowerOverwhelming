@@ -4,93 +4,76 @@ using System.Collections.Generic;
 
 public class EnemyAIManager : MonoBehaviour
 {
-	private GameObject mEnemy;
-	private GameObject mTarget;
-	private GameObject mBestDestroyedTower;
+	///////////////////////////////////////////////////////////////////////////////////
+	// Unity Overrides
+	///////////////////////////////////////////////////////////////////////////////////	
 	
-	private ArrayList mTargets;
-	private ArrayList mDestroyedTowers;
-	private ArrayList mCurEnemies;
-	
-	private float mWaveSpawnInterval = 3.0f;
-	private float mLastEnemySpawn;
-	private float mLastTargetChange;
-	private float mTargetChangeInterval;
-
-	struct EnemySquad {
-		public Squad squad;
-		public int currentWaypoint;
-		public List<Vector3> waypoints;
-
-		public EnemySquad(Squad s, List<Vector3> inWaypoints) {
-			squad = s;
-			waypoints = inWaypoints;
-			s.UpdateSquadDestination(waypoints[0]);
-			currentWaypoint = 0;
-		}
-	}
-
-	List<EnemySquad> mUnits;
-
-	void Start()
-	{
-		mLastEnemySpawn = Time.time;
-		mUnits = new List<EnemySquad> ();
-
-	}
-	
-	static GameObject mSquadPrefab;
-	private void SpawnWave(int wave)
-	{
-		if (mSquadPrefab == null) 
-			mSquadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
-
-		Debug.Log ("Wave: " + wave);
-
-		GameObject o = (GameObject) GameObject.Instantiate (mSquadPrefab);
-		Squad s = o.GetComponent<Squad> ();
-
-		s.NumSquadMembers = 4;
-		s.Spawn (new Vector3(0f, -100f, 0f), UnitType.kPeasant);
-		List<Vector3> waypoints = new List<Vector3> ();
-		waypoints.Add(new Vector3 (0f, 50f, 0f));
-
-		EnemySquad es = new EnemySquad (s, waypoints);
-		mUnits.Add (es);
-	}
-
 	void Update()
 	{
 		if (mWaveSpawnInterval < Time.time - mLastEnemySpawn) {
 			mLastEnemySpawn = Time.time;
-			this.SpawnWave(0);
+			this.SpawnWave();
 		}
 	}
-
-	public void TowerDestroyed(GameObject tower)
-	{
-		mTargets.Remove(tower);
-		mDestroyedTowers.Add(tower);
-	}
-
-	public void AddTarget(GameObject target)
-	{
-		mTargets.Add(target);
-	}
 	
-	private void ChangeTarget()
+	void Start()
 	{
-		int lastTarget = mTargets.IndexOf(mTarget);
-		int nextTarget = Random.Range(0, mTargets.Count);
-		while (nextTarget == lastTarget)
+		mLastEnemySpawn = Time.time;
+		mUnits = new List<EnemySquad> ();
+	}
+
+	///////////////////////////////////////////////////////////////////////////////////
+	// Public Methods and Variables
+	///////////////////////////////////////////////////////////////////////////////////	
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////
+	// Private Methods and Variables
+	///////////////////////////////////////////////////////////////////////////////////	
+	private float mWaveSpawnInterval = 3.0f;
+	private float mLastEnemySpawn;
+	private int mCurrentWave = 1;
+	
+	private List<EnemySquad> mUnits;
+	
+	private void SpawnWave()
+	{
+		switch (mCurrentWave)
 		{
-			nextTarget = Random.Range(0, mTargets.Count);
+		case(1):
+			SpawnWave1();
+			break;
+		case(2):
+			SpawnWave2();
+			break;
+		case(3):
+			SpawnWave3 ();
+			break;
 		}
-		mTarget = (GameObject) mTargets[nextTarget];
-		//foreach (Squad s in mCurEnemies)
-		//{
-		//    s.UpdateTarget(mTarget);
-		//}
+		
+		mCurrentWave ++;
 	}
 	
+	
+	// TODO fix this hard coding of enemy waves
+	void SpawnWave1()
+	{
+		EnemySquad es = null;
+		es = new EnemySquad (7, new Vector3 (0f, 55f, 0f));
+		mUnits.Add (es);
+	}
+	
+	void SpawnWave2()
+	{
+		EnemySquad es = null;
+		es = new EnemySquad (8, new Vector3 (50f, -75f, 0f));
+		mUnits.Add (es);
+	}
+	
+	void SpawnWave3()
+	{
+		EnemySquad es = null;
+		es = new EnemySquad (1, new Vector3 (-50f, 0f, 0f));
+		mUnits.Add (es);
+	}
 }
