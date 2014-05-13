@@ -57,13 +57,38 @@ public class LevelLoader : MonoBehaviour
 	void Awake()
 	{
 		mButtons = new Dictionary<Button, ButtonData>();
+
+		Rect buttonRect = new Rect (313, 310, 400, 95);
 		mButtons.Add (Button.kTowerStore, 
-		              new ButtonData(new Rect(313, 310, 400, 95), "Galactic Tower Store"));
+		              new ButtonData(ScaleButton(buttonRect), "Galactic Tower Store"));
+
+		buttonRect.y += 110; // vertical offset between buttons
 		mButtons.Add (Button.kMenu, 
-		              new ButtonData(new Rect(313, 420, 400, 95), "Back to Menu"));
-		
+		              new ButtonData(ScaleButton(buttonRect), "Back to Menu"));
+
+		Rect levelButton = new Rect (233, 550, 75, 75);
 		mLevelButtons = new List<Rect>();
-		for (int i = 0; i < 5; ++i)
-			mLevelButtons.Add(new Rect(313 + 80 * i, 550, 75, 75));
+		for (int i = 0; i < 5; ++i) {
+			levelButton.x += 80; // offset between buttons
+			mLevelButtons.Add (ScaleButton(levelButton));
+		}
+	}
+
+	// TODO make this a general utility function
+	// TODO add these to global game state
+	float kScreenWidth = 1024;
+	float kScreenHeight = 768;
+
+	Rect ScaleButton(Rect button)
+	{
+		float widthRatio = Screen.width / kScreenWidth;
+		float heightRatio = Screen.height / kScreenHeight;
+
+		button.x *= widthRatio;
+		button.width *= widthRatio;
+		button.y *= heightRatio;
+		button.height *= heightRatio;
+
+		return button;
 	}
 }

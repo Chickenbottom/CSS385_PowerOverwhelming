@@ -5,9 +5,6 @@ using System.Collections.Generic;
 
 public class Menu : MonoBehaviour 
 {
-	// TODO replace these with dictionary mapped with Button enum
-	//Rect mNewGameButton, mLoadButton, mAboutButton;
-	
 	Dictionary<Button, Rect> mButtons;
 	
 	protected enum Button {
@@ -42,11 +39,32 @@ public class Menu : MonoBehaviour
 	void Awake()
 	{
 		mButtons = new Dictionary<Button, Rect>();
-		mButtons.Add (Button.kNewGame, new Rect(313, 310, 400, 95));
-		mButtons.Add (Button.kLoadGame, new Rect(313, 420, 400, 95));
-		mButtons.Add (Button.kAbout, new Rect(313, 530, 400, 95));
-		//mNewGameButton = new Rect(313, 310, 400, 95);
-		//mLoadButton = new Rect(313, 420, 400, 95);
-		//mAboutButton = new Rect(313, 530, 400, 95);
+
+		Rect buttonDimensions = new Rect (313, 310, 400, 95);
+		mButtons.Add (Button.kNewGame, ScaleButton(buttonDimensions));
+
+		buttonDimensions.y += 110; // vertical offset between buttons
+		mButtons.Add (Button.kLoadGame, ScaleButton(buttonDimensions));
+
+		buttonDimensions.y += 110;
+		mButtons.Add (Button.kAbout, ScaleButton(buttonDimensions));
+	}
+
+	// TODO make this a general utility function
+	// TODO add these to global game state
+	float kScreenWidth = 1024;
+	float kScreenHeight = 768;
+	
+	Rect ScaleButton(Rect button)
+	{
+		float widthRatio = Screen.width / kScreenWidth;
+		float heightRatio = Screen.height / kScreenHeight;
+		
+		button.x *= widthRatio;
+		button.width *= widthRatio;
+		button.y *= heightRatio;
+		button.height *= heightRatio;
+		
+		return button;
 	}
 }

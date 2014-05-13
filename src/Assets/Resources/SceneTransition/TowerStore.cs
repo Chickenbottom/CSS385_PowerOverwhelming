@@ -111,32 +111,50 @@ public class TowerStore : MonoBehaviour
 		mLabels = new Dictionary<Label, LabelData>();
 		
 		mButtons.Add (Button.kSwordsmanUp, 
-		              new ButtonData(new Rect(500, 230, 50, 25), "+"));
+		              new ButtonData(ScaleButton(new Rect(500, 230, 50, 25)), "+"));
 		mButtons.Add (Button.kSwordsmanDown, 
-		              new ButtonData(new Rect(500, 260, 50, 25), "-"));
+		              new ButtonData(ScaleButton(new Rect(500, 260, 50, 25)), "-"));
 		mLabels.Add (Label.kSwordsmanSquadCount, new LabelData(
-			new Rect(450, 245, 40, 40),
+			ScaleButton(new Rect(450, 245, 40, 40)),
 			delegate { return GameState.UnitSquadCount[UnitType.kSwordsman]; } ));
 		              
 		mButtons.Add (Button.kArcherUp, 
-		              new ButtonData(new Rect(500, 350, 50, 25), "+"));
+		              new ButtonData(ScaleButton(new Rect(500, 350, 50, 25)), "+"));
 		mButtons.Add (Button.kArcherDown, 
-		              new ButtonData(new Rect(500, 380, 50, 25), "-"));              
+		              new ButtonData(ScaleButton(new Rect(500, 380, 50, 25)), "-"));              
 		mLabels.Add (Label.kArcherSquadCount, new LabelData(
-			new Rect(450, 365, 40, 40),
+			ScaleButton(new Rect(450, 365, 40, 40)),
 			delegate { return GameState.UnitSquadCount[UnitType.kArcher]; } ));
 			
 		mButtons.Add (Button.kMageUp, 
-		              new ButtonData(new Rect(500, 470, 50, 25), "+"));
+		              new ButtonData(ScaleButton(new Rect(500, 470, 50, 25)), "+"));
 		mButtons.Add (Button.kMageDown, 
-		              new ButtonData(new Rect(500, 500, 50, 25), "-"));
+		              new ButtonData(ScaleButton(new Rect(500, 500, 50, 25)), "-"));
 		mLabels.Add (Label.kMageSquadCount, new LabelData(
-			new Rect(450, 485, 40, 40),
+			ScaleButton(new Rect(450, 485, 40, 40)),
 			delegate { return GameState.UnitSquadCount[UnitType.kMage]; } ));
 			
 		mButtons.Add (Button.kLevelSelector,
-		              new ButtonData(new Rect(200, 650, 250, 60), "Back to Level Selection"));
+		              new ButtonData(ScaleButton(new Rect(200, 650, 250, 60)), "Back to Level Selection"));
 		mButtons.Add (Button.kNextLevel, 
-		              new ButtonData(new Rect(500, 650, 250, 60), "Next Level"));
+		              new ButtonData(ScaleButton(new Rect(500, 650, 250, 60)), "Next Level"));
+	}
+
+	// TODO make this a general utility function
+	// TODO add these to global game state
+	float kScreenWidth = 1024;
+	float kScreenHeight = 768;
+	
+	Rect ScaleButton(Rect button)
+	{
+		float widthRatio = Screen.width / kScreenWidth;
+		float heightRatio = Screen.height / kScreenHeight;
+		
+		button.x *= widthRatio;
+		button.width *= widthRatio;
+		button.y *= heightRatio;
+		button.height *= heightRatio;
+		
+		return button;
 	}
 }
