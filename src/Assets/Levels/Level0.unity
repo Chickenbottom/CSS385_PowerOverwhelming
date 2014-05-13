@@ -151,9 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3508cbe5697c5244491eea778803ff20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerSprite: 3
-  TowerSelector: {fileID: 0}
   UnitSpawnType: 0
+  TowerSelector: {fileID: 0}
 --- !u!1 &84962911
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +268,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: acb8e4f0ecfa4764ca67c17641d88a3c, type: 2}
+      propertyPath: TowerSelector
+      value: 
+      objectReference: {fileID: 423701736}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acb8e4f0ecfa4764ca67c17641d88a3c, type: 2}
   m_RootGameObject: {fileID: 557712840}
@@ -664,9 +667,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab51d8b52739e74aa7fb1a7ea306c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerSprite: 0
-  TowerSelector: {fileID: 423701735}
   UnitSpawnType: 2
+  TowerSelector: {fileID: 423701736}
   SquadManager: {fileID: 867338187}
   Tent: {fileID: 1453627066}
 --- !u!1 &591796095
@@ -784,6 +786,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
+      propertyPath: TowerSelector
+      value: 
+      objectReference: {fileID: 1640681736}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
   m_RootGameObject: {fileID: 1739444454}
@@ -1088,9 +1094,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab51d8b52739e74aa7fb1a7ea306c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerSprite: 2
-  TowerSelector: {fileID: 2073477853}
   UnitSpawnType: 4
+  TowerSelector: {fileID: 2073477854}
   SquadManager: {fileID: 767988363}
   Tent: {fileID: 802416934}
 --- !u!61 &1244186537
@@ -1287,9 +1292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab51d8b52739e74aa7fb1a7ea306c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerSprite: 1
-  TowerSelector: {fileID: 1640681734}
   UnitSpawnType: 3
+  TowerSelector: {fileID: 1640681736}
   SquadManager: {fileID: 1873341833}
   Tent: {fileID: 297076515}
 --- !u!1 &1791462076
@@ -1523,6 +1527,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef47dcf4ed6516d44a28977d2a0a70d9, type: 2}
+      propertyPath: TowerSelector
+      value: 
+      objectReference: {fileID: 2073477854}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef47dcf4ed6516d44a28977d2a0a70d9, type: 2}
   m_RootGameObject: {fileID: 1244186533}

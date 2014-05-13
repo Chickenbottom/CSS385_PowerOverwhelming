@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class UnitSpawningTower : Tower {
@@ -9,13 +9,12 @@ public class UnitSpawningTower : Tower {
 
     void Start()
     {
-        type = TowerType.kUnitSpawner;
-        health = 100;
+        mTowerType = TowerType.kUnitSpawner;
+        mHealth = 100;
     }
 
     public override void Click()
     {
-        Debug.Log("YAY IT WORKED" + health + "  " + type);
     }
     
     public override void SetTarget(Vector3 location)
