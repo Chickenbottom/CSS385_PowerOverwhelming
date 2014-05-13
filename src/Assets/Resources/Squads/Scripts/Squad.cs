@@ -226,7 +226,7 @@ public class Squad : Target
 		Unit squadUnit = this.mSquadMembers[0];
 		// Surround the enemy!
 		List<Vector3> positions = SurroundingPositions(
-			tower.transform.position,
+			tower.Position,
 			this.SquadCenter, 
 			NumSquadMembers, 
 			kSquadMemberWidth * 2.0f, 

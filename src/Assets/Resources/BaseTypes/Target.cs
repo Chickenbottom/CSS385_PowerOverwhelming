@@ -14,4 +14,9 @@ public class Target : MonoBehaviour
 	}
 	
 	protected Allegiance mAllegiance;
+	
+	public virtual Vector3 Position {
+		get { return this.transform.position; }
+		set { this.transform.position = value; }
+	}
 }

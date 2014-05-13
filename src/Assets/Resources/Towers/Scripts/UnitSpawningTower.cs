@@ -31,11 +31,15 @@ public class UnitSpawningTower : Tower {
 		if (this.Allegiance == Allegiance.kRodelle)
 			return;
 			
-		Squad squad = other.gameObject.GetComponent<Squad>();
+		Unit unit = other.gameObject.GetComponent<Unit>();
 				
-		if (squad != null && squad.UnitType == UnitType.kPeasant) {
+		if (unit != null && unit.Squad.UnitType == UnitType.kPeasant) {
 			Debug.Log ("Transforming unit!");
-			squad.Spawn(this.transform.position, this.UnitSpawnType, Allegiance.kAI);
+			unit.Squad.Spawn(this.Position, this.UnitSpawnType, Allegiance.kAI);
 		}
+	}
+	
+	public override Vector3 Position {
+		get { return this.Tent.transform.position; }
 	}
 }

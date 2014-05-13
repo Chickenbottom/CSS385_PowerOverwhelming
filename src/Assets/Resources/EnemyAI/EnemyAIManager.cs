@@ -76,7 +76,7 @@ public class EnemyAIManager : MonoBehaviour
 	{
 		EnemySquad es = null;
 		es = new EnemySquad (7, new Vector3 (0f, -55f, 0f)); // center
-		es.AddWaypoint(new Vector3 (-85f, -55f, 0f)); // archer tower
+		es.AddWaypoint(new Vector3 (-90f, -55f, 0f)); // archer tower
 		es.AddWaypoint(new Vector3 (0f, -40f, 0f));
 		es.AddWaypoint(new Vector3 (0f, 60f, 0f)); // King Rodelle
 		mUnits.Add (es);
@@ -86,7 +86,7 @@ public class EnemyAIManager : MonoBehaviour
 	{
 		EnemySquad es = null;
 		es = new EnemySquad (7, new Vector3 (0f, -55f, 0f)); // center
-		es.AddWaypoint(new Vector3 (-85f, 55f, 0f)); // swordsman tower
+		es.AddWaypoint(new Vector3 (-90f, 55f, 0f)); // swordsman tower
 		es.AddWaypoint(new Vector3(50f, -40f, 0f));
 		es.AddWaypoint(new Vector3(-50f, 60f, 0f));
 		es.AddWaypoint(new Vector3 (0f, 60f, 0f)); // King Rodelle

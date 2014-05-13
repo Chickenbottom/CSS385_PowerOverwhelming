@@ -34,7 +34,7 @@ public class Unit : Target, IDamagable
 	{
 		mAttackVector = (firingPosition != null) 
 			? firingPosition.Value
-			: this.transform.position;
+			: this.Position;
 		
 		mMovementState = MovementState.kIdle;
 		mAttackTarget = target;
@@ -139,15 +139,15 @@ public class Unit : Target, IDamagable
 		if (target == null)
 			return;
 		
-		Vector3 targetLocation = target.transform.position;	
+		Vector3 targetLocation = target.Position;	
 		Vector3 firingPosition = targetLocation + mAttackVector;
 		
-		float targetDistance = Vector3.SqrMagnitude(targetLocation - this.transform.position);
+		float targetDistance = Vector3.SqrMagnitude(targetLocation - this.Position);
 		float firingPositionDistance = Vector3.SqrMagnitude(targetLocation - firingPosition);
 		
 		// if in range, start firing!
 		// do not move away from target
-		if (Vector3.Distance(this.transform.position, targetLocation) <= mCurrentWeapon.Range ||
+		if (Vector3.Distance(this.Position, targetLocation) <= mCurrentWeapon.Range ||
 		    firingPositionDistance > targetDistance) {
 			mAttackState = AttackState.kRanged;
 			UpdateAttack(target);
@@ -155,7 +155,7 @@ public class Unit : Target, IDamagable
 		}
 		
 		// Second priority is to move into the firing position
-		if (Vector3.Distance(this.transform.position, firingPosition) > 1.0f) {
+		if (Vector3.Distance(this.Position, firingPosition) > 1.0f) {
 			//Debug.Log ("Moving into position");
 			UpdateMovement(firingPosition, mChargeSpeed);
 		} else { // firing position reached, attack!
@@ -169,8 +169,8 @@ public class Unit : Target, IDamagable
 		if (target == null)
 			return;
 		
-		Vector3 targetLocation = target.transform.position;
-		float targetDistanceSquared = Vector3.SqrMagnitude(targetLocation - this.transform.position);
+		Vector3 targetLocation = target.Position;
+		float targetDistanceSquared = Vector3.SqrMagnitude(targetLocation - this.Position);
 		
 		for (int i = 0; i < mWeapons.Count; ++i) {
 			Weapon w = (Weapon)mWeapons.GetByIndex(i);
@@ -197,18 +197,18 @@ public class Unit : Target, IDamagable
 	
 	private void UpdateMovement(Vector3 targetLocation, float speed)
 	{
-		if (Vector3.Distance(this.transform.position, targetLocation) < 1.0f) {
+		if (Vector3.Distance(this.Position, targetLocation) < 1.0f) {
 			mMovementState = MovementState.kIdle;
 			this.Squad.Notify(SquadAction.kDestinationReached);
 			return;
 		}
 		
-		Vector3 targetDir = targetLocation - transform.position;
+		Vector3 targetDir = targetLocation - Position;
 		targetDir.Normalize();
 		
-		transform.position += speed * Time.deltaTime * targetDir;
+		Position += speed * Time.deltaTime * targetDir;
 		
-		int sortingOrder = (int)(-transform.position.y + Camera.main.orthographicSize);
+		int sortingOrder = (int)(-Position.y + Camera.main.orthographicSize);
 		GetComponent<SpriteRenderer> ().sortingOrder = (int)(sortingOrder);
 	}
 	
