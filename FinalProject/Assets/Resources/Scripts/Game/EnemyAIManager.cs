@@ -6,8 +6,10 @@ public class EnemyAIManager : MonoBehaviour
 
     private GameObject mEnemy;
     private GameObject mTarget;
+    private GameObject mBestDestroyedTower;
 
     private ArrayList mTargets;
+    private ArrayList mDestroyedTowers;
     private ArrayList mCurEnemies;
 
     private float mEnemySpawnInterval;
@@ -19,6 +21,8 @@ public class EnemyAIManager : MonoBehaviour
     {
         mCurEnemies = new ArrayList();
         mTargets = new ArrayList();
+        mDestroyedTowers = new ArrayList();
+        mBestDestroyedTower = null;
         mEnemySpawnInterval = 20f;
         mLastEnemySpawn = Time.time;
         mTarget = null;
@@ -42,7 +46,10 @@ public class EnemyAIManager : MonoBehaviour
 
     private void Spawn()
     {
-        mCurEnemies.Add(Instantiate(mEnemy, new Vector3(0f, -210f, 0f), new Quaternion()));
+        GameObject newEnemy = (GameObject) Instantiate(mEnemy, new Vector3(0f, -210f, 0f), new Quaternion());
+        mCurEnemies.Add(newEnemy);
+        //newEnemy.SetDestination(new Vector3(0f, -180f, 0f));
+        //newEnemy.UpdateTarget(mTarget);
     }
 
     public GameObject getTarget()
@@ -50,12 +57,23 @@ public class EnemyAIManager : MonoBehaviour
         return mTarget;
     }
 
-    public void TowerDestroyed(GameObject target)
+    public void TowerDestroyed(GameObject tower)
+    {
+        mTargets.Remove(tower);
+        mDestroyedTowers.Add(tower);
+        GetBestTower();
+        //foreach (Squad s in mCurEnemies)
+        //{
+        //    s.GetWeapons();
+        //}
+    }
+
+    private void GetBestTower()
     {
 
     }
 
-    public void TowerRepaired(GameObject target)
+    public void TowerRepaired(GameObject tower)
     {
 
     }
