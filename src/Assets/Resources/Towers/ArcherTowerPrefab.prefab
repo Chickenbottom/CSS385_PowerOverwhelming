@@ -136,9 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab51d8b52739e74aa7fb1a7ea306c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerSprite: 1
-  TowerSelector: {fileID: 100004}
   UnitSpawnType: 3
+  TowerSelector: {fileID: 21200004}
   SquadManager: {fileID: 11400002}
   Tent: {fileID: 100002}
 --- !u!114 &11400002

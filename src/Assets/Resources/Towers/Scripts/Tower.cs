@@ -39,6 +39,7 @@ public abstract class Tower : Target, IDamagable
     public void Damage(int damage)
     {
         mHealth -= damage;
+        Debug.Log ("Tower Health: " + mHealth);
     }
     
 	///////////////////////////////////////////////////////////////////////////////////
@@ -50,6 +51,8 @@ public abstract class Tower : Target, IDamagable
 	/////////////////////////////////////////////////////////////////////////////////// 
     void Awake()
     {
+		mHealth = 10;
+		mAllegiance = Allegiance.kRodelle;
 		this.ShowSelector(false);
     }
     

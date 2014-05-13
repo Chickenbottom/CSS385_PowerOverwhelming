@@ -143,6 +143,13 @@ public class Squad : Target
 			AttackEnemySquad(u.Squad);
 			return;
 		}
+		
+		Tower t = (Tower) enemyUnit.GetComponent(typeof(Tower));
+		if (t != null) {
+			mTarget = t;
+			AttackEnemyTower(t);
+			return;
+		}
 	}
 		
 	private void AssignNewTarget(Unit who)
@@ -169,7 +176,7 @@ public class Squad : Target
 	
 	private void UpdateSquadMembers(Unit who)
 	{
-		if (this.gameObject == null)
+		if (this.gameObject == null) // game object m
 			return;
 			
 		mSquadMembers.Remove(who);
@@ -199,6 +206,25 @@ public class Squad : Target
 		// engage enemies 1 to 1
 		for(int i = 0; i < mSquadMembers.Count; ++i) {
 			mSquadMembers[i].Engage(mEnemies[i % numEnemies], positions[i]);
+		}
+	}
+	
+	private void AttackEnemyTower(Tower tower)
+	{
+		this.SquadState = SquadState.kEngaging;
+		
+		Unit squadUnit = this.mSquadMembers[0];
+		// Surround the enemy!
+		List<Vector3> positions = SurroundingPositions(
+			tower.transform.position,
+			this.SquadCenter, 
+			NumSquadMembers, 
+			kSquadMemberWidth * 2.0f, 
+			squadUnit.Range); // TODO add target radius for large targets
+			
+		// engage in a circle around the tower
+		for(int i = 0; i < mSquadMembers.Count; ++i) {
+			mSquadMembers[i].Engage(tower, positions[i]);
 		}
 	}
 	
