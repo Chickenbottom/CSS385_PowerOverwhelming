@@ -10,7 +10,7 @@ public class Mage : Unit
 		
 		mDefaultHealth = 4;
 		
-		mMovementSpeed = 8f; // units per second
+		mMovementSpeed = 28f; // units per second
 		mChargeSpeed = 10f;   // speed used to engage enemies
 	}
 	
@@ -20,7 +20,11 @@ public class Mage : Unit
 		
 		Weapon dagger = new Dagger();
 		mWeapons.Add (dagger.Range, dagger);
-		mCurrentWeapon = dagger;
+				
+		Weapon icewand = new IceWand();
+		((IceWand) icewand).src = this;
+		mWeapons.Add (icewand.Range, icewand);
+		mCurrentWeapon = icewand;
 		
 		mHealth = mDefaultHealth;
 		mPreviousHealth = mHealth;

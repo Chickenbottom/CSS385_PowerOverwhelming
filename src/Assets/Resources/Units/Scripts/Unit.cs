@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Unit : Target, IDamagable
+public class Unit : Target
 {	
 	public Squad Squad { get; set; }
 	public float Range { get { return mCurrentWeapon.Range; } }
@@ -46,7 +46,7 @@ public class Unit : Target, IDamagable
 	/// Reduces the health of the unit by the given amount.
 	/// </summary>
 	/// <param name="damage">Damage. The amount of damage taken.</param>
-	public void Damage(int damage)
+	public override void Damage(int damage)
 	{
 		mHealth -= damage;
 		if (mHealth <= 0) {
@@ -96,8 +96,8 @@ public class Unit : Target, IDamagable
 	
 	protected int mDefaultHealth;
 	
-	protected float mMovementSpeed; // units per second
-	protected float mChargeSpeed;   // speed used to engage enemies
+	public float mMovementSpeed; // units per second
+	public float mChargeSpeed;   // speed used to engage enemies
 	
 	protected Weapon mCurrentWeapon = null;
 	protected SortedList mWeapons;

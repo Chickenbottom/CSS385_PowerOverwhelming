@@ -6,7 +6,7 @@ public enum TowerType {
 	kUnitSpawner
 }
 
-public abstract class Tower : Target, IDamagable 
+public abstract class Tower : Target
 {
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods and Variables
@@ -34,7 +34,7 @@ public abstract class Tower : Target, IDamagable
 		TowerSelector.enabled = status;
 	}
 
-    public void Damage(int damage)
+    public override void Damage(int damage)
     {
         mHealth -= damage;
         

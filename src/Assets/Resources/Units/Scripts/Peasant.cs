@@ -9,10 +9,8 @@ public class Peasant : Unit
 	
 		mDefaultHealth = 5;
 		
-		mMovementSpeed = 8f; // units per second
-		mChargeSpeed = 10f;   // speed used to engage enemies
-		
-		mAllegiance = Allegiance.kAI;
+		mMovementSpeed = 5f; // units per second
+		mChargeSpeed = 5f;   // speed used to engage enemies
 	}
 	
 	void Start()

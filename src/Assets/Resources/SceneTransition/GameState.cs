@@ -15,8 +15,8 @@ public class GameState {
 	{
 		UnitSquadCount = new Dictionary<UnitType, int>();
 		UnitSquadCount.Add(UnitType.kArcher, 4);
-		UnitSquadCount.Add(UnitType.kSwordsman, 4);
-		UnitSquadCount.Add(UnitType.kMage, 4);
+		UnitSquadCount.Add(UnitType.kSwordsman, 3);
+		UnitSquadCount.Add(UnitType.kMage, 1);
 	}
 	
 	public static void AddToScore(int value)

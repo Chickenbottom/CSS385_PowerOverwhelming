@@ -6,7 +6,7 @@ public enum Allegiance {
 	kAI,
 }
 
-public class Target : MonoBehaviour
+public abstract class Target : MonoBehaviour, IDamagable
 {
 	public Allegiance Allegiance { 
 		get { return mAllegiance; } 
@@ -19,4 +19,6 @@ public class Target : MonoBehaviour
 		get { return this.transform.position; }
 		set { this.transform.position = value; }
 	}
+	
+	public abstract void Damage(int damage);
 }
