@@ -38,5 +38,10 @@ public class UnitSpawnTower : TowerBehavior {
 		Debug.Log("YAY IT WORKED" + health + "  " + type);
 		mSquadManager.SetDestination(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 	}
+
+    public override bool ValidMousePos(Vector3 mousePos)
+    {
+        return GameObject.Find("ClickBox").GetComponent<ClickBox>().GetBounds().contains(mousePos);
+    }
 	
 }

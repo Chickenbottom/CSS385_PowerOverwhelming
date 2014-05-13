@@ -30,6 +30,7 @@ public abstract class TowerBehavior : MonoBehaviour {
 	public float health{ get; set; }
 
 	abstract void Click();
+    abstract bool ValidMousePos(Vector3 mousePos);
 	//abstract void getMyTowerType();
 
 	void OnMouseDown()
