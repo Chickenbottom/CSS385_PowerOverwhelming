@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyAIManager : MonoBehaviour
 {
@@ -11,72 +12,67 @@ public class EnemyAIManager : MonoBehaviour
 	private ArrayList mDestroyedTowers;
 	private ArrayList mCurEnemies;
 	
-	private float mEnemySpawnInterval;
+	private float mWaveSpawnInterval = 3.0f;
 	private float mLastEnemySpawn;
 	private float mLastTargetChange;
 	private float mTargetChangeInterval;
-	
+
+	struct EnemySquad {
+		public Squad squad;
+		public int currentWaypoint;
+		public List<Vector3> waypoints;
+
+		public EnemySquad(Squad s, List<Vector3> inWaypoints) {
+			squad = s;
+			waypoints = inWaypoints;
+			s.UpdateSquadDestination(waypoints[0]);
+			currentWaypoint = 0;
+		}
+	}
+
+	List<EnemySquad> mUnits;
+
 	void Start()
 	{
-		mCurEnemies = new ArrayList();
-		mTargets = new ArrayList();
-		mDestroyedTowers = new ArrayList();
-		mBestDestroyedTower = null;
-		mEnemySpawnInterval = 20f;
 		mLastEnemySpawn = Time.time;
-		mTarget = null;
-		mEnemy = null;
-		mLastTargetChange = Time.time;
-		mTargetChangeInterval = 45f;
+		mUnits = new List<EnemySquad> ();
+
 	}
 	
+	static GameObject mSquadPrefab;
+	private void SpawnWave(int wave)
+	{
+		if (mSquadPrefab == null) 
+			mSquadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
+
+		Debug.Log ("Wave: " + wave);
+
+		GameObject o = (GameObject) GameObject.Instantiate (mSquadPrefab);
+		Squad s = o.GetComponent<Squad> ();
+
+		s.NumSquadMembers = 4;
+		s.Spawn (new Vector3(0f, -100f, 0f), UnitType.kPeasant);
+		List<Vector3> waypoints = new List<Vector3> ();
+		waypoints.Add(new Vector3 (0f, 50f, 0f));
+
+		EnemySquad es = new EnemySquad (s, waypoints);
+		mUnits.Add (es);
+	}
+
 	void Update()
 	{
-		if (mEnemySpawnInterval < Time.time - mLastEnemySpawn)
-		{
+		if (mWaveSpawnInterval < Time.time - mLastEnemySpawn) {
 			mLastEnemySpawn = Time.time;
-			Spawn();
-		}
-		if (mTargetChangeInterval < Time.time - mLastTargetChange)
-		{
-			ChangeTarget();
+			this.SpawnWave(0);
 		}
 	}
-	
-	private void Spawn()
-	{
-		GameObject newEnemy = (GameObject) Instantiate(mEnemy, new Vector3(0f, -210f, 0f), new Quaternion());
-		mCurEnemies.Add(newEnemy);
-		//newEnemy.SetDestination(new Vector3(0f, -180f, 0f));
-		//newEnemy.UpdateTarget(mTarget);
-	}
-	
-	public GameObject getTarget()
-	{
-		return mTarget;
-	}
-	
+
 	public void TowerDestroyed(GameObject tower)
 	{
 		mTargets.Remove(tower);
 		mDestroyedTowers.Add(tower);
-		GetBestTower();
-		//foreach (Squad s in mCurEnemies)
-		//{
-		//    s.GetWeapons();
-		//}
 	}
-	
-	private void GetBestTower()
-	{
-		
-	}
-	
-	public void TowerRepaired(GameObject tower)
-	{
-		
-	}
-	
+
 	public void AddTarget(GameObject target)
 	{
 		mTargets.Add(target);

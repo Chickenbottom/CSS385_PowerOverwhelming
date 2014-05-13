@@ -77,8 +77,9 @@ public class Squad : MonoBehaviour
 	{
 		if (unitType != null)
 			UnitType = unitType.Value;
-		
-		NumSquadMembers = GameState.UnitSquadCount[UnitType];
+
+		if (NumSquadMembers == 0)
+			NumSquadMembers = GameState.UnitSquadCount[UnitType];
 		
 		this.transform.position = location;	
 		mUnitPrefab = mUnitPrefabs[this.UnitType];
