@@ -61,7 +61,6 @@ public class DialogManager : MonoBehaviour
         }
 
         index = -1;
-        Debug.Log(index);
         cur_person = -1;
         cur_convo = -1;
     }
@@ -71,7 +70,6 @@ public class DialogManager : MonoBehaviour
     {
         if (Time.time - mPreviousLetter > kLetterDisplayTime && index != -1)
         {
-            Debug.Log(index);
             printStatment();
             mPreviousLetter = Time.time;
         }
