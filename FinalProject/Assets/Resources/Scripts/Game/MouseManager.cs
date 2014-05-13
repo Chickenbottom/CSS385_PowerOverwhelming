@@ -7,6 +7,7 @@ public class MouseManager : MonoBehaviour
     #region variables
     private GameObject mTowerSelected;
     private bool mSelected;
+    private Bounds mClickBox;
     #endregion
 
     
@@ -15,6 +16,9 @@ public class MouseManager : MonoBehaviour
     {
         mSelected = false;
         mTowerSelected = null;
+        BoxCollider2D temp = GameObject.Find("ClickBox").GetComponent<BoxCollider2D>();
+        mClickBox = new Bounds(new Vector3(temp.center.x, temp.center.y, 0f), new Vector3(temp.size.x, temp.size.y, 0f));
+        Debug.Log(mClickBox);
     }
 
     void Update()
@@ -34,8 +38,7 @@ public class MouseManager : MonoBehaviour
 
     private bool ValidMousePos(Vector3 mousePos)
     {
-        // Add a dead spot around the towers to prevent sending units when you meant to reselect a tower
-        return mousePos.x < 240f && mousePos.x > -250f && mousePos.y < 102f && mousePos.y > -169f;
+        return mClickBox.Contains(mousePos);
     }
 
     public void Select(GameObject tower)
