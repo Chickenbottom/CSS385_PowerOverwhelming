@@ -14,6 +14,10 @@ public class EnemyAIManager : MonoBehaviour
 			mLastEnemySpawn = Time.time;
 			this.SpawnWave();
 		}
+		
+		foreach (EnemySquad e in mUnits) {
+			e.Update();
+		}
 	}
 	
 	void Start()
@@ -41,17 +45,17 @@ public class EnemyAIManager : MonoBehaviour
 		switch (mCurrentWave)
 		{
 		case(1):
-			SpawnWave1();
+			SpawnWave2();
 			break;
 		case(2):
-			//SpawnWave2();
+			//SpawnWave1();
 			break;
 		case(3):
 			//SpawnWave3 ();
 			break;
 		}
 		
-		//mCurrentWave ++;
+		mCurrentWave ++;
 	}
 	
 	
@@ -59,14 +63,18 @@ public class EnemyAIManager : MonoBehaviour
 	void SpawnWave1()
 	{
 		EnemySquad es = null;
-		es = new EnemySquad (7, new Vector3 (0f, 55f, 0f));
+		es = new EnemySquad (7, new Vector3 (0f, -55f, 0f));
+		es.AddWaypoint(new Vector3(50f, -40f, 0f));
+		es.AddWaypoint(new Vector3(-50f, 60f, 0f));
 		mUnits.Add (es);
 	}
 	
 	void SpawnWave2()
 	{
 		EnemySquad es = null;
-		es = new EnemySquad (8, new Vector3 (50f, -75f, 0f));
+		es = new EnemySquad (7, new Vector3 (-85f, -55f, 0f));
+		es.AddWaypoint(new Vector3 (0f, -40f, 0f));
+		es.AddWaypoint(new Vector3 (0f, 75f, 0f));
 		mUnits.Add (es);
 	}
 	

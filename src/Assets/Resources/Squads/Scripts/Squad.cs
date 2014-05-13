@@ -21,6 +21,7 @@ public enum UnitType {
 
 public enum SquadState {
 	kIdle,
+	kMoving,
 	kEngaging,
 	kMelee,
 }
@@ -36,6 +37,7 @@ public class Squad : Target
 	public Vector3 SquadCenter;
 	public Vector3 RallyPoint;
 	public SquadState SquadState;
+	public bool IsIdle { get { return SquadState == SquadState.kIdle; } }
 	
 	public void Notify(SquadAction action, params object[] args)
 	{
@@ -45,6 +47,7 @@ public class Squad : Target
 			break;
 			
 		case(SquadAction.kDestinationReached):
+			this.SquadState = SquadState.kIdle;
 			break;
 			
 		case(SquadAction.kUnitDestroyed):
@@ -67,6 +70,7 @@ public class Squad : Target
 	
 	public void UpdateSquadDestination(Vector3 location) 
 	{
+		this.SquadState = SquadState.kMoving;
 		RallyPoint = location;
 		location.z = 0;
 		
@@ -82,10 +86,12 @@ public class Squad : Target
 		}
 	}
 	
-	public void Spawn(Vector3 location, UnitType? unitType = null)
+	public void Spawn(Vector3 location, UnitType? unitType = null, Allegiance allegiance = Allegiance.kRodelle)
 	{
 		if (unitType != null)
 			UnitType = unitType.Value;
+
+		mAllegiance = allegiance;
 
 		if (NumSquadMembers == 0)
 			NumSquadMembers = GameState.UnitSquadCount[UnitType];
@@ -115,10 +121,10 @@ public class Squad : Target
 			Vector3 memberPosition = this.transform.position;
 			memberPosition += randomPositions[i];
 			u.transform.position = memberPosition;
+			u.Allegiance = mAllegiance;
 		}
 		
-		if (mSquadMembers.Count > 0)
-			mAllegiance = mSquadMembers[0].Allegiance;
+		this.UpdateSquadDestination(this.RallyPoint);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////
@@ -235,7 +241,7 @@ public class Squad : Target
 	// re-enable the search for new enemies
 	private void DisengageSquad()
 	{
-		this.SquadState = SquadState.kIdle;
+		this.SquadState = SquadState.kMoving;
 		for(int i = 0; i < mSquadMembers.Count; ++i) {
 			mSquadMembers[i].Disengage();
 		}

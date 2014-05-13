@@ -35,8 +35,16 @@ class EnemySquad
 		Squad squad = o.GetComponent<Squad> ();
 		
 		squad.NumSquadMembers = size;
-		squad.Spawn (mSpawnLocation, UnitType.kPeasant);
+		squad.Spawn (mSpawnLocation, UnitType.kPeasant, Allegiance.kAI);
 		
 		return squad;
+	}
+	
+	public void Update()
+	{
+		if (mCurrentWaypoint < mWaypoints.Count - 1 && mSquad.IsIdle) {
+			mCurrentWaypoint ++;
+			mSquad.UpdateSquadDestination(mWaypoints[mCurrentWaypoint]);
+		}
 	}
 }

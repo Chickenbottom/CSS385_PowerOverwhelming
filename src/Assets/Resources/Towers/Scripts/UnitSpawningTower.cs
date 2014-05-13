@@ -25,5 +25,17 @@ public class UnitSpawningTower : Tower {
 	{
 		this.SquadManager.AddSquad(Tent.transform.position, this.UnitSpawnType);
 	}
-
+	
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if (this.Allegiance == Allegiance.kRodelle)
+			return;
+			
+		Squad squad = other.gameObject.GetComponent<Squad>();
+				
+		if (squad != null && squad.UnitType == UnitType.kPeasant) {
+			Debug.Log ("Transforming unit!");
+			squad.Spawn(this.transform.position, this.UnitSpawnType, Allegiance.kAI);
+		}
+	}
 }

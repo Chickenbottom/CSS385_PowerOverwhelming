@@ -8,7 +8,10 @@ public enum Allegiance {
 
 public class Target : MonoBehaviour
 {
-	public Allegiance Allegiance { get { return mAllegiance; } }
+	public Allegiance Allegiance { 
+		get { return mAllegiance; } 
+		set { mAllegiance = value; }
+	}
 	
 	protected Allegiance mAllegiance;
 }
