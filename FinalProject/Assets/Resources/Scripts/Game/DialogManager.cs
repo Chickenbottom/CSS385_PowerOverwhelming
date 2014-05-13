@@ -15,7 +15,7 @@ public class DialogManager : MonoBehaviour
     const int kTroops = 1;
     const int kGame = 2;
 
-    const float kLetterDisplayTime = 0.5f;
+    const float kLetterDisplayTime = 5f;
 
     private const string path = "dialog.txt"; //path of the txt file
     #endregion
@@ -24,6 +24,7 @@ public class DialogManager : MonoBehaviour
     int cur_convo;
     int index; // used to display one letter at a time
     float mPreviousLetter = 0f; //used for keeping time for display
+    private GameObject mRodelleGUI;
 
     #region Arrays
 
@@ -48,6 +49,7 @@ public class DialogManager : MonoBehaviour
         Conversations[kAdv][kTroops] = new ArrayList();
         Conversations[kAdv][kGame] = new ArrayList();
 
+        mRodelleGUI = GameObject.Find("RodelleGUI");
 
         StreamReader mFile = null;
         try
@@ -60,6 +62,8 @@ public class DialogManager : MonoBehaviour
             loadDialog(mFile);
         }
 
+        mRodelleGUI.guiText.text = "Hi I'm Rodelle! Nice to meet you.";
+
         index = -1;
         cur_person = -1;
         cur_convo = -1;
@@ -68,10 +72,11 @@ public class DialogManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - mPreviousLetter > kLetterDisplayTime && index != -1)
+        if (Time.time - mPreviousLetter > kLetterDisplayTime /*&& index != -1*/)
         {
-            printStatment();
-            mPreviousLetter = Time.time;
+            //printStatment();
+            //mPreviousLetter = Time.time;
+            mRodelleGUI.guiText.text = "Why are all these Peasants attacking my castle? #MATH!";
         }
 
     }
