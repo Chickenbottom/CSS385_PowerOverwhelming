@@ -12,8 +12,6 @@ public class Mage : Unit
 		
 		mMovementSpeed = 8f; // units per second
 		mChargeSpeed = 10f;   // speed used to engage enemies
-		
-		mAllegiance = Allegiance.kRodelle;
 	}
 	
 	void Start()
@@ -22,6 +20,7 @@ public class Mage : Unit
 		
 		Weapon dagger = new Dagger();
 		mWeapons.Add (dagger.Range, dagger);
+		mCurrentWeapon = dagger;
 		
 		mHealth = mDefaultHealth;
 		mPreviousHealth = mHealth;

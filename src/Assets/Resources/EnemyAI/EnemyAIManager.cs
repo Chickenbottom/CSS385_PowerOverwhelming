@@ -18,6 +18,9 @@ public class EnemyAIManager : MonoBehaviour
 		foreach (EnemySquad e in mUnits) {
 			e.Update();
 		}
+		
+		if (Input.GetButtonDown("Fire1"))
+			SpawnWave2 ();
 	}
 	
 	void Start()
@@ -46,6 +49,7 @@ public class EnemyAIManager : MonoBehaviour
 		{
 		case(1):
 			SpawnWave2();
+			SpawnWave3();
 			break;
 		case(2):
 			//SpawnWave1();
@@ -57,7 +61,6 @@ public class EnemyAIManager : MonoBehaviour
 		
 		mCurrentWave ++;
 	}
-	
 	
 	// TODO fix this hard coding of enemy waves
 	void SpawnWave1()
@@ -72,16 +75,21 @@ public class EnemyAIManager : MonoBehaviour
 	void SpawnWave2()
 	{
 		EnemySquad es = null;
-		es = new EnemySquad (7, new Vector3 (-85f, -55f, 0f));
+		es = new EnemySquad (7, new Vector3 (0f, -55f, 0f)); // center
+		es.AddWaypoint(new Vector3 (-85f, -55f, 0f)); // archer tower
 		es.AddWaypoint(new Vector3 (0f, -40f, 0f));
-		es.AddWaypoint(new Vector3 (0f, 75f, 0f));
+		es.AddWaypoint(new Vector3 (0f, 60f, 0f)); // King Rodelle
 		mUnits.Add (es);
 	}
 	
 	void SpawnWave3()
 	{
 		EnemySquad es = null;
-		es = new EnemySquad (1, new Vector3 (-50f, 0f, 0f));
+		es = new EnemySquad (7, new Vector3 (0f, -55f, 0f)); // center
+		es.AddWaypoint(new Vector3 (-85f, 55f, 0f)); // swordsman tower
+		es.AddWaypoint(new Vector3(50f, -40f, 0f));
+		es.AddWaypoint(new Vector3(-50f, 60f, 0f));
+		es.AddWaypoint(new Vector3 (0f, 60f, 0f)); // King Rodelle
 		mUnits.Add (es);
 	}
 }

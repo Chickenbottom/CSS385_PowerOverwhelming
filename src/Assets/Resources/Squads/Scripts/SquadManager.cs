@@ -65,7 +65,7 @@ public class SquadManager : MonoBehaviour
 		GameObject o = (GameObject) Instantiate(mSquadPrefab);
 		Squad squad = (Squad) o.GetComponent(typeof(Squad));
 		squad.UnitType = unitType;
-		squad.Spawn(location);
+		squad.Spawn(location, unitType, Allegiance.kRodelle);
 		return squad;
 	}
 	

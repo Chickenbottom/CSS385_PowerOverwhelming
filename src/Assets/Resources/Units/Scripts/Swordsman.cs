@@ -11,8 +11,6 @@ public class Swordsman : Unit
 		
 		mMovementSpeed = 10f; // units per second
 		mChargeSpeed = 15f;   // speed used to engage enemies
-		
-		mAllegiance = Allegiance.kRodelle;
 	}
 
 	void Start()

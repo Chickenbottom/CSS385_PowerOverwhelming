@@ -91,7 +91,7 @@ public class Squad : Target
 		if (unitType != null)
 			UnitType = unitType.Value;
 
-		mAllegiance = allegiance;
+		this.Allegiance = allegiance;
 
 		if (NumSquadMembers == 0)
 			NumSquadMembers = GameState.UnitSquadCount[UnitType];
@@ -121,7 +121,7 @@ public class Squad : Target
 			Vector3 memberPosition = this.transform.position;
 			memberPosition += randomPositions[i];
 			u.transform.position = memberPosition;
-			u.Allegiance = mAllegiance;
+			u.Allegiance = this.Allegiance;
 		}
 		
 		this.UpdateSquadDestination(this.RallyPoint);
@@ -206,7 +206,7 @@ public class Squad : Target
 		List<Vector3> positions = SurroundingPositions(
 			enemySquad.SquadCenter,
 			this.SquadCenter, 
-			NumSquadMembers, 
+			mSquadMembers.Count, 
 			kSquadMemberWidth * 2.0f, 
 			squadUnit.Range); // TODO add target radius for large targets
 		
@@ -348,7 +348,7 @@ public class Squad : Target
 	// Check for enemies in sight range
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (this.SquadState != SquadState.kIdle)
+		if (this.SquadState != SquadState.kIdle && this.SquadState != SquadState.kMoving)
 			return;
 		
 		Target target = other.gameObject.GetComponent<Target>();

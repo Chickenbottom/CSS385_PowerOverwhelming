@@ -12,8 +12,6 @@ public class Archer : Unit
 		
 		mMovementSpeed = 8f; // units per second
 		mChargeSpeed = 10f;   // speed used to engage enemies
-		
-		mAllegiance = Allegiance.kRodelle;
 	}
 	
 	void Start()

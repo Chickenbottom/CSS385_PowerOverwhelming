@@ -32,8 +32,6 @@ public abstract class Tower : Target, IDamagable
 			return;
 			
 		TowerSelector.enabled = status;
-		//Renderer r = TowerSelector.gameObject.GetComponent<Renderer>();
-		//r.enabled = status;
 	}
 
     public void Damage(int damage)
@@ -41,11 +39,14 @@ public abstract class Tower : Target, IDamagable
         mHealth -= damage;
         
         if (mHealth < 0) {
-			mHealth = 3;
+			mHealth = 10;
 			Debug.Log ("Tower destroyed!");
 			mAllegiance = this.Allegiance == Allegiance.kRodelle
 				? Allegiance.kAI
 				: Allegiance.kRodelle;
+				
+			if (this.Allegiance != Allegiance.kRodelle)
+				this.ShowSelector(false);
         }
         
         Debug.Log ("Tower Health: " + mHealth);
@@ -67,6 +68,7 @@ public abstract class Tower : Target, IDamagable
     
 	void OnMouseDown()
 	{
-		GameObject.Find("GameManager").GetComponent<MouseManager>().Select(this);
+		if (this.Allegiance == Allegiance.kRodelle)
+			GameObject.Find("GameManager").GetComponent<MouseManager>().Select(this);
 	}
 }

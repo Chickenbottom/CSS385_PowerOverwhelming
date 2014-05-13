@@ -77,6 +77,7 @@ public class Unit : Target, IDamagable
 	{
 		mAttackState = AttackState.kIdle;
 		mMovementState = MovementState.kMoving;
+		mAttackTarget = null;
 		
 		SwitchToWeapon(mWeapons.Count - 1); // longest range weapon
 	}	
