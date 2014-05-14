@@ -39,8 +39,9 @@ public class EnemyAIManager : MonoBehaviour
 			
 		}
 		
-		if (mCurrentWave >= NumWaves && mUnits.Count == 0)
-			GameState.TriggerWin();
+		if (mCurrentWave >= NumWaves && mUnits.Count == 0) {
+			//GameState.TriggerWin();
+		}
 		
 		if (Input.GetButtonDown("Fire1")) {
 			SpawnWave3 ();
@@ -73,7 +74,7 @@ public class EnemyAIManager : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////	
-	private float mWaveSpawnInterval = 2.0f;
+	private float mWaveSpawnInterval = 15.0f;
 	private float mLastEnemySpawn;
 	private int mCurrentWave = 0;
 	
