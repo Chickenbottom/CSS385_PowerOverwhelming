@@ -17,6 +17,7 @@ public enum UnitType {
 	kSwordsman,
 	kArcher,
 	kMage,
+	kKing,
 }
 
 public enum SquadState {
@@ -38,6 +39,7 @@ public class Squad : Target
 	public Vector3 RallyPoint;
 	public SquadState SquadState;
 	public bool IsIdle { get { return SquadState == SquadState.kIdle; } }
+	public bool IsIndependent = false;
 	
 	public void Notify(SquadAction action, params object[] args)
 	{
@@ -336,6 +338,7 @@ public class Squad : Target
 		mUnitPrefabs.Add (UnitType.kArcher, Resources.Load ("Units/ArcherPrefab") as GameObject);
 		mUnitPrefabs.Add (UnitType.kPeasant, Resources.Load ("Units/PeasantPrefab") as GameObject);
 		mUnitPrefabs.Add (UnitType.kMage, Resources.Load ("Units/MagePrefab") as GameObject);
+		mUnitPrefabs.Add (UnitType.kKing, Resources.Load ("Units/KingPrefab") as GameObject);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////
@@ -391,9 +394,11 @@ public class Squad : Target
 		if (null == mUnitPrefabs) 
 			InitializePrefabs();
 	
+		
 		SquadState = SquadState.kIdle;
-		// only capture input in squad testing scene 
-		if (!Application.loadedLevelName.Equals("SquadTest"))
-			return;
+		if (IsIndependent) {
+			this.Spawn(this.Position);
+			this.UpdateSquadDestination(this.Position);
+		}
 	}
 }

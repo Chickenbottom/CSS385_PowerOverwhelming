@@ -197,7 +197,7 @@ public class Unit : Target
 	
 	private void UpdateMovement(Vector3 targetLocation, float speed)
 	{
-		if (Vector3.Distance(this.Position, targetLocation) < 1.0f) {
+		if (Vector3.SqrMagnitude(this.Position - targetLocation) < 1.0f) {
 			mMovementState = MovementState.kIdle;
 			this.Squad.Notify(SquadAction.kDestinationReached);
 			return;
@@ -255,6 +255,7 @@ public class Unit : Target
 		switch (mMovementState)
 		{
 		case (MovementState.kIdle):
+			UpdateMovement(mDestination, mMovementSpeed);
 			break;
 			
 		case (MovementState.kMoving):
