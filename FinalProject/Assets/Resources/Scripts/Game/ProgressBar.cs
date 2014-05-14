@@ -1,48 +1,92 @@
 using UnityEngine;
 using System.Collections;
 
-public class HealthBar : MonoBehaviour {
-	
-	public float box_length;
-	public GameObject cur_obj;
-	Rect box; 
-	
+public class ProgressBar : MonoBehaviour {
 
-	private Texture2D background;
-	private Texture2D foreground;
 	
-	public float progress = 100;
-	public int maxHealth = 100;
+	public enum ATTACHBAR{
+		ATTACHED,
+		DETACHED,
+	};
+
+    float hitPoints = 1;
+    float maxHitPoints = 100;
+
+	public GameObject mProgressBarPrefab;
+	public GameObject mInfoObject;
+	public GameObject mPositionObject;
+	public TOWERTYPE mTowerType;
+	public ATTACHBAR mAttached;
+	public float offsetX;
+	public float offsetY;
+	public float mBarHeight = 5;
+	public float mHealthBarWidthMultiplier = 20;
+	public float mWidthMultiplier = 30;
+	
+	GameObject mHB = null;
+	float mBarWidth = 20;
+
 	
 	void Start()
 	{
-		box = new Rect(cur_obj.transform.position, 10, 200, 20);
-		background = new Texture2D(1, 1, TextureFormat.RGB24, false);
-		foreground = new Texture2D(1, 1, TextureFormat.RGB24, false);
-		
-		background.SetPixel(0, 0, Color.red);
-		foreground.SetPixel(0, 0, Color.green);
-		
-		background.Apply();
-		foreground.Apply();
+
+		mHB = (GameObject) Instantiate (mProgressBarPrefab, transform.position, transform.rotation);
+		if(mAttached == ATTACHBAR.ATTACHED)
+			assignHitPoints();
+		else
+			assignXPCooldownPoints();
 	}
+
 	
 	void Update()
 	{
-		TowerBehavior tower = GameObject.Find ("mShield").GetComponent<TowerBehavior>();
-		
-		progress = tower.health;
-		if (progress > 100) progress = maxHealth;
-		if (progress < 0) progress = 0;
+		Vector3 tempPosition;
+		tempPosition = Camera.main.WorldToViewportPoint (mPositionObject.transform.position);
+		tempPosition.x += offsetX;
+		tempPosition.y += offsetY;
+		tempPosition.z = 0.0f;
+		mHB.transform.position = tempPosition;
+		mHB.transform.localScale = Vector3.zero;
+
+		if(mAttached == ATTACHBAR.ATTACHED)
+			assignHitPoints();
+		else
+			assignXPCooldownPoints();
+
+		float percent = hitPoints / maxHitPoints;
+		if (percent < 0)
+			percent = 0;
+		if (percent > 100)
+			percent = 100;
+		if(mAttached == ATTACHBAR.ATTACHED)
+			mBarWidth = percent * mHealthBarWidthMultiplier;
+		else
+			mBarWidth = percent * mWidthMultiplier;
+			
+		mHB.guiTexture.pixelInset = new Rect(10, 10, mBarWidth, mBarHeight);
 	}
-	
-	void OnGUI()
-	{
-		GUI.BeginGroup(box);
-		{
-			GUI.DrawTexture(new Rect(0, 0, box.width, box.height), background, ScaleMode.StretchToFill);
-			GUI.DrawTexture(new Rect(0, 0, box.width*progress/maxHealth, box.height), foreground, ScaleMode.StretchToFill);
+	void assignHitPoints(){
+		switch(mTowerType){
+		case TOWERTYPE.Ability:
+			hitPoints = GameObject.Find(mInfoObject.name).GetComponent<AbilityTower>().health;
+			maxHitPoints = GameObject.Find(mInfoObject.name).GetComponent<AbilityTower>().mMaxHealth;
+			break;
+		case TOWERTYPE.Unit:
+			hitPoints = GameObject.Find(mInfoObject.name).GetComponent<UnitSpawnerTower>().health;
+			maxHitPoints = GameObject.Find(mInfoObject.name).GetComponent<UnitSpawnerTower>().mMaxHealth;
+			break;
 		}
-		GUI.EndGroup(); ;
+	}
+	void assignXPCooldownPoints(){
+		switch(mTowerType){
+		case TOWERTYPE.Ability:
+			hitPoints = GameObject.Find(mInfoObject.name).GetComponent<AbilityTower>().mAbilityCooldown;
+			maxHitPoints = GameObject.Find(mInfoObject.name).GetComponent<AbilityTower>().mCooldownMax;
+			break;
+		case TOWERTYPE.Unit: 
+			hitPoints = GameObject.Find(mInfoObject.name).GetComponent<UnitSpawnerTower>().mXP;
+			maxHitPoints = GameObject.Find(mInfoObject.name).GetComponent<UnitSpawnerTower>().mXPMax;
+			break;
+		}
 	}
 }
