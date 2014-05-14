@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class IceBomb : MonoBehaviour {
@@ -39,12 +39,20 @@ public class IceBomb : MonoBehaviour {
 		// do not target squads directly, do not retarget frozen targets
 		if (target is Squad || f != null) 
 			return;
-		
+
+		if (target is Tower) {
+			target.Damage(4);
+			return;
+		}
+
+		if (! (target is Unit))
+			return;
+
 		Squad s = ((Unit) mSource).Squad;
 		if (target != null && target.Allegiance != s.Allegiance) {
 			target.gameObject.AddComponent("FrozenEffect");
 			f = other.gameObject.GetComponent<FrozenEffect>();
-			f.unit = target.GetComponent<Unit>();
+			f.target = target.GetComponent<Target>();
 			f.Freeze();
 			
 			IDamagable e = (IDamagable) target.GetComponent(typeof(IDamagable));
