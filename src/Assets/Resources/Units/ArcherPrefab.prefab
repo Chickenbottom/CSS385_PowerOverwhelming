@@ -12,7 +12,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ArcherPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,6 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c44726dca6d8f44c8ee1724905c891c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mMovementSpeed: 0
+  mChargeSpeed: 0
 --- !u!212 &21200002
 SpriteRenderer:
   m_ObjectHideFlags: 1
