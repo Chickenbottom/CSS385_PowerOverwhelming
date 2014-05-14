@@ -7,10 +7,11 @@ public class Peasant : Unit
 	{
 		base.Awake();
 	
+		mSightRange = 10f;
 		mDefaultHealth = 5;
 		
-		mMovementSpeed = 35f; // units per second
-		mChargeSpeed = 25f;   // speed used to engage enemies
+		mMovementSpeed = 8f; // units per second
+		mChargeSpeed = 10f;   // speed used to engage enemies
 	}
 	
 	void Start()

@@ -56,7 +56,7 @@ public class IceBomb : MonoBehaviour {
 			f.Freeze();
 			
 			IDamagable e = (IDamagable) target.GetComponent(typeof(IDamagable));
-			e.Damage(4);
+			e.Damage(5);
 		}
 	
 	}
@@ -65,7 +65,7 @@ public class IceBomb : MonoBehaviour {
 	Target mSource;	
 	public void SetParameters(Target src, Target target)
 	{
-		mTarget = target;
+		//mTarget = target;
 		mSource = src;
 		transform.position = target.Position;
 		StartExplosion();

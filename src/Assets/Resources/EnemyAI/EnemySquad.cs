@@ -16,7 +16,7 @@ class EnemySquad
 			mSquadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
 		
 		mCurrentWaypoint = 0;
-		mSpawnLocation = new Vector3(0f, -100f, 0f);
+		
 		
 		mSquad = CreateSquad(size: size);
 		mWaypoints = new List<Vector3>();
@@ -31,6 +31,7 @@ class EnemySquad
 	
 	Squad CreateSquad(int size)
 	{
+		mSpawnLocation = new Vector3(-33f, -60f, 0f);
 		GameObject o = (GameObject) GameObject.Instantiate (mSquadPrefab);
 		Squad squad = o.GetComponent<Squad> ();
 		

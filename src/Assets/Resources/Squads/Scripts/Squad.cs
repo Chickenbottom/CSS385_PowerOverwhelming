@@ -40,6 +40,7 @@ public class Squad : Target
 	public SquadState SquadState;
 	public bool IsIdle { get { return SquadState == SquadState.kIdle; } }
 	public bool IsIndependent = false;
+	public SpriteRenderer SightCircle;
 	
 	public void Notify(SquadAction action, params object[] args)
 	{
@@ -124,6 +125,8 @@ public class Squad : Target
 			memberPosition += randomPositions[i];
 			u.transform.position = memberPosition;
 			u.Allegiance = this.Allegiance;
+			this.GetComponent<CircleCollider2D>().radius = u.mSightRange;
+			this.SightCircle.transform.localScale = new Vector3 (u.mSightRange / 3f, u.mSightRange / 3f, 1f);
 		}
 		
 		this.UpdateSquadDestination(this.RallyPoint);
@@ -221,6 +224,9 @@ public class Squad : Target
 		for(int i = 0; i < mSquadMembers.Count; ++i) {
 			mSquadMembers[i].Engage(mEnemies[i % numEnemies], positions[i]);
 		}
+		
+		if (enemySquad.SquadState == SquadState.kIdle || enemySquad.SquadState == SquadState.kMoving)
+			enemySquad.Notify(SquadAction.kEnemySighted, this.mSquadMembers[0]);
 	}
 	
 	private void AttackEnemyTower(Tower tower)

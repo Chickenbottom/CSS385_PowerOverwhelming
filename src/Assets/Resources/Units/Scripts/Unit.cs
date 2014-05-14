@@ -96,6 +96,7 @@ public class Unit : Target
 	
 	protected int mDefaultHealth;
 	
+	public float mSightRange = 39f;
 	public float mMovementSpeed; // units per second
 	public float mChargeSpeed;   // speed used to engage enemies
 	
@@ -255,7 +256,8 @@ public class Unit : Target
 		switch (mMovementState)
 		{
 		case (MovementState.kIdle):
-			UpdateMovement(mDestination, mMovementSpeed);
+			if(mAttackState == AttackState.kIdle)
+				UpdateMovement(mDestination, mMovementSpeed);
 			break;
 			
 		case (MovementState.kMoving):
@@ -268,7 +270,8 @@ public class Unit : Target
 	
 	// Initialize variables
 	protected void Awake ()
-	{		
+	{
+		mSightRange = 39f;
 		mAttackState = AttackState.kIdle;
 		mAttackTarget = null;
 		

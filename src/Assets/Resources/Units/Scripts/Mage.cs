@@ -10,7 +10,7 @@ public class Mage : Unit
 		
 		mDefaultHealth = 4;
 		
-		mMovementSpeed = 28f; // units per second
+		mMovementSpeed = 8f; // units per second
 		mChargeSpeed = 10f;   // speed used to engage enemies
 	}
 	

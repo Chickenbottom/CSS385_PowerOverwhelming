@@ -39,7 +39,8 @@ public class DialogManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        ArrayList[][] Conversations = new ArrayList[2][];
+        //ArrayList[][] 
+        Conversations = new ArrayList[2][];
 
         Conversations[kRod] = new ArrayList[3];
         Conversations[kAdv] = new ArrayList[3];
@@ -62,7 +63,9 @@ public class DialogManager : MonoBehaviour
         try
         {
             mFile = new StreamReader(path);
-        } catch (System.Exception e) {}
+        } catch (System.Exception e) {
+			Debug.Log(e.ToString());
+        }
        
         if (mFile != null)
             loadDialog(mFile);
@@ -84,8 +87,8 @@ public class DialogManager : MonoBehaviour
     {
         if (Time.time - mPreviousLetter > kLetterDisplayTime /*&& index != -1*/)
         {
-            //printStatment();
-            //mPreviousLetter = Time.time;
+			//printStatement();
+			//mPreviousLetter = Time.time;
             ShowDialog("Why are all these Peasants attacking my castle? #MATH!");
         }
 
@@ -152,9 +155,9 @@ public class DialogManager : MonoBehaviour
         GameObject textDisplay = GameObject.Find("StatementGUIText");
         GUIText gui = textDisplay.GetComponent<GUIText>();
         gui.text = line.Substring(0, index + 1);
-    }
-
-    public void setStatment(int person, int subject)
+	}
+	
+	public void setStatment(int person, int subject)
     {
         cur_person = person;
         cur_convo = subject;

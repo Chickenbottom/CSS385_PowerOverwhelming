@@ -100,6 +100,8 @@ MonoBehaviour:
   SquadCenter: {x: 0, y: 0, z: 0}
   RallyPoint: {x: 0, y: 0, z: 0}
   SquadState: 0
+  IsIndependent: 0
+  SightCircle: {fileID: 21200002}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
