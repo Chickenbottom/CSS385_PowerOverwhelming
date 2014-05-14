@@ -32,6 +32,7 @@ public class Menu : MonoBehaviour
 		case(Button.kLoadGame):
 			break;
 		case(Button.kAbout):
+			Application.Quit();
 			break;
 		}
 	}
