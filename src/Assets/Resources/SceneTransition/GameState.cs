@@ -51,7 +51,8 @@ public class GameState {
 	
 	public static void TriggerWin()
 	{
-		Application.LoadLevel ("TowerStore");
+		GUIText text = GameObject.Find ("DialogueLeft").GetComponent<GUIText> ();
+		text.text = "The peasants are gone!";
 	}
 }
 

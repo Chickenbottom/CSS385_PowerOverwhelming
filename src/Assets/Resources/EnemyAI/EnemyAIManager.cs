@@ -40,7 +40,7 @@ public class EnemyAIManager : MonoBehaviour
 		}
 		
 		if (mCurrentWave >= NumWaves && mUnits.Count == 0) {
-			//GameState.TriggerWin();
+			GameState.TriggerWin();
 		}
 		
 		if (Input.GetButtonDown("Fire1")) {
