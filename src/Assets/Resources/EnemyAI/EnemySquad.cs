@@ -17,7 +17,6 @@ class EnemySquad
 		
 		mCurrentWaypoint = 0;
 		
-		
 		mSquad = CreateSquad(size: size);
 		mWaypoints = new List<Vector3>();
 		this.AddWaypoint(waypoint);
@@ -41,8 +40,13 @@ class EnemySquad
 		return squad;
 	}
 	
+	public bool IsDead { get; set; }
+	
 	public void Update()
-	{
+	{			
+		if (mSquad == null)
+			IsDead = true;
+			
 		if (mCurrentWaypoint < mWaypoints.Count - 1 && mSquad.IsIdle) {
 			mCurrentWaypoint ++;
 			mSquad.UpdateSquadDestination(mWaypoints[mCurrentWaypoint]);

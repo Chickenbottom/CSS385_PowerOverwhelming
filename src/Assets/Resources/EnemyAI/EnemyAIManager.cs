@@ -17,6 +17,9 @@ public class EnemyAIManager : MonoBehaviour
 	}
 	Dictionary<Waypoints, Vector3> mWaypoints;
 	
+	
+	public int NumWaves = 3;
+	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Unity Overrides
 	///////////////////////////////////////////////////////////////////////////////////	
@@ -28,9 +31,16 @@ public class EnemyAIManager : MonoBehaviour
 			this.SpawnWave();
 		}
 		
-		foreach (EnemySquad e in mUnits) {
-			e.Update();
+		for (int i = mUnits.Count - 1; i >= 0; --i) {
+			if (mUnits[i].IsDead)
+				mUnits.RemoveAt(i);
+			else 
+				mUnits[i].Update();
+			
 		}
+		
+		if (mCurrentWave >= NumWaves && mUnits.Count == 0)
+			GameState.TriggerWin();
 		
 		if (Input.GetButtonDown("Fire1")) {
 			SpawnWave3 ();
@@ -63,14 +73,15 @@ public class EnemyAIManager : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////	
-	private float mWaveSpawnInterval = 15.0f;
+	private float mWaveSpawnInterval = 2.0f;
 	private float mLastEnemySpawn;
-	private int mCurrentWave = 1;
+	private int mCurrentWave = 0;
 	
 	private List<EnemySquad> mUnits;
 	
 	private void SpawnWave()
 	{
+		mCurrentWave ++;
 		switch (mCurrentWave)
 		{
 		case(1):
@@ -83,8 +94,6 @@ public class EnemyAIManager : MonoBehaviour
 			SpawnWave3();
 			break;
 		}
-		
-		mCurrentWave ++;
 	}
 	
 	// TODO fix this hard coding of enemy waves
