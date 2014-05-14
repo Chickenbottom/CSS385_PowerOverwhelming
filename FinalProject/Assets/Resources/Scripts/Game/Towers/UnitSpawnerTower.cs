@@ -8,9 +8,12 @@ public class UnitSpawnTower : TowerBehavior {
 	public UnitType mUnityType;
 	float mPreviousSpawn = 0f;
 
-
 	public float mSpawnBonus{ get; set; }
-	public float mTowerHealthBonus{ get; set; }
+	public float mXP {get; set;}
+	public float mXPMax {get; set;}
+	public float mXPBonus {get; set;}
+
+	float mXPperKill = 5f;
 
 	SquadManager mSquadManager;
 
@@ -20,6 +23,10 @@ public class UnitSpawnTower : TowerBehavior {
 		type = TOWERTYPE.Unit;
 		loyalty = LOYALTY.Rodelle;
 		health = 100;
+		mMaxHealth = 100f;
+		mXP = 0f;
+		mXPBonus = 1f;
+		mXPMax = 100f;
 		SharedStart();
 		mSquadManager = GameObject.Find("SquadManager").GetComponent<mSquadManager>();
 	}
@@ -38,5 +45,15 @@ public class UnitSpawnTower : TowerBehavior {
 		Debug.Log("YAY IT WORKED" + health + "  " + type);
 		mSquadManager.SetDestination(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 	}
-	
+
+    public override bool ValidMousePos(Vector3 mousePos)
+    {
+        return GameObject.Find("ClickBox").GetComponent<ClickBox>().GetBounds().contains(mousePos);
+    }
+
+	public void IncraseXP(){
+		mXP += mXPperKill * mXPBonus;
+		if(mXP >= mXPMax)
+			mXP = mXPMax;
+	}
 }

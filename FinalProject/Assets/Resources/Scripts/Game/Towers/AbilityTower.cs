@@ -3,18 +3,29 @@ using System.Collections;
 
 public class AbilityTowerBehavior: TowerBehavior {
 
-	public float mAbilityCooldown = 30f;
+    // TODO: Abstract the abilities out of the AbilityTower class 
+    // into an Ability class with subclasses for each ability
 	float mHealingAbility = 25f;
 	float mSpawnBonus = 1f;
+	float mCooldownBonus = 1f;
 
+	public float mAbilityCooldown{get; set;}
+	public float mCooldownMax{get; set;}
 	public float mHealthBonus{get; set;}
+
+	
+    private Bounds[] mTargetBounds;
+    private GameObject[] mTargets;
+
 
 
 	public override void Click()
 	{
+        // This function for the heal tower will no longer do anything
 		Debug.Log("CLICKED" + type + " tower " + health );
 		try{
-			rightClicked.GetComponent<TowerBehavior>().health += mHealingAbility * mHealthBonus;
+
+			//rightClicked.GetComponent<TowerBehavior>().health += mHealingAbility * mHealthBonus;
 		}
   	   	catch(UnityException e)
 		{}
@@ -25,9 +36,24 @@ public class AbilityTowerBehavior: TowerBehavior {
 	{
 		type = TOWERTYPE.Ability;
 		health = 100;
+		mAbilityCooldown = 0f;
+		mMaxHealth = 100f;
+		mCooldownMax = 30f;
+		mCooldownBonus = 1f;
 		SharedStart();
 		InvokeRepeating("AbilityCoolDown", 1f,1f);
-	}
+	
+        mTargets = new GameObject[4] {this.gameObject, GameObject.Find("Tower1"), GameObject.Find("Tower2"), GameObject.Find("Tower3")};
+        mTargetBounds = new Bounds[4] { getBounds(mTargets[0]), getBounds(mTargets[1]), getBounds(mTargets[2]), getBounds(mTargets[3])};
+
+    }
+
+    private Bounds getBounds(GameObject g)
+    {
+        BoxCollider2D temp = g.GetComponent<BoxCollider2D>();
+        return new Bounds(new Vector3(temp.center.x, temp.center.y, 0f), new Vector3(temp.size.x, temp.size.y, 0f));
+    }
+
 	void Update()
 	{
 		if(Input.GetMouseButtonUp(1)){
@@ -35,8 +61,23 @@ public class AbilityTowerBehavior: TowerBehavior {
 		}
 	}
 	void AbilityCoolDown(){
-		mAbilityCooldown -= 1;
+		mAbilityCooldown -= 1 * mCooldownBonus;
 		if(mAbilityCooldown == 0)
 			mAbilityCooldown = 0;
 	}
+
+    public override bool ValidMousePos(Vector3 mousePos)
+    {
+        for (int i = 0; i < mTargetBounds.Length; i++)
+        {
+            if (mTargetBounds[i].Contains(mousePos))
+            {
+                // Heal here and just use Click() as a way to reset the MouseManagers flags
+                // use mTarget[i]
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

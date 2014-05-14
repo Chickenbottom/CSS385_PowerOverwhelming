@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+	public enum TOWERTYPE{
+		Ability,
+		Unit,
+	};
+
 public abstract class TowerBehavior : MonoBehaviour {
 
 
@@ -10,10 +15,7 @@ public abstract class TowerBehavior : MonoBehaviour {
 		Magic,
 	};
 
-	public enum TOWERTYPE{
-		Ability,
-		Unit,
-	};
+
 	public enum LOYALTY
 	{
 		Rodelle,
@@ -28,8 +30,10 @@ public abstract class TowerBehavior : MonoBehaviour {
 
 	protected GameObject rightClicked{ get; set; }
 	public float health{ get; set; }
+	public float mMaxHealth{get; set;}
 
 	abstract void Click();
+    abstract bool ValidMousePos(Vector3 mousePos);
 	//abstract void getMyTowerType();
 
 	void OnMouseDown()
