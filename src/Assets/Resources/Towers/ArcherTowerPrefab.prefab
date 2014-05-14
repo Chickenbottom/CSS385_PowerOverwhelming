@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitSpawnType: 3
   TowerSelector: {fileID: 21200004}
+  mHealth: 0
   SquadManager: {fileID: 11400002}
   Tent: {fileID: 100002}
 --- !u!114 &11400002

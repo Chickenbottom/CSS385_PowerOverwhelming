@@ -10,7 +10,7 @@ public class Peasant : Unit
 		mSightRange = 10f;
 		mDefaultHealth = 5;
 		
-		mMovementSpeed = 8f; // units per second
+		mMovementSpeed = 28f; // units per second
 		mChargeSpeed = 10f;   // speed used to engage enemies
 	}
 	

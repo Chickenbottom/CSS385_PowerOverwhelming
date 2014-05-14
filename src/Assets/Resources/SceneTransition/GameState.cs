@@ -10,6 +10,7 @@ public class GameState {
 	private static int mScore = 0;
 	
 	public static Dictionary<UnitType, int> UnitSquadCount { get; set; }
+	public static Dictionary<UnitType, int> UnitExperience { get; set; }
 	
 	static GameState()
 	{
@@ -17,6 +18,19 @@ public class GameState {
 		UnitSquadCount.Add(UnitType.kArcher, 4);
 		UnitSquadCount.Add(UnitType.kSwordsman, 3);
 		UnitSquadCount.Add(UnitType.kMage, 1);
+		
+		UnitExperience = new Dictionary<UnitType, int>();
+		UnitExperience.Add(UnitType.kArcher, 0);
+		UnitExperience.Add(UnitType.kSwordsman, 0);
+		UnitExperience.Add(UnitType.kMage, 0);
+	}
+	
+	public static void AddExperience(UnitType unitType, int exp)
+	{
+		if(!UnitExperience.ContainsKey(unitType))
+			return;
+		
+		UnitExperience[unitType] += exp;
 	}
 	
 	public static void AddToScore(int value)
@@ -28,6 +42,16 @@ public class GameState {
 	{
 		//mGameLevel = level;
 		Application.LoadLevel("Level"+level.ToString());
+	}
+	
+	public static void TriggerLoss()
+	{
+		Application.LoadLevel ("LevelLoader");
+	}
+	
+	public static void TriggerWin()
+	{
+		Application.LoadLevel ("TowerStore");
 	}
 }
 

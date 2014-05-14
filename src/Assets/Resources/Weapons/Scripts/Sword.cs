@@ -7,8 +7,8 @@ public class Sword : Weapon
 	
 	public Sword ()
 	{
-		Damage = 5;
-		Range = 12f;
+		Damage = 3;
+		Range = 15f;
 		ReloadTime = 1.0f;
 		ReloadVariance = 0.5f;
 		Accuracy = 0.8f;

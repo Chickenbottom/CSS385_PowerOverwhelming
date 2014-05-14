@@ -171,6 +171,7 @@ public class Squad : Target
 		
 	private void AssignNewTarget(Unit who)
 	{
+		GameState.AddExperience(this.UnitType, 1);
 		List<Unit> mEnemies = ((Squad)mTarget).mSquadMembers;
 		int numEnemies = mEnemies.Count;
 		
@@ -188,7 +189,7 @@ public class Squad : Target
 		for(int i = 0; i < mSquadMembers.Count; ++i) 
 			mSquadMembers[i].SwitchToWeapon(weaponIndex);
 		
-		AttackEnemySquad((Squad)mTarget);
+		AttackTarget(mTarget);
 	}
 	
 	private void UpdateSquadMembers(Unit who)

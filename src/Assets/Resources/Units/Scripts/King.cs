@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class King : Unit {
-
+	private Progressbar HealthBar;
+	
 	protected new void Awake()
 	{
 		base.Awake();
@@ -23,5 +24,23 @@ public class King : Unit {
 		
 		mHealth = mDefaultHealth;
 		mPreviousHealth = mHealth;
+		
+		GameObject o = GameObject.Find ("KingsHealthBar") as GameObject;
+		if (o == null)
+			Debug.Log ("King's Health Bar could not be loaded.");
+			
+		this.HealthBar = o.GetComponent<Progressbar>();
+		this.HealthBar.MaxValue = mDefaultHealth;
+		this.HealthBar.CurrentValue = mHealth;
+	}
+	
+	public override void Damage (int damage)
+	{
+		base.Damage (damage);
+		if (mHealth <= 0)
+			GameState.TriggerLoss();
+			
+		Debug.Log ("King's Health: " + mHealth);
+		this.HealthBar.UpdateValue(mHealth);
 	}
 }

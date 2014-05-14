@@ -23,7 +23,7 @@ public abstract class Tower : Target
 	/// <param name="location">Location. The game coodinate clicked on.</param>
 	public abstract void SetTarget(Vector3 location);
     
-	protected int mHealth;
+	public int mHealth;
 	protected TowerType mTowerType;    
     
     public void ShowSelector(bool status)
@@ -39,7 +39,7 @@ public abstract class Tower : Target
         mHealth -= damage;
         
         if (mHealth < 0) {
-			mHealth = 10;
+			mHealth = 20;
 			Debug.Log ("Tower destroyed!");
 			mAllegiance = this.Allegiance == Allegiance.kRodelle
 				? Allegiance.kAI
@@ -48,8 +48,6 @@ public abstract class Tower : Target
 			if (this.Allegiance != Allegiance.kRodelle)
 				this.ShowSelector(false);
         }
-        
-        Debug.Log ("Tower Health: " + mHealth);
     }
     
 	///////////////////////////////////////////////////////////////////////////////////
