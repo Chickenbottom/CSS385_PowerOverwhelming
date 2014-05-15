@@ -9,24 +9,17 @@ public class SquadManager : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////////////
 	public UnitType squadType = UnitType.None;
 	
-	public void SetDestination(Vector3 location)
-	{
+	public void SetDestination(Vector3 location) {
 		location.z = 0;
-		
-		List<Vector3> randomPositions = this.RandomSectionLocations(squads.Count, squadWidth);
-		
-		this.transform.position = location;
+		RemoveDeadSquads();
 		rallyPoint = location;
 		
-		for (int i = squads.Count - 1; i >= 0; --i) {
-			if (squads[i] == null) {
-				squads.RemoveAt(i);
-				continue;
-			}
-			Vector3 moveTo = location;
-			moveTo += randomPositions[i];
-			squads[i].UpdateSquadDestination(moveTo);
-		}
+		if (Vector3.Distance(this.transform.position, location) < 5f) 
+			ForceMove(location);
+		else 
+			MoveTo(location);
+	
+		this.transform.position = location;
 	}
 	
 	public void AddSquad(Squad squad)
@@ -48,7 +41,7 @@ public class SquadManager : MonoBehaviour
 			squad = SpawnSquadFromUnitType(spawnLocation, unitType);
 			
 		squads.Add (squad);
-		this.SetDestination(rallyPoint);
+		squad.SetDestination(rallyPoint);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////
@@ -96,6 +89,30 @@ public class SquadManager : MonoBehaviour
 		}
 		
 		return randomLocations;
+	}
+	
+	private void ForceMove(Vector3 location)
+	{
+		List<Vector3> randomPositions = this.RandomSectionLocations(squads.Count, squadWidth);
+		for (int i = 0; i < squads.Count; ++i) 
+			squads[i].ForceMove(location + randomPositions[i]);
+	}
+	
+	private void MoveTo(Vector3 location)
+	{
+		List<Vector3> randomPositions = this.RandomSectionLocations(squads.Count, squadWidth);
+		for (int i = 0; i < squads.Count; ++i) 
+			squads[i].SetDestination(location + randomPositions[i]);
+	}
+	
+	private void RemoveDeadSquads()
+	{
+		for (int i = squads.Count - 1; i >= 0; --i) {
+			if (squads[i] == null) {
+				squads.RemoveAt(i);
+				continue;
+			}
+		}
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////

@@ -11,16 +11,16 @@ public class Swordsman : Unit
 		
 		movementSpeed = 10f; // units per second
 		chargeSpeed = 15f;   // speed used to engage enemies
-	}
-
-	void Start()
-	{			
+		
 		weapons = new SortedList();
 		
 		Weapon sword = new Sword();
 		currentWeapon = sword;
 		weapons.Add (sword.Range, sword);
-				
+	}
+
+	void Start()
+	{			
 		health = defaultHealth;
 		previousHealth = health;
 		

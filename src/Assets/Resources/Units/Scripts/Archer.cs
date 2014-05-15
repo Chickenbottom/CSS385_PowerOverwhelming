@@ -12,10 +12,7 @@ public class Archer : Unit
 		
 		movementSpeed = 8f; // units per second
 		chargeSpeed = 10f;   // speed used to engage enemies
-	}
-	
-	void Start()
-	{
+		
 		weapons = new SortedList();
 		
 		Weapon crossbow = new Crossbow();
@@ -24,7 +21,10 @@ public class Archer : Unit
 		
 		Weapon dagger = new Dagger();
 		weapons.Add (dagger.Range, dagger);
-		
+	}
+	
+	void Start()
+	{		
 		health = defaultHealth;
 		previousHealth = health;
 		sprites = null;
