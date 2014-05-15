@@ -9,30 +9,25 @@ public class MouseManager : MonoBehaviour
     private bool mSelected;
     #endregion
 
-
-    void Start () {
+    void Start()
+    {
         mSelected = false;
         mTowerSelected = null;
-	}
-	
-	void Update () {
-        if (Input.GetMouseButtonDown(0) && mSelected)
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(1) && mSelected)
         {
-            Debug.Log("HEYO");
-            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-            if (ValidMousePos(mousePos))
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0f;
+            if ((TowerBehavior) mTowerSelected.ValidMousePos(mousePos))
             {
-                // mItemSelected.Click(mousePos);
+                mTowerSelected.GetComponent<TowerBehavior>().Click();
                 mTowerSelected = null;
                 mSelected = false;
             }
         }
-	}
-
-    private bool ValidMousePos(Vector3 mousePos)
-    {
-        // click inside game boundry
-        return true;
     }
 
     public void Select(GameObject tower)
