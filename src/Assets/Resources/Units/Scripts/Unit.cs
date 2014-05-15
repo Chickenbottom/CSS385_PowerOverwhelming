@@ -208,11 +208,6 @@ public class Unit : Target
 		
 		Vector3 targetDir = targetLocation - Position;
 		targetDir.Normalize();
-		
-		if (targetDir.x > 0)
-			mUnitAnimator.WalkRight();
-		else 
-			mUnitAnimator.WalkLeft();
 			
 		Position += speed * Time.deltaTime * targetDir;
 		
@@ -222,20 +217,23 @@ public class Unit : Target
 	}
 	
 	// Update sprite set to match current health
-	private void UpdateDamageAnimation() 
+	private void UpdateAnimation() 
 	{
-		if (sprites == null)
+		if (attackState == AttackState.Idle && movementState == MovementState.Idle) {
+			mUnitAnimator.Idle();
 			return;
-			
-		if (health < 0)
-			return;
-		
-		if (health != previousHealth) {
-			SpriteRenderer sr = GetComponent<SpriteRenderer>();
-			sr.sprite = sprites[health];
 		}
 		
-		previousHealth = health;
+		Vector3 direction;
+		if (attackTarget != null)
+			direction = attackTarget.Position - this.Position;
+		else 
+			direction = destination - this.Position;
+			
+		if (direction.x > 0)
+			mUnitAnimator.WalkRight();
+		else 
+			mUnitAnimator.WalkLeft();
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////
@@ -253,10 +251,12 @@ public class Unit : Target
 			break;
 			
 		case (AttackState.Engaging):
+			mUnitAnimator.Walk();
 			EngageTarget(attackTarget);
 			break;
 			
 		case (AttackState.Ranged):
+			mUnitAnimator.Walk();
 			UpdateAttack(attackTarget);
 			break;
 		}
@@ -264,7 +264,6 @@ public class Unit : Target
 		switch (movementState)
 		{
 		case (MovementState.Idle):
-			mUnitAnimator.Idle();
 			break;
 			
 		case (MovementState.Moving):
@@ -272,7 +271,7 @@ public class Unit : Target
 			break;
 		}
 		
-		UpdateDamageAnimation();
+		UpdateAnimation();
 	}
 	
 	// Initialize variables
