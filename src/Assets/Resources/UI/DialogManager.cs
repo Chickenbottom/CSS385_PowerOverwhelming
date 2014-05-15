@@ -11,23 +11,30 @@ public class DialogManager : MonoBehaviour
     const int kAdv = 1;
 
     //the subject of the conversation
-    const int kTowers = 0;
-    const int kTroops = 1;
-    const int kGame = 2;
+    public enum DialogType
+    {
+        Tutorial = 0,
+        TowerDestroyed = 1,
+        RodelleDamaged = 2,
+        TowerDamaged = 3,
+        PeasantInvade = 4
+    }
 
-    const float kLetterDisplayTime = 5f;
+    const int kTotalArray = 5;
 
-    private const string path = "dialog.txt"; //path of the txt file
+    const float kLetterDisplayTime = .05f;
+
+    private const string path = "Dialog.txt"; //path of the txt file
     #endregion
 
     int cur_person;
     int cur_convo;
-    int index; // used to display one letter at a time
+    int length; // used to display one letter at a time
     float previousLetter = 0f; //used for keeping time for display
-    private GUIText dialogueText;
     
     public GUIText dialogueLeft;
 	public GUIText dialogueRight;
+    private GUIText[] dialogueBoxes;
 
     #region Arrays
 
@@ -39,128 +46,154 @@ public class DialogManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //ArrayList[][] 
+
+        dialogueBoxes = new GUIText[2] { dialogueLeft, dialogueRight };
+
+        #region initialize conversation arrays
         conversations = new ArrayList[2][];
+        conversations[kRod] = new ArrayList[kTotalArray];
+        conversations[kAdv] = new ArrayList[kTotalArray];
 
-        conversations[kRod] = new ArrayList[3];
-        conversations[kAdv] = new ArrayList[3];
+        for (int i = 0; i < kTotalArray; i++)
+        {
+            conversations[kRod][i] = new ArrayList();
+            conversations[kAdv][i] = new ArrayList();
+        }
+        #endregion
 
-        conversations[kRod][kTowers] = new ArrayList();
-        conversations[kRod][kTroops] = new ArrayList();
-        conversations[kRod][kGame] = new ArrayList();
-
-        conversations[kAdv][kTowers] = new ArrayList();
-        conversations[kAdv][kTroops] = new ArrayList();
-        conversations[kAdv][kGame] = new ArrayList();
-
-		if (dialogueLeft == null || dialogueRight == null)
-			Debug.LogError("Dialogue Manager not instantiated. Add GUIText for DialogueLeft and DialogueRight!");
-
+        #region check for dialog boxes
+        if (dialogueLeft == null || dialogueRight == null)
+        {
+            Debug.LogError("Dialogue Manager not instantiated. Add GUIText for DialogueLeft and DialogueRight!");
+        }
+			
 		dialogueLeft.text = "";
 		dialogueRight.text = "";
-		
+        #endregion
+
+        #region file read
         StreamReader file = null;
         try
         {
             file = new StreamReader(path);
         } catch (System.Exception e) {
 			Debug.Log(e.ToString());
+            Debug.Log("NOT READING FILE");
         }
-       
         if (file != null)
+        {
             loadDialog(file);
+        }
+        #endregion
 
-        ShowDialog("Hi I'm Rodelle! Nice to meet you.");
-
-        index = -1;
+        length = -1;
         cur_person = -1;
         cur_convo = -1;
-    }
-        
-    public void ShowDialog(string text)
-    {
-		dialogueLeft.text = text;
+
+        setRodelleStatment(DialogType.Tutorial);
+
     }
 
-    // Update is called once per frame
+    private void SetDialog(string text, GUIText textBox)
+    {
+        textBox.text = text;
+    }
+
     void Update()
     {
-        if (Time.time - previousLetter > kLetterDisplayTime /*&& index != -1*/)
+        if (Time.time - previousLetter > kLetterDisplayTime && length != -1)
         {
-			//printStatement();
-			//mPreviousLetter = Time.time;
-            ShowDialog("Why are all these Peasants attacking my castle? #MATH!");
+            printStatement();
+            previousLetter = Time.time;
+        }
+        if (length == -1)
+        {
+            setAdvisorStatment(DialogType.Tutorial);
         }
 
     }
 
-    private void loadDialog(StreamReader mFile)
+    // File must be in format
+    /* !<PERSON> (in number format)
+     * #<DIALOG TYPE> (in number format)
+     * line
+     * line
+     */
+    private void loadDialog(StreamReader file)
     {
-        System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en");
-        while (!mFile.EndOfStream)
+        int person = -1;
+        int dialogType = -1;
+        string line = file.ReadLine();
+        while (!file.EndOfStream)
         {
-            string line = mFile.ReadLine();
-            int rod = ci.CompareInfo.IndexOf(line, "Rodelle", System.Globalization.CompareOptions.IgnoreCase);
-            int adv = ci.CompareInfo.IndexOf(line, "Adviser", System.Globalization.CompareOptions.IgnoreCase);
-            bool containsRod = rod >= 0;
-            bool containsAdv = adv >= 0;
-            int cur_convo = -1;
-            int cur_person = -1;
-
-            if (containsAdv || containsRod)
+            if (line.StartsWith("!"))
             {
-
-                if (containsRod)
-                {
-                    cur_person = kRod;
-                }
-                else if (containsAdv)
-                {
-                    cur_person = kAdv;
-                }
-
-                int tower = ci.CompareInfo.IndexOf(line, "Tower", System.Globalization.CompareOptions.IgnoreCase);
-                int troops = ci.CompareInfo.IndexOf(line, "Troops", System.Globalization.CompareOptions.IgnoreCase);
-                int game = ci.CompareInfo.IndexOf(line, "Game", System.Globalization.CompareOptions.IgnoreCase);
-
-                if (tower >= 0)
-                {
-                    cur_convo = kTowers;
-                }
-                else if (troops >= 0)
-                {
-                    cur_convo = kTroops;
-                }
-                else if (game >= 0)
-                {
-                    cur_convo = kGame;
-                }
-
+                Debug.Log("Person");
+                person = int.Parse(line.Substring(1, 1));
+                dialogType = int.Parse(file.ReadLine().Substring(1, 1));
+                Debug.Log(person + "    " + dialogType);
             }
-            if (cur_person != -1 && cur_convo != -1)
-                conversations[cur_person][cur_convo].Add(line);
+            else if (line.StartsWith("#"))
+            {
+                Debug.Log("Dialog");
+                dialogType = int.Parse(line.Substring(1, 1));
+                Debug.Log(person + "    " + dialogType);
+            }
+            
+            line = file.ReadLine();
+
+            while (!line.StartsWith("!") && !line.StartsWith("#"))
+            {
+                string line2 = line.Substring(1);
+                line = file.ReadLine();
+                while (line != null && !line.StartsWith("-") && !line.StartsWith("!") && !line.StartsWith("#"))
+                {
+                    line2 += '\n' + line;
+                    line = file.ReadLine();
+                }
+                conversations[person][dialogType].Add(line2);
+            }
+            
         }
     }
 
     private void printStatement()
     {
-        string line = (string)conversations[cur_person][cur_convo][0];
-        if (index >= line.Length)
+        string line = (string) conversations[cur_person][cur_convo][0];
+        if (length > line.Length)
         {
-            index = -1;
+            length = -1;
+            conversations[cur_person][cur_convo].RemoveAt(0);
+            conversations[cur_person][cur_convo].Add(line);
             return;
         }
 
-        index++;
-        GameObject textDisplay = GameObject.Find("StatementGUIText");
-        GUIText gui = textDisplay.GetComponent<GUIText>();
-        gui.text = line.Substring(0, index + 1);
+        SetDialog(line.Substring(0, length), dialogueBoxes[cur_person]);
+        length++;
 	}
-	
-	public void setStatment(int person, int subject)
+
+    // TODO: prioritize statements
+    #region public set statement
+    public void setRodelleStatment(DialogType d)
     {
-        cur_person = person;
-        cur_convo = subject;
-        index = 0;
+        cur_person = kRod;
+        cur_convo = (int) d;
+        length = 1;
+        GameObject.Find("dialogueL").GetComponent<SpriteRenderer>().sortingOrder = 1100;
+        GameObject.Find("dialogueR").GetComponent<SpriteRenderer>().sortingOrder = -1110;
+        SetDialog("", dialogueBoxes[1]);
     }
+
+    public void setAdvisorStatment(DialogType d)
+    {
+        cur_person = kAdv;
+        cur_convo = (int) d;
+        length = 1;
+        GameObject.Find("dialogueR").GetComponent<SpriteRenderer>().sortingOrder = 1100;
+        GameObject.Find("dialogueL").GetComponent<SpriteRenderer>().sortingOrder = -1110;
+        GameObject.Find("DialoguePortrait").GetComponent<SpriteRenderer>().sortingOrder = -1110;
+        SetDialog("", dialogueBoxes[0]);
+    }
+    #endregion
+
 }
