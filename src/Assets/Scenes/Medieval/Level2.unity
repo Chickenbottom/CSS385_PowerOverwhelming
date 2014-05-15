@@ -659,15 +659,13 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1748308531}
   - {fileID: 50179791}
   - {fileID: 592758733}
   - {fileID: 792742321}
   - {fileID: 319250825}
   - {fileID: 1091989125}
-  - {fileID: 354176782}
-  - {fileID: 2015310676}
-  - {fileID: 950509911}
+  - {fileID: 401559014}
+  - {fileID: 591796100}
   m_Father: {fileID: 0}
 --- !u!1001 &254630229
 Prefab:
@@ -905,7 +903,7 @@ Transform:
   m_LocalPosition: {x: 102.928223, y: 58.0595856, z: 0}
   m_LocalScale: {x: 9.39999962, y: 8.30000019, z: 1}
   m_Children: []
-  m_Father: {fileID: 237291328}
+  m_Father: {fileID: 401559014}
 --- !u!114 &354176783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -952,7 +950,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 237291328}
+    m_TransformParent: {fileID: 401559014}
     m_Modifications:
     - target: {fileID: 400000, guid: 1a49d20b5f616d64c861ef11986de93b, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1039,8 +1037,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 591796100}
-  m_Father: {fileID: 0}
+  - {fileID: 1748308531}
+  - {fileID: 354176782}
+  - {fileID: 2015310676}
+  - {fileID: 950509911}
+  m_Father: {fileID: 237291328}
 --- !u!114 &401559016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,6 +1053,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31d91824b783e7409ddb418ad59fcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KingsHealthBar: {fileID: 354176783}
+  SwordsmanExperienceBar: {fileID: 950509912}
+  ArcherExperienceBar: {fileID: 1748308532}
+  MageExperienceBar: {fileID: 2015310674}
 --- !u!114 &401559018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1277,7 +1282,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 401559014}
+  m_Father: {fileID: 237291328}
 --- !u!1 &592284321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,7 +1776,7 @@ Transform:
   m_LocalPosition: {x: 98.0206299, y: 25.4238205, z: 0}
   m_LocalScale: {x: 7, y: 8.30000019, z: 1}
   m_Children: []
-  m_Father: {fileID: 237291328}
+  m_Father: {fileID: 401559014}
 --- !u!114 &950509912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2101,7 +2106,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 237291328}
+    m_TransformParent: {fileID: 401559014}
     m_Modifications:
     - target: {fileID: 400000, guid: 1a49d20b5f616d64c861ef11986de93b, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2332,7 +2337,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 237291328}
+    m_TransformParent: {fileID: 401559014}
     m_Modifications:
     - target: {fileID: 400000, guid: 1a49d20b5f616d64c861ef11986de93b, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2794,7 +2799,7 @@ Transform:
   m_LocalPosition: {x: 98.0206146, y: 13.645505, z: 0}
   m_LocalScale: {x: 7, y: 8.30000019, z: 1}
   m_Children: []
-  m_Father: {fileID: 237291328}
+  m_Father: {fileID: 401559014}
 --- !u!114 &1748308532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2956,7 +2961,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 237291328}
+    m_TransformParent: {fileID: 401559014}
     m_Modifications:
     - target: {fileID: 400000, guid: 1a49d20b5f616d64c861ef11986de93b, type: 2}
       propertyPath: m_LocalPosition.x
@@ -3122,7 +3127,7 @@ Transform:
   m_LocalPosition: {x: 98.2660141, y: 37.202137, z: 0}
   m_LocalScale: {x: 7, y: 8.30000019, z: 1}
   m_Children: []
-  m_Father: {fileID: 237291328}
+  m_Father: {fileID: 401559014}
 --- !u!1 &2074002540
 GameObject:
   m_ObjectHideFlags: 0

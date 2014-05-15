@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class King : Unit {
-	private ProgressBar HealthBar;
 	
 	protected new void Awake()
 	{
@@ -13,6 +12,8 @@ public class King : Unit {
 		
 		movementSpeed = 1f; // units per second
 		chargeSpeed = 1f;   // speed used to engage enemies
+		
+		GameState.KingsHealth = defaultHealth;
 	}
 	
 	public void Start()
@@ -24,23 +25,11 @@ public class King : Unit {
 		
 		health = defaultHealth;
 		previousHealth = health;
-		
-		GameObject o = GameObject.Find ("KingsHealthBar") as GameObject;
-		if (o == null)
-			Debug.Log ("King's Health Bar could not be loaded.");
-			
-		this.HealthBar = o.GetComponent<ProgressBar>();
-		this.HealthBar.maxValue = defaultHealth;
-		this.HealthBar.currentValue = health;
 	}
 	
 	public override void Damage (int damage)
 	{
 		base.Damage (damage);
-		if (health <= 0)
-			GameState.TriggerLoss();
-			
-		Debug.Log ("King's Health: " + health);
-		this.HealthBar.UpdateValue(health);
+		GameState.KingsHealth = health;
 	}
 }

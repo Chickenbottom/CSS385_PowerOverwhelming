@@ -37,10 +37,9 @@ public class Squad : MonoBehaviour
 	public UnitType unitType;
 	public Vector3 squadCenter;
 	public Vector3 rallyPoint;
-	public SquadState SquadState 
-	{ 
+	public SquadState SquadState { 
 		get { return mSquadState; } 
-		set { mSquadState = value; Debug.Log (this.name + " : " + mSquadState.ToString()); }
+		set { mSquadState = value; }
 	}
 	public bool IsIdle { get { return SquadState == SquadState.Idle; } }
 	public bool isIndependent = false;
