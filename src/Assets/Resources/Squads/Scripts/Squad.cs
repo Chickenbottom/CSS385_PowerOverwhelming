@@ -23,6 +23,7 @@ public enum UnitType {
 public enum SquadState {
 	Idle,
 	Moving,
+	ForcedMove,
 	Engaging,
 	Melee,
 }
@@ -82,25 +83,26 @@ public class Squad : MonoBehaviour
 				idleCount ++;
 
 		if ((float) idleCount / (float) squadMembers.Count > 0.75)
-			this.SquadState = SquadState.Idle;	
+			this.SquadState = SquadState.Idle;
 	}
-
-	public void UpdateSquadDestination(Vector3 location) 
+	
+	public void ForceMove(Vector3 location)
+	{
+		DisengageSquad();
+		this.SquadState = SquadState.ForcedMove;
+		rallyPoint = location;
+		location.z = 0;
+		
+		UpdateSquadCoherency();
+	}
+	
+	public void SetDestination(Vector3 location) 
 	{
 		this.SquadState = SquadState.Moving;
 		rallyPoint = location;
 		location.z = 0;
 		
-		// Randomize the squad's new position around the central location
-		List<Vector3> randomPositions = 
-			RandomSectionLocations(NumSquadMembers, kSquadMemberWidth * 1.5f);
-		
-		// Move each squad member to their new location
-		for (int i = 0; i < NumSquadMembers; ++i) {
-			Vector3 memberPosition = rallyPoint;
-			memberPosition += randomPositions[i];
-			squadMembers[i].MoveTo(memberPosition);
-		}
+		UpdateSquadCoherency();
 	}
 	
 	public void Spawn(Vector3 location, UnitType? type = null, Allegiance allegiance = Allegiance.Rodelle)
@@ -142,7 +144,7 @@ public class Squad : MonoBehaviour
 			this.GetComponent<CircleCollider2D>().radius = u.SightRange;
 		}
 		
-		this.UpdateSquadDestination(this.rallyPoint);
+		this.SetDestination(this.rallyPoint);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////
@@ -272,6 +274,20 @@ public class Squad : MonoBehaviour
 		}
 	}
 	
+	private void UpdateSquadCoherency()
+	{
+		// Randomize the squad's new position around the central location
+		List<Vector3> randomPositions = 
+			RandomSectionLocations(NumSquadMembers, kSquadMemberWidth * 1.5f);
+		
+		// Move each squad member to their new location
+		for (int i = 0; i < NumSquadMembers; ++i) {
+			Vector3 memberPosition = rallyPoint;
+			memberPosition += randomPositions[i];
+			squadMembers[i].MoveTo(memberPosition);
+		}
+	}
+	
 	/**
 	Creates random directions for squad members to form a concentric circle around the target location
 	
@@ -362,6 +378,12 @@ public class Squad : MonoBehaviour
 		unitPrefabs.Add (UnitType.King, Resources.Load ("Units/KingPrefab") as GameObject);
 	}
 	
+	// Squad only attacks targets if they are not already engaged or on a forced move
+	private bool IsSearching()
+	{
+		return (this.SquadState == SquadState.Idle || this.SquadState == SquadState.Moving);
+	}
+	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Unity Overrides
 	///////////////////////////////////////////////////////////////////////////////////
@@ -374,7 +396,7 @@ public class Squad : MonoBehaviour
 	// Check for enemies in sight range
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (this.SquadState != SquadState.Idle && this.SquadState != SquadState.Moving)
+		if (!IsSearching())
 			return;
 		
 		Target target = other.gameObject.GetComponent<Target>();
@@ -415,7 +437,7 @@ public class Squad : MonoBehaviour
 		this.SquadState = SquadState.Idle;
 		if (isIndependent) {
 			this.Spawn(this.transform.position);
-			this.UpdateSquadDestination(this.transform.position);
+			this.SetDestination(this.transform.position);
 		}
 	}
 }

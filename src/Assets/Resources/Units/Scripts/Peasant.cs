@@ -12,16 +12,15 @@ public class Peasant : Unit
 		
 		movementSpeed = 8f; // units per second
 		chargeSpeed = 10f;   // speed used to engage enemies
-	}
-	
-	void Start()
-	{	
+		
 		weapons = new SortedList();
-			
 		Weapon pitchfork = new Pitchfork();
 		weapons.Add (pitchfork.Range, pitchfork);
 		currentWeapon = pitchfork;
-		
+	}
+	
+	void Start()
+	{		
 		health = defaultHealth;
 		previousHealth = health;
 		sprites = null;

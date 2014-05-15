@@ -14,15 +14,15 @@ public class King : Unit {
 		chargeSpeed = 0f;   // speed used to engage enemies
 		
 		GameState.KingsHealth = defaultHealth;
-	}
-	
-	public void Start()
-	{
+		
 		weapons = new SortedList();
 		Weapon sword = new Sword();
 		currentWeapon = sword;
 		weapons.Add (sword.Range, sword);
-		
+	}
+	
+	public void Start()
+	{
 		health = defaultHealth;
 		previousHealth = health;
 	}

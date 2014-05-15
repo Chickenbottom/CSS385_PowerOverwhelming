@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -20,7 +20,7 @@ class EnemySquad
 		squad = CreateSquad(size: size);
 		waypoints = new List<Vector3>();
 		this.AddWaypoint(waypoint);
-		squad.UpdateSquadDestination(waypoint);
+		squad.SetDestination(waypoint);
 	}
 	
 	public void AddWaypoint(Vector3 waypoint)
@@ -49,7 +49,7 @@ class EnemySquad
 			
 		if (currentWaypoint < waypoints.Count - 1 && squad.IsIdle) {
 			currentWaypoint ++;
-			squad.UpdateSquadDestination(waypoints[currentWaypoint]);
+			squad.SetDestination(waypoints[currentWaypoint]);
 		}
 	}
 }
