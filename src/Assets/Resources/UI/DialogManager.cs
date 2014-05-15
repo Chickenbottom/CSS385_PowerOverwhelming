@@ -78,7 +78,6 @@ public class DialogManager : MonoBehaviour
             file = new StreamReader(path);
         } catch (System.Exception e) {
 			Debug.Log(e.ToString());
-            Debug.Log("NOT READING FILE");
         }
         if (file != null)
         {
@@ -128,16 +127,12 @@ public class DialogManager : MonoBehaviour
         {
             if (line.StartsWith("!"))
             {
-                Debug.Log("Person");
                 person = int.Parse(line.Substring(1, 1));
                 dialogType = int.Parse(file.ReadLine().Substring(1, 1));
-                Debug.Log(person + "    " + dialogType);
             }
             else if (line.StartsWith("#"))
             {
-                Debug.Log("Dialog");
                 dialogType = int.Parse(line.Substring(1, 1));
-                Debug.Log(person + "    " + dialogType);
             }
             
             line = file.ReadLine();

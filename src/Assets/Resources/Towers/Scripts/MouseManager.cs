@@ -9,6 +9,7 @@ public class MouseManager : MonoBehaviour
     private Tower towerSelected;
     private bool selected;
     private ClickBox clickBox;
+    private bool towerSelectionChanged;
     #endregion
 
 	public List<Tower> Towers;
@@ -18,11 +19,14 @@ public class MouseManager : MonoBehaviour
         selected = false;
         towerSelected = null;
         clickBox = GameObject.Find("ClickBox").GetComponent<ClickBox>();
+        towerSelectionChanged = false;
     }
 
     void Update()
     {        
-        if (Input.GetMouseButtonDown(1) && selected) {
+        // Only sends click data if a tower is selected + one wasn't selected this turn
+        // MouseManager must execute after all the tower colliders
+        if (!towerSelectionChanged && Input.GetMouseButtonDown(0) && selected) {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0f;
 			if (ValidMousePos(mousePos))
@@ -32,6 +36,7 @@ public class MouseManager : MonoBehaviour
 		if (Input.GetButtonDown("Fire2") && towerSelected is UnitSpawningTower) {
 			((UnitSpawningTower)towerSelected).SpawnUnit();
 		}
+        towerSelectionChanged = false;
 	}
 	
 	private bool ValidMousePos(Vector3 mousePos)
@@ -50,6 +55,7 @@ public class MouseManager : MonoBehaviour
 				t.ShowSelector(false);
         }
         selected = true;
+        towerSelectionChanged = true;
     }
 
 }
