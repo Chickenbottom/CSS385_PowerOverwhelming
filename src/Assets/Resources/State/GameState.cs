@@ -6,10 +6,10 @@ public class GameState {
 	private static int gameLevel;
 	private static int[] numEnemies;
 
-    public static int Score { get; }
+    public static int Score { get; set; }
 	private static int score = 0;
-	
-	public static Dictionary<UnitType, int> UnitSquadCount { get; set; }
+
+    public static Dictionary<UnitType, int> UnitSquadCount { get; set; }
 	public static Dictionary<UnitType, int> UnitExperience { get; set; }
 	
 	static GameState()

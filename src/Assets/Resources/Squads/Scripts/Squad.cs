@@ -33,7 +33,7 @@ public class Squad : Target
 	// Public Methods
 	///////////////////////////////////////////////////////////////////////////////////
 	public int NumSquadMembers = 0;
-    public List<Unit> SquadMembers { get; }
+    public List<Unit> SquadMembers { get; set; }
 	public UnitType unitType;
 	public Vector3 squadCenter;
 	public Vector3 rallyPoint;
