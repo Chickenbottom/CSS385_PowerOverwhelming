@@ -251,12 +251,10 @@ public class Unit : Target
 			break;
 			
 		case (AttackState.Engaging):
-			mUnitAnimator.Walk();
 			EngageTarget(attackTarget);
 			break;
 			
 		case (AttackState.Ranged):
-			mUnitAnimator.Walk();
 			UpdateAttack(attackTarget);
 			break;
 		}
