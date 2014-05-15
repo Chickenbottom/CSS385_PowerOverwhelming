@@ -3,6 +3,11 @@ using System.Collections;
 
 public class ProgressBar : MonoBehaviour {
 	
+	public int Value { 
+		get { return currentValue; }
+		set { UpdateValue(value); }
+	}
+	
 	public float box_length;
 	public GameObject cur_obj;
 	public SpriteRenderer Base;

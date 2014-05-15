@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public enum TowerType {
@@ -13,6 +13,7 @@ public abstract class Tower : Target
 	///////////////////////////////////////////////////////////////////////////////////
 	public UnitType UnitSpawnType;
 	public Renderer TowerSelector;
+	public ProgressBar TowerHealthBar;
 	
 	public abstract void Click();
     
@@ -39,7 +40,7 @@ public abstract class Tower : Target
         health -= damage;
         
         if (health < 0) {
-			health = 20;
+			health = 8;
 			Debug.Log ("Tower destroyed!");
 			mAllegiance = this.Allegiance == Allegiance.Rodelle
 				? Allegiance.AI
@@ -48,6 +49,8 @@ public abstract class Tower : Target
 			if (this.Allegiance != Allegiance.Rodelle)
 				this.ShowSelector(false);
         }
+        
+        TowerHealthBar.Value = health;
     }
     
 	///////////////////////////////////////////////////////////////////////////////////
@@ -59,8 +62,10 @@ public abstract class Tower : Target
 	/////////////////////////////////////////////////////////////////////////////////// 
     void Awake()
     {
-		health = 10;
+		health = 20;
 		mAllegiance = Allegiance.Rodelle;
+		TowerHealthBar.maxValue = health;
+		TowerHealthBar.Value = health;
 		this.ShowSelector(false);
     }
     
