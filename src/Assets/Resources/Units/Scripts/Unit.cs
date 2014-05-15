@@ -96,6 +96,7 @@ public class Unit : Target
 		Idle, Engaging, Ranged, Melee
 	}
 	
+	private UnitAnimation mUnitAnimator;
 	protected int defaultHealth;
 	
 	public float sightRange = 39f;
@@ -134,7 +135,6 @@ public class Unit : Target
 			this.Squad.Notify(SquadAction.TargetDestroyed);
 			return;
 		}
-			
 	}
 	
 	private void EngageTarget(Target target)
@@ -209,7 +209,13 @@ public class Unit : Target
 		Vector3 targetDir = targetLocation - Position;
 		targetDir.Normalize();
 		
+		if (targetDir.x > 0)
+			mUnitAnimator.WalkRight();
+		else 
+			mUnitAnimator.WalkLeft();
+			
 		Position += speed * Time.deltaTime * targetDir;
+		
 		
 		int sortingOrder = (int)(-Position.y + Camera.main.orthographicSize);
 		GetComponent<SpriteRenderer> ().sortingOrder = (int)(sortingOrder);
@@ -258,8 +264,7 @@ public class Unit : Target
 		switch (movementState)
 		{
 		case (MovementState.Idle):
-			//if(attackState == AttackState.Idle)
-			//	UpdateMovement(destination, movementSpeed);
+			mUnitAnimator.Idle();
 			break;
 			
 		case (MovementState.Moving):
@@ -279,5 +284,9 @@ public class Unit : Target
 		
 		movementState = MovementState.Idle;
 		destination = new Vector3(0, 0, 0);
+		
+		mUnitAnimator = this.GetComponent<UnitAnimation>();
+		if (mUnitAnimator == null)
+			Debug.LogError("UnitAnimation script was not attached to this Unit!");
 	}
 }
