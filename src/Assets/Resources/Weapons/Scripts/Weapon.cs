@@ -10,22 +10,22 @@ public abstract class Weapon
 	public float ReloadVariance { get; set; }
 	public float Accuracy { get; set; }
 	
-	protected float mReloadTimer;
+	protected float reloadTimer;
 	
 	public virtual void Attack(Target src, Target target)
 	{
 		if (target == null || src == null)
 			return;
 		
-		mReloadTimer -= Time.deltaTime;
-		if (mReloadTimer < 0) {
+		reloadTimer -= Time.deltaTime;
+		if (reloadTimer < 0) {
 			PerformAttack(src, target);
 		}
 	}
 	
 	public virtual void Reset()
 	{
-		mReloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
+		reloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
 	}
 	
 	protected virtual void PerformAttack(Target src, Target target)
@@ -33,7 +33,7 @@ public abstract class Weapon
 		if (target == null)
 			return;
 		
-		mReloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
+		reloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
 		
 		IDamagable e = (IDamagable) target.GetComponent(typeof(IDamagable));
 		e.Damage(this.Damage);

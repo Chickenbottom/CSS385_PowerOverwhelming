@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public class LevelLoader : MonoBehaviour 
 {
 	protected enum Button {
-		kTowerStore,
-		kMenu
+		TowerStore,
+		Menu
 	}
 	
-	List<Rect> mLevelButtons;
-	Dictionary<Button, ButtonData> mButtons;
+	List<Rect> levelButtons;
+	Dictionary<Button, ButtonData> buttons;
 	
 	protected struct ButtonData
 	{
@@ -28,10 +28,10 @@ public class LevelLoader : MonoBehaviour
 	{
 		switch(button) 
 		{
-		case(Button.kTowerStore):
+		case(Button.TowerStore):
 			Application.LoadLevel("TowerStore");
 			break;
-		case(Button.kMenu):
+		case(Button.Menu):
 			Application.LoadLevel("Menu");
 			break;
 		}
@@ -44,33 +44,33 @@ public class LevelLoader : MonoBehaviour
 	
 	void OnGUI () 
 	{
-		foreach(Button button in mButtons.Keys) {
-			if (GUI.Button(mButtons[button].rect, mButtons[button].text))
+		foreach(Button button in buttons.Keys) {
+			if (GUI.Button(buttons[button].rect, buttons[button].text))
 				HandleClick(button);
 		}
 		
-		for (int i = 0; i < mLevelButtons.Count; ++i)
-			if (GUI.Button(mLevelButtons[i], i.ToString()))
+		for (int i = 0; i < levelButtons.Count; ++i)
+			if (GUI.Button(levelButtons[i], i.ToString()))
 				LoadLevel(i);
 	}
 	
 	void Awake()
 	{
-		mButtons = new Dictionary<Button, ButtonData>();
+		buttons = new Dictionary<Button, ButtonData>();
 
 		Rect buttonRect = new Rect (313, 310, 400, 95);
-		mButtons.Add (Button.kTowerStore, 
+		buttons.Add (Button.TowerStore, 
 		              new ButtonData(ScaleButton(buttonRect), "Galactic Tower Store"));
 
 		buttonRect.y += 110; // vertical offset between buttons
-		mButtons.Add (Button.kMenu, 
+		buttons.Add (Button.Menu, 
 		              new ButtonData(ScaleButton(buttonRect), "Back to Menu"));
 
 		Rect levelButton = new Rect (233, 550, 75, 75);
-		mLevelButtons = new List<Rect>();
+		levelButtons = new List<Rect>();
 		for (int i = 0; i < 5; ++i) {
 			levelButton.x += 80; // offset between buttons
-			mLevelButtons.Add (ScaleButton(levelButton));
+			levelButtons.Add (ScaleButton(levelButton));
 		}
 	}
 

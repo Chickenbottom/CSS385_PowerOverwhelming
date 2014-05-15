@@ -8,26 +8,26 @@ public class Mage : Unit
 	{
 		base.Awake();
 		
-		mDefaultHealth = 4;
+		defaultHealth = 4;
 		
-		mMovementSpeed = 8f; // units per second
-		mChargeSpeed = 10f;   // speed used to engage enemies
+		movementSpeed = 8f; // units per second
+		chargeSpeed = 10f;   // speed used to engage enemies
 	}
 	
 	void Start()
 	{
-		mWeapons = new SortedList();
+		weapons = new SortedList();
 		
 		Weapon dagger = new Dagger();
-		mWeapons.Add (dagger.Range, dagger);
+		weapons.Add (dagger.Range, dagger);
 				
 		Weapon icewand = new IceWand();
 		((IceWand) icewand).src = this;
-		mWeapons.Add (icewand.Range, icewand);
-		mCurrentWeapon = icewand;
+		weapons.Add (icewand.Range, icewand);
+		currentWeapon = icewand;
 		
-		mHealth = mDefaultHealth;
-		mPreviousHealth = mHealth;
-		mSprites = null;
+		health = defaultHealth;
+		previousHealth = health;
+		sprites = null;
 	}
 }

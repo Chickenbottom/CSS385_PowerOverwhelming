@@ -23,11 +23,11 @@ public class FrozenEffect : MonoBehaviour
 
 		Unit u = target.GetComponent<Unit> ();
 		if (u != null) {
-			originalCharge = u.mChargeSpeed;
-			originalMovement = u.mMovementSpeed;
+			originalCharge = u.chargeSpeed;
+			originalMovement = u.movementSpeed;
 
-			u.mChargeSpeed = 0f;
-			u.mMovementSpeed = 0f;
+			u.chargeSpeed = 0f;
+			u.movementSpeed = 0f;
 		}	
 	}
 	
@@ -35,8 +35,8 @@ public class FrozenEffect : MonoBehaviour
 	{
 		Unit u = target.GetComponent<Unit> ();
 		if (u != null) {
-			u.mChargeSpeed = originalCharge;
-			u.mMovementSpeed = originalMovement;
+			u.chargeSpeed = originalCharge;
+			u.movementSpeed = originalMovement;
 		}
 		Destroy(this);
 	}

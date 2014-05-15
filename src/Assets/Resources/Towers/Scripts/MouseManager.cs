@@ -6,48 +6,50 @@ public class MouseManager : MonoBehaviour
 {
 
     #region variables
-    private Tower mTowerSelected;
-    private bool mSelected;
+    private Tower towerSelected;
+    private bool selected;
+    private ClickBox clickBox;
     #endregion
 
 	public List<Tower> Towers;
 	
     void Start()
     {
-        mSelected = false;
-        mTowerSelected = null;
+        selected = false;
+        towerSelected = null;
+        clickBox = GameObject.Find("ClickBox").GetComponent<ClickBox>();
     }
 
     void Update()
     {        
-        if (Input.GetMouseButtonDown(1) && mSelected) {
+        if (Input.GetMouseButtonDown(1) && selected) {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0f;
 			if (ValidMousePos(mousePos))
-				mTowerSelected.SetTarget(mousePos);
+				towerSelected.SetTarget(mousePos);
         }
         
-		if (Input.GetButtonDown("Fire2") && mTowerSelected is UnitSpawningTower) {
-			((UnitSpawningTower)mTowerSelected).SpawnUnit();
+		if (Input.GetButtonDown("Fire2") && towerSelected is UnitSpawningTower) {
+			((UnitSpawningTower)towerSelected).SpawnUnit();
 		}
 	}
 	
 	private bool ValidMousePos(Vector3 mousePos)
     {
-        // Add a dead spot around the towers to prevent sending units when you meant to reselect a tower
-        return mousePos.x < 240f && mousePos.x > -250f && mousePos.y < 102f && mousePos.y > -169f;
+        // Will be put into Tower subclasses
+        return clickBox.GetClickBoxBounds().Contains(mousePos);
     }
 
     public void Select(Tower tower)
     {
-        mTowerSelected = tower;
+        towerSelected = tower;
         tower.ShowSelector(true);
         
         foreach (Tower t in Towers) {
-			if (t != mTowerSelected)
+			if (t != towerSelected)
 				t.ShowSelector(false);
         }
-        mSelected = true;
+        selected = true;
     }
 
 }

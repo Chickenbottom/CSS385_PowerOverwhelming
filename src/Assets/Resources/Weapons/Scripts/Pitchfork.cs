@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Pitchfork : Weapon
 {
-	private static GameObject mProjectilePrefab = null;
+	private static GameObject projectilePrefab = null;
 	
 	public Pitchfork()
 	{
@@ -13,10 +13,10 @@ public class Pitchfork : Weapon
 		ReloadVariance = 0.5f;
 		Accuracy = 0.8f;
 		
-		mReloadTimer = ReloadTime;
+		reloadTimer = ReloadTime;
 		
-		if (mProjectilePrefab == null)
-			mProjectilePrefab = Resources.Load("Weapons/ArrowPrefab") as GameObject;
+		if (projectilePrefab == null)
+			projectilePrefab = Resources.Load("Weapons/ArrowPrefab") as GameObject;
 	}
 	
 	protected override void PerformAttack(Target src, Target target)
@@ -25,7 +25,7 @@ public class Pitchfork : Weapon
 			return;
 		base.PerformAttack(src, target);
 				
-		GameObject o = (GameObject) GameObject.Instantiate(mProjectilePrefab);
+		GameObject o = (GameObject) GameObject.Instantiate(projectilePrefab);
 		Arrow a = (Arrow) o.GetComponent(typeof(Arrow));
 		
 		a.transform.position = src.transform.position;		

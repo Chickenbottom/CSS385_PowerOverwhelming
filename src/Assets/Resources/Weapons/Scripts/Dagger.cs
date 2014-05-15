@@ -11,6 +11,6 @@ public class Dagger : Weapon
 		ReloadVariance = 0.5f;
 		Accuracy = 0.8f;
 		
-		mReloadTimer = ReloadTime;
+		reloadTimer = ReloadTime;
 	}
 }

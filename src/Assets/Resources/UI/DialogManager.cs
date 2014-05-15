@@ -23,15 +23,15 @@ public class DialogManager : MonoBehaviour
     int cur_person;
     int cur_convo;
     int index; // used to display one letter at a time
-    float mPreviousLetter = 0f; //used for keeping time for display
-    private GUIText mDialogueText;
+    float previousLetter = 0f; //used for keeping time for display
+    private GUIText dialogueText;
     
-    public GUIText DialogueLeft;
-	public GUIText DialogueRight;
+    public GUIText dialogueLeft;
+	public GUIText dialogueRight;
 
     #region Arrays
 
-    ArrayList[][] Conversations;
+    ArrayList[][] conversations;
 
     #endregion
     #endregion
@@ -40,35 +40,35 @@ public class DialogManager : MonoBehaviour
     void Start()
     {
         //ArrayList[][] 
-        Conversations = new ArrayList[2][];
+        conversations = new ArrayList[2][];
 
-        Conversations[kRod] = new ArrayList[3];
-        Conversations[kAdv] = new ArrayList[3];
+        conversations[kRod] = new ArrayList[3];
+        conversations[kAdv] = new ArrayList[3];
 
-        Conversations[kRod][kTowers] = new ArrayList();
-        Conversations[kRod][kTroops] = new ArrayList();
-        Conversations[kRod][kGame] = new ArrayList();
+        conversations[kRod][kTowers] = new ArrayList();
+        conversations[kRod][kTroops] = new ArrayList();
+        conversations[kRod][kGame] = new ArrayList();
 
-        Conversations[kAdv][kTowers] = new ArrayList();
-        Conversations[kAdv][kTroops] = new ArrayList();
-        Conversations[kAdv][kGame] = new ArrayList();
+        conversations[kAdv][kTowers] = new ArrayList();
+        conversations[kAdv][kTroops] = new ArrayList();
+        conversations[kAdv][kGame] = new ArrayList();
 
-		if (DialogueLeft == null || DialogueRight == null)
+		if (dialogueLeft == null || dialogueRight == null)
 			Debug.LogError("Dialogue Manager not instantiated. Add GUIText for DialogueLeft and DialogueRight!");
 
-		DialogueLeft.text = "";
-		DialogueRight.text = "";
+		dialogueLeft.text = "";
+		dialogueRight.text = "";
 		
-        StreamReader mFile = null;
+        StreamReader file = null;
         try
         {
-            mFile = new StreamReader(path);
+            file = new StreamReader(path);
         } catch (System.Exception e) {
 			Debug.Log(e.ToString());
         }
        
-        if (mFile != null)
-            loadDialog(mFile);
+        if (file != null)
+            loadDialog(file);
 
         ShowDialog("Hi I'm Rodelle! Nice to meet you.");
 
@@ -79,13 +79,13 @@ public class DialogManager : MonoBehaviour
         
     public void ShowDialog(string text)
     {
-		DialogueLeft.text = text;
+		dialogueLeft.text = text;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - mPreviousLetter > kLetterDisplayTime /*&& index != -1*/)
+        if (Time.time - previousLetter > kLetterDisplayTime /*&& index != -1*/)
         {
 			//printStatement();
 			//mPreviousLetter = Time.time;
@@ -138,13 +138,13 @@ public class DialogManager : MonoBehaviour
 
             }
             if (cur_person != -1 && cur_convo != -1)
-                Conversations[cur_person][cur_convo].Add(line);
+                conversations[cur_person][cur_convo].Add(line);
         }
     }
 
     private void printStatement()
     {
-        string line = (string)Conversations[cur_person][cur_convo][0];
+        string line = (string)conversations[cur_person][cur_convo][0];
         if (index >= line.Length)
         {
             index = -1;

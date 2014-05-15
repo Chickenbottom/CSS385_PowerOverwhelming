@@ -2,8 +2,8 @@
 using System.Collections;
 
 public enum TowerType {
-	kAbility,
-	kUnitSpawner
+	Ability,
+	UnitSpawner
 }
 
 public abstract class Tower : Target
@@ -23,8 +23,8 @@ public abstract class Tower : Target
 	/// <param name="location">Location. The game coodinate clicked on.</param>
 	public abstract void SetTarget(Vector3 location);
     
-	public int mHealth;
-	protected TowerType mTowerType;    
+	public int health;
+	protected TowerType towerType;    
     
     public void ShowSelector(bool status)
     {
@@ -36,16 +36,16 @@ public abstract class Tower : Target
 
     public override void Damage(int damage)
     {
-        mHealth -= damage;
+        health -= damage;
         
-        if (mHealth < 0) {
-			mHealth = 20;
+        if (health < 0) {
+			health = 20;
 			Debug.Log ("Tower destroyed!");
-			mAllegiance = this.Allegiance == Allegiance.kRodelle
-				? Allegiance.kAI
-				: Allegiance.kRodelle;
+			allegiance = this.Allegiance == Allegiance.Rodelle
+				? Allegiance.AI
+				: Allegiance.Rodelle;
 				
-			if (this.Allegiance != Allegiance.kRodelle)
+			if (this.Allegiance != Allegiance.Rodelle)
 				this.ShowSelector(false);
         }
     }
@@ -59,14 +59,14 @@ public abstract class Tower : Target
 	/////////////////////////////////////////////////////////////////////////////////// 
     void Awake()
     {
-		mHealth = 10;
-		mAllegiance = Allegiance.kRodelle;
+		health = 10;
+		allegiance = Allegiance.Rodelle;
 		this.ShowSelector(false);
     }
     
 	void OnMouseDown()
 	{
-		if (this.Allegiance == Allegiance.kRodelle)
+		if (this.Allegiance == Allegiance.Rodelle)
 			GameObject.Find("GameManager").GetComponent<MouseManager>().Select(this);
 	}
 }

@@ -6,19 +6,19 @@ public class EnemyAIManager : MonoBehaviour
 {
 
 	private enum Waypoints {
-		kKing,
-		kArcherTower,
-		kAbilityTower,
-		kSwordsmanTower,
-		kMageTower,
-		kCenter,
-		kLowerCenter,
-		kSpawnPoint,
+		King,
+		ArcherTower,
+		AbilityTower,
+		SwordsmanTower,
+		MageTower,
+		Center,
+		LowerCenter,
+		SpawnPoint,
 	}
-	Dictionary<Waypoints, Vector3> mWaypoints;
+	private Dictionary<Waypoints, Vector3> wayPoints;
 	
 	
-	public int NumWaves = 3;
+	public int numWaves = 3;
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Unity Overrides
@@ -26,20 +26,20 @@ public class EnemyAIManager : MonoBehaviour
 	
 	void Update()
 	{
-		if (mWaveSpawnInterval < Time.time - mLastEnemySpawn) {
-			mLastEnemySpawn = Time.time;
+		if (waveSpawnInterval < Time.time - lastEnemySpawn) {
+			lastEnemySpawn = Time.time;
 			this.SpawnWave();
 		}
 		
-		for (int i = mUnits.Count - 1; i >= 0; --i) {
-			if (mUnits[i].IsDead)
-				mUnits.RemoveAt(i);
+		for (int i = units.Count - 1; i >= 0; --i) {
+			if (units[i].IsDead)
+				units.RemoveAt(i);
 			else 
-				mUnits[i].Update();
+				units[i].Update();
 			
 		}
 		
-		if (mCurrentWave >= NumWaves && mUnits.Count == 0) {
+		if (currentWave >= numWaves && units.Count == 0) {
 			GameState.TriggerWin();
 		}
 		
@@ -50,18 +50,18 @@ public class EnemyAIManager : MonoBehaviour
 	
 	void Start()
 	{
-		mLastEnemySpawn = Time.time;
-		mUnits = new List<EnemySquad> ();
+		lastEnemySpawn = Time.time;
+		units = new List<EnemySquad> ();
 		
-		mWaypoints = new Dictionary<Waypoints, Vector3>();
-		mWaypoints.Add (Waypoints.kAbilityTower, new Vector3(46, -40, 0));
-		mWaypoints.Add (Waypoints.kArcherTower, new Vector3(-105, -40, 0));
-		mWaypoints.Add (Waypoints.kMageTower, new Vector3(45, 50, 0));
-		mWaypoints.Add (Waypoints.kSwordsmanTower, new Vector3(-108, 50, 0));
-		mWaypoints.Add (Waypoints.kKing, new Vector3(-33, 56, 0));
-		mWaypoints.Add (Waypoints.kCenter, new Vector3(-33, 10, 0));
-		mWaypoints.Add (Waypoints.kLowerCenter, new Vector3(-33, -37, 0));
-		mWaypoints.Add (Waypoints.kSpawnPoint, new Vector3(-33, -64, 0));
+		wayPoints = new Dictionary<Waypoints, Vector3>();
+		wayPoints.Add (Waypoints.AbilityTower, new Vector3(46, -40, 0));
+		wayPoints.Add (Waypoints.ArcherTower, new Vector3(-105, -40, 0));
+		wayPoints.Add (Waypoints.MageTower, new Vector3(45, 50, 0));
+		wayPoints.Add (Waypoints.SwordsmanTower, new Vector3(-108, 50, 0));
+		wayPoints.Add (Waypoints.King, new Vector3(-33, 56, 0));
+		wayPoints.Add (Waypoints.Center, new Vector3(-33, 10, 0));
+		wayPoints.Add (Waypoints.LowerCenter, new Vector3(-33, -37, 0));
+		wayPoints.Add (Waypoints.SpawnPoint, new Vector3(-33, -64, 0));
 		
 		SpawnWave();
 	}
@@ -74,16 +74,16 @@ public class EnemyAIManager : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////	
-	private float mWaveSpawnInterval = 15.0f;
-	private float mLastEnemySpawn;
-	private int mCurrentWave = 0;
+	private float waveSpawnInterval = 15.0f;
+	private float lastEnemySpawn;
+	private int currentWave = 0;
 	
-	private List<EnemySquad> mUnits;
+	private List<EnemySquad> units;
 	
 	private void SpawnWave()
 	{
-		mCurrentWave ++;
-		switch (mCurrentWave)
+		currentWave ++;
+		switch (currentWave)
 		{
 		case(1):
 			SpawnWave1();
@@ -101,44 +101,44 @@ public class EnemyAIManager : MonoBehaviour
 	void SpawnWave1()
 	{
 		EnemySquad es = null;
-		es = new EnemySquad (4, mWaypoints[Waypoints.kLowerCenter]);
-		es.AddWaypoint(mWaypoints[Waypoints.kKing]);
-		mUnits.Add (es);
+		es = new EnemySquad (4, wayPoints[Waypoints.LowerCenter]);
+		es.AddWaypoint(wayPoints[Waypoints.King]);
+		units.Add (es);
 	}
 	
 	void SpawnWave2()
 	{
 		EnemySquad es = null;
-		es = new EnemySquad (5, mWaypoints[Waypoints.kLowerCenter]);
-		es.AddWaypoint(mWaypoints[Waypoints.kArcherTower]);
-		es.AddWaypoint(mWaypoints[Waypoints.kKing]);
-		mUnits.Add (es);
+		es = new EnemySquad (5, wayPoints[Waypoints.LowerCenter]);
+		es.AddWaypoint(wayPoints[Waypoints.ArcherTower]);
+		es.AddWaypoint(wayPoints[Waypoints.King]);
+		units.Add (es);
 		
-		es = new EnemySquad (5, mWaypoints[Waypoints.kCenter]);
-		es.AddWaypoint(mWaypoints[Waypoints.kMageTower]);
-		es.AddWaypoint(mWaypoints[Waypoints.kCenter]);
-		mUnits.Add (es);
+		es = new EnemySquad (5, wayPoints[Waypoints.Center]);
+		es.AddWaypoint(wayPoints[Waypoints.MageTower]);
+		es.AddWaypoint(wayPoints[Waypoints.Center]);
+		units.Add (es);
 	}
 	
 	void SpawnWave3()
 	{
 		EnemySquad es = null;
-		es = new EnemySquad (7, mWaypoints[Waypoints.kLowerCenter]);
-		es.AddWaypoint(mWaypoints[Waypoints.kSwordsmanTower]);
-		es.AddWaypoint(mWaypoints[Waypoints.kCenter]);
-		es.AddWaypoint(mWaypoints[Waypoints.kKing]);
-		mUnits.Add (es);
+		es = new EnemySquad (7, wayPoints[Waypoints.LowerCenter]);
+		es.AddWaypoint(wayPoints[Waypoints.SwordsmanTower]);
+		es.AddWaypoint(wayPoints[Waypoints.Center]);
+		es.AddWaypoint(wayPoints[Waypoints.King]);
+		units.Add (es);
 		
-		es = new EnemySquad (7, mWaypoints[Waypoints.kCenter]);
-		es.AddWaypoint(mWaypoints[Waypoints.kMageTower]);
-		es.AddWaypoint(mWaypoints[Waypoints.kCenter]);
-		es.AddWaypoint(mWaypoints[Waypoints.kKing]);
-		mUnits.Add (es);
+		es = new EnemySquad (7, wayPoints[Waypoints.Center]);
+		es.AddWaypoint(wayPoints[Waypoints.MageTower]);
+		es.AddWaypoint(wayPoints[Waypoints.Center]);
+		es.AddWaypoint(wayPoints[Waypoints.King]);
+		units.Add (es);
 		
-		es = new EnemySquad (7, mWaypoints[Waypoints.kLowerCenter]);
-		es.AddWaypoint(mWaypoints[Waypoints.kArcherTower]);
-		es.AddWaypoint(mWaypoints[Waypoints.kLowerCenter]);
-		es.AddWaypoint(mWaypoints[Waypoints.kKing]);
-		mUnits.Add (es);
+		es = new EnemySquad (7, wayPoints[Waypoints.LowerCenter]);
+		es.AddWaypoint(wayPoints[Waypoints.ArcherTower]);
+		es.AddWaypoint(wayPoints[Waypoints.LowerCenter]);
+		es.AddWaypoint(wayPoints[Waypoints.King]);
+		units.Add (es);
 	}
 }

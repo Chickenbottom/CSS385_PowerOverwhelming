@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameState {
-	private static int mGameLevel;
-	private static int[] mNumEnemies;
-	
-	public static int Score { get { return mScore; } }
-	private static int mScore = 0;
+	private static int gameLevel;
+	private static int[] numEnemies;
+
+    public static int Score { get; }
+	private static int score = 0;
 	
 	public static Dictionary<UnitType, int> UnitSquadCount { get; set; }
 	public static Dictionary<UnitType, int> UnitExperience { get; set; }
@@ -15,14 +15,14 @@ public class GameState {
 	static GameState()
 	{
 		UnitSquadCount = new Dictionary<UnitType, int>();
-		UnitSquadCount.Add(UnitType.kArcher, 4);
-		UnitSquadCount.Add(UnitType.kSwordsman, 3);
-		UnitSquadCount.Add(UnitType.kMage, 1);
+		UnitSquadCount.Add(UnitType.Archer, 4);
+		UnitSquadCount.Add(UnitType.Swordsman, 3);
+		UnitSquadCount.Add(UnitType.Mage, 1);
 		
 		UnitExperience = new Dictionary<UnitType, int>();
-		UnitExperience.Add(UnitType.kArcher, 0);
-		UnitExperience.Add(UnitType.kSwordsman, 0);
-		UnitExperience.Add(UnitType.kMage, 0);
+		UnitExperience.Add(UnitType.Archer, 0);
+		UnitExperience.Add(UnitType.Swordsman, 0);
+		UnitExperience.Add(UnitType.Mage, 0);
 	}
 	
 	public static void AddExperience(UnitType unitType, int exp)
@@ -35,7 +35,7 @@ public class GameState {
 	
 	public static void AddToScore(int value)
 	{
-		mScore += value;
+		score += value;
 	}
 	
 	public static void LoadLevel(int level)

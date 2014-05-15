@@ -8,25 +8,25 @@ public class Archer : Unit
 	{
 		base.Awake();
 		
-		mDefaultHealth = 4;
+		defaultHealth = 4;
 		
-		mMovementSpeed = 8f; // units per second
-		mChargeSpeed = 10f;   // speed used to engage enemies
+		movementSpeed = 8f; // units per second
+		chargeSpeed = 10f;   // speed used to engage enemies
 	}
 	
 	void Start()
 	{
-		mWeapons = new SortedList();
+		weapons = new SortedList();
 		
 		Weapon crossbow = new Crossbow();
-		mCurrentWeapon = crossbow;
-		mWeapons.Add (crossbow.Range, crossbow);
+		currentWeapon = crossbow;
+		weapons.Add (crossbow.Range, crossbow);
 		
 		Weapon dagger = new Dagger();
-		mWeapons.Add (dagger.Range, dagger);
+		weapons.Add (dagger.Range, dagger);
 		
-		mHealth = mDefaultHealth;
-		mPreviousHealth = mHealth;
-		mSprites = null;
+		health = defaultHealth;
+		previousHealth = health;
+		sprites = null;
 	}
 }

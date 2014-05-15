@@ -4,38 +4,38 @@ using System.Collections.Generic;
 
 class EnemySquad 
 {
-	private Vector3 mSpawnLocation;
-	private Squad mSquad;
-	private int mCurrentWaypoint;
-	private List<Vector3> mWaypoints;
-	private static GameObject mSquadPrefab;
+	private Vector3 spawnLocation;
+	private Squad squad;
+	private int currentWaypoint;
+	private List<Vector3> waypoints;
+	private static GameObject squadPrefab;
 	
 	public EnemySquad(int size, Vector3 waypoint) 
 	{
-		if (mSquadPrefab == null) 
-			mSquadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
+		if (squadPrefab == null) 
+			squadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
 		
-		mCurrentWaypoint = 0;
+		currentWaypoint = 0;
 		
-		mSquad = CreateSquad(size: size);
-		mWaypoints = new List<Vector3>();
+		squad = CreateSquad(size: size);
+		waypoints = new List<Vector3>();
 		this.AddWaypoint(waypoint);
-		mSquad.UpdateSquadDestination(waypoint);
+		squad.UpdateSquadDestination(waypoint);
 	}
 	
 	public void AddWaypoint(Vector3 waypoint)
 	{
-		mWaypoints.Add(waypoint);
+		waypoints.Add(waypoint);
 	}
 	
 	Squad CreateSquad(int size)
 	{
-		mSpawnLocation = new Vector3(-33f, -60f, 0f);
-		GameObject o = (GameObject) GameObject.Instantiate (mSquadPrefab);
+		spawnLocation = new Vector3(-33f, -60f, 0f);
+		GameObject o = (GameObject) GameObject.Instantiate (squadPrefab);
 		Squad squad = o.GetComponent<Squad> ();
 		
 		squad.NumSquadMembers = size;
-		squad.Spawn (mSpawnLocation, UnitType.kPeasant, Allegiance.kAI);
+		squad.Spawn (spawnLocation, UnitType.Peasant, Allegiance.AI);
 		
 		return squad;
 	}
@@ -44,12 +44,12 @@ class EnemySquad
 	
 	public void Update()
 	{			
-		if (mSquad == null)
+		if (squad == null)
 			IsDead = true;
 			
-		if (mCurrentWaypoint < mWaypoints.Count - 1 && mSquad.IsIdle) {
-			mCurrentWaypoint ++;
-			mSquad.UpdateSquadDestination(mWaypoints[mCurrentWaypoint]);
+		if (currentWaypoint < waypoints.Count - 1 && squad.IsIdle) {
+			currentWaypoint ++;
+			squad.UpdateSquadDestination(waypoints[currentWaypoint]);
 		}
 	}
 }

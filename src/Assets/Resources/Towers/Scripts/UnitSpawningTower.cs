@@ -3,13 +3,13 @@ using System.Collections;
 
 public class UnitSpawningTower : Tower {
 
-	public SquadManager SquadManager;
-	public GameObject Tent;
+	public SquadManager squadManager;
+	public GameObject tent;
     // private SquadManager squads;
 
     void Start()
     {
-        mTowerType = TowerType.kUnitSpawner;
+        towerType = TowerType.UnitSpawner;
     }
 
     public override void Click()
@@ -18,28 +18,28 @@ public class UnitSpawningTower : Tower {
     
     public override void SetTarget(Vector3 location)
     {
-		this.SquadManager.SetDestination(location);
+		this.squadManager.SetDestination(location);
     }
     
 	public void SpawnUnit()
 	{
-		this.SquadManager.AddSquad(Tent.transform.position, this.UnitSpawnType);
+		this.squadManager.AddSquad(tent.transform.position, this.UnitSpawnType);
 	}
 	
 	void OnTriggerStay2D(Collider2D other)
 	{
-		if (this.Allegiance == Allegiance.kRodelle)
+		if (this.Allegiance == Allegiance.Rodelle)
 			return;
 			
 		Unit unit = other.gameObject.GetComponent<Unit>();
 				
-		if (unit != null && unit.Squad.UnitType == UnitType.kPeasant) {
+		if (unit != null && unit.Squad.unitType == UnitType.Peasant) {
 			Debug.Log ("Transforming unit!");
-			unit.Squad.Spawn(this.Position, this.UnitSpawnType, Allegiance.kAI);
+			unit.Squad.Spawn(this.Position, this.UnitSpawnType, Allegiance.AI);
 		}
 	}
 	
 	public override Vector3 Position {
-		get { return this.Tent.transform.position; }
+		get { return this.tent.transform.position; }
 	}
 }

@@ -7,65 +7,65 @@ public class SquadManager : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
-	public UnitType SquadType = UnitType.kNone;
+	public UnitType squadType = UnitType.None;
 	
 	public void SetDestination(Vector3 location)
 	{
 		location.z = 0;
 		
-		List<Vector3> randomPositions = this.RandomSectionLocations(mSquads.Count, kSquadWidth);
+		List<Vector3> randomPositions = this.RandomSectionLocations(squads.Count, squadWidth);
 		
 		this.transform.position = location;
-		mRallyPoint = location;
+		rallyPoint = location;
 		
-		for (int i = mSquads.Count - 1; i >= 0; --i) {
-			if (mSquads[i] == null) {
-				mSquads.RemoveAt(i);
+		for (int i = squads.Count - 1; i >= 0; --i) {
+			if (squads[i] == null) {
+				squads.RemoveAt(i);
 				continue;
 			}
 			Vector3 moveTo = location;
 			moveTo += randomPositions[i];
-			mSquads[i].UpdateSquadDestination(moveTo);
+			squads[i].UpdateSquadDestination(moveTo);
 		}
 	}
 	
 	public void AddSquad(Squad squad)
 	{
-		mSquads.Add (squad);
-		this.SetDestination(mRallyPoint);
+		squads.Add (squad);
+		this.SetDestination(rallyPoint);
 	}
 	
-	public void AddSquad(Vector3 spawnLocation, UnitType unitType = UnitType.kNone)
+	public void AddSquad(Vector3 spawnLocation, UnitType unitType = UnitType.None)
 	{
 		// nothing to instantiate
-		if (unitType == UnitType.kNone && this.SquadType == UnitType.kNone)
+		if (unitType == UnitType.None && this.squadType == UnitType.None)
 			Debug.LogError("SquadManager - spawn type not specified.");
 			
 		Squad squad;
-		if (unitType == UnitType.kNone)
-			squad = SpawnSquadFromUnitType(spawnLocation, this.SquadType);
+		if (unitType == UnitType.None)
+			squad = SpawnSquadFromUnitType(spawnLocation, this.squadType);
 		else
 			squad = SpawnSquadFromUnitType(spawnLocation, unitType);
 			
-		mSquads.Add (squad);
-		this.SetDestination(mRallyPoint);
+		squads.Add (squad);
+		this.SetDestination(rallyPoint);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
 	
-	private List<Squad> mSquads;
-	private float kSquadWidth = 8f; // TODO replace with function calculating width of squad
-	private Vector3 mRallyPoint;
-	private static GameObject mSquadPrefab = null;
+	private List<Squad> squads;
+	private float squadWidth = 8f; // TODO replace with function calculating width of squad
+	private Vector3 rallyPoint;
+	private static GameObject squadPrefab = null;
 	
 	private Squad SpawnSquadFromUnitType(Vector3 location, UnitType unitType)
 	{
-		GameObject o = (GameObject) Instantiate(mSquadPrefab);
+		GameObject o = (GameObject) Instantiate(squadPrefab);
 		Squad squad = (Squad) o.GetComponent(typeof(Squad));
-		squad.UnitType = unitType;
-		squad.Spawn(location, unitType, Allegiance.kRodelle);
+		squad.unitType = unitType;
+		squad.Spawn(location, unitType, Allegiance.Rodelle);
 		return squad;
 	}
 	
@@ -104,11 +104,11 @@ public class SquadManager : MonoBehaviour
 	
 	void Awake () 
 	{
-		if (mSquadPrefab == null)
-			mSquadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
+		if (squadPrefab == null)
+			squadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
 		
-		mSquads = new List<Squad>();
-		mRallyPoint = this.transform.position;
+		squads = new List<Squad>();
+		rallyPoint = this.transform.position;
 	}
 	
 	void Update () 

@@ -2,18 +2,19 @@
 using System.Collections;
 
 public enum Allegiance {
-	kRodelle, 
-	kAI,
+	Rodelle, 
+	AI,
 }
 
 public abstract class Target : MonoBehaviour, IDamagable
 {
-	public Allegiance Allegiance { 
-		get { return mAllegiance; } 
-		set { mAllegiance = value; }
-	}
+    public Allegiance Allegiance
+    {
+        get;
+        set;
+    }
 	
-	protected Allegiance mAllegiance;
+	protected Allegiance allegiance;
 	
 	public virtual Vector3 Position {
 		get { return this.transform.position; }

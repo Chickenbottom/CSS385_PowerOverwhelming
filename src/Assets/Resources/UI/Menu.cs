@@ -5,19 +5,19 @@ using System.Collections.Generic;
 
 public class Menu : MonoBehaviour 
 {
-	Dictionary<Button, Rect> mButtons;
+	Dictionary<Button, Rect> buttons;
 	
 	protected enum Button {
-		kNewGame,
-		kLoadGame,
-		kAbout
+		NewGame,
+		LoadGame,
+		About
 	}
 	
 	void OnGUI () 
 	{
 		//GUI.color = Color.clear;
-		foreach(Button button in mButtons.Keys) {
-			if (GUI.Button(mButtons[button], ""))
+		foreach(Button button in buttons.Keys) {
+			if (GUI.Button(buttons[button], ""))
 				HandleClick(button);
 		}
 	}
@@ -26,12 +26,12 @@ public class Menu : MonoBehaviour
 	{
 		switch(button) 
 		{
-		case(Button.kNewGame):
+		case(Button.NewGame):
 			Application.LoadLevel("LevelLoader");
 			break;
-		case(Button.kLoadGame):
+		case(Button.LoadGame):
 			break;
-		case(Button.kAbout):
+		case(Button.About):
 			Application.Quit();
 			break;
 		}
@@ -39,16 +39,16 @@ public class Menu : MonoBehaviour
 	
 	void Awake()
 	{
-		mButtons = new Dictionary<Button, Rect>();
+		buttons = new Dictionary<Button, Rect>();
 
 		Rect buttonDimensions = new Rect (313, 310, 400, 95);
-		mButtons.Add (Button.kNewGame, ScaleButton(buttonDimensions));
+		buttons.Add (Button.NewGame, ScaleButton(buttonDimensions));
 
 		buttonDimensions.y += 110; // vertical offset between buttons
-		mButtons.Add (Button.kLoadGame, ScaleButton(buttonDimensions));
+		buttons.Add (Button.LoadGame, ScaleButton(buttonDimensions));
 
 		buttonDimensions.y += 110;
-		mButtons.Add (Button.kAbout, ScaleButton(buttonDimensions));
+		buttons.Add (Button.About, ScaleButton(buttonDimensions));
 	}
 
 	// TODO make this a general utility function

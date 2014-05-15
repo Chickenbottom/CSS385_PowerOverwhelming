@@ -7,23 +7,23 @@ public class Peasant : Unit
 	{
 		base.Awake();
 	
-		mSightRange = 10f;
-		mDefaultHealth = 5;
+		sightRange = 10f;
+		defaultHealth = 5;
 		
-		mMovementSpeed = 8f; // units per second
-		mChargeSpeed = 10f;   // speed used to engage enemies
+		movementSpeed = 8f; // units per second
+		chargeSpeed = 10f;   // speed used to engage enemies
 	}
 	
 	void Start()
 	{	
-		mWeapons = new SortedList();
+		weapons = new SortedList();
 			
 		Weapon pitchfork = new Pitchfork();
-		mWeapons.Add (pitchfork.Range, pitchfork);
-		mCurrentWeapon = pitchfork;
+		weapons.Add (pitchfork.Range, pitchfork);
+		currentWeapon = pitchfork;
 		
-		mHealth = mDefaultHealth;
-		mPreviousHealth = mHealth;
-		mSprites = null;
+		health = defaultHealth;
+		previousHealth = health;
+		sprites = null;
 	}
 }

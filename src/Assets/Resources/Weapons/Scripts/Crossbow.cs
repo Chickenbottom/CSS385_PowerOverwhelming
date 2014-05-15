@@ -13,7 +13,7 @@ public class Crossbow : Weapon
 		ReloadVariance = 0.3f;
 		Accuracy = 0.8f;
 	
-		mReloadTimer = ReloadTime;
+		reloadTimer = ReloadTime;
 		
 		if (mProjectilePrefab == null)
 			mProjectilePrefab = Resources.Load("Weapons/ArrowPrefab") as GameObject;

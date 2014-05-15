@@ -2,10 +2,10 @@ using UnityEngine;
 using System.Collections;
 
 public class IceBomb : MonoBehaviour {
-	public GameObject Emitter;
+	public GameObject emitter;
 	
 	// TODO replace with states
-	bool mExplosionDone = false;
+	bool explosionDone = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -25,12 +25,12 @@ public class IceBomb : MonoBehaviour {
 		}
 		
 		if (Time.time - kStartTime > kExplosionDuration)
-			mExplosionDone = true;
+			explosionDone = true;
 	}
 	
 	void OnTriggerStay2D(Collider2D other) 
 	{
-		if (mExplosionDone)
+		if (explosionDone)
 			return;
 			
 		Target target = other.gameObject.GetComponent<Target>();
@@ -73,7 +73,7 @@ public class IceBomb : MonoBehaviour {
 	
 	private void StartExplosion()
 	{
-		mEmitterPrefab = (GameObject) Instantiate(Emitter);
+		mEmitterPrefab = (GameObject) Instantiate(emitter);
 		mEmitterPrefab.transform.position = this.transform.position;
 		kStartTime = Time.time;
 	}

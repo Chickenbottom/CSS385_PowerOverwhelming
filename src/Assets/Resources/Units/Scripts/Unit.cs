@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Unit : Target
 {	
 	public Squad Squad { get; set; }
-	public float Range { get { return mCurrentWeapon.Range; } }
+	public float Range { get { return currentWeapon.Range; } }
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods
@@ -18,10 +18,10 @@ public class Unit : Target
 	/// <param name="target">Desination. The location to move towards. </param>
 	public void MoveTo(Vector3 destination) 
 	{
-		mDestination = destination;
+		destination = destination;
 		
-		if (mAttackTarget == null) // can only move if there is no one in range
-			mMovementState = MovementState.kMoving;
+		if (attackTarget == null) // can only move if there is no one in range
+			movementState = MovementState.Moving;
 	}
 	
 	/// <summary>
@@ -32,14 +32,14 @@ public class Unit : Target
 	/// <param name="firingPosition">Firing position. The position to attack from.</param>
 	public void Engage(Target target, Vector3? firingPosition = null)
 	{
-		mAttackVector = (firingPosition != null) 
+		attackVector = (firingPosition != null) 
 			? firingPosition.Value
 			: this.Position;
 		
-		mMovementState = MovementState.kIdle;
-		mAttackTarget = target;
+		movementState = MovementState.Idle;
+		attackTarget = target;
 		
-		mAttackState = AttackState.kEngaging;
+		attackState = AttackState.Engaging;
 	}
 	
 	/// <summary>
@@ -48,9 +48,9 @@ public class Unit : Target
 	/// <param name="damage">Damage. The amount of damage taken.</param>
 	public override void Damage(int damage)
 	{
-		mHealth -= damage;
-		if (mHealth <= 0) {
-			this.Squad.Notify(SquadAction.kUnitDied, this);
+		health -= damage;
+		if (health <= 0) {
+			this.Squad.Notify(SquadAction.UnitDied, this);
 			Destroy(this.gameObject);
 		}
 	}
@@ -61,11 +61,11 @@ public class Unit : Target
 	/// <param name="index">Index.</param>
 	public void SwitchToWeapon(int index)
 	{
-		Weapon w = (Weapon)mWeapons.GetByIndex(index);
+		Weapon w = (Weapon)weapons.GetByIndex(index);
 		
 		if (w != null) {
-			mCurrentWeapon.Reset();
-			mCurrentWeapon = w;
+			currentWeapon.Reset();
+			currentWeapon = w;
 		}
 	}
 	
@@ -75,63 +75,63 @@ public class Unit : Target
 	/// </summary>
 	public void Disengage()
 	{
-		mAttackState = AttackState.kIdle;
-		mMovementState = MovementState.kMoving;
-		mAttackTarget = null;
+		attackState = AttackState.Idle;
+		movementState = MovementState.Moving;
+		attackTarget = null;
 		
-		SwitchToWeapon(mWeapons.Count - 1); // longest range weapon
+		SwitchToWeapon(weapons.Count - 1); // longest range weapon
 	}	
 
-	public bool IsIdle { get { return this.mMovementState == MovementState.kIdle; } }
+	public bool IsIdle { get { return this.movementState == MovementState.Idle; } }
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods
 	///////////////////////////////////////////////////////////////////////////////////
 	
 	protected enum MovementState {
-		kMoving, kIdle
+		Moving, Idle
 	}
 	
 	protected enum AttackState {
-		kIdle, kEngaging, kRanged, kMelee
+		Idle, Engaging, Ranged, Melee
 	}
 	
-	protected int mDefaultHealth;
+	protected int defaultHealth;
 	
-	public float mSightRange = 39f;
-	public float mMovementSpeed; // units per second
-	public float mChargeSpeed;   // speed used to engage enemies
+	public float sightRange = 39f;
+	public float movementSpeed; // units per second
+	public float chargeSpeed;   // speed used to engage enemies
 	
-	protected Weapon mCurrentWeapon = null;
-	protected SortedList mWeapons;
+	protected Weapon currentWeapon = null;
+	protected SortedList weapons;
 	
-	protected Target mAttackTarget;
+	protected Target attackTarget;
 	
-	protected Vector3 mAttackVector; // direction to attack target from
-	protected Vector3 mDestination;  // location to move to when no other actions are taking place
+	protected Vector3 attackVector; // direction to attack target from
+	protected Vector3 destination;  // location to move to when no other actions are taking place
 	
-	protected int mHealth;
-	protected int mPreviousHealth;
+	protected int health;
+	protected int previousHealth;
 	
-	protected MovementState mMovementState;
-	protected AttackState mAttackState;
+	protected MovementState movementState;
+	protected AttackState attackState;
 	
-	protected GameObject mProjectilePrefab = null;
-	protected List<Sprite> mSprites;
+	protected GameObject projectilePrefab = null;
+	protected List<Sprite> sprites;
 	
 	private void UpdateTargetState()
 	{
-		if (mAttackState == AttackState.kIdle) // no target present
+		if (attackState == AttackState.Idle) // no target present
 			return; 
 			
-		if (mAttackTarget == null) { // target's been destroyed
-			mCurrentWeapon.Reset();
-			this.Squad.Notify (SquadAction.kUnitDestroyed, this);
+		if (attackTarget == null) { // target's been destroyed
+			currentWeapon.Reset();
+			this.Squad.Notify (SquadAction.UnitDestroyed, this);
 			return;
 		}
 		
-		if (mAttackTarget.Allegiance == this.Squad.Allegiance) {
-			this.Squad.Notify(SquadAction.kTargetDestroyed);
+		if (attackTarget.Allegiance == this.Squad.Allegiance) {
+			this.Squad.Notify(SquadAction.TargetDestroyed);
 			return;
 		}
 			
@@ -143,16 +143,16 @@ public class Unit : Target
 			return;
 		
 		Vector3 targetLocation = target.Position;	
-		Vector3 firingPosition = targetLocation + mAttackVector;
+		Vector3 firingPosition = targetLocation + attackVector;
 		
 		float targetDistance = Vector3.SqrMagnitude(targetLocation - this.Position);
 		float firingPositionDistance = Vector3.SqrMagnitude(targetLocation - firingPosition);
 		
 		// if in range, start firing!
 		// do not move away from target
-		if (Vector3.Distance(this.Position, targetLocation) <= mCurrentWeapon.Range ||
+		if (Vector3.Distance(this.Position, targetLocation) <= currentWeapon.Range ||
 		    firingPositionDistance > targetDistance) {
-			mAttackState = AttackState.kRanged;
+			attackState = AttackState.Ranged;
 			UpdateAttack(target);
 			return;
 		}
@@ -160,9 +160,9 @@ public class Unit : Target
 		// Second priority is to move into the firing position
 		if (Vector3.Distance(this.Position, firingPosition) > 1.0f) {
 			//Debug.Log ("Moving into position");
-			UpdateMovement(firingPosition, mChargeSpeed);
+			UpdateMovement(firingPosition, chargeSpeed);
 		} else { // firing position reached, attack!
-			mAttackState = AttackState.kRanged;
+			attackState = AttackState.Ranged;
 			UpdateAttack(target);
 		}
 	}
@@ -175,34 +175,34 @@ public class Unit : Target
 		Vector3 targetLocation = target.Position;
 		float targetDistanceSquared = Vector3.SqrMagnitude(targetLocation - this.Position);
 		
-		for (int i = 0; i < mWeapons.Count; ++i) {
-			Weapon w = (Weapon)mWeapons.GetByIndex(i);
-			if (w == mCurrentWeapon) // can only check longer range weapons from here
+		for (int i = 0; i < weapons.Count; ++i) {
+			Weapon w = (Weapon)weapons.GetByIndex(i);
+			if (w == currentWeapon) // can only check longer range weapons from here
 				break; 
 				
 			// a shorter range weapon can be used
 		    if (w.Range * w.Range > targetDistanceSquared) { 
-				Squad.Notify(SquadAction.kWeaponChanged, this, i); // switch squad to this weapon
+				Squad.Notify(SquadAction.WeaponChanged, this, i); // switch squad to this weapon
 				break;
 		    }
 		}
 			
 		// Move into range of the target
-		if (targetDistanceSquared > mCurrentWeapon.Range * mCurrentWeapon.Range) {
-			mAttackState = AttackState.kEngaging;
-			UpdateMovement(targetLocation, mChargeSpeed);
+		if (targetDistanceSquared > currentWeapon.Range * currentWeapon.Range) {
+			attackState = AttackState.Engaging;
+			UpdateMovement(targetLocation, chargeSpeed);
 			return;
 		}
 		
-		if (mCurrentWeapon != null)
-			mCurrentWeapon.Attack(this, target);
+		if (currentWeapon != null)
+			currentWeapon.Attack(this, target);
 	}
 	
 	private void UpdateMovement(Vector3 targetLocation, float speed)
 	{
 		if (Vector3.SqrMagnitude(this.Position - targetLocation) < 1.0f) {
-			mMovementState = MovementState.kIdle;
-			this.Squad.Notify(SquadAction.kDestinationReached);
+			movementState = MovementState.Idle;
+			this.Squad.Notify(SquadAction.DestinationReached);
 			return;
 		}
 		
@@ -218,18 +218,18 @@ public class Unit : Target
 	// Update sprite set to match current health
 	private void UpdateDamageAnimation() 
 	{
-		if (mSprites == null)
+		if (sprites == null)
 			return;
 			
-		if (mHealth < 0)
+		if (health < 0)
 			return;
 		
-		if (mHealth != mPreviousHealth) {
+		if (health != previousHealth) {
 			SpriteRenderer sr = GetComponent<SpriteRenderer>();
-			sr.sprite = mSprites[mHealth];
+			sr.sprite = sprites[health];
 		}
 		
-		mPreviousHealth = mHealth;
+		previousHealth = health;
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////
@@ -241,29 +241,29 @@ public class Unit : Target
 	{
 		UpdateTargetState();
 		
-		switch (mAttackState)
+		switch (attackState)
 		{
-		case (AttackState.kIdle):
+		case (AttackState.Idle):
 			break;
 			
-		case (AttackState.kEngaging):
-			EngageTarget(mAttackTarget);
+		case (AttackState.Engaging):
+			EngageTarget(attackTarget);
 			break;
 			
-		case (AttackState.kRanged):
-			UpdateAttack(mAttackTarget);
+		case (AttackState.Ranged):
+			UpdateAttack(attackTarget);
 			break;
 		}
 		
-		switch (mMovementState)
+		switch (movementState)
 		{
-		case (MovementState.kIdle):
-			if(mAttackState == AttackState.kIdle)
-				UpdateMovement(mDestination, mMovementSpeed);
+		case (MovementState.Idle):
+			if(attackState == AttackState.Idle)
+				UpdateMovement(destination, movementSpeed);
 			break;
 			
-		case (MovementState.kMoving):
-			UpdateMovement(mDestination, mMovementSpeed);
+		case (MovementState.Moving):
+			UpdateMovement(destination, movementSpeed);
 			break;
 		}
 		
@@ -273,11 +273,11 @@ public class Unit : Target
 	// Initialize variables
 	protected void Awake ()
 	{
-		mSightRange = 39f;
-		mAttackState = AttackState.kIdle;
-		mAttackTarget = null;
+		sightRange = 39f;
+		attackState = AttackState.Idle;
+		attackTarget = null;
 		
-		mMovementState = MovementState.kIdle;
-		mDestination = new Vector3(0, 0, 0);
+		movementState = MovementState.Idle;
+		destination = new Vector3(0, 0, 0);
 	}
 }

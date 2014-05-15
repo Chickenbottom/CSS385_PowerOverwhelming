@@ -2,45 +2,45 @@
 using System.Collections;
 
 public class King : Unit {
-	private Progressbar HealthBar;
+	private ProgressBar HealthBar;
 	
 	protected new void Awake()
 	{
 		base.Awake();
 		
-		mSightRange = 5f;
-		mDefaultHealth = 100;
+		sightRange = 5f;
+		defaultHealth = 100;
 		
-		mMovementSpeed = 1f; // units per second
-		mChargeSpeed = 1f;   // speed used to engage enemies
+		movementSpeed = 1f; // units per second
+		chargeSpeed = 1f;   // speed used to engage enemies
 	}
 	
 	public void Start()
 	{
-		mWeapons = new SortedList();
+		weapons = new SortedList();
 		Weapon sword = new Sword();
-		mCurrentWeapon = sword;
-		mWeapons.Add (sword.Range, sword);
+		currentWeapon = sword;
+		weapons.Add (sword.Range, sword);
 		
-		mHealth = mDefaultHealth;
-		mPreviousHealth = mHealth;
+		health = defaultHealth;
+		previousHealth = health;
 		
 		GameObject o = GameObject.Find ("KingsHealthBar") as GameObject;
 		if (o == null)
 			Debug.Log ("King's Health Bar could not be loaded.");
 			
-		this.HealthBar = o.GetComponent<Progressbar>();
-		this.HealthBar.MaxValue = mDefaultHealth;
-		this.HealthBar.CurrentValue = mHealth;
+		this.HealthBar = o.GetComponent<ProgressBar>();
+		this.HealthBar.maxValue = defaultHealth;
+		this.HealthBar.currentValue = health;
 	}
 	
 	public override void Damage (int damage)
 	{
 		base.Damage (damage);
-		if (mHealth <= 0)
+		if (health <= 0)
 			GameState.TriggerLoss();
 			
-		Debug.Log ("King's Health: " + mHealth);
-		this.HealthBar.UpdateValue(mHealth);
+		Debug.Log ("King's Health: " + health);
+		this.HealthBar.UpdateValue(health);
 	}
 }

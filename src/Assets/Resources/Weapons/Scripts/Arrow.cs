@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Arrow : MonoBehaviour {
 
-	private float mSpeed = 100f;
-	private Vector3 mDestination;
+	private float speed = 100f;
+	private Vector3 destination;
 	
 	// Use this for initialization
 	void Start () {
@@ -24,17 +24,17 @@ public class Arrow : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		if (Vector3.Distance(transform.position, mDestination) < 1.0f) {
+		if (Vector3.Distance(transform.position, destination) < 1.0f) {
 			Destroy(this.gameObject);
 			Destroy(this);
 		}
 		
-		transform.position += mSpeed * Time.deltaTime * transform.up;
+		transform.position += speed * Time.deltaTime * transform.up;
 	}
 	
 	public void SetDestination(Vector3 destination)
 	{
-		mDestination = destination;
+		this.destination = destination;
 		
 		Vector3 toTarget = destination - transform.position;
 		transform.up = toTarget.normalized;

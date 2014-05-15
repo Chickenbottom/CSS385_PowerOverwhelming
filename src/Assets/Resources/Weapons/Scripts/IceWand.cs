@@ -3,7 +3,7 @@ using System.Collections;
 
 public class IceWand : Weapon {
 
-	private static GameObject mProjectilePrefab = null;
+	private static GameObject projectilePrefab = null;
 	
 	public IceWand ()
 	{
@@ -13,10 +13,10 @@ public class IceWand : Weapon {
 		ReloadVariance = 0.1f;
 		Accuracy = 0.8f;
 		
-		mReloadTimer = ReloadTime;
+		reloadTimer = ReloadTime;
 		
-		if (mProjectilePrefab == null)
-			mProjectilePrefab = Resources.Load("Weapons/IceBombPrefab") as GameObject;
+		if (projectilePrefab == null)
+			projectilePrefab = Resources.Load("Weapons/IceBombPrefab") as GameObject;
 	}
 	
 	public Target src;
@@ -25,9 +25,9 @@ public class IceWand : Weapon {
 		if (target == null)
 			return;
 		//base.PerformAttack(src, target);
-		mReloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
+		reloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
 		
-		GameObject o = (GameObject) GameObject.Instantiate(mProjectilePrefab);
+		GameObject o = (GameObject) GameObject.Instantiate(projectilePrefab);
 		IceBomb b = (IceBomb) o.GetComponent(typeof(IceBomb));
 		b.transform.position = src.transform.position;
 		b.SetParameters(src, target);

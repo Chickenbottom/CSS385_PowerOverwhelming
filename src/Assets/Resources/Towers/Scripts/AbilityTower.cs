@@ -9,8 +9,8 @@ public class AbilityTower: Tower {
 
     void Start()
     {
-        mTowerType = TowerType.kAbility;
-        mHealth = 100;
+        towerType = TowerType.Ability;
+        health = 100;
     }
 
 	public override void SetTarget(Vector3 location)

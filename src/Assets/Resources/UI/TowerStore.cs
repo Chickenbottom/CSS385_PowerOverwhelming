@@ -7,40 +7,40 @@ public class TowerStore : MonoBehaviour
 	public GUISkin GUISkin;
 	
 	protected enum Button {
-		kSwordsmanUp,
-		kSwordsmanDown,
-		kArcherUp,
-		kArcherDown,
-		kMageUp,
-		kMageDown,
+		SwordsmanUp,
+		SwordsmanDown,
+		ArcherUp,
+		ArcherDown,
+		MageUp,
+		MageDown,
 		
-		kNextLevel,
-		kLevelSelector,
+		NextLevel,
+		LevelSelector,
 	}
 	
 	protected enum Label {
-		kSwordsmanSquadCount,
-		kArcherSquadCount,
-		kMageSquadCount,
+		SwordsmanSquadCount,
+		ArcherSquadCount,
+		MageSquadCount,
 	}
 	
-	Dictionary<Button, ButtonData> mButtons;
-	Dictionary<Label, LabelData> mLabels;
+	Dictionary<Button, ButtonData> buttons;
+	Dictionary<Label, LabelData> labels;
 	
 	protected delegate int LabelValue();
 	
 	protected struct LabelData
 	{
 		public Rect Rect;
-		public string Text { get { return mLabelValue.Invoke().ToString(); } }
+		public string Text { get { return labelValue.Invoke().ToString(); } }
 		
-		private LabelValue mLabelValue;
+		private LabelValue labelValue;
 		
 		// Pass in a function that is used to fill the text of the label
 		public LabelData(Rect r, LabelValue l) 
 		{
 			Rect = r;
-			mLabelValue = l;
+			labelValue = l;
 		}
 	}
 	
@@ -60,30 +60,30 @@ public class TowerStore : MonoBehaviour
 	{
 		switch(button) 
 		{
-		case (Button.kSwordsmanUp):
-			GameState.UnitSquadCount[UnitType.kSwordsman] ++;
+		case (Button.SwordsmanUp):
+			GameState.UnitSquadCount[UnitType.Swordsman] ++;
 			break;
-		case (Button.kSwordsmanDown):
-			GameState.UnitSquadCount[UnitType.kSwordsman] --;
+		case (Button.SwordsmanDown):
+			GameState.UnitSquadCount[UnitType.Swordsman] --;
 			break;
-		case (Button.kArcherUp):
-			GameState.UnitSquadCount[UnitType.kArcher]  ++;
+		case (Button.ArcherUp):
+			GameState.UnitSquadCount[UnitType.Archer]  ++;
 			break;
-		case (Button.kArcherDown):
-			GameState.UnitSquadCount[UnitType.kArcher]  --;
+		case (Button.ArcherDown):
+			GameState.UnitSquadCount[UnitType.Archer]  --;
 			break;
-		case (Button.kMageUp):
-			GameState.UnitSquadCount[UnitType.kMage]  ++;
+		case (Button.MageUp):
+			GameState.UnitSquadCount[UnitType.Mage]  ++;
 			break;
-		case (Button.kMageDown):
-			GameState.UnitSquadCount[UnitType.kMage]  --;
+		case (Button.MageDown):
+			GameState.UnitSquadCount[UnitType.Mage]  --;
 			break;
 			
-		case (Button.kLevelSelector):
+		case (Button.LevelSelector):
 			Application.LoadLevel("LevelLoader");
 			break;
 			
-		case (Button.kNextLevel):
+		case (Button.NextLevel):
 			break;
 		}
 	}
@@ -95,48 +95,48 @@ public class TowerStore : MonoBehaviour
 	
 	void OnGUI () 
 	{
-		foreach(Button button in mButtons.Keys) {
-			if (GUI.Button(mButtons[button].rect, mButtons[button].text))
+		foreach(Button button in buttons.Keys) {
+			if (GUI.Button(buttons[button].rect, buttons[button].text))
 				HandleClick(button);
 		}
 		
 		GUI.skin = this.GUISkin;
-		foreach(Label label in mLabels.Keys) 
-			GUI.Label(mLabels[label].Rect, mLabels[label].Text);
+		foreach(Label label in labels.Keys) 
+			GUI.Label(labels[label].Rect, labels[label].Text);
 	}
 	
 	void Awake()
 	{
-		mButtons = new Dictionary<Button, ButtonData>();
-		mLabels = new Dictionary<Label, LabelData>();
+		buttons = new Dictionary<Button, ButtonData>();
+		labels = new Dictionary<Label, LabelData>();
 		
-		mButtons.Add (Button.kSwordsmanUp, 
+		buttons.Add (Button.SwordsmanUp, 
 		              new ButtonData(ScaleButton(new Rect(500, 230, 50, 25)), "+"));
-		mButtons.Add (Button.kSwordsmanDown, 
+		buttons.Add (Button.SwordsmanDown, 
 		              new ButtonData(ScaleButton(new Rect(500, 260, 50, 25)), "-"));
-		mLabels.Add (Label.kSwordsmanSquadCount, new LabelData(
+		labels.Add (Label.SwordsmanSquadCount, new LabelData(
 			ScaleButton(new Rect(450, 245, 40, 40)),
-			delegate { return GameState.UnitSquadCount[UnitType.kSwordsman]; } ));
+			delegate { return GameState.UnitSquadCount[UnitType.Swordsman]; } ));
 		              
-		mButtons.Add (Button.kArcherUp, 
+		buttons.Add (Button.ArcherUp, 
 		              new ButtonData(ScaleButton(new Rect(500, 350, 50, 25)), "+"));
-		mButtons.Add (Button.kArcherDown, 
+		buttons.Add (Button.ArcherDown, 
 		              new ButtonData(ScaleButton(new Rect(500, 380, 50, 25)), "-"));              
-		mLabels.Add (Label.kArcherSquadCount, new LabelData(
+		labels.Add (Label.ArcherSquadCount, new LabelData(
 			ScaleButton(new Rect(450, 365, 40, 40)),
-			delegate { return GameState.UnitSquadCount[UnitType.kArcher]; } ));
+			delegate { return GameState.UnitSquadCount[UnitType.Archer]; } ));
 			
-		mButtons.Add (Button.kMageUp, 
+		buttons.Add (Button.MageUp, 
 		              new ButtonData(ScaleButton(new Rect(500, 470, 50, 25)), "+"));
-		mButtons.Add (Button.kMageDown, 
+		buttons.Add (Button.MageDown, 
 		              new ButtonData(ScaleButton(new Rect(500, 500, 50, 25)), "-"));
-		mLabels.Add (Label.kMageSquadCount, new LabelData(
+		labels.Add (Label.MageSquadCount, new LabelData(
 			ScaleButton(new Rect(450, 485, 40, 40)),
-			delegate { return GameState.UnitSquadCount[UnitType.kMage]; } ));
+			delegate { return GameState.UnitSquadCount[UnitType.Mage]; } ));
 			
-		mButtons.Add (Button.kLevelSelector,
+		buttons.Add (Button.LevelSelector,
 		              new ButtonData(ScaleButton(new Rect(200, 650, 250, 60)), "Back to Level Selection"));
-		mButtons.Add (Button.kNextLevel, 
+		buttons.Add (Button.NextLevel, 
 		              new ButtonData(ScaleButton(new Rect(500, 650, 250, 60)), "Next Level"));
 	}
 
