@@ -130,7 +130,7 @@ public class Unit : Target
 			return;
 		}
 		
-		if (attackTarget.Allegiance == this.Squad.Allegiance) {
+		if (attackTarget.Allegiance == mAllegiance) {
 			this.Squad.Notify(SquadAction.TargetDestroyed);
 			return;
 		}
@@ -258,8 +258,8 @@ public class Unit : Target
 		switch (movementState)
 		{
 		case (MovementState.Idle):
-			if(attackState == AttackState.Idle)
-				UpdateMovement(destination, movementSpeed);
+			//if(attackState == AttackState.Idle)
+			//	UpdateMovement(destination, movementSpeed);
 			break;
 			
 		case (MovementState.Moving):

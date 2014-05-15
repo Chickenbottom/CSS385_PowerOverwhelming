@@ -36,8 +36,8 @@ public class IceBomb : MonoBehaviour {
 		Target target = other.gameObject.GetComponent<Target>();
 		FrozenEffect f = other.gameObject.GetComponent<FrozenEffect>();
 		
-		// do not target squads directly, do not retarget frozen targets
-		if (target is Squad || f != null) 
+		// do not retarget frozen targets
+		if (f != null) 
 			return;
 
 		if (target is Tower) {
@@ -48,15 +48,13 @@ public class IceBomb : MonoBehaviour {
 		if (! (target is Unit))
 			return;
 
-		Squad s = ((Unit) mSource).Squad;
-		if (target != null && target.Allegiance != s.Allegiance) {
+		if (target != null && target.Allegiance != mSource.Allegiance) {
 			target.gameObject.AddComponent("FrozenEffect");
 			f = other.gameObject.GetComponent<FrozenEffect>();
 			f.target = target.GetComponent<Target>();
 			f.Freeze();
 			
-			IDamagable e = (IDamagable) target.GetComponent(typeof(IDamagable));
-			e.Damage(5);
+			target.Damage(5);
 		}
 	
 	}

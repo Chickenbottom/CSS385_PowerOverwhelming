@@ -27,7 +27,7 @@ public enum SquadState {
 	Melee,
 }
 
-public class Squad : Target
+public class Squad : MonoBehaviour
 {
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods
@@ -37,7 +37,11 @@ public class Squad : Target
 	public UnitType unitType;
 	public Vector3 squadCenter;
 	public Vector3 rallyPoint;
-	public SquadState SquadState;
+	public SquadState SquadState 
+	{ 
+		get { return mSquadState; } 
+		set { mSquadState = value; Debug.Log (this.name + " : " + mSquadState.ToString()); }
+	}
 	public bool IsIdle { get { return SquadState == SquadState.Idle; } }
 	public bool isIndependent = false;
 	public SpriteRenderer sightCircle;
@@ -135,14 +139,12 @@ public class Squad : Target
 			Vector3 memberPosition = this.transform.position;
 			memberPosition += randomPositions[i];
 			u.transform.position = memberPosition;
-			u.Allegiance = this.Allegiance;
+			u.Allegiance = mAllegiance;
 			this.GetComponent<CircleCollider2D>().radius = u.sightRange;
 		}
 		
 		this.UpdateSquadDestination(this.rallyPoint);
 	}
-	
-	public override void Damage(int damage) {}
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods
@@ -150,8 +152,11 @@ public class Squad : Target
 	private GameObject unitPrefab;
 	private GameObject enemyPrefab;
 	private Target target;
+	private Squad mTargetSquad;
 	private List<Unit> squadMembers;
+	protected Allegiance mAllegiance;
 	static Dictionary<UnitType, GameObject> unitPrefabs = null;
+	private SquadState mSquadState;
 		
 	// Squad members form concentric circles around the squad center
 	// the member width is used to determine the width of each band of the circles
@@ -166,7 +171,7 @@ public class Squad : Target
 		
 		Unit u = (Unit) enemyUnit.GetComponent(typeof(Unit));
 		if (u != null) {
-			target = u.Squad;
+			mTargetSquad = u.Squad;
 			AttackEnemySquad(u.Squad);
 			return;
 		}
@@ -182,7 +187,7 @@ public class Squad : Target
 	private void AssignNewTarget(Unit who)
 	{
 		GameState.AddExperience(this.unitType, 1);
-		List<Unit> mEnemies = ((Squad)target).squadMembers;
+		List<Unit> mEnemies = mTargetSquad.squadMembers;
 		int numEnemies = mEnemies.Count;
 		
 		if (numEnemies == 0)
@@ -375,10 +380,7 @@ public class Squad : Target
 		
 		Target target = other.gameObject.GetComponent<Target>();
 		
-		if (target is Squad) // do not target squads directly
-			return;
-		
-		if (target != null && target.Allegiance != this.Allegiance) {
+		if (target != null && target.Allegiance != mAllegiance) {
 			Notify (SquadAction.EnemySighted, target);
 		}
 		//this.OnTriggerEnter2D(other);
@@ -411,11 +413,10 @@ public class Squad : Target
 		if (null == unitPrefabs) 
 			InitializePrefabs();
 	
-		
-		SquadState = SquadState.Idle;
+		this.SquadState = SquadState.Idle;
 		if (isIndependent) {
-			this.Spawn(this.Position);
-			this.UpdateSquadDestination(this.Position);
+			this.Spawn(this.transform.position);
+			this.UpdateSquadDestination(this.transform.position);
 		}
 	}
 }

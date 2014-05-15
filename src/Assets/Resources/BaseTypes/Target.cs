@@ -6,7 +6,7 @@ public enum Allegiance {
 	AI,
 }
 
-public abstract class Target : MonoBehaviour, IDamagable
+public abstract class Target : MonoBehaviour
 {
     public Allegiance Allegiance 
     {
@@ -22,5 +22,6 @@ public abstract class Target : MonoBehaviour, IDamagable
 	
 	public abstract void Damage(int damage);
 	
+	protected int mHealth;
 	protected Allegiance mAllegiance;
 }

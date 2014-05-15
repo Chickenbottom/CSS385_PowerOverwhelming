@@ -34,8 +34,6 @@ public abstract class Weapon
 			return;
 		
 		reloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
-		
-		IDamagable e = (IDamagable) target.GetComponent(typeof(IDamagable));
-		e.Damage(this.Damage);
+		target.Damage(this.Damage);
 	}
 }
