@@ -105,7 +105,7 @@ public class Squad : Target
 		if (type != null)
 			unitType = type.Value;
 
-		this.Allegiance = allegiance;
+		mAllegiance = allegiance;
 
 		if (NumSquadMembers == 0)
 			NumSquadMembers = GameState.UnitSquadCount[unitType];
@@ -378,7 +378,7 @@ public class Squad : Target
 		if (target is Squad) // do not target squads directly
 			return;
 		
-		if (target != null && target.Allegiance != this.allegiance) {
+		if (target != null && target.Allegiance != this.Allegiance) {
 			Notify (SquadAction.EnemySighted, target);
 		}
 		//this.OnTriggerEnter2D(other);

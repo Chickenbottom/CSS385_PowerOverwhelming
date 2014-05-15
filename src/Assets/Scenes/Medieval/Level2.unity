@@ -145,11 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumSquadMembers: 1
-  unitType: 0
+  unitType: 5
   squadCenter: {x: 0, y: 0, z: 0}
   rallyPoint: {x: 0, y: 0, z: 0}
   SquadState: 0
-  isIndependent: 0
+  isIndependent: 1
   sightCircle: {fileID: 16035528}
 --- !u!212 &16035528
 SpriteRenderer:
@@ -2532,6 +2532,14 @@ Prefab:
     - target: {fileID: 11400000, guid: 545f263290e26224ca8aa9550fab7758, type: 2}
       propertyPath: IsIndependent
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 545f263290e26224ca8aa9550fab7758, type: 2}
+      propertyPath: isIndependent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 545f263290e26224ca8aa9550fab7758, type: 2}
+      propertyPath: unitType
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 545f263290e26224ca8aa9550fab7758, type: 2}

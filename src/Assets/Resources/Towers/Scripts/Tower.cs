@@ -41,7 +41,7 @@ public abstract class Tower : Target
         if (health < 0) {
 			health = 20;
 			Debug.Log ("Tower destroyed!");
-			allegiance = this.Allegiance == Allegiance.Rodelle
+			mAllegiance = this.Allegiance == Allegiance.Rodelle
 				? Allegiance.AI
 				: Allegiance.Rodelle;
 				
@@ -60,7 +60,7 @@ public abstract class Tower : Target
     void Awake()
     {
 		health = 10;
-		allegiance = Allegiance.Rodelle;
+		mAllegiance = Allegiance.Rodelle;
 		this.ShowSelector(false);
     }
     

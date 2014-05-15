@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae00257a239743245a4caf9ec525148e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Emitter: {fileID: 100000, guid: 9e14b170666d32f49bc80a79c1daa65b, type: 2}
+  emitter: {fileID: 100000, guid: 9e14b170666d32f49bc80a79c1daa65b, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
