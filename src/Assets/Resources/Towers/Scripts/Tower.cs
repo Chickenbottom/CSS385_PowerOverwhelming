@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum TowerType {
 	Ability,
@@ -9,12 +10,17 @@ public enum TowerType {
 public abstract class Tower : Target
 {
 	///////////////////////////////////////////////////////////////////////////////////
-	// Public Methods and Variables
+	// Inspector Presets
 	///////////////////////////////////////////////////////////////////////////////////
 	public UnitType UnitSpawnType;
 	public Renderer TowerSelector;
 	public ProgressBar TowerHealthBar;
+	public List<Sprite> DamagedSprites;
+	public Sprite CapturedSprite;
 	
+	///////////////////////////////////////////////////////////////////////////////////
+	// Public Methods and Variables
+	///////////////////////////////////////////////////////////////////////////////////
 	public abstract void Click();
     
 	/// <summary>
@@ -24,7 +30,8 @@ public abstract class Tower : Target
 	/// <param name="location">Location. The game coodinate clicked on.</param>
 	public abstract void SetTarget(Vector3 location);
     
-	public int health;
+    public int MaxHealth = 20;
+	public int health = 20;
 	protected TowerType towerType;    
     
     public void ShowSelector(bool status)
@@ -39,7 +46,7 @@ public abstract class Tower : Target
     {
         health -= damage;
         
-        if (health < 0) {
+        if (health <= 0) {
 			health = 8;
 			Debug.Log ("Tower destroyed!");
 			mAllegiance = this.Allegiance == Allegiance.Rodelle
@@ -49,7 +56,7 @@ public abstract class Tower : Target
 			if (this.Allegiance != Allegiance.Rodelle)
 				this.ShowSelector(false);
         }
-        
+		UpdateAnimation();
         TowerHealthBar.Value = health;
     }
     
@@ -57,16 +64,32 @@ public abstract class Tower : Target
 	// Private Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
 	
+	private void UpdateAnimation()
+	{
+		SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
+		if (sr == null || DamagedSprites.Count == 0)
+			return;
+		
+		if (this.Allegiance == Allegiance.AI)
+			sr.sprite = CapturedSprite;
+		else { 
+			float percentDamaged = (float) (MaxHealth - health) / (float) MaxHealth;
+			int spriteIndex =  (int)(percentDamaged * DamagedSprites.Count);
+				
+			sr.sprite = DamagedSprites[spriteIndex];
+		}
+	}
+	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Unity Overrides
 	/////////////////////////////////////////////////////////////////////////////////// 
     void Awake()
     {
-		health = 20;
 		mAllegiance = Allegiance.Rodelle;
-		TowerHealthBar.maxValue = health;
+		TowerHealthBar.maxValue = MaxHealth;
 		TowerHealthBar.Value = health;
 		this.ShowSelector(false);
+		UpdateAnimation();
     }
     
 	void OnMouseDown()
