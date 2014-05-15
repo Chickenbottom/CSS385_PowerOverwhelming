@@ -139,7 +139,7 @@ public class Squad : MonoBehaviour
 			memberPosition += randomPositions[i];
 			u.transform.position = memberPosition;
 			u.Allegiance = mAllegiance;
-			this.GetComponent<CircleCollider2D>().radius = u.sightRange;
+			this.GetComponent<CircleCollider2D>().radius = u.SightRange;
 		}
 		
 		this.UpdateSquadDestination(this.rallyPoint);

@@ -3,8 +3,7 @@ using System.Collections;
 
 public class FrozenEffect : MonoBehaviour 
 {
-	public Target target; // TODO generalize to target
-	
+	public Target target;
 	
 	private float mDuration = 5f;
 	private float timer;
@@ -23,11 +22,11 @@ public class FrozenEffect : MonoBehaviour
 
 		Unit u = target.GetComponent<Unit> ();
 		if (u != null) {
-			originalCharge = u.chargeSpeed;
-			originalMovement = u.movementSpeed;
+			originalCharge = u.ChargeSpeed;
+			originalMovement = u.MoveSpeed;
 
-			u.chargeSpeed = 0f;
-			u.movementSpeed = 0f;
+			u.ChargeSpeed = 0f;
+			u.MoveSpeed = 0f;
 		}	
 	}
 	
@@ -35,8 +34,8 @@ public class FrozenEffect : MonoBehaviour
 	{
 		Unit u = target.GetComponent<Unit> ();
 		if (u != null) {
-			u.chargeSpeed = originalCharge;
-			u.movementSpeed = originalMovement;
+			u.ChargeSpeed = originalCharge;
+			u.MoveSpeed = originalMovement;
 		}
 		Destroy(this);
 	}

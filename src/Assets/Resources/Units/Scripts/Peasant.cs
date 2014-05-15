@@ -7,7 +7,7 @@ public class Peasant : Unit
 	{
 		base.Awake();
 	
-		sightRange = 10f;
+		SightRange = 10f;
 		defaultHealth = 5;
 		
 		movementSpeed = 8f; // units per second

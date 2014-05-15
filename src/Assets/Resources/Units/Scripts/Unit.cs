@@ -6,10 +6,23 @@ public class Unit : Target
 {	
 	public Squad Squad { get; set; }
 	public float Range { get { return currentWeapon.Range; } }
+	public bool IsIdle { get { return this.movementState == MovementState.Idle; } }
+	public float SightRange = 39f;
 	
-	///////////////////////////////////////////////////////////////////////////////////
-	// Public Methods
-	///////////////////////////////////////////////////////////////////////////////////
+	// TODO replace with unit stats dictionary
+	public float MoveSpeed { // units per second
+		get { return movementSpeed; } 
+		set { movementSpeed = value; }
+	} 
+	
+	public float ChargeSpeed { // units per second
+		get { return chargeSpeed; } 
+		set { chargeSpeed = value; }
+	} 
+	
+///////////////////////////////////////////////////////////////////////////////////
+// Public Methods
+///////////////////////////////////////////////////////////////////////////////////
 	
 	/// <summary>
 	/// Updates the destination of the unit.
@@ -23,7 +36,7 @@ public class Unit : Target
 		if (attackTarget == null) // can only move if there is no one in range
 			movementState = MovementState.Moving;
 	}
-	
+		
 	/// <summary>
 	/// Engage the specified target from the given firingPosition.
 	/// Units will attempt to move towards the firingPosition before attacking enemies.
@@ -70,8 +83,8 @@ public class Unit : Target
 	}
 	
 	/// <summary>
-	/// Disenganges the unit from combat and starts them moving towrads their original destination.
-	/// The unit will begin searching for new targets and will switch to their longest ranged weapon.
+	/// Disenganges the unit from combat and starts them moving towards their original destination.
+	/// The unit switches to their longest ranged weapon.
 	/// </summary>
 	public void Disengage()
 	{
@@ -81,12 +94,10 @@ public class Unit : Target
 		
 		SwitchToWeapon(weapons.Count - 1); // longest range weapon
 	}	
-
-	public bool IsIdle { get { return this.movementState == MovementState.Idle; } }
 	
-	///////////////////////////////////////////////////////////////////////////////////
-	// Private Methods
-	///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Private Methods
+///////////////////////////////////////////////////////////////////////////////////
 	
 	protected enum MovementState {
 		Moving, Idle
@@ -99,9 +110,8 @@ public class Unit : Target
 	private UnitAnimation mUnitAnimator;
 	protected int defaultHealth;
 	
-	public float sightRange = 39f;
-	public float movementSpeed; // units per second
-	public float chargeSpeed;   // speed used to engage enemies
+	protected float movementSpeed; // units per second
+	protected float chargeSpeed;   // speed used to engage enemies
 	
 	protected Weapon currentWeapon = null;
 	protected SortedList weapons;
@@ -236,9 +246,9 @@ public class Unit : Target
 			mUnitAnimator.WalkLeft();
 	}
 	
-	///////////////////////////////////////////////////////////////////////////////////
-	// Unity Overrides
-	///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Unity Overrides
+///////////////////////////////////////////////////////////////////////////////////
 	
 	// Update is called once per frame
 	void FixedUpdate () 
@@ -275,7 +285,6 @@ public class Unit : Target
 	// Initialize variables
 	protected void Awake ()
 	{
-		sightRange = 39f;
 		attackState = AttackState.Idle;
 		attackTarget = null;
 		

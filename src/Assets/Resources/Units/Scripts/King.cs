@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class King : Unit {
@@ -7,11 +7,11 @@ public class King : Unit {
 	{
 		base.Awake();
 		
-		sightRange = 5f;
+		SightRange = 0f;
 		defaultHealth = 100;
 		
-		movementSpeed = 1f; // units per second
-		chargeSpeed = 1f;   // speed used to engage enemies
+		movementSpeed = 0f; // units per second
+		chargeSpeed = 0f;   // speed used to engage enemies
 		
 		GameState.KingsHealth = defaultHealth;
 	}
