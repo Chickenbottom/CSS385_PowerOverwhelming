@@ -81,6 +81,8 @@ public class Unit : Target
 		
 		SwitchToWeapon(mWeapons.Count - 1); // longest range weapon
 	}	
+
+	public bool IsIdle { get { return this.mMovementState == MovementState.kIdle; } }
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods

@@ -8,7 +8,7 @@ public class Pitchfork : Weapon
 	public Pitchfork()
 	{
 		Damage = 2;
-		Range = 8f;
+		Range = 12f;
 		ReloadTime = 3.0f;
 		ReloadVariance = 0.5f;
 		Accuracy = 0.8f;

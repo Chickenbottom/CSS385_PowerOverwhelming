@@ -50,7 +50,7 @@ public class Squad : Target
 			break;
 			
 		case(SquadAction.kDestinationReached):
-			this.SquadState = SquadState.kIdle;
+			CheckSquadIdle();
 			break;
 			
 		case(SquadAction.kUnitDestroyed):
@@ -70,7 +70,18 @@ public class Squad : Target
 			break;
 		}
 	}
-	
+
+	private void CheckSquadIdle()
+	{
+		int idleCount = 0;
+		foreach (Unit u in mSquadMembers)
+			if (u.IsIdle)
+				idleCount ++;
+
+		if ((float) idleCount / (float) mSquadMembers.Count > 0.75)
+			this.SquadState = SquadState.kIdle;	
+	}
+
 	public void UpdateSquadDestination(Vector3 location) 
 	{
 		this.SquadState = SquadState.kMoving;
@@ -126,7 +137,6 @@ public class Squad : Target
 			u.transform.position = memberPosition;
 			u.Allegiance = this.Allegiance;
 			this.GetComponent<CircleCollider2D>().radius = u.mSightRange;
-			this.SightCircle.transform.localScale = new Vector3 (u.mSightRange / 3f, u.mSightRange / 3f, 1f);
 		}
 		
 		this.UpdateSquadDestination(this.RallyPoint);
