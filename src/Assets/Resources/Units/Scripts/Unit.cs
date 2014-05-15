@@ -18,7 +18,7 @@ public class Unit : Target
 	/// <param name="target">Desination. The location to move towards. </param>
 	public void MoveTo(Vector3 destination) 
 	{
-		destination = destination;
+		this.destination = destination;
 		
 		if (attackTarget == null) // can only move if there is no one in range
 			movementState = MovementState.Moving;

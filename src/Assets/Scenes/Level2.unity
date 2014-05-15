@@ -145,12 +145,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumSquadMembers: 1
-  UnitType: 5
-  SquadCenter: {x: 0, y: 0, z: 0}
-  RallyPoint: {x: 0, y: 0, z: 0}
+  unitType: 0
+  squadCenter: {x: 0, y: 0, z: 0}
+  rallyPoint: {x: 0, y: 0, z: 0}
   SquadState: 0
-  IsIndependent: 1
-  SightCircle: {fileID: 0}
+  isIndependent: 0
+  sightCircle: {fileID: 16035528}
 --- !u!212 &16035528
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -239,9 +239,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitSpawnType: 3
   TowerSelector: {fileID: 1734501054}
-  mHealth: 0
-  SquadManager: {fileID: 402212068}
-  Tent: {fileID: 876563391}
+  health: 0
+  squadManager: {fileID: 402212068}
+  tent: {fileID: 876563391}
 --- !u!61 &35293066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6399b29055bcbf34bad41c08bf103128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SquadType: 0
+  squadType: 4
 --- !u!212 &84667853
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -648,8 +648,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343c7ce68c0c9c2499831d375e8eb307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueLeft: {fileID: 592758732}
-  DialogueRight: {fileID: 1091989124}
+  dialogueLeft: {fileID: 592758732}
+  dialogueRight: {fileID: 1091989124}
 --- !u!4 &237291328
 Transform:
   m_ObjectHideFlags: 0
@@ -762,9 +762,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitSpawnType: 4
   TowerSelector: {fileID: 708747260}
-  mHealth: 0
-  SquadManager: {fileID: 84667852}
-  Tent: {fileID: 1721311353}
+  health: 0
+  squadManager: {fileID: 84667852}
+  tent: {fileID: 1721311353}
 --- !u!61 &307255316
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -922,8 +922,8 @@ MonoBehaviour:
   box_length: 0
   cur_obj: {fileID: 354176781}
   PPtr<Object>: {fileID: 354176784}
-  CurrentValue: 0
-  MaxValue: 0
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &354176784
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b31c90c63b16f44b4a1ce07438018e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumWaves: 3
+  numWaves: 3
 --- !u!4 &401559014
 Transform:
   m_ObjectHideFlags: 0
@@ -1109,7 +1109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6399b29055bcbf34bad41c08bf103128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SquadType: 3
+  squadType: 3
 --- !u!212 &402212069
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1174,7 +1174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6399b29055bcbf34bad41c08bf103128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SquadType: 0
+  squadType: 2
 --- !u!212 &456529789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1444,9 +1444,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitSpawnType: 2
   TowerSelector: {fileID: 1989766253}
-  mHealth: 0
-  SquadManager: {fileID: 456529788}
-  Tent: {fileID: 592284321}
+  health: 0
+  squadManager: {fileID: 456529788}
+  tent: {fileID: 592284321}
 --- !u!61 &674620535
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1788,8 +1788,8 @@ MonoBehaviour:
   box_length: 0
   cur_obj: {fileID: 950509910}
   PPtr<Object>: {fileID: 950509913}
-  CurrentValue: 0
-  MaxValue: 100
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &950509913
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1962,7 +1962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitSpawnType: 0
   TowerSelector: {fileID: 1660554373}
-  mHealth: 0
+  health: 0
 --- !u!212 &1091159856
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2311,6 +2311,18 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ef47dcf4ed6516d44a28977d2a0a70d9, type: 2}
+      propertyPath: squadType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef47dcf4ed6516d44a28977d2a0a70d9, type: 2}
+      propertyPath: squadManager
+      value: 
+      objectReference: {fileID: 84667852}
+    - target: {fileID: 11400000, guid: ef47dcf4ed6516d44a28977d2a0a70d9, type: 2}
+      propertyPath: tent
+      value: 
+      objectReference: {fileID: 1721311353}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef47dcf4ed6516d44a28977d2a0a70d9, type: 2}
   m_RootGameObject: {fileID: 307255313}
@@ -2356,6 +2368,56 @@ Prefab:
   m_RootGameObject: {fileID: 354176781}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1549738304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1549738307}
+  - 61: {fileID: 1549738306}
+  - 114: {fileID: 1549738305}
+  m_Layer: 0
+  m_Name: ClickBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1549738305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1549738304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471de966e8e81294d8ca60bb75127c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1549738306
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1549738304}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: 166.639999, y: 112.400002}
+  m_Center: {x: -31.7000008, y: -.800000012}
+--- !u!4 &1549738307
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1549738304}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1572049682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2579,6 +2641,18 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
+      propertyPath: squadType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
+      propertyPath: squadManager
+      value: 
+      objectReference: {fileID: 402212068}
+    - target: {fileID: 11400000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
+      propertyPath: tent
+      value: 
+      objectReference: {fileID: 876563391}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
   m_RootGameObject: {fileID: 35293062}
@@ -2729,8 +2803,8 @@ MonoBehaviour:
   box_length: 0
   cur_obj: {fileID: 1748308530}
   PPtr<Object>: {fileID: 1748308533}
-  CurrentValue: 0
-  MaxValue: 100
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &1748308533
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2803,6 +2877,18 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: acb8e4f0ecfa4764ca67c17641d88a3c, type: 2}
+      propertyPath: squadType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: acb8e4f0ecfa4764ca67c17641d88a3c, type: 2}
+      propertyPath: tent
+      value: 
+      objectReference: {fileID: 592284321}
+    - target: {fileID: 11400000, guid: acb8e4f0ecfa4764ca67c17641d88a3c, type: 2}
+      propertyPath: squadManager
+      value: 
+      objectReference: {fileID: 456529788}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acb8e4f0ecfa4764ca67c17641d88a3c, type: 2}
   m_RootGameObject: {fileID: 674620531}
@@ -2993,8 +3079,8 @@ MonoBehaviour:
   box_length: 0
   cur_obj: {fileID: 2015310673}
   PPtr<Object>: {fileID: 2015310675}
-  CurrentValue: 0
-  MaxValue: 100
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &2015310675
 SpriteRenderer:
   m_ObjectHideFlags: 0

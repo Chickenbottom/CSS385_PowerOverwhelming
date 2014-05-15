@@ -68,12 +68,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumSquadMembers: 0
-  UnitType: 0
-  SquadCenter: {x: 0, y: 0, z: 0}
-  RallyPoint: {x: 0, y: 0, z: 0}
+  unitType: 0
+  squadCenter: {x: 0, y: 0, z: 0}
+  rallyPoint: {x: 0, y: 0, z: 0}
   SquadState: 0
-  IsIndependent: 0
-  SightCircle: {fileID: 0}
+  isIndependent: 0
+  sightCircle: {fileID: 21200000}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -100,10 +100,10 @@ public class Squad : Target
 		}
 	}
 	
-	public void Spawn(Vector3 location, UnitType? unitType = null, Allegiance allegiance = Allegiance.Rodelle)
+	public void Spawn(Vector3 location, UnitType? type = null, Allegiance allegiance = Allegiance.Rodelle)
 	{
-		if (unitType != null)
-			unitType = unitType.Value;
+		if (type != null)
+			unitType = type.Value;
 
 		this.Allegiance = allegiance;
 
