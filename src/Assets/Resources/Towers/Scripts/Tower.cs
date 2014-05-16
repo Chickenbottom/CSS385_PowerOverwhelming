@@ -19,6 +19,7 @@ public abstract class Tower : Target
 	public Sprite CapturedSprite;
 
     public bool canTargetTowers;
+    
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods and Variables
@@ -66,6 +67,8 @@ public abstract class Tower : Target
 	// Private Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
 	
+	private float mSpawnTime;
+	
 	private void UpdateAnimation()
 	{
 		SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
@@ -85,7 +88,7 @@ public abstract class Tower : Target
 	///////////////////////////////////////////////////////////////////////////////////
 	// Unity Overrides
 	/////////////////////////////////////////////////////////////////////////////////// 
-    void Awake()
+    protected virtual void Awake()
     {
 		mAllegiance = Allegiance.Rodelle;
 		TowerHealthBar.maxValue = MaxHealth;

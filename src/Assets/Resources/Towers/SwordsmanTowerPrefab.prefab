@@ -193,7 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab51d8b52739e74aa7fb1a7ea306c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitSpawnType: 2
   TowerSelector: {fileID: 21200002}
   TowerHealthBar: {fileID: 11400004}
   DamagedSprites:
@@ -201,10 +200,12 @@ MonoBehaviour:
   - {fileID: 21300008, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300016, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300024, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
+  canTargetTowers: 0
   MaxHealth: 20
   health: 20
   squadManager: {fileID: 11400002}
-  tent: {fileID: 100004}
+  Tent: {fileID: 100004}
+  UnitSpawnType: 2
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -17,13 +17,14 @@ public class GameState {
     public static Dictionary<UnitType, int> UnitSquadCount { get; set; }
 	public static Dictionary<UnitType, int> UnitExperience { get; set; }
 	public static Dictionary<UnitType, int> RequiredUnitExperience { get; set; }
-
+	public static Dictionary<UnitType, float> SpawnTimes { get; set; }
+	
 	static GameState()
 	{
 		// TODO pull these values from a file
 		UnitSquadCount = new Dictionary<UnitType, int>();
-		UnitSquadCount.Add(UnitType.Archer, 4);
-		UnitSquadCount.Add(UnitType.Swordsman, 3);
+		UnitSquadCount.Add(UnitType.Archer, 2);
+		UnitSquadCount.Add(UnitType.Swordsman, 4);
 		UnitSquadCount.Add(UnitType.Mage, 1);
 		
 		UnitExperience = new Dictionary<UnitType, int>();
@@ -35,6 +36,11 @@ public class GameState {
 		RequiredUnitExperience.Add(UnitType.Archer, 20);
 		RequiredUnitExperience.Add(UnitType.Swordsman, 20);
 		RequiredUnitExperience.Add(UnitType.Mage, 20);
+		
+		SpawnTimes = new Dictionary<UnitType, float>();
+		SpawnTimes.Add(UnitType.Archer, 18f);
+		SpawnTimes.Add(UnitType.Swordsman, 5f);
+		SpawnTimes.Add(UnitType.Mage, 25f);
 	}
 	
 	public static void AddExperience(UnitType unitType, int exp)

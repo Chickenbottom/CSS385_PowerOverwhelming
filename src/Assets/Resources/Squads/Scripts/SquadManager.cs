@@ -9,7 +9,8 @@ public class SquadManager : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////////////
 	public UnitType squadType = UnitType.None;
 	
-	public void SetDestination(Vector3 location) {
+	public void SetDestination(Vector3 location) 
+	{
 		location.z = 0;
 		RemoveDeadSquads();
 		rallyPoint = location;
@@ -42,6 +43,12 @@ public class SquadManager : MonoBehaviour
 			
 		squads.Add (squad);
 		squad.SetDestination(rallyPoint);
+	}
+	
+	public int NumSquads()
+	{
+		this.RemoveDeadSquads();
+		return squads.Count;
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////
