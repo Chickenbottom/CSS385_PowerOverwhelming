@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProgressBar : MonoBehaviour {
+public class Progressbar : MonoBehaviour {
 	
 	public int Value { 
 		get { return currentValue; }

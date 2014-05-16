@@ -14,7 +14,7 @@ public abstract class Tower : Target
 	///////////////////////////////////////////////////////////////////////////////////
 	
 	public Renderer TowerSelector;
-	public ProgressBar TowerHealthBar;
+	public Progressbar TowerHealthBar;
 	public List<Sprite> DamagedSprites;
 	public Sprite CapturedSprite;
 
@@ -51,7 +51,6 @@ public abstract class Tower : Target
         
         if (health <= 0) {
 			health = 8;
-			Debug.Log ("Tower destroyed!");
 			mAllegiance = this.Allegiance == Allegiance.Rodelle
 				? Allegiance.AI
 				: Allegiance.Rodelle;

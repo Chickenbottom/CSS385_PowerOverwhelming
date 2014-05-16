@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 	
-	public ProgressBar KingsHealthBar;
-	public ProgressBar SwordsmanExperienceBar;
-	public ProgressBar ArcherExperienceBar;
-	public ProgressBar MageExperienceBar;
+	public Progressbar KingsHealthBar;
+	public Progressbar SwordsmanExperienceBar;
+	public Progressbar ArcherExperienceBar;
+	public Progressbar MageExperienceBar;
 	
 	public void OnGUI()
 	{
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 		GUI.Label(new Rect(135, 65, 150, 50), "Left-Alt to spawn");
 	}
 	
-	private Dictionary<UnitType, ProgressBar> mExpBars;
+	private Dictionary<UnitType, Progressbar> mExpBars;
 	
 	void Start()
 	{
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
 		    Debug.LogError("Experience and health bars need to be attached to the game manager!");
 		}
 		
-		mExpBars = new Dictionary<UnitType, ProgressBar>();
+		mExpBars = new Dictionary<UnitType, Progressbar>();
 		mExpBars.Add(UnitType.Archer, ArcherExperienceBar);
 		mExpBars.Add(UnitType.Swordsman, SwordsmanExperienceBar);
 		mExpBars.Add(UnitType.Mage, MageExperienceBar);
