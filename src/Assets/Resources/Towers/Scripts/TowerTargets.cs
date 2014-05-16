@@ -42,4 +42,16 @@ public class TowerTargets : MonoBehaviour {
         return targets[index];
     }
 
+    public Tower GetTarget(Vector3 mousePos)
+    {
+        foreach (Bounds b in bounds)
+        {
+            if (b.Contains(mousePos))
+            {
+                return targets[bounds.IndexOf(b)];
+            }
+        }
+        return null;
+    }
+
 }

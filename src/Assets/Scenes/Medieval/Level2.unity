@@ -308,6 +308,7 @@ MonoBehaviour:
   - {fileID: 21300010, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300018, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300026, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
+  canTargetTowers: 0
   MaxHealth: 20
   health: 20
   squadManager: {fileID: 402212068}
@@ -897,6 +898,7 @@ MonoBehaviour:
   - {fileID: 21300012, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300020, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300028, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
+  canTargetTowers: 0
   MaxHealth: 20
   health: 20
   squadManager: {fileID: 84667852}
@@ -1628,6 +1630,7 @@ MonoBehaviour:
   - {fileID: 21300008, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300016, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300024, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
+  canTargetTowers: 0
   MaxHealth: 20
   health: 20
   squadManager: {fileID: 456529788}
@@ -2214,6 +2217,7 @@ MonoBehaviour:
   - {fileID: 21300014, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300022, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300030, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
+  canTargetTowers: 1
   MaxHealth: 20
   health: 20
   ability: {fileID: 538972986}
@@ -2635,6 +2639,10 @@ Prefab:
       propertyPath: m_Name
       value: AbilityTowerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: d99d9b75cf600464d9d57efc5a048123, type: 2}
+      propertyPath: canTargetTowers
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d99d9b75cf600464d9d57efc5a048123, type: 2}
   m_RootGameObject: {fileID: 1091159852}
@@ -2996,6 +3004,10 @@ Prefab:
     - target: {fileID: 400000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
+      propertyPath: canTargetTowers
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}

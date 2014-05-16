@@ -17,6 +17,8 @@ public abstract class Tower : Target
 	public ProgressBar TowerHealthBar;
 	public List<Sprite> DamagedSprites;
 	public Sprite CapturedSprite;
+
+    public bool canTargetTowers;
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods and Variables
@@ -97,7 +99,7 @@ public abstract class Tower : Target
 	{
         if (this.Allegiance == Allegiance.Rodelle)
         {
-            GameObject.Find("GameManager").GetComponent<MouseManager>().Select(this);
+            GameObject.Find("GameManager").GetComponent<MouseManager>().TowerClicked(this);
         }	
     }
 }
