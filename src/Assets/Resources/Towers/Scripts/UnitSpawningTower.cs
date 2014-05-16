@@ -5,15 +5,12 @@ public class UnitSpawningTower : Tower {
 
 	public SquadManager squadManager;
 	public GameObject tent;
+    public UnitType UnitSpawnType;
     // private SquadManager squads;
 
     void Start()
     {
         towerType = TowerType.UnitSpawner;
-    }
-
-    public override void Click()
-    {
     }
     
     public override void SetTarget(Vector3 location)
@@ -42,4 +39,10 @@ public class UnitSpawningTower : Tower {
 	public override Vector3 Position {
 		get { return this.tent.transform.position; }
 	}
+
+    public override bool ValidMousePos(Vector3 mousePos)
+    {
+        return GameObject.Find("TargetFinder").GetComponent<ClickBox>().GetClickBoxBounds().Contains(mousePos);
+    }
+
 }

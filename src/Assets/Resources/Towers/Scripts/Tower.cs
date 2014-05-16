@@ -12,7 +12,7 @@ public abstract class Tower : Target
 	///////////////////////////////////////////////////////////////////////////////////
 	// Inspector Presets
 	///////////////////////////////////////////////////////////////////////////////////
-	public UnitType UnitSpawnType;
+	
 	public Renderer TowerSelector;
 	public ProgressBar TowerHealthBar;
 	public List<Sprite> DamagedSprites;
@@ -21,7 +21,8 @@ public abstract class Tower : Target
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
-	public abstract void Click();
+    
+    public abstract bool ValidMousePos(Vector3 mousePos);
     
 	/// <summary>
 	/// Action performed when the user right-clicks on a location after
@@ -94,7 +95,9 @@ public abstract class Tower : Target
     
 	void OnMouseDown()
 	{
-		if (this.Allegiance == Allegiance.Rodelle)
-			GameObject.Find("GameManager").GetComponent<MouseManager>().Select(this);
-	}
+        if (this.Allegiance == Allegiance.Rodelle)
+        {
+            GameObject.Find("GameManager").GetComponent<MouseManager>().Select(this);
+        }	
+    }
 }

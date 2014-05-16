@@ -3,9 +3,7 @@ using System.Collections;
 
 public class AbilityTower: Tower {
 
-    public override void Click()
-    {
-    }
+    public Ability ability;
 
     void Start()
     {
@@ -15,6 +13,12 @@ public class AbilityTower: Tower {
 
 	public override void SetTarget(Vector3 location)
 	{
-		// do nothing
+        ability.UseAbility(location);
 	}
+
+    public override bool ValidMousePos(Vector3 mousePos)
+    {
+        return ability.ValidMousePos(mousePos);
+    }
+
 }
