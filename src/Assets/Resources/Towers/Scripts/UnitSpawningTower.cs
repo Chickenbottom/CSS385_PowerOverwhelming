@@ -8,13 +8,28 @@ public class UnitSpawningTower : Tower {
     public UnitType UnitSpawnType;
     // private SquadManager squads;
 
+	private Bounds mGameArea;
+
     void Start()
     {
         towerType = TowerType.UnitSpawner;
     }
     
+	// no targeted abilities. Can add force move here?
+	public override void UseTargetedAbility(Target target) {} 
+	
+	// no positional abilities. Alternate way to set rally point?
+	public override void UsePositionalAbility(Vector3 position) 
+	{
+		this.SetTarget(position);
+	} 
+	
     public override void SetTarget(Vector3 location)
     {
+		// can only send squads to game area
+		if (!mGameArea.Contains(location))
+			return; 
+			
 		this.squadManager.SetDestination(location);
     }
     
@@ -39,9 +54,11 @@ public class UnitSpawningTower : Tower {
 		get { return this.tent.transform.position; }
 	}
 
-    public override bool ValidMousePos(Vector3 mousePos)
-    {
-        return GameObject.Find("TargetFinder").GetComponent<ClickBox>().GetClickBoxBounds().Contains(mousePos);
-    }
-
+	protected override void Awake()
+	{
+		base.Awake();
+		GameObject gameBounds = GameObject.Find ("ClickBox");
+		BoxCollider2D b = gameBounds.GetComponent<BoxCollider2D>();
+		mGameArea = new Bounds(new Vector3(b.center.x, b.center.y, 0f), new Vector3(b.size.x, b.size.y, 0f));
+	}
 }

@@ -4,98 +4,72 @@ using System.Collections.Generic;
 
 public class MouseManager : MonoBehaviour
 {
-
-    #region variables
-    private Tower towerSelected;
-    private Tower towerClicked;
-    #endregion
+	///////////////////////////////////////////////////////////////////////////////////
+	// Inspector Presets
+	///////////////////////////////////////////////////////////////////////////////////
+	public List<Tower> Towers;
 	
+	///////////////////////////////////////////////////////////////////////////////////
+	// Public
+	///////////////////////////////////////////////////////////////////////////////////
+	
+	public void SelectTower(Tower selectedTower)
+	{
+		foreach (Tower t in Towers) {
+			if (t != selectedTower)
+				t.ShowSelector(false);
+		}
+			
+		mSelectedTower = selectedTower;
+		mSelectedTower.ShowSelector(true);
+		mWasJustSelected = true;
+	}
+		
+	public void SetAbilityTarget(Target target)
+	{
+		mSelectedTower.UseTargetedAbility(target);
+		mWasJustSelected = true;
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////
+	// Private
+	///////////////////////////////////////////////////////////////////////////////////
+	
+	private Tower mSelectedTower;
+	private Tower towerClicked;
+	private bool mWasJustSelected;
+	
+	///////////////////////////////////////////////////////////////////////////////////
+	// Unity Overrides
+	///////////////////////////////////////////////////////////////////////////////////
     void Start()
     {
-        towerSelected = null;
-        towerClicked = null;
+		if (Towers == null || Towers.Count == 0)
+			Debug.LogError("The towers need to be added to the Mouse Manager in the Unity Inspector.");
+			
+        SelectTower(Towers[0]);
     }
 
-    void Update()
+    void LateUpdate()
     {
-
-        // Must be called last in the script order to work 100% of the time
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0) && ! mWasJustSelected) 
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0f;
-            if (towerSelected != null) 
-            {
-                if (towerSelected.canTargetTowers)
-                {
-                    if (towerClicked != null)
-                    {
-                        if (towerClicked != towerSelected)
-                        {
-                            towerSelected.SetTarget(mousePos);
-                        }
-                        DeSelectTower();
-                    }
-                    else // towerClicked == null
-                    {
-                        if (towerSelected.ValidMousePos(mousePos))
-                        {
-                            towerSelected.SetTarget(mousePos);
-                            DeSelectTower();
-                        }
-                        // else do nothing
-                    }
-                }
-                else // can NOT target towers
-                {
-                    if (towerClicked != null)
-                    {
-                        DeSelectTower();
-                        SelectTower(towerClicked);
-                    }
-                    else // did NOT click on a tower
-                    {
-                        Debug.Log("HERE");
-                        if (towerSelected.ValidMousePos(mousePos))
-                        {
-                            towerSelected.SetTarget(mousePos);
-                            DeSelectTower();
-                        }
-                    }
-                }
-            }
-            else // towerSelected == null
-            {
-                if (towerClicked != null)
-                {
-                    SelectTower(towerClicked);
-                }
-                // else do nothing
-            }
-
+            mSelectedTower.SetTarget(mousePos);
         }
         
-		if (Input.GetButtonDown("Fire2") && towerSelected is UnitSpawningTower) {
-			((UnitSpawningTower)towerSelected).SpawnUnit();
+		if (Input.GetMouseButtonDown(1) && ! mWasJustSelected)
+		{
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mousePos.z = 0f;
+			mSelectedTower.UsePositionalAbility(mousePos);
 		}
-        towerClicked = null;
+		
+		if (Input.GetButtonDown("Fire2") && mSelectedTower is UnitSpawningTower) {
+			((UnitSpawningTower)mSelectedTower).SpawnUnit();
+		}
+		
+		mWasJustSelected = false;
 	}
-
-    public void TowerClicked(Tower tower)
-    {
-        towerClicked = tower;
-    }
-
-    private void SelectTower(Tower t)
-    {
-        towerSelected = t;
-        towerSelected.ShowSelector(true);
-    }
-
-    private void DeSelectTower()
-    {
-        towerSelected.ShowSelector(false);
-        towerSelected = null;
-    }
-
 }

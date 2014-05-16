@@ -3,16 +3,17 @@ using System.Collections;
 
 public class Heal : Ability {
 
-    public override void UseAbility(Vector3 mousePos)
+    public override void UsePositionAbility(Vector3 mousePos)
     {
         // add healing effects
-        GameObject.Find("TargetFinder").GetComponent<TowerTargets>().GetTarget(mousePos);
+        Debug.Log ("Healing location: " + mousePos);
     }
 
-    public override bool ValidMousePos(Vector3 mousePos)
-    {
-        int target = GameObject.Find("TargetFinder").GetComponent<TowerTargets>().ValidMousePos(mousePos);
-        return target > -1;
-    }
-
+	public override void UseTargetedAbility(Target target)
+	{
+		if (target is Tower)
+			Debug.Log ("Healing Tower: " + target);
+		if (target is King)
+			Debug.Log ("Healing King: " + target);
+	}
 }

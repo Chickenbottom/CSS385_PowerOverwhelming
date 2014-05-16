@@ -32,4 +32,11 @@ public class King : Unit {
 		base.Damage (damage);
 		GameState.KingsHealth = health;
 	}
+	
+	void OnMouseOver()
+	{
+		if (Input.GetMouseButtonDown(1) && this.Allegiance == Allegiance.Rodelle) {
+			GameObject.Find("GameManager").GetComponent<MouseManager>().SetAbilityTarget(this);
+		}
+	}
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TowerTargets : MonoBehaviour {
+public class TowerTarget : MonoBehaviour {
 
     private List<Bounds> bounds;
     private List<Tower> targets;

@@ -23,15 +23,26 @@ public abstract class Tower : Target
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
-    
-    public abstract bool ValidMousePos(Vector3 mousePos);
-    
+        
 	/// <summary>
-	/// Action performed when the user right-clicks on a location after
+	/// Action performed when the user clicks on a location after
 	/// selecting the tower
 	/// </summary>
 	/// <param name="location">Location. The game coodinate clicked on.</param>
 	public abstract void SetTarget(Vector3 location);
+	
+	/// <summary>
+	/// Action performed when the user right-clicks on a tower
+	/// </summary>
+	/// <param name="target">Target. The target selected.</param>
+	/// <param name="type">Type. The type of target.</param>
+	public abstract void UseTargetedAbility(Target target);
+	
+	/// <summary>
+	/// Action performed when the user right-clicks on the game area
+	/// </summary>
+	/// <param name="location">Location. The game coodinate clicked on.</param>
+	public abstract void UsePositionalAbility(Vector3 location);
     
     public int MaxHealth = 20;
 	public int health = 20;
@@ -66,7 +77,7 @@ public abstract class Tower : Target
 	// Private Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
 	
-	private void UpdateAnimation()
+	protected void UpdateAnimation()
 	{
 		SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
 		if (sr == null || DamagedSprites.Count == 0)
@@ -85,7 +96,7 @@ public abstract class Tower : Target
 	///////////////////////////////////////////////////////////////////////////////////
 	// Unity Overrides
 	/////////////////////////////////////////////////////////////////////////////////// 
-    void Awake()
+    protected virtual void Awake()
     {
 		mAllegiance = Allegiance.Rodelle;
 		TowerHealthBar.maxValue = MaxHealth;
@@ -94,11 +105,18 @@ public abstract class Tower : Target
 		UpdateAnimation();
     }
     
+    void OnMouseOver()
+    {
+		if (Input.GetMouseButtonDown(1) && this.Allegiance == Allegiance.Rodelle) {
+			GameObject.Find("GameManager").GetComponent<MouseManager>().SetAbilityTarget(this);
+		}
+    }
+    
 	void OnMouseDown()
 	{
         if (this.Allegiance == Allegiance.Rodelle)
         {
-            GameObject.Find("GameManager").GetComponent<MouseManager>().TowerClicked(this);
-        }	
+            GameObject.Find("GameManager").GetComponent<MouseManager>().SelectTower(this);
+        } 
     }
 }
