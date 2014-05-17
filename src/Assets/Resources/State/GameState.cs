@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameState {
-	private static int gameLevel;
+	public static CurrentLevel gameLevel {get; set;}
 	private static int[] numEnemies;
 
 	public static int KingsHealth { 
@@ -72,6 +72,9 @@ public class GameState {
 	{
 		if (mKingsHealth <= 0)
 			TriggerLoss ();
+		else if(gameLevel <  CurrentLevel.Future){
+			gameLevel++;
+		}
 	}
 	
 	private static int mKingsHealth;
