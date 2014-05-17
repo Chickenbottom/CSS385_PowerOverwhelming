@@ -59,8 +59,8 @@ class EnemySquad
     {
         if (mSquad == null) // squad has not spawned yet
             return;
-        
-        if (mSquad != null && mSquad.IsIdle) {
+              
+        if (mCurrentWaypoint < mWaypoints.Count - 1 && mSquad != null && mSquad.IsIdle) {
             mCurrentWaypoint ++;
             mSquad.SetDestination(mWaypoints[mCurrentWaypoint]);
             //Debug.Log ("Sending " + mSquad + " to " + mWaypoints[mCurrentWaypoint]);

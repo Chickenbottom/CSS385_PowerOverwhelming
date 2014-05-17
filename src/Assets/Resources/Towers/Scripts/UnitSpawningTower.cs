@@ -77,7 +77,7 @@ public class UnitSpawningTower : Tower {
 		Unit unit = other.gameObject.GetComponent<Unit>();
 				
 		if (unit != null && unit.Squad.unitType == UnitType.Peasant) {
-			unit.Squad.Spawn(this.Position, this.UnitSpawnType, Allegiance.AI);
+			unit.Squad.Spawn(Tent.transform.position, this.UnitSpawnType, Allegiance.AI);
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public enum Waypoint {
     King,
@@ -11,6 +12,18 @@ public enum Waypoint {
     Center,
     LowerCenter,
     SpawnPoint,
+}
+
+public enum SquadPreset {
+    Default, // all peasants
+    Elite,   // with an elite
+}
+
+public enum SquadSize {
+    Individual,
+    Small,
+    Medium,
+    Large,
 }
 
 public class EnemyAI : MonoBehaviour
@@ -41,7 +54,7 @@ public class EnemyAI : MonoBehaviour
 		}
 		
 		if (Input.GetButtonDown("Fire1")) {
-			SpawnWave3 ();
+			SpawnWave2 ();
 		}
 	}
 	
@@ -50,17 +63,19 @@ public class EnemyAI : MonoBehaviour
 		lastEnemySpawn = Time.time;
 		units = new List<EnemySquad> ();
 		
-		Waypoints = new Dictionary<Waypoint, Vector3>();
-		Waypoints.Add (Waypoint.AbilityTower, new Vector3(43, -40, 0));
-		Waypoints.Add (Waypoint.ArcherTower, new Vector3(-105, -40, 0));
-		Waypoints.Add (Waypoint.MageTower, new Vector3(43, 50, 0));
-		Waypoints.Add (Waypoint.SwordsmanTower, new Vector3(-108, 50, 0));
-		Waypoints.Add (Waypoint.King, new Vector3(-33, 56, 0));
-		Waypoints.Add (Waypoint.Center, new Vector3(-33, 10, 0));
-		Waypoints.Add (Waypoint.LowerCenter, new Vector3(-33, -37, 0));
-		Waypoints.Add (Waypoint.SpawnPoint, new Vector3(-33, -64, 0));
+        Waypoints = new Dictionary<Waypoint, Vector3>();
+        Waypoints.Add (Waypoint.AbilityTower, new Vector3(43, -45, 0));
+        Waypoints.Add (Waypoint.ArcherTower, new Vector3(-105, -45, 0));
+        Waypoints.Add (Waypoint.MageTower, new Vector3(43, 50, 0));
+        Waypoints.Add (Waypoint.SwordsmanTower, new Vector3(-108, 50, 0));
+        Waypoints.Add (Waypoint.King, new Vector3(-33, 56, 0));
+        Waypoints.Add (Waypoint.Center, new Vector3(-33, 10, 0));
+        Waypoints.Add (Waypoint.LowerCenter, new Vector3(-33, -37, 0));
+        Waypoints.Add (Waypoint.SpawnPoint, new Vector3(-33, -64, 0));
 		
 		SpawnWave();
+        
+        this.AddSquad("Large Default 3.5 Center,King");
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////
@@ -86,75 +101,101 @@ public class EnemyAI : MonoBehaviour
 			SpawnWave1();
 			break;
 		case(2):
-			//SpawnWave2();
+			SpawnWave2();
 			break;
 		case(3):
-			//SpawnWave3();
+			SpawnWave3();
 			break;
 		}
 	}
+    
+    // Format: <Size> <Preest> <Spawn Time> <Action Type> <Waypoint>,<Waypoint>,...
+    // "Large Default 2.5 Move ArcherTower,SwordsmanTower"
+    // "Individual Elite 1 ForcedMove AbilityTower"
+    public void AddSquad(string input)
+    {
+        SquadPreset preset;
+        SquadSize size;
+        float spawnTime;
+        
+        char[] delimiters = { ' ', ',' };
+        string[] param = input.Split(delimiters);
+        
+        size = EnumHelper.FromString<SquadSize>(param[0]);
+        preset = EnumHelper.FromString<SquadPreset>(param[1]);
+        spawnTime = float.Parse(param[2]);
+        
+        EnemySquad es = new EnemySquad (GetNumMembers(size), Waypoints[Waypoint.LowerCenter], spawnTime);
+        
+        for(int i = 3; i < param.Length; ++i) {
+            Waypoint wp = EnumHelper.FromString<Waypoint>(param[i]);
+            es.AddWaypoint(Waypoints[wp]);
+        }
+        es.AddWaypoint(Waypoints[Waypoint.King]);
+        
+        units.Add(es);
+    }
+     
+    private int GetNumMembers(SquadSize squadSize)
+    {
+        switch (squadSize) {
+        case (SquadSize.Individual):
+            return 1;
+            
+        case(SquadSize.Small):
+            return 2;
+                
+        case(SquadSize.Medium):
+            return 4;
+            
+        case (SquadSize.Large):
+            return 7;
+        }
+        
+        return 0;
+    }
 	
 	// TODO fix this hard coding of enemy waves
 	void SpawnWave1()
 	{
-		EnemySquad es = null;
-        es = new EnemySquad (4, Waypoints[Waypoint.King], 1f);
-		units.Add (es);
-		
-        es = new EnemySquad (5, Waypoints[Waypoint.King], 5f);
-        units.Add (es);
-        
-        es = new EnemySquad (6, Waypoints[Waypoint.King], 7f);
-        units.Add (es);
-        
-		es = new EnemySquad (7, Waypoints[Waypoint.LowerCenter], 0f);
-		es.AddWaypoint(Waypoints[Waypoint.ArcherTower]);
-		es.AddWaypoint(Waypoints[Waypoint.King]);
-        units.Add (es);
-        
-        es = new EnemySquad (7, Waypoints[Waypoint.LowerCenter], 3f);
-        es.AddWaypoint(Waypoints[Waypoint.AbilityTower]);
-        es.AddWaypoint(Waypoints[Waypoint.King]);
-        units.Add (es);
-        
-        es = new EnemySquad (7, Waypoints[Waypoint.LowerCenter], 6f);
-        es.AddWaypoint(Waypoints[Waypoint.ArcherTower]);
-        es.AddWaypoint(Waypoints[Waypoint.King]);
-		units.Add (es);
+        this.AddSquad("Large Default 0 ArcherTower");
+        this.AddSquad("Medium Default 1");
+        this.AddSquad("Large Default 3 AbilityTower");
+        this.AddSquad("Medium Default 4");
+        this.AddSquad("Medium Default 5 MageTower");
+        this.AddSquad("Large Default 6 ArcherTower");
+        this.AddSquad("Large Default 7");
 	}
 	
 	void SpawnWave2()
 	{
-		EnemySquad es = null;
-		es = new EnemySquad (5, Waypoints[Waypoint.LowerCenter]);
-		es.AddWaypoint(Waypoints[Waypoint.ArcherTower]);
-		es.AddWaypoint(Waypoints[Waypoint.King]);
-		units.Add (es);
-		
-		es = new EnemySquad (5, Waypoints[Waypoint.Center]);
-		es.AddWaypoint(Waypoints[Waypoint.MageTower]);
-		es.AddWaypoint(Waypoints[Waypoint.King]);
-		units.Add (es);
+        this.AddSquad("Individual Default 0 ArcherTower,SwordsmanTower");
+        this.AddSquad("Individual Default 0 ArcherTower,SwordsmanTower");
+        this.AddSquad("Individual Default 0 ArcherTower,SwordsmanTower");
+        
+        this.AddSquad("Large Default 1 ArcherTower,SwordsmanTower");
+        this.AddSquad("Large Default 2 Center,MageTower");
+        this.AddSquad("Large Default 6 SwordsmanTower");
+        this.AddSquad("Large Default 7 MageTower");
 	}
 	
 	void SpawnWave3()
 	{
-		EnemySquad es = null;
-		es = new EnemySquad (7, Waypoints[Waypoint.LowerCenter]);
-		es.AddWaypoint(Waypoints[Waypoint.SwordsmanTower]);
-		es.AddWaypoint(Waypoints[Waypoint.Center]);
-		es.AddWaypoint(Waypoints[Waypoint.King]);
-		units.Add (es);
-		
-		es = new EnemySquad (7, Waypoints[Waypoint.Center]);
-		es.AddWaypoint(Waypoints[Waypoint.MageTower]);;
-		es.AddWaypoint(Waypoints[Waypoint.King]);
-		units.Add (es);
-		
-		es = new EnemySquad (7, Waypoints[Waypoint.LowerCenter]);
-		es.AddWaypoint(Waypoints[Waypoint.ArcherTower]);
-		es.AddWaypoint(Waypoints[Waypoint.LowerCenter]);
-		es.AddWaypoint(Waypoints[Waypoint.King]);
-		units.Add (es);
+        this.AddSquad("Medium Default 0 ArcherTower");
+        this.AddSquad("Medium Default 1 AbilityTower");
+        this.AddSquad("Medium Default 2 MageTower");
+        this.AddSquad("Medium Default 3 SwordsmanTower");
+        this.AddSquad("Medium Default 4 ArcherTower");
+        this.AddSquad("Medium Default 5 AbilityTower");
+        this.AddSquad("Medium Default 6 MageTower");
+        this.AddSquad("Medium Default 7 SwordsmanTower");
 	}
+}
+
+public static class EnumHelper
+{    
+    public static T FromString<T>(string value)
+    {
+        return (T) Enum.Parse(typeof(T),value);
+    }
 }
