@@ -8,17 +8,20 @@ class EnemySquad
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
     public bool IsDead { get; set; }
-    public EnemySquad(int size, Vector3 waypoint) 
+    public EnemySquad(int size, Vector3 waypoint, float spawnTime = 0f) 
     {
         if (mSquadPrefab == null) 
             mSquadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
         
-        mCurrentWaypoint = 0;
+        if (mSpawnLocation == null) {
+            mSpawnLocation = GameObject.Find ("EnemySpawnPoint").transform.position;
+        }
+
+        mSquadSize = size;
+        mSpawnTime = spawnTime;
         
-        mSquad = SpawnSquad(size: size);
         mWaypoints = new List<Vector3>();
         this.AddWaypoint(waypoint);
-        mSquad.SetDestination(waypoint);
     }
     
     public void AddWaypoint(Vector3 waypoint)
@@ -28,33 +31,51 @@ class EnemySquad
     
     public void Update(float deltaTime)
     {
-        if (IsDead = (mSquad == null))
+        if (IsDead = (mSpawnTime < 0 && mSquad == null))
             return;
         
-        if (mCurrentWaypoint < mWaypoints.Count - 1 && mSquad.IsIdle) {
-            mCurrentWaypoint ++;
-            mSquad.SetDestination(mWaypoints[mCurrentWaypoint]);
-        }
+        mSpawnTime -= deltaTime; // update spawn timer
+        if (mSquad == null && mSpawnTime < 0)
+            this.SpawnSquad(mSquadSize);
+        
+        UpdateDestination();
     }
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Private
-    ///////////////////////////////////////////////////////////////////////////////////   
-	private Vector3 mSpawnLocation;
-	private Squad mSquad;
-	private int mCurrentWaypoint;
-	private List<Vector3> mWaypoints;
-	private static GameObject mSquadPrefab;
+    ///////////////////////////////////////////////////////////////////////////////////
+    private static GameObject mSquadPrefab;
+    private static Vector3? mSpawnLocation;
+    
+    private Squad mSquad;
+    private List<Vector3> mWaypoints;
+    
+    private float mSpawnTime; // time before squad spawns
+		
+    private int mCurrentWaypoint;
+    private int mSquadSize;
 	
-	private Squad SpawnSquad(int size)
+    private void UpdateDestination()
+    {
+        if (mSquad == null) // squad has not spawned yet
+            return;
+        
+        if (mSquad != null && mSquad.IsIdle) {
+            mCurrentWaypoint ++;
+            mSquad.SetDestination(mWaypoints[mCurrentWaypoint]);
+            //Debug.Log ("Sending " + mSquad + " to " + mWaypoints[mCurrentWaypoint]);
+        }
+    }
+    
+	private void SpawnSquad(int size)
 	{
-		mSpawnLocation = new Vector3(-33f, -60f, 0f);
 		GameObject o = (GameObject) GameObject.Instantiate (mSquadPrefab);
 		Squad squad = o.GetComponent<Squad> ();
 		
 		squad.NumSquadMembers = size;
-		squad.Spawn (mSpawnLocation, UnitType.Peasant, Allegiance.AI);
+		squad.Spawn (mSpawnLocation.Value, UnitType.Peasant, Allegiance.AI);
 		
-		return squad;
+        mSquad = squad;
+        mSquad.SetDestination(mWaypoints[0]);
 	}
 }

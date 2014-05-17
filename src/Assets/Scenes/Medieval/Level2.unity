@@ -114,6 +114,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b74835518bbf84c8d18b3e26c9852b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box_length: 0
+  cur_obj: {fileID: 12678817}
+  PPtr<Object>: {fileID: 12678820}
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &12678820
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -312,7 +317,7 @@ MonoBehaviour:
   MaxHealth: 20
   health: 20
   squadManager: {fileID: 402212068}
-  tent: {fileID: 876563391}
+  Tent: {fileID: 876563391}
   UnitSpawnType: 3
 --- !u!61 &35293066
 BoxCollider2D:
@@ -541,6 +546,32 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300004, guid: 363c041b7e5b0f6418e145f183fb2b77, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &103970873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 103970874}
+  m_Layer: 0
+  m_Name: EnemySpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &103970874
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 103970873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -32.5747986, y: -64.4949341, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &127087637
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +804,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b74835518bbf84c8d18b3e26c9852b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box_length: 0
+  cur_obj: {fileID: 229377074}
+  PPtr<Object>: {fileID: 229377077}
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &229377077
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -902,7 +938,7 @@ MonoBehaviour:
   MaxHealth: 20
   health: 20
   squadManager: {fileID: 84667852}
-  tent: {fileID: 1721311353}
+  Tent: {fileID: 1721311353}
   UnitSpawnType: 4
 --- !u!61 &307255316
 BoxCollider2D:
@@ -1058,6 +1094,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b74835518bbf84c8d18b3e26c9852b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box_length: 0
+  cur_obj: {fileID: 354176781}
+  PPtr<Object>: {fileID: 354176784}
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &354176784
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1205,11 +1246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065954b81e0a28c409c2ffd755edda79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Towers:
-  - {fileID: 674620534}
-  - {fileID: 307255315}
-  - {fileID: 35293065}
-  - {fileID: 1091159855}
 --- !u!1 &402212066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,7 +1670,7 @@ MonoBehaviour:
   MaxHealth: 20
   health: 20
   squadManager: {fileID: 456529788}
-  tent: {fileID: 592284321}
+  Tent: {fileID: 592284321}
   UnitSpawnType: 2
 --- !u!61 &674620535
 BoxCollider2D:
@@ -1974,6 +2010,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b74835518bbf84c8d18b3e26c9852b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box_length: 0
+  cur_obj: {fileID: 950509910}
+  PPtr<Object>: {fileID: 950509913}
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &950509913
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2088,6 +2129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b74835518bbf84c8d18b3e26c9852b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box_length: 0
+  cur_obj: {fileID: 1067516636}
+  PPtr<Object>: {fileID: 1067516639}
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &1067516639
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2395,6 +2441,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b74835518bbf84c8d18b3e26c9852b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box_length: 0
+  cur_obj: {fileID: 0}
+  PPtr<Object>: {fileID: 1143817244}
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &1143817244
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3156,6 +3207,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b74835518bbf84c8d18b3e26c9852b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box_length: 0
+  cur_obj: {fileID: 1748308530}
+  PPtr<Object>: {fileID: 1748308533}
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &1748308533
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3402,6 +3458,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b74835518bbf84c8d18b3e26c9852b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box_length: 0
+  cur_obj: {fileID: 2015310673}
+  PPtr<Object>: {fileID: 2015310675}
+  currentValue: 0
+  maxValue: 0
 --- !u!212 &2015310675
 SpriteRenderer:
   m_ObjectHideFlags: 0
