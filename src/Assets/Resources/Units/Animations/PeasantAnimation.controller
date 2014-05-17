@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MeleeAnimation
+  m_Name: PeasantAnimation
   serializedVersion: 2
   m_AnimatorParameters:
   - m_Name: WalkLeft
@@ -197,7 +197,7 @@ State:
   m_Speed: .75
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 2d1bd0d8a5485c944bd92f89b1ef9f23, type: 2}
+  - {fileID: 7400000, guid: e5b35f73d984741479ed81b03634d6bd, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -60, y: 120, z: 0}
   m_IKOnFeet: 0
@@ -212,7 +212,7 @@ State:
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 9e747ce6b4642fd4283ba27568776adb, type: 2}
+  - {fileID: 7400000, guid: b9b9c9b166f85d4439aed26d80d6fdcf, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 228, y: 24, z: 0}
   m_IKOnFeet: 0
@@ -227,7 +227,7 @@ State:
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: c2ee115b201cbf144bf48f3d4d03a7d9, type: 2}
+  - {fileID: 7400000, guid: c2ca4c3a2b6f57b42a980d1fee3604db, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -60, y: 24, z: 0}
   m_IKOnFeet: 0
@@ -242,7 +242,7 @@ State:
   m_Speed: .75
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 86b558c16a8a41945bd26b6d9f20f7d0, type: 2}
+  - {fileID: 7400000, guid: c6a94443e8302684e91d1639be56a9d2, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 228, y: 120, z: 0}
   m_IKOnFeet: 0
@@ -273,20 +273,20 @@ StateMachine:
       - {fileID: 110100000}
       - {fileID: 110125051}
     data:
-      first: {fileID: 110287108}
+      first: {fileID: 110214986}
       second:
-      - {fileID: 110187848}
-      - {fileID: 110158990}
+      - {fileID: 110112292}
+      - {fileID: 110135285}
     data:
       first: {fileID: 110253884}
       second:
       - {fileID: 110118182}
       - {fileID: 110128008}
     data:
-      first: {fileID: 110214986}
+      first: {fileID: 110287108}
       second:
-      - {fileID: 110112292}
-      - {fileID: 110135285}
+      - {fileID: 110187848}
+      - {fileID: 110158990}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 120, y: -48, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
