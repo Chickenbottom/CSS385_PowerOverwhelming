@@ -1,0 +1,16 @@
+!0 (Rodelle) // File reads just the number so you can add comments after
+#0 (tutorial) // But not on the actual text IMPORTANT: Clamp text lines at 70 character AND '-' starts a new saying
+-Welcome, left click a tower to select it, and right click to send
+units from that tower to a location.
+#1 (Tower Destroyed)
+#2 (Rodelle Damaged)
+#3 (Tower Damaged)
+#4 (Peasant Invade)
+!1 (Adviser)
+#0 (tutorial)
+-Don't forget you can double click to force your units to go to a
+specific location M'Lord.
+#1 (Tower Destroyed)
+#2 (Rodelle Damaged)
+#3 (Tower Damaged)
+#4 (Peasant Invade)

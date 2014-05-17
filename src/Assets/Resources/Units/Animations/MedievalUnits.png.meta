@@ -1,0 +1,337 @@
+fileFormatVersion: 2
+guid: d67c4dd651ad4fd4cb97e2c764145252
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: texturetest_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 923
+        width: 105
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_1
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 923
+        width: 70
+        height: 90
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_2
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 923
+        width: 55
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_3
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 923
+        width: 71
+        height: 78
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 808
+        width: 105
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_5
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 808
+        width: 70
+        height: 90
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_6
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 808
+        width: 55
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_7
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 808
+        width: 71
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 692
+        width: 105
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_9
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 692
+        width: 70
+        height: 92
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_10
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 692
+        width: 55
+        height: 97
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_11
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 693
+        width: 71
+        height: 79
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 105
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_13
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 576
+        width: 70
+        height: 92
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_14
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 578
+        width: 55
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_15
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 578
+        width: 73
+        height: 78
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 467
+        width: 105
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_17
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 467
+        width: 70
+        height: 90
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_18
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 467
+        width: 55
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_19
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 465
+        width: 71
+        height: 78
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 105
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_21
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 352
+        width: 70
+        height: 90
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_22
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 352
+        width: 55
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_23
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 350
+        width: 71
+        height: 78
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 236
+        width: 105
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_25
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 236
+        width: 70
+        height: 92
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_26
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 236
+        width: 57
+        height: 97
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_27
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 235
+        width: 71
+        height: 78
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 105
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_29
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 123
+        width: 70
+        height: 92
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_30
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 122
+        width: 55
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: texturetest_31
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 120
+        width: 71
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 
