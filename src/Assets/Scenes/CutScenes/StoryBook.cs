@@ -15,7 +15,7 @@ public class StoryBook : MonoBehaviour
     
     private float mCameraStartTime;
     private int mCurrentCamera = 1;
-    private bool mFadeIn = false;
+    private bool mIsFadingIn = false;
     
     void Start ()
     {
@@ -30,12 +30,16 @@ public class StoryBook : MonoBehaviour
         for (int i = 1; i < mCameraArray.Count; i++) {
             mCameraArray [i].enabled = false;
         }
+        
+        // Have the first scene fade in
+        setImageColor(0f);
+        mIsFadingIn = true;
     }
     
     // Update is called once per frame
     void Update ()
     {
-        if (mFadeIn)
+        if (mIsFadingIn)
             FadeIn ();
         
         if (Time.time - mCameraStartTime > mCameraInterval && mCurrentCamera < mCameraArray.Count) {
@@ -43,7 +47,7 @@ public class StoryBook : MonoBehaviour
                 mCameraArray [mCurrentCamera].enabled = true;
                 mCurrentCamera ++;
                 mCameraStartTime = Time.time;
-                mFadeIn = true;
+                mIsFadingIn = true;
             }
         }
     }
@@ -54,7 +58,7 @@ public class StoryBook : MonoBehaviour
         alpha += kFadeRate;
         setImageColor (alpha);
         if (alpha >= 1.0f) {
-            mFadeIn = false;
+            mIsFadingIn = false;
             return true;
         } else
             return false;
