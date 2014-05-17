@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 	//private float mSFXVolume = 1;
   
   public int CurrentLevel;
-
+    
 	public void OnGUI()
 	{
 		if (GUI.Button(new Rect(120, 35, 150, 50), "Return to Level Selector"))
@@ -61,6 +61,6 @@ public class GameManager : MonoBehaviour {
             Time.timeScale += 0.5f;
 	}
 	public void SetMusicVolume(float v){
-		mMusic.volume = v;
+		mMusic.volume = v;\
 	}
 }

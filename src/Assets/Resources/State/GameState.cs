@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class GameState {
 	public static int CurrentLevel;
 	public static Era CurrentEra {get; set;}
+	public static int CurrentLevel;
 	private static int[] numEnemies;
 
 	public static int KingsHealth { 
@@ -15,7 +16,7 @@ public class GameState {
 		} 
 	}
 
-    public static Dictionary<UnitType, int> UnitSquadCount { get; set; }
+  public static Dictionary<UnitType, int> UnitSquadCount { get; set; }
 	public static Dictionary<UnitType, int> UnitExperience { get; set; }
 	public static Dictionary<UnitType, int> RequiredUnitExperience { get; set; }
 	public static Dictionary<UnitType, float> SpawnTimes { get; set; }
