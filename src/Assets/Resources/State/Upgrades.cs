@@ -159,7 +159,7 @@ public class Upgrades : MonoBehaviour
 				mBonusArray[i ,j] = 1f;
 	}
 	public float GetUnitUpgrades(UnitType unit, BonusType sType){
-		BonusSubject mySubject;
+		BonusSubject mySubject = BonusSubject.Game;
 		BonusType myType = sType;
 
 		switch(unit){
@@ -180,6 +180,9 @@ public class Upgrades : MonoBehaviour
 			break;
 
 		}
-		return GetBonus(mySubject, myType);
+		if(mySubject != BonusSubject.Game)
+			return GetBonus(mySubject, myType);
+		else
+			return 1.0f;
 	}
 }
