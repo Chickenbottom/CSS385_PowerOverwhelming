@@ -214,11 +214,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumSquadMembers: 1
-  UnitType: 5
-  SquadCenter: {x: 0, y: 0, z: 0}
-  RallyPoint: {x: 0, y: 0, z: 0}
-  IsIndependent: 1
-  SightCircle: {fileID: 0}
+  unitType: 5
+  squadCenter: {x: 0, y: 0, z: 0}
+  rallyPoint: {x: 0, y: 0, z: 0}
+  isIndependent: 1
+  sightCircle: {fileID: 16035528}
 --- !u!212 &16035528
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -709,7 +709,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 103970873}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.5532875, y: -63.7349968, z: 0}
+  m_LocalPosition: {x: -32.5747986, y: -64.4949341, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1554,6 +1554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b31c90c63b16f44b4a1ce07438018e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NumWaves: 3
 --- !u!4 &401559014
 Transform:
   m_ObjectHideFlags: 0
@@ -1584,7 +1585,6 @@ MonoBehaviour:
   SwordsmanExperienceBar: {fileID: 950509912}
   ArcherExperienceBar: {fileID: 1748308532}
   MageExperienceBar: {fileID: 2015310674}
-  CurrentLevel: 2
 --- !u!114 &401559018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2715,7 +2715,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Size: {x: 1.60000002, y: 1.5}
-  m_Center: {x: -1.76999998, y: -.310000002}
+  m_Center: {x: -.200000003, y: 1.10000002}
 --- !u!114 &1091159855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3266,18 +3266,6 @@ Prefab:
       propertyPath: canTargetTowers
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6100000, guid: d99d9b75cf600464d9d57efc5a048123, type: 2}
-      propertyPath: m_Center.x
-      value: -1.76999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 6100000, guid: d99d9b75cf600464d9d57efc5a048123, type: 2}
-      propertyPath: m_Center.y
-      value: -.310000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: d99d9b75cf600464d9d57efc5a048123, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d99d9b75cf600464d9d57efc5a048123, type: 2}
   m_RootGameObject: {fileID: 1091159852}
@@ -3772,14 +3760,6 @@ Prefab:
     - target: {fileID: 11400000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
       propertyPath: canTargetTowers
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}

@@ -2,18 +2,31 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour {
-	
-	public Progressbar KingsHealthBar;
-	public Progressbar SwordsmanExperienceBar;
-	public Progressbar ArcherExperienceBar;
-	public Progressbar MageExperienceBar;
-
-	public AudioSource mMusic;
+public class GameManager : MonoBehaviour
+{
+    public int CurrentLevel;
+    public Progressbar KingsHealthBar;
+    public Progressbar SwordsmanExperienceBar;
+    public Progressbar ArcherExperienceBar;
+    public Progressbar MageExperienceBar;
+    
+    public GUIText GoldCounterText;
+    public GUIText WaveCounter1;
+    public GUIText WaveCounter10;
+    
+    public void OnGUI ()
+    {
+        if (GUI.Button (new Rect (120, 35, 150, 50), "Return to Level Selector"))
+            Application.LoadLevel ("LevelLoader");
+            
+        GUI.Label (new Rect (135, 65, 150, 50), "Left-Alt to spawn");
+    }
+    
+    public AudioSource mMusic;
 	//private float mMusicVolume = 1;
 	//private float mSFXVolume = 1;
-  
-  public int CurrentLevel;
+    
+    private Dictionary<UnitType, Progressbar> mExpBars;
     
 	public void OnGUI()
 	{
@@ -56,7 +69,9 @@ public class GameManager : MonoBehaviour {
         }
         
         KingsHealthBar.UpdateValue (GameState.KingsHealth);
-        
+
+        GoldCounterText.text = GameState.Gold.ToString("D9");
+        WaveCounter1.text = (GameState.RemainingWaves % 10).ToString();
         
         if (Input.GetKeyDown ("a"))
             Time.timeScale += 0.5f;
