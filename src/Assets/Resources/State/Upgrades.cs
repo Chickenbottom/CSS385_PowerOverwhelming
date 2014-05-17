@@ -31,13 +31,13 @@ public class Upgrades : MonoBehaviour
 	const float kLetterDisplayTime = 0.5f;
 	#endregion
 
-//	string[] subjectName = ;
+    //string[] subjectName = ;
 	int mSubjectMax = Enum.GetNames(typeof(BonusSubject)).Length;
 	int mBonusMax = Enum.GetNames(typeof(BonusType)).Length;
 
 	
-	int mCurSubject = -1;
-	int mCurBonus = -1;
+	//int mCurSubject = -1;
+	//int mCurBonus = -1;
 
 	private const string path = "Bonus.txt"; //path of the txt file
 	StreamReader mFile;
@@ -129,7 +129,6 @@ public class Upgrades : MonoBehaviour
 		
 
 			if (curSubject != -1 && curBonus != -1){
-				float temp = float.Parse(numbers[2]);
 				mBonusArray[curSubject, curBonus] = float.Parse(numbers[2]);				
 			}
 		}
