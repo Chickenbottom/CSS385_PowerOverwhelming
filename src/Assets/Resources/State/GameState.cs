@@ -64,8 +64,8 @@ public class GameState {
 	
 	public static void TriggerWin()
 	{
-		GUIText text = GameObject.Find ("DialogueLeft").GetComponent<GUIText> ();
-		text.text = "The peasants are gone!";
+		//GUIText text = GameObject.Find ("DialogueLeft").GetComponent<GUIText> ();
+		//text.text = "The peasants are gone!";
 	}
 	
 	public static void CheckLoseCondition()

@@ -48,6 +48,9 @@ public abstract class Tower : Target
 
     public override void Damage(int damage)
     {
+        if (damage > 1) // makes towers stronger
+            damage = 1;
+            
         health -= damage;
         
         if (health <= 0) {
@@ -60,14 +63,14 @@ public abstract class Tower : Target
 				this.ShowSelector(false);
         }
 		UpdateAnimation();
+        if (health > MaxHealth)
+            health = MaxHealth;
         TowerHealthBar.Value = health;
     }
     
 	///////////////////////////////////////////////////////////////////////////////////
 	// Private Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
-	
-	private float mSpawnTime;
 	
 	private void UpdateAnimation()
 	{
@@ -80,7 +83,7 @@ public abstract class Tower : Target
 		else { 
 			float percentDamaged = (float) (MaxHealth - health) / (float) MaxHealth;
 			int spriteIndex =  (int)(percentDamaged * DamagedSprites.Count);
-				
+
 			sr.sprite = DamagedSprites[spriteIndex];
 		}
 	}
