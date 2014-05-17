@@ -3,7 +3,7 @@ using System.Collections;
 
 
 
-public enum CurrentLevel{
+public enum Era{
 	Prehistoric = 0,
 	Medieval = 1,
 	Japanese = 2,
@@ -18,15 +18,15 @@ public class LevelLoaderButtonBehavior : MonoBehaviour {
 	public Sprite mButton;
 	public Sprite mLocked;
 	public Sprite mLockedDown;
-	public CurrentLevel myLevel;
+	public Era mEra;
 
 	bool mLevelLocked;
 
 	// Use this for initialization
 	void Start () {
 
-		GameState.gameLevel = CurrentLevel.Medieval;
-		if(myLevel <= GameState.gameLevel)
+		GameState.CurrentEra = Era.Medieval;
+		if(mEra <= GameState.CurrentEra)
 			mLevelLocked = false;
 		else
 			mLevelLocked = true;
@@ -49,21 +49,21 @@ public class LevelLoaderButtonBehavior : MonoBehaviour {
 		gameObject.GetComponent<SpriteRenderer> ().sprite = mButton;
 	}
 	void OnMouseDown(){
-		if(myLevel <= GameState.gameLevel){
-			switch(myLevel){
-			case CurrentLevel.Prehistoric:
+		if(mEra < GameState.CurrentEra){
+			switch(mEra){
+			case Era.Prehistoric:
 				Application.LoadLevel("TowerStore");
 				break;
-			case CurrentLevel.Medieval:
+			case Era.Medieval:
 				Application.LoadLevel("Level2");
 				break;
-			case CurrentLevel.Japanese:
+			case Era.Japanese:
 				Application.LoadLevel("TowerStore");
 				break;
-			case CurrentLevel.ModernAmerica:
+			case Era.ModernAmerica:
 				Application.LoadLevel("TowerStore");
 				break;
-			case CurrentLevel.Future:
+			case Era.Future:
 				Application.LoadLevel("TowerStore");
 				break;
 			}
