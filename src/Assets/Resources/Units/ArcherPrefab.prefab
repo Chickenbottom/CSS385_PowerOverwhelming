@@ -13,6 +13,7 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 95: {fileID: 9500000}
   m_Layer: 2
   m_Name: ArcherPrefab
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -52.7421036, y: -2.69050217, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!50 &5000000
@@ -55,8 +56,22 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 2, y: .75}
-  m_Center: {x: 0, y: -1.70000005}
+  m_Size: {x: .5, y: .159999996}
+  m_Center: {x: 0, y: -.379999995}
+--- !u!95 &9500000
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 45c764f921549c740ab5216fc421cd1c, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,9 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c44726dca6d8f44c8ee1724905c891c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightRange: 39
-  movementSpeed: 0
-  chargeSpeed: 0
+  SightRange: 39
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,7 +116,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 51630d72274746746a82509a0c5a6003, type: 3}
+  m_Sprite: {fileID: 21300002, guid: d67c4dd651ad4fd4cb97e2c764145252, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
