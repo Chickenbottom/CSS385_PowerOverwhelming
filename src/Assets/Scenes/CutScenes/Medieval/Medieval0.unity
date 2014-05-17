@@ -456,12 +456,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1708d63dc416d244c87983863e02590e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mCamera0: {fileID: 607073158}
-  mCamera1: {fileID: 54406405}
-  mCamera2: {fileID: 308144742}
-  mCamera3: {fileID: 697029310}
-  mCamera4: {fileID: 1827645322}
+  CameraViews:
+  - {fileID: 607073158}
+  - {fileID: 54406405}
+  - {fileID: 308144742}
+  - {fileID: 697029310}
+  - {fileID: 1827645322}
   Image: {fileID: 758807215}
+  SceneInterval: 5
 --- !u!1 &1827645318
 GameObject:
   m_ObjectHideFlags: 0
