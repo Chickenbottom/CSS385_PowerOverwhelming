@@ -8,9 +8,12 @@ public class GameManager : MonoBehaviour {
 	public Progressbar SwordsmanExperienceBar;
 	public Progressbar ArcherExperienceBar;
 	public Progressbar MageExperienceBar;
+
 	public AudioSource mMusic;
 	//private float mMusicVolume = 1;
 	//private float mSFXVolume = 1;
+  
+  public int CurrentLevel;
 
 	public void OnGUI()
 	{
@@ -22,6 +25,11 @@ public class GameManager : MonoBehaviour {
 	
 	private Dictionary<UnitType, Progressbar> mExpBars;
 	
+    void Awake()
+    {
+        GameState.CurrentLevel = this.CurrentLevel;
+    }
+    
 	void Start()
 	{
 		if (KingsHealthBar == null || SwordsmanExperienceBar == null || 
@@ -38,7 +46,7 @@ public class GameManager : MonoBehaviour {
 			mExpBars[u].maxValue = GameState.RequiredUnitExperience[u];
 		}
 		
-		KingsHealthBar.maxValue = GameState.KingsHealth;
+		KingsHealthBar.maxValue = GameState.KingsHealth;        
 	}
 	
 	void Update()
@@ -48,6 +56,9 @@ public class GameManager : MonoBehaviour {
 		}
 		
 		KingsHealthBar.UpdateValue(GameState.KingsHealth);
+        
+        if (Input.GetKeyDown("a"))
+            Time.timeScale += 0.5f;
 	}
 	public void SetMusicVolume(float v){
 		mMusic.volume = v;

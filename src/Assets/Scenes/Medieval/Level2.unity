@@ -709,7 +709,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 103970873}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.5747986, y: -64.4949341, z: 0}
+  m_LocalPosition: {x: -32.5532875, y: -63.7349968, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1585,6 +1585,7 @@ MonoBehaviour:
   SwordsmanExperienceBar: {fileID: 950509912}
   ArcherExperienceBar: {fileID: 1748308532}
   MageExperienceBar: {fileID: 2015310674}
+  CurrentLevel: 2
 --- !u!114 &401559018
 MonoBehaviour:
   m_ObjectHideFlags: 0

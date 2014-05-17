@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameState {
-
-	public static CurrentLevel gameLevel {get; set;}
+	public static int CurrentLevel;
 	private static int[] numEnemies;
 
 	public static int KingsHealth { 
@@ -67,6 +66,7 @@ public class GameState {
 	
 	public static void TriggerWin()
 	{
+        //Debug.Log ("You win!");
 		//GUIText text = GameObject.Find ("DialogueLeft").GetComponent<GUIText> ();
 		//text.text = "The peasants are gone!";
 	}
