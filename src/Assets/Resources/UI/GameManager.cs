@@ -30,34 +30,35 @@ public class GameManager : MonoBehaviour {
         GameState.CurrentLevel = this.CurrentLevel;
     }
     
-	void Start()
-	{
-		if (KingsHealthBar == null || SwordsmanExperienceBar == null || 
-		    MageExperienceBar == null || ArcherExperienceBar == null) {
-		    Debug.LogError("Experience and health bars need to be attached to the game manager!");
-		}
-		
-		mExpBars = new Dictionary<UnitType, Progressbar>();
-		mExpBars.Add(UnitType.Archer, ArcherExperienceBar);
-		mExpBars.Add(UnitType.Swordsman, SwordsmanExperienceBar);
-		mExpBars.Add(UnitType.Mage, MageExperienceBar);
-		
-		foreach(UnitType u in mExpBars.Keys) {
-			mExpBars[u].maxValue = GameState.RequiredUnitExperience[u];
-		}
-		
-		KingsHealthBar.maxValue = GameState.KingsHealth;        
-	}
-	
-	void Update()
-	{
-		foreach(UnitType u in mExpBars.Keys) {
-			mExpBars[u].UpdateValue(GameState.UnitExperience[u]);
-		}
-		
-		KingsHealthBar.UpdateValue(GameState.KingsHealth);
+    void Start ()
+    {
+        if (KingsHealthBar == null || SwordsmanExperienceBar == null || 
+            MageExperienceBar == null || ArcherExperienceBar == null) {
+            Debug.LogError ("Experience and health bars need to be attached to the game manager!");
+        }
         
-        if (Input.GetKeyDown("a"))
+        mExpBars = new Dictionary<UnitType, Progressbar> ();
+        mExpBars.Add (UnitType.Archer, ArcherExperienceBar);
+        mExpBars.Add (UnitType.Swordsman, SwordsmanExperienceBar);
+        mExpBars.Add (UnitType.Mage, MageExperienceBar);
+        
+        foreach (UnitType u in mExpBars.Keys) {
+            mExpBars [u].maxValue = GameState.RequiredUnitExperience [u];
+        }
+        
+        KingsHealthBar.maxValue = GameState.KingsHealth;
+    }
+    
+    void Update ()
+    {
+        foreach (UnitType u in mExpBars.Keys) {
+            mExpBars [u].UpdateValue (GameState.UnitExperience [u]);
+        }
+        
+        KingsHealthBar.UpdateValue (GameState.KingsHealth);
+        
+        
+        if (Input.GetKeyDown ("a"))
             Time.timeScale += 0.5f;
 	}
 	public void SetMusicVolume(float v){
