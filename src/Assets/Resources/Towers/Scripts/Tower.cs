@@ -67,8 +67,6 @@ public abstract class Tower : Target
 	// Private Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
 	
-	private float mSpawnTime;
-	
 	private void UpdateAnimation()
 	{
 		SpriteRenderer sr = this.GetComponent<SpriteRenderer>();

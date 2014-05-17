@@ -35,8 +35,7 @@ public class EnemyAIManager : MonoBehaviour
 			if (units[i].IsDead)
 				units.RemoveAt(i);
 			else 
-				units[i].Update();
-			
+				units[i].Update(Time.deltaTime);
 		}
 		
 		if (currentWave >= numWaves && units.Count == 0) {
