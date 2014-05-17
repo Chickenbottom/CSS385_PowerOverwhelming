@@ -1,20 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class StoryBook : MonoBehaviour {
-
-	public Camera mCamera0;
-	public Camera mCamera1;
-	public Camera mCamera2;
-	public Camera mCamera3;
-	public Camera mCamera4;
+    
+    public List<Camera> CameraViews;
 
 	public SpriteRenderer Image;
 
-	const float kCamInterval = 10f;
+	const float kCamInterval = 3f;
 	const float kFadeRate = 0.01f;
 
-	ArrayList mCameraArray = new ArrayList();
+    List<Camera> mCameraArray = new List<Camera>();
 
 	float alpha = 0.0f;
 	float mPreviousCam = 0f;
@@ -23,17 +20,15 @@ public class StoryBook : MonoBehaviour {
 	bool mFadeIn = false;
 	bool mFadeOut = false;
 	// Use this for initialization
-	void Start () {
-		mCameraArray.Add(mCamera0);
-		mCameraArray.Add(mCamera1);
-		mCameraArray.Add(mCamera2);
-		mCameraArray.Add(mCamera3);
-		mCameraArray.Add(mCamera4);
+	void Start () 
+    {
+        if (CameraViews == null || CameraViews.Count == 0)
+            Debug.LogError("Cameras need to be added to this script in the Unity inspector");
 
-		mCamera0.camera.enabled = true;
-		for(int i = 1; i < mCameraArray.Count; i++){
-			Camera temp = (Camera) mCameraArray[i];
-			temp.camera.enabled = false;
+        mCameraArray = CameraViews;
+        mCameraArray[0].enabled = true;
+		for(int i = 1; i < mCameraArray.Count; i++) {
+			mCameraArray[i].enabled = false;
 		}
 	}
 	
