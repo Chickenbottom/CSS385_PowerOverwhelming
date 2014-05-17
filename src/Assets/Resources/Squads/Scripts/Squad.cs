@@ -39,6 +39,12 @@ public class Squad : MonoBehaviour
     }
 
     public bool IsIdle { get { return SquadState == SquadState.Idle; } }
+    public bool IsEngaged { 
+        get { 
+            return ! (SquadState == SquadState.Idle || 
+                   SquadState == SquadState.Moving); 
+        } 
+    }
 
     public bool IsEngaged { 
         get { 
@@ -46,7 +52,7 @@ public class Squad : MonoBehaviour
                 SquadState == SquadState.Moving); 
         } 
     }
-
+    
     public bool IsIndependent = false;
     public SpriteRenderer SightCircle;
     
