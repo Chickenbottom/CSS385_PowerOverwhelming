@@ -13,14 +13,9 @@ public class Archer : Unit
         mMovementSpeed = 8f; // units per second
         mChargeSpeed = 10f;   // speed used to engage enemies
         
-        mWeapons = new SortedList ();
-        
-        Weapon crossbow = new Crossbow ();
-        mCurrentWeapon = crossbow;
-        mWeapons.Add (crossbow.Range, crossbow);
-        
-        Weapon dagger = new Dagger ();
-        mWeapons.Add (dagger.Range, dagger);
+        mMeleeWeapon = new Dagger ();
+        mRangedWeapon = new Crossbow ();
+        mCurrentWeapon = mRangedWeapon;
     }
     
     void Start ()

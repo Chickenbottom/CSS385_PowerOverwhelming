@@ -10,13 +10,10 @@ public class Swordsman : Unit
         mDefaultHealth = 4;
         
         mMovementSpeed = 10f; // units per second
-        mChargeSpeed = 15f;   // speed used to engage enemies
-        
-        mWeapons = new SortedList ();
-        
-        Weapon sword = new Sword ();
-        mCurrentWeapon = sword;
-        mWeapons.Add (sword.Range, sword);
+        mChargeSpeed = 12f;   // speed used to engage enemies
+           
+        mMeleeWeapon = new Sword ();
+        mCurrentWeapon = mMeleeWeapon;
     }
 
     void Start ()

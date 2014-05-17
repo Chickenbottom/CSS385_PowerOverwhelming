@@ -10,13 +10,11 @@ public class Peasant : Unit
         SightRange = 10f;
         mDefaultHealth = 5;
         
-        mMovementSpeed = 8f; // units per second
-        mChargeSpeed = 10f;   // speed used to engage enemies
+        mMovementSpeed = 12f; // units per second
+        mChargeSpeed = 14f;   // speed used to engage enemies
         
-        mWeapons = new SortedList ();
-        Weapon pitchfork = new Pitchfork ();
-        mWeapons.Add (pitchfork.Range, pitchfork);
-        mCurrentWeapon = pitchfork;
+        mMeleeWeapon = new Pitchfork ();
+        mCurrentWeapon = mMeleeWeapon;
     }
     
     void Start ()

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -64,7 +64,7 @@ public class SquadManager : MonoBehaviour
     {
         GameObject o = (GameObject)Instantiate (squadPrefab);
         Squad squad = (Squad)o.GetComponent (typeof(Squad));
-        squad.unitType = unitType;
+        squad.UnitType = unitType;
         squad.Spawn (location, unitType, Allegiance.Rodelle);
         return squad;
     }

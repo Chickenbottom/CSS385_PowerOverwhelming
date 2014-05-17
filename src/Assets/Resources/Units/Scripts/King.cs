@@ -15,10 +15,8 @@ public class King : Unit
         
         GameState.KingsHealth = mDefaultHealth;
         
-        mWeapons = new SortedList ();
-        Weapon sword = new Sword ();
-        mCurrentWeapon = sword;
-        mWeapons.Add (sword.Range, sword);
+        mMeleeWeapon = new Sword ();
+        mCurrentWeapon = mMeleeWeapon;
     }
     
     public void Start ()

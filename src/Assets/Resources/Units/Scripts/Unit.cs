@@ -75,14 +75,21 @@ public class Unit : Target
     /// Switchs to weapon stored at the given index. If the index refers to an invalid weapon, no action is taken.
     /// </summary>
     /// <param name="index">Index.</param>
-    public void SwitchToWeapon (int index)
+    public void SwitchToMeleeWeapon ()
     {
-        Weapon w = (Weapon)mWeapons.GetByIndex (index);
-        
-        if (w != null) {
-            mCurrentWeapon.Reset ();
-            mCurrentWeapon = w;
-        }
+        if (mRangedWeapon != null)
+            mRangedWeapon.Reset();
+            
+        mCurrentWeapon = mMeleeWeapon;
+        mCurrentWeapon.Reset();
+        mAttackState = AttackState.Melee;
+    }
+    
+    public void SwitchToRangedWeapon ()
+    {
+        mMeleeWeapon.Reset();
+        mCurrentWeapon = mRangedWeapon != null ? mRangedWeapon : mMeleeWeapon;
+        mCurrentWeapon.Reset();
     }
     
     /// <summary>
@@ -95,8 +102,8 @@ public class Unit : Target
         mMovementState = MovementState.Moving;
         mAttackTarget = null;
         
-        SwitchToWeapon (mWeapons.Count - 1); // longest range weapon
-    }   
+        SwitchToRangedWeapon (); // longest range weapon
+    } 
     
 ///////////////////////////////////////////////////////////////////////////////////
 // Private Methods
@@ -122,7 +129,9 @@ public class Unit : Target
     protected float mChargeSpeed;   // speed used to engage enemies
     
     protected Weapon mCurrentWeapon = null;
-    protected SortedList mWeapons;
+    protected Weapon mMeleeWeapon;
+    protected Weapon mRangedWeapon = null;
+    
     protected Target mAttackTarget;
     protected Vector3 mAttackVector; // direction to attack target from
     protected Vector3 mDestination;  // location to move to when no other actions are taking place
@@ -163,17 +172,14 @@ public class Unit : Target
         if (Vector3.Distance (this.Position, targetLocation) <= mCurrentWeapon.Range ||
             firingPositionDistance > targetDistance) {
             mAttackState = AttackState.Ranged;
-            UpdateAttack (target);
             return;
         }
         
         // Second priority is to move into the firing position
         if (Vector3.Distance (this.Position, firingPosition) > 1.0f) {
-            //Debug.Log ("Moving into position");
             UpdateMovement (firingPosition, mChargeSpeed);
         } else { // firing position reached, attack!
             mAttackState = AttackState.Ranged;
-            UpdateAttack (target);
         }
     }
     
@@ -184,28 +190,18 @@ public class Unit : Target
         
         Vector3 targetLocation = target.Position;
         float targetDistanceSquared = Vector3.SqrMagnitude (targetLocation - this.Position);
-        
-        for (int i = 0; i < mWeapons.Count; ++i) {
-            Weapon w = (Weapon)mWeapons.GetByIndex (i);
-            if (w == mCurrentWeapon) // can only check longer range weapons from here
-                break; 
                 
-            // a shorter range weapon can be used
-            if (w.Range * w.Range > targetDistanceSquared) { 
-                Squad.Notify (SquadAction.WeaponChanged, this, i); // switch squad to this weapon
-                break;
-            }
-        }
+        // switch to melee range if target is close enough
+        if (mAttackState != AttackState.Melee && targetDistanceSquared < 15f * 15f) 
+            Squad.Notify(SquadAction.EngagedInMelee);
             
         // Move into range of the target
         if (targetDistanceSquared > mCurrentWeapon.Range * mCurrentWeapon.Range) {
-            mAttackState = AttackState.Engaging;
             UpdateMovement (targetLocation, mChargeSpeed);
             return;
         }
         
-        if (mCurrentWeapon != null)
-            mCurrentWeapon.Attack (this, target);
+        mCurrentWeapon.Attack (this, target);
     }
     
     private void UpdateMovement (Vector3 targetLocation, float speed)
@@ -221,8 +217,7 @@ public class Unit : Target
             
         Position += speed * Time.deltaTime * targetDir;
         
-        
-        int sortingOrder = (int)(-Position.y + Camera.main.orthographicSize);
+        int sortingOrder = (int)(4 * (-Position.y + Camera.main.orthographicSize));
         GetComponent<SpriteRenderer> ().sortingOrder = (int)(sortingOrder);
     }
     
@@ -264,6 +259,7 @@ public class Unit : Target
             break;
             
         case (AttackState.Ranged):
+        case (AttackState.Melee):
             UpdateAttack (mAttackTarget);
             break;
         }

@@ -13,15 +13,11 @@ public class Mage : Unit
         mMovementSpeed = 8f; // units per second
         mChargeSpeed = 10f;  // speed used to engage enemies
         
-        mWeapons = new SortedList ();
+        mMeleeWeapon = new Dagger ();
+        mRangedWeapon = new IceWand ();
+        mCurrentWeapon = mRangedWeapon;
         
-        Weapon dagger = new Dagger ();
-        mWeapons.Add (dagger.Range, dagger);
-        
-        Weapon icewand = new IceWand ();
-        ((IceWand)icewand).src = this;
-        mWeapons.Add (icewand.Range, icewand);
-        mCurrentWeapon = icewand;
+        ((IceWand)mRangedWeapon).src = this;
     }
     
     void Start ()
