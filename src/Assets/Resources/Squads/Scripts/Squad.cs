@@ -82,8 +82,8 @@ public class Squad : MonoBehaviour
 			if (u.IsIdle)
 				idleCount ++;
 
-		if ((float) idleCount / (float) squadMembers.Count > 0.75)
-			this.SquadState = SquadState.Idle;
+		if ((float) idleCount / (float) squadMembers.Count > 0.25)
+            this.SquadState = SquadState.Idle;
 	}
 	
 	public void ForceMove(Vector3 location)
@@ -255,7 +255,7 @@ public class Squad : MonoBehaviour
 		List<Vector3> positions = SurroundingPositions(
 			tower.Position,
 			this.squadCenter, 
-			NumSquadMembers, 
+            squadMembers.Count, 
 			kSquadMemberWidth * 2.0f, 
 			squadUnit.Range); // TODO add target radius for large targets
 			
