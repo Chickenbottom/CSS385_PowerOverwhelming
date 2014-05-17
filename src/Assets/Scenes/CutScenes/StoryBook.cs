@@ -10,11 +10,11 @@ public class StoryBook : MonoBehaviour
     
     const float kFadeRate = 0.01f;
     
-    private float mCamInterval = 3f;
+    private float mCameraInterval = 3f;
     private List<Camera> mCameraArray = new List<Camera> ();
     
-    private float mPreviousCam = 0f;
-    private int mIndex = 1;
+    private float mCameraStartTime;
+    private int mCurrentCamera = 1;
     private bool mFadeIn = false;
     
     void Start ()
@@ -22,8 +22,9 @@ public class StoryBook : MonoBehaviour
         if (CameraViews == null || CameraViews.Count == 0)
             Debug.LogError ("Cameras need to be added to this script in the Unity inspector");
         
-        mCamInterval = SceneInterval;
+        mCameraInterval = SceneInterval;
 
+        mCameraStartTime = Time.time;
         mCameraArray = CameraViews;
         mCameraArray [0].enabled = true;
         for (int i = 1; i < mCameraArray.Count; i++) {
@@ -36,12 +37,12 @@ public class StoryBook : MonoBehaviour
     {
         if (mFadeIn)
             FadeIn ();
-        if (mIndex <= mCameraArray.Count)
-        if (Time.realtimeSinceStartup - mPreviousCam > mCamInterval && mIndex < mCameraArray.Count) {
+        
+        if (Time.time - mCameraStartTime > mCameraInterval && mCurrentCamera < mCameraArray.Count) {
             if (FadeOut ()) {
-                Camera temp = (Camera)mCameraArray [mIndex++];
-                temp.camera.enabled = true;
-                mPreviousCam = Time.realtimeSinceStartup;
+                mCameraArray [mCurrentCamera].enabled = true;
+                mCurrentCamera ++;
+                mCameraStartTime = Time.time;
                 mFadeIn = true;
             }
         }
