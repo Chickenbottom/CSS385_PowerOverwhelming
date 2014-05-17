@@ -12,16 +12,6 @@ public enum SquadAction
     TargetDestroyed,
 }
 
-public enum UnitType
-{
-    None,
-    Peasant,
-    Swordsman,
-    Archer,
-    Mage,
-    King,
-}
-
 public enum SquadState
 {
     Idle,
@@ -40,7 +30,8 @@ public class Squad : MonoBehaviour
     public UnitType UnitType;
     public Vector3 SquadCenter;
     public Vector3 RallyPoint;
-    public Unit SquadLeader { get { return mSquadMembers[0]; }}
+
+    public Unit SquadLeader { get { return mSquadMembers [0]; } }
 
     public SquadState SquadState { 
         get { return mSquadState; } 
@@ -48,10 +39,11 @@ public class Squad : MonoBehaviour
     }
 
     public bool IsIdle { get { return SquadState == SquadState.Idle; } }
+
     public bool IsEngaged { 
         get { 
             return ! (SquadState == SquadState.Idle || 
-                   SquadState == SquadState.Moving); 
+                SquadState == SquadState.Moving); 
         } 
     }
 
@@ -164,7 +156,6 @@ public class Squad : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////
     private GameObject mUnitPrefab;
     private GameObject mEnemyPrefab;
-    private Target mTarget;
     private Squad mTargetSquad;
     private List<Unit> mSquadMembers;
     protected Allegiance mAllegiance;
@@ -191,13 +182,13 @@ public class Squad : MonoBehaviour
             AttackEnemySquad (u.Squad);
         } else if (target is Tower) {
             Tower t = (Tower)target.GetComponent (typeof(Tower));
-            mTarget = t;
             AttackEnemyTower (t);
         }
     }
         
     private void AssignNewTarget (Unit who)
     {
+        GameState.Gold += 5;
         GameState.AddExperience (this.UnitType, 1);
         List<Unit> mEnemies = mTargetSquad.mSquadMembers;
         int numEnemies = mEnemies.Count;
@@ -278,7 +269,7 @@ public class Squad : MonoBehaviour
     {
         this.SquadState = SquadState.Melee;
         for (int i = 0; i < mSquadMembers.Count; ++i)
-            mSquadMembers [i].SwitchToMeleeWeapon();
+            mSquadMembers [i].SwitchToMeleeWeapon ();
     }
     
     private void UpdateSquadCoherency ()
