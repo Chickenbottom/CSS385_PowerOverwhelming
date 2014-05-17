@@ -11,7 +11,9 @@ public enum Waypoint
     SwordsmanTower,
     MageTower,
     Center,
+    LowerLeft,
     LowerCenter,
+    LowerRight,
     SpawnPoint,
 }
 
@@ -23,10 +25,10 @@ public enum SquadPreset
 
 public enum SquadSize
 {
-    Individual,
-    Small,
-    Medium,
-    Large,
+    Individual = 1,
+    Small = 2,
+    Medium = 4,
+    Large = 7,
 }
 
 public static class EnumHelper
@@ -81,7 +83,9 @@ public class EnemyAI : MonoBehaviour
         Waypoints.Add (Waypoint.SwordsmanTower, new Vector3 (-108, 50, 0));
         Waypoints.Add (Waypoint.King, new Vector3 (-33, 56, 0));
         Waypoints.Add (Waypoint.Center, new Vector3 (-33, 10, 0));
+        Waypoints.Add (Waypoint.LowerLeft, new Vector3 (-44, -37, 0));
         Waypoints.Add (Waypoint.LowerCenter, new Vector3 (-33, -37, 0));
+        Waypoints.Add (Waypoint.LowerRight, new Vector3 (-22, -37, 0));
         Waypoints.Add (Waypoint.SpawnPoint, new Vector3 (-33, -64, 0));
 		
         SpawnWave ();
@@ -119,7 +123,7 @@ public class EnemyAI : MonoBehaviour
         preset = EnumHelper.FromString<SquadPreset> (param [1]);
         spawnTime = float.Parse (param [2]);
         
-        EnemySquad es = new EnemySquad (GetNumMembers (size), Waypoints [Waypoint.LowerCenter], spawnTime);
+        EnemySquad es = new EnemySquad ((int)size, spawnTime);
         
         for (int i = 3; i < param.Length; ++i) {
             Waypoint wp = EnumHelper.FromString<Waypoint> (param [i]);
@@ -128,25 +132,6 @@ public class EnemyAI : MonoBehaviour
         es.AddWaypoint (Waypoints [Waypoint.King]);
         
         units.Add (es);
-    }
-     
-    private int GetNumMembers (SquadSize squadSize)
-    {
-        switch (squadSize) {
-        case (SquadSize.Individual):
-            return 1;
-            
-        case(SquadSize.Small):
-            return 2;
-                
-        case(SquadSize.Medium):
-            return 4;
-            
-        case (SquadSize.Large):
-            return 7;
-        }
-        
-        return 0;
     }
     
     private void SpawnWave ()
@@ -157,10 +142,10 @@ public class EnemyAI : MonoBehaviour
             SpawnWave1 ();
             break;
         case(2):
-            SpawnWave2 ();
+            //SpawnWave2 ();
             break;
         case(3):
-            SpawnWave3 ();
+            //SpawnWave3 ();
             break;
         }
     }
@@ -168,36 +153,36 @@ public class EnemyAI : MonoBehaviour
     // TODO fix this hard coding of enemy waves
     void SpawnWave1 ()
     {
-        this.AddSquad ("Large Default 0 ArcherTower");
+        this.AddSquad ("Large Default 0 LowerLeft,ArcherTower");
         this.AddSquad ("Medium Default 1");
-        this.AddSquad ("Large Default 3 AbilityTower");
+        this.AddSquad ("Large Default 3 LowerRight,AbilityTower");
         this.AddSquad ("Medium Default 4");
-        this.AddSquad ("Medium Default 5 MageTower");
-        this.AddSquad ("Large Default 6 ArcherTower");
+        this.AddSquad ("Medium Default 5 LowerRight,MageTower");
+        this.AddSquad ("Large Default 6 LowerLeft,ArcherTower");
         this.AddSquad ("Large Default 7");
     }
 	
     void SpawnWave2 ()
     {
-        this.AddSquad ("Individual Default 0 ArcherTower,SwordsmanTower");
-        this.AddSquad ("Individual Default 0 ArcherTower,SwordsmanTower");
-        this.AddSquad ("Individual Default 0 ArcherTower,SwordsmanTower");
+        this.AddSquad ("Individual Default 0 LowerLeft,ArcherTower,SwordsmanTower");
+        this.AddSquad ("Individual Default 0 LowerLeft,ArcherTower,SwordsmanTower");
+        this.AddSquad ("Individual Default 0 LowerLeft,ArcherTower,SwordsmanTower");
         
-        this.AddSquad ("Large Default 1 ArcherTower,SwordsmanTower");
-        this.AddSquad ("Large Default 2 Center,MageTower");
-        this.AddSquad ("Large Default 6 SwordsmanTower");
-        this.AddSquad ("Large Default 7 MageTower");
+        this.AddSquad ("Large Default 1 LowerLeft,ArcherTower,SwordsmanTower");
+        this.AddSquad ("Large Default 2 LowerCenter,Center,MageTower");
+        this.AddSquad ("Large Default 6 LowerCenter,SwordsmanTower");
+        this.AddSquad ("Large Default 7 LowerRight,MageTower");
     }
 	
     void SpawnWave3 ()
     {
-        this.AddSquad ("Medium Default 0 ArcherTower");
-        this.AddSquad ("Medium Default 1 AbilityTower");
-        this.AddSquad ("Medium Default 2 MageTower");
-        this.AddSquad ("Medium Default 3 SwordsmanTower");
-        this.AddSquad ("Medium Default 4 ArcherTower");
-        this.AddSquad ("Medium Default 5 AbilityTower");
-        this.AddSquad ("Medium Default 6 MageTower");
-        this.AddSquad ("Medium Default 7 SwordsmanTower");
+        this.AddSquad ("Medium Default 0 LowerLeft,ArcherTower");
+        this.AddSquad ("Medium Default 1 LowerRight,AbilityTower");
+        this.AddSquad ("Medium Default 2 LowerCenter,MageTower");
+        this.AddSquad ("Medium Default 3 Center,SwordsmanTower");
+        this.AddSquad ("Medium Default 4 LowerLeft,ArcherTower");
+        this.AddSquad ("Medium Default 5 LowerRight,AbilityTower");
+        this.AddSquad ("Medium Default 6 LowerCenter,MageTower");
+        this.AddSquad ("Medium Default 7 Center,SwordsmanTower");
     }
 }

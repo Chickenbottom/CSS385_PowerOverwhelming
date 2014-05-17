@@ -8,7 +8,7 @@ class EnemySquad
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
     public bool IsDead { get; set; }
-    public EnemySquad(int size, Vector3 waypoint, float spawnTime = 0f) 
+    public EnemySquad(int size, float spawnTime = 0f) 
     {
         if (mSquadPrefab == null) 
             mSquadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
@@ -21,7 +21,6 @@ class EnemySquad
         mSpawnTime = spawnTime;
         
         mWaypoints = new List<Vector3>();
-        this.AddWaypoint(waypoint);
     }
     
     public void AddWaypoint(Vector3 waypoint)
