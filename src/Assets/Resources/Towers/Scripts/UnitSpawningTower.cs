@@ -68,6 +68,7 @@ public class UnitSpawningTower : Tower {
 	void Start()
 	{
 		this.SpawnUnit();
+        GameObject.Find("TargetFinder").GetComponent<TowerTargets>().AddTower(this);
 	}
 	
 	void OnTriggerStay2D(Collider2D other)

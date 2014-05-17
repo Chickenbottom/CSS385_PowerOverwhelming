@@ -8,6 +8,7 @@ public class AbilityTower: Tower {
     void Start()
     {
         towerType = TowerType.Ability;
+        GameObject.Find("TargetFinder").GetComponent<TowerTargets>().AddTower(this);
     }
 
 	public override void SetTarget(Vector3 location)

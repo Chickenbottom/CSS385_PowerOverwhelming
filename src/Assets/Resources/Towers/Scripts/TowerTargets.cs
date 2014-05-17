@@ -4,13 +4,16 @@ using System.Collections.Generic;
 
 public class TowerTargets : MonoBehaviour {
 
-    private List<Bounds> bounds;
-    private List<Tower> targets;
+    private struct Target
+    {
+        public Bounds b;
+        public Tower t;
+    }
 
+    private List<Target> targetTowers;
 
 	void Start () {
-        bounds = new List<Bounds>();
-        targets = new List<Tower>();
+        targetTowers = new List<Target>();
 	}
 	
 	// Update is called once per frame
@@ -21,17 +24,21 @@ public class TowerTargets : MonoBehaviour {
     public void AddTower(Tower target)
     {
         CircleCollider2D collider = target.GetComponent<CircleCollider2D>();
-        bounds.Add(new Bounds(new Vector3(collider.center.x, collider.center.y, 0f), new Vector3(collider.radius, collider.radius, 0f)));
-        targets.Add(target);
+        Transform transform = target.GetComponent<Transform>();
+        Target newTarget = new Target();
+        newTarget.b = new Bounds(new Vector3(collider.center.x + transform.position.x, collider.center.y + transform.position.y, 0f), 
+                                 new Vector3(collider.radius * transform.localScale.x, collider.radius * transform.localScale.y, 0f));
+        newTarget.t = target;
+        targetTowers.Add(newTarget);
     }
 
     public int ValidMousePos(Vector3 mousePos)
     {
-        foreach (Bounds b in bounds)
+        foreach (Target targ in targetTowers)
         {
-            if (b.Contains(mousePos))
+            if (targ.b.Contains(mousePos))
             {
-                return bounds.IndexOf(b);
+                return targetTowers.IndexOf(targ);
             }
         }
         return -1;
@@ -39,16 +46,16 @@ public class TowerTargets : MonoBehaviour {
 
     public Tower GetTarget(int index)
     {
-        return targets[index];
+        return targetTowers[index].t;
     }
 
     public Tower GetTarget(Vector3 mousePos)
     {
-        foreach (Bounds b in bounds)
+        foreach (Target t in targetTowers)
         {
-            if (b.Contains(mousePos))
+            if (t.b.Contains(mousePos))
             {
-                return targets[bounds.IndexOf(b)];
+                return t.t;
             }
         }
         return null;

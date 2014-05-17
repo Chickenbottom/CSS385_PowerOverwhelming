@@ -3274,6 +3274,10 @@ Prefab:
       propertyPath: m_Center.y
       value: -.310000002
       objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: d99d9b75cf600464d9d57efc5a048123, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d99d9b75cf600464d9d57efc5a048123, type: 2}
   m_RootGameObject: {fileID: 1091159852}
@@ -3768,6 +3772,14 @@ Prefab:
     - target: {fileID: 11400000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
       propertyPath: canTargetTowers
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77883bd45c7db81418197c43bd37ec9d, type: 2}
