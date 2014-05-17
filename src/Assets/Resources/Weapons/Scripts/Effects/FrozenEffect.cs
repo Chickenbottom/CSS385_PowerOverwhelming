@@ -1,42 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FrozenEffect : MonoBehaviour 
+public class FrozenEffect : MonoBehaviour
 {
-	public Target target;
-	
-	private float mDuration = 5f;
-	private float timer;
-	
-	public void Update()
-	{
-		if (Time.time - mStartTimer > mDuration)
-			Unfreeze();
-	}
-	
-	float mStartTimer;
-	float originalCharge;
-	float originalMovement;
-	public void Freeze() {
-		mStartTimer = Time.time;
+    public Target target;
+    private float mDuration = 5f;
+    private float timer;
+    
+    public void Update ()
+    {
+        if (Time.time - mStartTimer > mDuration)
+            Unfreeze ();
+    }
+    
+    float mStartTimer;
+    float originalCharge;
+    float originalMovement;
 
-		Unit u = target.GetComponent<Unit> ();
-		if (u != null) {
-			originalCharge = u.ChargeSpeed;
-			originalMovement = u.MoveSpeed;
+    public void Freeze ()
+    {
+        mStartTimer = Time.time;
 
-			u.ChargeSpeed = 0f;
-			u.MoveSpeed = 0f;
-		}	
-	}
-	
-	private void Unfreeze()
-	{
-		Unit u = target.GetComponent<Unit> ();
-		if (u != null) {
-			u.ChargeSpeed = originalCharge;
-			u.MoveSpeed = originalMovement;
-		}
-		Destroy(this);
-	}
+        Unit u = target.GetComponent<Unit> ();
+        if (u != null) {
+            originalCharge = u.ChargeSpeed;
+            originalMovement = u.MoveSpeed;
+
+            u.ChargeSpeed = 0f;
+            u.MoveSpeed = 0f;
+        }   
+    }
+    
+    private void Unfreeze ()
+    {
+        Unit u = target.GetComponent<Unit> ();
+        if (u != null) {
+            u.ChargeSpeed = originalCharge;
+            u.MoveSpeed = originalMovement;
+        }
+        Destroy (this);
+    }
 }

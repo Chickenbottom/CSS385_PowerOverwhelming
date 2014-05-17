@@ -55,7 +55,7 @@ public class MouseManager : MonoBehaviour
                     }
                     else // did NOT click on a tower
                     {
-                        Debug.Log("HERE");
+                        //Debug.Log("HERE");
                         if (towerSelected.ValidMousePos(mousePos))
                         {
                             towerSelected.SetTarget(mousePos);
