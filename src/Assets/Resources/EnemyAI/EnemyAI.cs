@@ -135,9 +135,9 @@ public class EnemyAI : MonoBehaviour
     // "1 Individual Elite ForcedMove AbilityTower"
     private void AddSquad (string input)
     {
-        SquadPreset preset;
         SquadSize size;
-        SquadBehavior behavior;
+        //SquadPreset preset;
+        //SquadBehavior behavior;
         
         float spawnTime;
         
@@ -146,8 +146,8 @@ public class EnemyAI : MonoBehaviour
         
         spawnTime = float.Parse (param [0]);
         size = EnumHelper.FromString<SquadSize> (param [1]);
-        preset = EnumHelper.FromString<SquadPreset> (param [2]);
-        behavior = EnumHelper.FromString<SquadBehavior> (param [3]);
+        //preset = EnumHelper.FromString<SquadPreset> (param [2]);
+        //behavior = EnumHelper.FromString<SquadBehavior> (param [3]);
         
         EnemySquad es = new EnemySquad ((int)size, spawnTime);
         
