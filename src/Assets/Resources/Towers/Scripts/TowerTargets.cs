@@ -23,11 +23,11 @@ public class TowerTargets : MonoBehaviour {
 
     public void AddTower(Tower target)
     {
-        CircleCollider2D collider = target.GetComponent<CircleCollider2D>();
+        BoxCollider2D collider = target.GetComponent<BoxCollider2D>();
         Transform transform = target.GetComponent<Transform>();
         Target newTarget = new Target();
         newTarget.b = new Bounds(new Vector3(collider.center.x + transform.position.x, collider.center.y + transform.position.y, 0f), 
-                                 new Vector3(collider.radius * transform.localScale.x, collider.radius * transform.localScale.y, 0f));
+                                 new Vector3((collider.size.x * transform.lossyScale.x) * 2, (collider.size.y * transform.lossyScale.y) * 2, 0f));
         newTarget.t = target;
         targetTowers.Add(newTarget);
     }
