@@ -1,0 +1,6 @@
+# UnitType Health MovementSpeed ChargeSpeed
+Archer      4 10 10
+Swordsman   6 12 15
+Mage        4 8 8
+Peasant     4 13 15 
+King        100 0 0

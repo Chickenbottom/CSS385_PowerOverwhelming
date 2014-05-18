@@ -4,20 +4,13 @@ using System.Collections.Generic;
 
 public class Swordsman : Unit
 {
-    protected new void Awake ()
+    protected override void Awake ()
     {
-        base.Awake ();
-        mDefaultHealth = 4;
-        
-        mMovementSpeed = 10f; // units per second
-        mChargeSpeed = 12f;   // speed used to engage enemies
-           
+        mUnitType = UnitType.Swordsman;
+                   
         mMeleeWeapon = new Sword ();
         mCurrentWeapon = mMeleeWeapon;
-    }
-
-    void Start ()
-    {           
-        mHealth = mDefaultHealth;
+        
+        base.Awake();
     }
 }

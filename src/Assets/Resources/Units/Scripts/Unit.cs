@@ -2,6 +2,16 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum UnitType
+{
+    None,
+    Peasant,
+    Swordsman,
+    Archer,
+    Mage,
+    King,
+}
+
 public class Unit : Target
 {   
     public Squad Squad { get; set; }
@@ -124,7 +134,6 @@ public class Unit : Target
     }
     
     protected UnitAnimation mUnitAnimator;
-    protected int mDefaultHealth;
     protected float mMovementSpeed; // units per second
     protected float mChargeSpeed;   // speed used to engage enemies
     
@@ -138,6 +147,8 @@ public class Unit : Target
     
     protected MovementState mMovementState;
     protected AttackState mAttackState;
+    
+    protected UnitType mUnitType;
     
     private void UpdateTargetState ()
     {
@@ -277,7 +288,7 @@ public class Unit : Target
     }
     
     // Initialize variables
-    protected void Awake ()
+    protected virtual void Awake ()
     {
         mAttackState = AttackState.Idle;
         mAttackTarget = null;
@@ -288,5 +299,11 @@ public class Unit : Target
         mUnitAnimator = this.GetComponent<UnitAnimation> ();
         if (mUnitAnimator == null)
             Debug.LogError ("UnitAnimation script was not attached to this Unit!");
+        
+        mMaxHealth = (int)UnitUpgrades.GetUnitStat(mUnitType, UnitStat.Health);
+        mHealth = mMaxHealth;
+        
+        mMovementSpeed = (int)UnitUpgrades.GetUnitStat(mUnitType, UnitStat.MovementSpeed);
+        mChargeSpeed = (int)UnitUpgrades.GetUnitStat(mUnitType, UnitStat.ChargeSpeed);
     }
 }
