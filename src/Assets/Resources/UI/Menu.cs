@@ -3,69 +3,69 @@ using System.Collections;
 
 using System.Collections.Generic;
 
-public class Menu : MonoBehaviour 
+public enum MenuButton
 {
-	Dictionary<Button, Rect> buttons;
-	
-	protected enum Button {
-		NewGame,
-		LoadGame,
-		About
-	}
-	
-	void OnGUI () 
-	{
-		//GUI.color = Color.clear;
-		foreach(Button button in buttons.Keys) {
-			if (GUI.Button(buttons[button], ""))
-				HandleClick(button);
-		}
-	}
-	
-	private void HandleClick(Button button)
-	{
-		switch(button) 
-		{
-		case(Button.NewGame):
-			Application.LoadLevel("LevelLoader");
-			break;
-		case(Button.LoadGame):
-			break;
-		case(Button.About):
-			Application.Quit();
-			break;
-		}
-	}
-	
-	void Awake()
-	{
-		buttons = new Dictionary<Button, Rect>();
+    NewGame,
+    LoadGame,
+    About
+}
 
-		Rect buttonDimensions = new Rect (313, 310, 400, 95);
-		buttons.Add (Button.NewGame, ScaleButton(buttonDimensions));
+public class Menu : MonoBehaviour
+{
+    private Dictionary<MenuButton, Rect> mButtons;
+    
+    void OnGUI ()
+    {
+        //GUI.color = Color.clear;
+        foreach (MenuButton button in mButtons.Keys) {
+            if (GUI.Button (mButtons [button], ""))
+                HandleClick (button);
+        }
+    }
+    
+    private void HandleClick (MenuButton button)
+    {
+        switch (button) {
+        case(MenuButton.NewGame):
+            Application.LoadLevel ("LevelLoader");
+            break;
+        case(MenuButton.LoadGame):
+            break;
+        case(MenuButton.About):
+            Application.Quit ();
+            break;
+        }
+    }
+    
+    void Awake ()
+    {
+        mButtons = new Dictionary<MenuButton, Rect> ();
 
-		buttonDimensions.y += 110; // vertical offset between buttons
-		buttons.Add (Button.LoadGame, ScaleButton(buttonDimensions));
+        Rect buttonDimensions = new Rect (313, 310, 400, 95);
+        mButtons.Add (MenuButton.NewGame, ScaleButton (buttonDimensions));
 
-		buttonDimensions.y += 110;
-		buttons.Add (Button.About, ScaleButton(buttonDimensions));
-	}
+        buttonDimensions.y += 110; // vertical offset between buttons
+        mButtons.Add (MenuButton.LoadGame, ScaleButton (buttonDimensions));
 
-	// TODO make this a general utility function
-	// TODO add these to global game state
-	float kScreenWidth = 1024;
-	float kScreenHeight = 768;
-	
-	Rect ScaleButton(Rect button)
-	{
-		float widthRatio = Screen.width / kScreenWidth;
-		float heightRatio = Screen.height / kScreenHeight;
-		
-		button.x *= widthRatio;
-		button.width *= widthRatio;
-		button.y *= heightRatio;
-		button.height *= heightRatio;
-		
-		return button;
-	}
+        buttonDimensions.y += 110;
+        mButtons.Add (MenuButton.About, ScaleButton (buttonDimensions));
+    }
+
+    // TODO make this a general utility function
+    // TODO add these to global game state
+    float kScreenWidth = 1024;
+    float kScreenHeight = 768;
+    
+    Rect ScaleButton (Rect button)
+    {
+        float widthRatio = Screen.width / kScreenWidth;
+        float heightRatio = Screen.height / kScreenHeight;
+        
+        button.x *= widthRatio;
+        button.width *= widthRatio;
+        button.y *= heightRatio;
+        button.height *= heightRatio;
+        
+        return button;
+    }
 }
