@@ -4,6 +4,7 @@ using System.Collections;
 public class Progressbar : MonoBehaviour
 {
     public SpriteRenderer Shape;
+
     public int MaxValue { 
         get { return mMaxValue; }
         set { 
@@ -26,7 +27,6 @@ public class Progressbar : MonoBehaviour
     private int mMaxValue;
     private int mCurrentValue;
     private Rect mGuiBox;
-    
     private Texture2D background;
     private Texture2D foreground;
     private Texture2D border;

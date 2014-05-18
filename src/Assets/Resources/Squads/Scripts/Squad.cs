@@ -39,10 +39,11 @@ public class Squad : MonoBehaviour
     }
 
     public bool IsIdle { get { return SquadState == SquadState.Idle; } }
+
     public bool IsEngaged { 
         get { 
             return ! (SquadState == SquadState.Idle || 
-                   SquadState == SquadState.Moving); 
+                SquadState == SquadState.Moving); 
         } 
     }
 

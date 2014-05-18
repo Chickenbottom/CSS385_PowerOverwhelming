@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public Progressbar SwordsmanExperienceBar;
     public Progressbar ArcherExperienceBar;
     public Progressbar MageExperienceBar;
-    
     public GUIText GoldCounterText;
     public GUIText WaveCounter1;
     public GUIText WaveCounter10;
@@ -69,9 +68,8 @@ public class GameManager : MonoBehaviour
         }
         
         KingsHealthBar.UpdateValue (GameState.KingsHealth);
-
-        GoldCounterText.text = GameState.Gold.ToString("D9");
-        WaveCounter1.text = (GameState.RemainingWaves % 10).ToString();
+        GoldCounterText.text = GameState.Gold.ToString ("D9");
+        WaveCounter1.text = (GameState.RemainingWaves % 10).ToString ();
         
         if (Input.GetKeyDown ("a"))
             Time.timeScale += 0.5f;

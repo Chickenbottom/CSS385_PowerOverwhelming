@@ -134,21 +134,4 @@ public class SquadManager : MonoBehaviour
         squads = new List<Squad> ();
         rallyPoint = this.transform.position;
     }
-    
-    void Update ()
-    {
-        //if (Input.GetButtonDown("Fire2")) {
-        //      this.AddSquad();
-        //  }
-        
-        // Move the squads to the location clicked on the screen
-        /*
-        if (Input.GetMouseButtonDown(0)) {
-            mRallyPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mRallyPoint.z = 0;
-            SetDestination(mRallyPoint);
-        }
-        */
-    }
-    
 }
