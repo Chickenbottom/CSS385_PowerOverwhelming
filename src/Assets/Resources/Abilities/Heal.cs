@@ -10,13 +10,7 @@ public class Heal : Ability {
         // add healing effects
         Tower t = GameObject.Find("TargetFinder").GetComponent<TowerTargets>().GetTarget(mousePos);
         if (t.Allegiance == Allegiance.Rodelle)
-        {
-            t.health += 20;
-            if (t.health > t.MaxHealth)
-            {
-                t.health = t.MaxHealth;
-            }
-        }
+            t.Damage(-1 * t.MaxHealth);
     }
 
     public override bool ValidMousePos(Vector3 mousePos)

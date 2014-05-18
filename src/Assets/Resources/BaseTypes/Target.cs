@@ -19,9 +19,16 @@ public abstract class Target : MonoBehaviour
 		get { return this.transform.position; }
 		set { this.transform.position = value; }
 	}
+    
+    public virtual int MaxHealth {
+        get { return mMaxHealth; }
+        set { mMaxHealth = value; }
+    }
 	
 	public abstract void Damage(int damage);
 	
+    protected int mMaxHealth;
 	protected int mHealth;
+    
 	protected Allegiance mAllegiance;
 }

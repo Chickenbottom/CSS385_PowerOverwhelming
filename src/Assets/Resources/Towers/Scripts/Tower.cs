@@ -14,13 +14,12 @@ public abstract class Tower : Target
 	///////////////////////////////////////////////////////////////////////////////////
 	
 	public Renderer TowerSelector;
-	public Progressbar TowerHealthBar;
+	public Progressbar TowermHealthBar;
 	public List<Sprite> DamagedSprites;
 	public Sprite CapturedSprite;
 
     public bool canTargetTowers;
     
-	
 	///////////////////////////////////////////////////////////////////////////////////
 	// Public Methods and Variables
 	///////////////////////////////////////////////////////////////////////////////////
@@ -34,8 +33,6 @@ public abstract class Tower : Target
 	/// <param name="location">Location. The game coodinate clicked on.</param>
 	public abstract void SetTarget(Vector3 location);
     
-    public int MaxHealth = 20;
-	public int health = 20;
 	protected TowerType towerType;    
     
     public void ShowSelector(bool status)
@@ -51,10 +48,10 @@ public abstract class Tower : Target
         if (damage > 1) // makes towers stronger
             damage = 1;
             
-        health -= damage;
+        mHealth -= damage;
         
-        if (health <= 0) {
-			health = 8;
+        if (mHealth <= 0) {
+			mHealth = (int) (mMaxHealth * 0.25);
 			mAllegiance = this.Allegiance == Allegiance.Rodelle
 				? Allegiance.AI
 				: Allegiance.Rodelle;
@@ -62,10 +59,11 @@ public abstract class Tower : Target
 			if (this.Allegiance != Allegiance.Rodelle)
 				this.ShowSelector(false);
         }
-		UpdateAnimation();
-        if (health > MaxHealth)
-            health = MaxHealth;
-        TowerHealthBar.Value = health;
+		
+        if (mHealth > mMaxHealth)
+            mHealth = mMaxHealth;
+        TowermHealthBar.Value = mHealth;
+        UpdateAnimation();
     }
     
 	///////////////////////////////////////////////////////////////////////////////////
@@ -81,10 +79,10 @@ public abstract class Tower : Target
 		if (this.Allegiance == Allegiance.AI)
 			sr.sprite = CapturedSprite;
 		else { 
-			float percentDamaged = (float) (MaxHealth - health) / (float) MaxHealth;
+			float percentDamaged = (float) (mMaxHealth - mHealth) / (float) mMaxHealth;
 			int spriteIndex =  (int)(percentDamaged * DamagedSprites.Count);
-
-			sr.sprite = DamagedSprites[spriteIndex];
+            if (spriteIndex < DamagedSprites.Count)
+                sr.sprite = DamagedSprites[spriteIndex];
 		}
 	}
 	
@@ -94,8 +92,12 @@ public abstract class Tower : Target
     protected virtual void Awake()
     {
 		mAllegiance = Allegiance.Rodelle;
-		TowerHealthBar.MaxValue = MaxHealth;
-		TowerHealthBar.Value = health;
+        
+        mHealth = 45;
+        mMaxHealth = 45;
+        
+		TowermHealthBar.MaxValue = mMaxHealth;
+		TowermHealthBar.Value = mHealth;
 		this.ShowSelector(false);
 		UpdateAnimation();
     }

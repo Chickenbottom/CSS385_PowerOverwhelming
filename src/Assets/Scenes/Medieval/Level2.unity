@@ -307,15 +307,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TowerSelector: {fileID: 1734501054}
-  TowerHealthBar: {fileID: 1067516638}
+  TowermHealthBar: {fileID: 1067516638}
   DamagedSprites:
   - {fileID: 21300002, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300010, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300018, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300026, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
-  MaxHealth: 20
-  health: 20
   squadManager: {fileID: 402212068}
   Tent: {fileID: 876563391}
   UnitSpawnType: 3
@@ -1278,15 +1276,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TowerSelector: {fileID: 708747260}
-  TowerHealthBar: {fileID: 229377076}
+  TowermHealthBar: {fileID: 229377076}
   DamagedSprites:
   - {fileID: 21300004, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300012, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300020, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300028, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
-  MaxHealth: 20
-  health: 20
   squadManager: {fileID: 84667852}
   Tent: {fileID: 1721311353}
   UnitSpawnType: 4
@@ -2117,15 +2113,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TowerSelector: {fileID: 1989766253}
-  TowerHealthBar: {fileID: 12678819}
+  TowermHealthBar: {fileID: 12678819}
   DamagedSprites:
   - {fileID: 21300000, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300008, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300016, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300024, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
-  MaxHealth: 20
-  health: 20
   squadManager: {fileID: 456529788}
   Tent: {fileID: 592284321}
   UnitSpawnType: 2
@@ -2729,15 +2723,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TowerSelector: {fileID: 1660554373}
-  TowerHealthBar: {fileID: 1143817243}
+  TowermHealthBar: {fileID: 1143817243}
   DamagedSprites:
   - {fileID: 21300006, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300014, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   - {fileID: 21300022, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300030, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 1
-  MaxHealth: 20
-  health: 20
   ability: {fileID: 538972986}
 --- !u!212 &1091159856
 SpriteRenderer:
