@@ -8,7 +8,15 @@ public class Heal : Ability {
     public override void UseAbility(Vector3 mousePos)
     {
         // add healing effects
-        GameObject.Find("TargetFinder").GetComponent<TowerTargets>().GetTarget(mousePos).health += 20;
+        Tower t = GameObject.Find("TargetFinder").GetComponent<TowerTargets>().GetTarget(mousePos);
+        if (t.Allegiance == Allegiance.Rodelle)
+        {
+            t.health += 20;
+            if (t.health > t.MaxHealth)
+            {
+                t.health = t.MaxHealth;
+            }
+        }
     }
 
     public override bool ValidMousePos(Vector3 mousePos)
