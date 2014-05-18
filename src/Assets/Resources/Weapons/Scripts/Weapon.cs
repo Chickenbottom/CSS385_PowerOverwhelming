@@ -46,7 +46,9 @@ public abstract class Weapon
             return;
         
         reloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
-        target.Damage (this.Damage);
+        
+        if (Random.value < this.Accuracy)
+            target.Damage (this.Damage);
     }
     
     protected WeaponType mWeaponType;

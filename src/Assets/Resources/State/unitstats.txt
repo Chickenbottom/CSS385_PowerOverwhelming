@@ -1,6 +1,6 @@
 # UnitType Health   MovementSpeed   ChargeSpeed Sight
-Archer      04      10              10          35
-Swordsman   06      12              15          35
-Mage        04      08              08          45
-Peasant     04      13              15          10
+Archer      4       10              10          45
+Swordsman   6       12              15          30
+Mage        4       06              08          50
+Peasant     4       10              12          10
 King        100     00              00          00
