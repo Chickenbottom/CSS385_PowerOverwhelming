@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -56,10 +56,10 @@ public class GameManager : MonoBehaviour
         mExpBars.Add (UnitType.Mage, MageExperienceBar);
         
         foreach (UnitType u in mExpBars.Keys) {
-            mExpBars [u].maxValue = GameState.RequiredUnitExperience [u];
+            mExpBars [u].MaxValue = GameState.RequiredUnitExperience [u];
         }
         
-        KingsHealthBar.maxValue = GameState.KingsHealth;
+        KingsHealthBar.MaxValue = GameState.KingsHealth;
     }
     
     void Update ()

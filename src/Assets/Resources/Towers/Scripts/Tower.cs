@@ -94,7 +94,7 @@ public abstract class Tower : Target
     protected virtual void Awake()
     {
 		mAllegiance = Allegiance.Rodelle;
-		TowerHealthBar.maxValue = MaxHealth;
+		TowerHealthBar.MaxValue = MaxHealth;
 		TowerHealthBar.Value = health;
 		this.ShowSelector(false);
 		UpdateAnimation();

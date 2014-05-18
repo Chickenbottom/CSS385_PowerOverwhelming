@@ -1,64 +1,72 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Progressbar : MonoBehaviour {
-	
-	public int Value { 
-		get { return currentValue; }
-		set { UpdateValue(value); }
-	}
-	
-	public float box_length;
-	public GameObject cur_obj;
-	public SpriteRenderer Base;
-	Rect guiBox; 
-	
-	private Texture2D background;
-	private Texture2D foreground;
-	
-	public int currentValue;
-	public int maxValue;
-	
-	void Start()
-	{
-		//mGuiBox = new Rect(cur_obj.transform.position.x, 10, 200, 20);
-		Bounds b = Base.bounds;
-		guiBox = new Rect(b.min.x, b.min.y, b.size.x, b.size.y);
-		
-		Vector3 topLeft = Camera.main.WorldToScreenPoint(new Vector3(b.min.x, b.min.y, 0f));
-		Vector3 bottomRight = Camera.main.WorldToScreenPoint(new Vector3(b.max.x, b.max.y, 0f));
-		
-		guiBox.xMax = bottomRight.x + 1f;
-		guiBox.yMin = Screen.height - bottomRight.y + 1f;
-		
-		guiBox.xMin = topLeft.x;
-		guiBox.yMax = Screen.height - topLeft.y;
-		
-		background = new Texture2D(1, 1, TextureFormat.RGB24, false);
-		foreground = new Texture2D(1, 1, TextureFormat.RGB24, false);
-		
-		background.SetPixel(0, 0, Color.red);
-		foreground.SetPixel(0, 0, Color.green);
-		
-		background.Apply();
-		foreground.Apply();
-		Base.enabled = false;
-	}
-	
-	public void UpdateValue(int value)
-	{
-		currentValue = value;
-		if (currentValue > maxValue) currentValue = maxValue;
-		if (currentValue < 0) currentValue = 0;
-	}
-	
-	void OnGUI()
-	{
-		GUI.BeginGroup(guiBox);
-		{
-			GUI.DrawTexture(new Rect(0, 0, guiBox.width, guiBox.height), background, ScaleMode.StretchToFill);
-			GUI.DrawTexture(new Rect(0, 0, guiBox.width*currentValue/maxValue, guiBox.height), foreground, ScaleMode.StretchToFill);
-		}
-		GUI.EndGroup(); ;
-	}
+public class Progressbar : MonoBehaviour
+{
+    public SpriteRenderer Shape;
+    public int MaxValue { 
+        get { return mMaxValue; }
+        set { 
+            mMaxValue = value; 
+            if (mMaxValue <= 0) 
+                mMaxValue = 1; 
+        }
+    }
+
+    public int Value { 
+        get { return mCurrentValue; }
+        set { UpdateValue (value); }
+    }
+    
+    private int mMaxValue;
+    private int mCurrentValue;
+    private Rect mGuiBox;
+    private Texture2D background;
+    private Texture2D foreground;
+    
+    void Start ()
+    {
+        Shape.enabled = false;
+        
+        Bounds b = Shape.bounds;
+        mGuiBox = new Rect (b.min.x, b.min.y, b.size.x, b.size.y);
+        
+        Vector3 topLeft = Camera.main.WorldToScreenPoint (new Vector3 (b.min.x, b.min.y, 0f));
+        Vector3 bottomRight = Camera.main.WorldToScreenPoint (new Vector3 (b.max.x, b.max.y, 0f));
+        
+        mGuiBox.xMax = bottomRight.x + 1f;
+        mGuiBox.yMin = Screen.height - bottomRight.y + 1f;
+        
+        mGuiBox.xMin = topLeft.x;
+        mGuiBox.yMax = Screen.height - topLeft.y;
+        
+        background = new Texture2D (1, 1, TextureFormat.RGB24, false);
+        foreground = new Texture2D (1, 1, TextureFormat.RGB24, false);
+        
+        background.SetPixel (0, 0, Color.red);
+        foreground.SetPixel (0, 0, Color.green);
+        
+        background.Apply ();
+        foreground.Apply ();
+    }
+    
+    public void UpdateValue (int value)
+    {
+        mCurrentValue = value;
+        if (mCurrentValue > MaxValue)
+            mCurrentValue = MaxValue;
+        if (mCurrentValue < 0)
+            mCurrentValue = 0;
+    }
+    
+    void OnGUI ()
+    {
+        GUI.BeginGroup (mGuiBox);
+        {
+            GUI.DrawTexture (new Rect (0, 0, mGuiBox.width, mGuiBox.height), background, ScaleMode.StretchToFill);
+            GUI.DrawTexture (new Rect (0, 0, mGuiBox.width * mCurrentValue / MaxValue, mGuiBox.height), foreground, ScaleMode.StretchToFill);
+        }
+        GUI.EndGroup ();
+        ;
+    }
 }
