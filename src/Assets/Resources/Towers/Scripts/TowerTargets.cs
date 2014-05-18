@@ -26,8 +26,14 @@ public class TowerTargets : MonoBehaviour {
         BoxCollider2D collider = target.GetComponent<BoxCollider2D>();
         Transform transform = target.GetComponent<Transform>();
         Target newTarget = new Target();
-        newTarget.b = new Bounds(new Vector3(collider.center.x + transform.position.x, collider.center.y + transform.position.y, 0f), 
-                                 new Vector3((collider.size.x * transform.lossyScale.x) * 2, (collider.size.y * transform.lossyScale.y) * 2, 0f));
+
+        Vector3 center = Vector3.Scale(transform.localScale, collider.center);
+        Vector3 position = center + transform.position;
+        Vector3 size = Vector3.Scale(transform.localScale, collider.size);
+
+        //newTarget.b = new Bounds(new Vector3((collider.center.x * transform.localScale) + transform.position.x, collider.center.y + transform.position.y, 0f), 
+        //                         new Vector3((collider.size.x * transform.lossyScale.x), (collider.size.y * transform.lossyScale.y), 0f));
+        newTarget.b = new Bounds(position, size);
         newTarget.t = target;
         targetTowers.Add(newTarget);
     }
