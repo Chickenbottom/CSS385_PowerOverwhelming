@@ -1,15 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Dagger : Weapon
 {       
     public Dagger ()
-    {
-        Damage = 1;
-        Range = 12f;
-        ReloadTime = 2.0f;
-        ReloadVariance = 0.5f;
-        Accuracy = 0.8f;
+    {      
+        mWeaponType = WeaponType.Dagger;
+        this.InitializeStats();
         
         reloadTimer = ReloadTime;
     }

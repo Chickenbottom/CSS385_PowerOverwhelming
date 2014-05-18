@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Sword : Weapon
@@ -6,17 +6,14 @@ public class Sword : Weapon
     private static GameObject projectilePrefab = null;
     
     public Sword ()
-    {
-        Damage = 3;
-        Range = 12f;
-        ReloadTime = 1.0f;
-        ReloadVariance = 0.5f;
-        Accuracy = 0.8f;
-        
-        reloadTimer = ReloadTime;
-        
+    {        
         if (projectilePrefab == null)
             projectilePrefab = Resources.Load ("Weapons/ArrowPrefab") as GameObject;
+        
+        mWeaponType = WeaponType.Sword;
+        this.InitializeStats();
+        
+        reloadTimer = ReloadTime;
     }
     
     protected override void PerformAttack (Target src, Target target)

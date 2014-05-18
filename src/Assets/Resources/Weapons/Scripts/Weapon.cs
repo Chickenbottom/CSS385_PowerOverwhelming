@@ -1,6 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum WeaponType
+{
+    Crossbow,
+    Dagger,
+    IceWand,
+    Sword,
+    Pitchfork,
+}
+
 public abstract class Weapon
 {
     public int Damage { get; set; }
@@ -38,5 +47,16 @@ public abstract class Weapon
         
         reloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
         target.Damage (this.Damage);
+    }
+    
+    protected WeaponType mWeaponType;
+    
+    protected void InitializeStats()
+    {
+        this.Damage = (int)WeaponUpgrades.GetStat(mWeaponType, WeaponStat.Damage);
+        this.Range = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.Range);
+        this.ReloadTime = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.ReloadTime);
+        this.ReloadVariance = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.ReloadVariance);
+        this.Accuracy = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.Accuracy);
     }
 }

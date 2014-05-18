@@ -227,9 +227,6 @@ public class Unit : Target
         targetDir.Normalize ();
             
         Position += speed * Time.deltaTime * targetDir;
-        
-        int sortingOrder = (int)(4 * (-Position.y + Camera.main.orthographicSize));
-        GetComponent<SpriteRenderer> ().sortingOrder = (int)(sortingOrder);
     }
     
     // Update sprite set to match current health
@@ -250,6 +247,9 @@ public class Unit : Target
             mUnitAnimator.WalkRight ();
         else 
             mUnitAnimator.WalkLeft ();
+            
+        int sortingOrder = (int)(4 * (-Position.y + Camera.main.orthographicSize));
+        GetComponent<SpriteRenderer> ().sortingOrder = (int)(sortingOrder);
     }
     
 ///////////////////////////////////////////////////////////////////////////////////
@@ -300,10 +300,11 @@ public class Unit : Target
         if (mUnitAnimator == null)
             Debug.LogError ("UnitAnimation script was not attached to this Unit!");
         
-        mMaxHealth = (int)UnitUpgrades.GetUnitStat(mUnitType, UnitStat.Health);
+        mMaxHealth = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.Health);
         mHealth = mMaxHealth;
         
-        mMovementSpeed = (int)UnitUpgrades.GetUnitStat(mUnitType, UnitStat.MovementSpeed);
-        mChargeSpeed = (int)UnitUpgrades.GetUnitStat(mUnitType, UnitStat.ChargeSpeed);
+        mMovementSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.MovementSpeed);
+        mChargeSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.ChargeSpeed);
+        this.SightRange = UnitUpgrades.GetStat(mUnitType, UnitStat.SightRange);
     }
 }

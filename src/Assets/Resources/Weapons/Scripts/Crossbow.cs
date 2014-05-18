@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Crossbow : Weapon
@@ -6,17 +6,14 @@ public class Crossbow : Weapon
     private static GameObject mProjectilePrefab = null;
         
     public Crossbow ()
-    {
-        Damage = 5;
-        Range = 45f;
-        ReloadTime = 2.0f;
-        ReloadVariance = 0.3f;
-        Accuracy = 0.8f;
-    
-        reloadTimer = ReloadTime;
-        
+    {       
         if (mProjectilePrefab == null)
             mProjectilePrefab = Resources.Load ("Weapons/ArrowPrefab") as GameObject;
+          
+        mWeaponType = WeaponType.Crossbow;
+        this.InitializeStats();
+        
+        reloadTimer = ReloadTime;
     }
     
     protected override void PerformAttack (Target src, Target target)

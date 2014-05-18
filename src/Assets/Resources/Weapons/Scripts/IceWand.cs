@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class IceWand : Weapon
@@ -6,17 +6,13 @@ public class IceWand : Weapon
     private static GameObject projectilePrefab = null;
     
     public IceWand ()
-    {
-        Damage = 5;
-        Range = 70f;
-        ReloadTime = 2.0f;
-        ReloadVariance = 0.1f;
-        Accuracy = 0.8f;
-        
-        reloadTimer = ReloadTime;
-        
+    {       
         if (projectilePrefab == null)
             projectilePrefab = Resources.Load ("Weapons/IceBombPrefab") as GameObject;
+            
+        mWeaponType = WeaponType.IceWand;
+        this.InitializeStats();
+        reloadTimer = ReloadTime;
     }
     
     public Target src;

@@ -1,50 +1,45 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System;
 
-public enum UnitStat
+public enum WeaponStat
 {
-    Health = 0,
-    MovementSpeed = 1,
-    ChargeSpeed = 2,
-    SightRange = 3,
+    Damage = 0,
+    Range = 1,
+    ReloadTime = 2,
+    ReloadVariance = 3,
+    Accuracy = 4,
 }
 
-public static class EnumUtil {
-    public static IEnumerable<T> GetValues<T>() {
-        return (T[])Enum.GetValues(typeof(T));
-    }
-}
-
-public static class UnitUpgrades
+public static class WeaponUpgrades
 {   
     ///////////////////////////////////////////////////////////////////////////////////
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
     
-    static UnitUpgrades ()
+    static WeaponUpgrades ()
     {
-        int numUnitTypes = Enum.GetValues(typeof(UnitType)).Length;
-        int numStats = Enum.GetValues(typeof(UnitStat)).Length;
-        mUnitStats = new float[numUnitTypes, numStats];      
+        int numWeaponTypes = Enum.GetValues(typeof(WeaponType)).Length;
+        int numStats = Enum.GetValues(typeof(WeaponStat)).Length;
+        mWeaponStats = new float[numWeaponTypes, numStats];      
         
-        for (int i = 0; i < numUnitTypes; i ++)
+        for (int i = 0; i < numWeaponTypes; i ++)
             for (int j = 0; j < numStats; j++)
-                mUnitStats [i, j] = 0f;
-                
-        LoadStatsFromFile ("Assets/Resources/State/unitstats.txt");
+                mWeaponStats [i, j] = 0f;
+        
+        LoadStatsFromFile ("Assets/Resources/State/weaponstats.txt");
     }
     
-    public static float GetStat (UnitType unit, UnitStat stat)
+    public static float GetStat (WeaponType weapon, WeaponStat stat)
     {
-        return mUnitStats [(int)unit, (int)stat];
+        return mWeaponStats [(int)weapon, (int)stat];
     }
     
-    public static void SetStat (UnitType subject, UnitStat stat, float value)
+    public static void SetStat (WeaponType weapon, WeaponStat stat, float value)
     {
-        mUnitStats [(int)subject, (int)stat] = value;
+        mWeaponStats [(int)weapon, (int)stat] = value;
     }
     
     /*
@@ -53,10 +48,10 @@ public static class UnitUpgrades
         StreamWriter writer = new StreamWriter (filepath);
         
         foreach (string sub in Enum.GetNames(typeof(GameType))) {
-            foreach (string bon in Enum.GetNames(typeof(UnitStat))) {
+            foreach (string bon in Enum.GetNames(typeof(weaponStat))) {
                 writer.WriteLine (sub + "," + bon + "," +
                                   mstatArray [(int)Enum.Parse (typeof(GameType), sub), 
-                             (int)Enum.Parse (typeof(UnitStat), bon)].ToString ());
+                             (int)Enum.Parse (typeof(weaponStat), bon)].ToString ());
             }
         }
         writer.Close ();
@@ -66,7 +61,7 @@ public static class UnitUpgrades
     // Private
     ///////////////////////////////////////////////////////////////////////////////////
     
-    static float[,] mUnitStats;
+    static float[,] mWeaponStats;
     
     private static void LoadStatsFromFile (string filepath)
     {
@@ -79,12 +74,12 @@ public static class UnitUpgrades
             string [] values = line.Split (delim, StringSplitOptions.RemoveEmptyEntries);
             if (values[0]== "#")
                 continue;
-                
-            UnitType unitType = EnumHelper.FromString<UnitType>(values[0]);
+            
+            WeaponType WeaponType = EnumHelper.FromString<WeaponType>(values[0]);
             
             int statIndex = 1;
-            foreach (UnitStat s in EnumUtil.GetValues<UnitStat>()) {
-                mUnitStats [(int)unitType, (int)s] = float.Parse (values [statIndex]);
+            foreach (WeaponStat s in EnumUtil.GetValues<WeaponStat>()) {
+                mWeaponStats [(int)WeaponType, (int)s] = float.Parse (values [statIndex]);
                 statIndex ++;
             }
         }
