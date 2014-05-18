@@ -13,6 +13,11 @@ public class Progressbar : MonoBehaviour
         }
     }
 
+    public Color ForegroundColor;
+    public Color BackgroundColor;
+    public Color BorderColor;
+    public float BorderWidth = 1f;
+    
     public int Value { 
         get { return mCurrentValue; }
         set { UpdateValue (value); }
@@ -21,8 +26,10 @@ public class Progressbar : MonoBehaviour
     private int mMaxValue;
     private int mCurrentValue;
     private Rect mGuiBox;
+    
     private Texture2D background;
     private Texture2D foreground;
+    private Texture2D border;
     
     void Start ()
     {
@@ -41,13 +48,16 @@ public class Progressbar : MonoBehaviour
         mGuiBox.yMax = Screen.height - topLeft.y;
         
         background = new Texture2D (1, 1, TextureFormat.RGB24, false);
-        foreground = new Texture2D (1, 1, TextureFormat.RGB24, false);
-        
-        background.SetPixel (0, 0, Color.red);
-        foreground.SetPixel (0, 0, Color.green);
-        
+        background.SetPixel (0, 0, BackgroundColor);
         background.Apply ();
+        
+        foreground = new Texture2D (1, 1, TextureFormat.RGB24, false);
+        foreground.SetPixel (0, 0, ForegroundColor);
         foreground.Apply ();
+        
+        border = new Texture2D (1, 1, TextureFormat.RGB24, false);
+        border.SetPixel (0, 0, BorderColor);
+        border.Apply ();
     }
     
     public void UpdateValue (int value)
@@ -63,8 +73,16 @@ public class Progressbar : MonoBehaviour
     {
         GUI.BeginGroup (mGuiBox);
         {
-            GUI.DrawTexture (new Rect (0, 0, mGuiBox.width, mGuiBox.height), background, ScaleMode.StretchToFill);
-            GUI.DrawTexture (new Rect (0, 0, mGuiBox.width * mCurrentValue / MaxValue, mGuiBox.height), foreground, ScaleMode.StretchToFill);
+            GUI.DrawTexture (new Rect (0, 0, mGuiBox.width, mGuiBox.height), 
+                             border, ScaleMode.StretchToFill);
+                             
+            GUI.DrawTexture (new Rect (BorderWidth, BorderWidth, mGuiBox.width - BorderWidth * 2, mGuiBox.height - BorderWidth * 2), 
+                             background, ScaleMode.StretchToFill);
+                             
+            GUI.DrawTexture (new Rect (BorderWidth, BorderWidth, 
+                                       (mGuiBox.width * mCurrentValue / MaxValue) - BorderWidth * 2, 
+                                       (mGuiBox.height) - BorderWidth * 2), 
+                             foreground, ScaleMode.StretchToFill);
         }
         GUI.EndGroup ();
         ;
