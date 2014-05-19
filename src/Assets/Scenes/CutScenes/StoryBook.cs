@@ -41,14 +41,18 @@ public class StoryBook : MonoBehaviour {
 	void Update () {
 		if(mFadeIn)
 			FadeIn();
-		if(mIndex <= mCameraArray.Count)
-			if(Time.realtimeSinceStartup - mPreviousCam > kCamInterval && mIndex < mCameraArray.Count){
+		if(mIndex < mCameraArray.Count){
+			if(Time.realtimeSinceStartup - mPreviousCam > kCamInterval){
 				if(FadeOut()){
 					Camera temp = (Camera) mCameraArray[mIndex++];
 							temp.camera.enabled = true;
 					mPreviousCam = Time.realtimeSinceStartup;
 					mFadeIn = true;
 				}
+			}
+		}
+		else{
+			Invoke("StartGame",kCamInterval);
 		}
 	}
 	bool FadeIn(){
@@ -81,5 +85,8 @@ public class StoryBook : MonoBehaviour {
 		Image.material.color = new Color(Image.material.color.r,Image.material.color.g,
 		                                 Image.material.color.b, alpha);
 
+	}
+	void StartGame(){
+		Application.LoadLevel("Level2");
 	}
 }

@@ -7,9 +7,9 @@ public class BackButton : ButtonBehaviour {
 	public GameObject mSaveMenuObject;
 
 	void OnMouseDown(){
-
 		mMainMenuObject.SetActive(true);
 		mSaveMenuObject.SetActive(false);
+		ChangeScreen();
 	}
 
 }

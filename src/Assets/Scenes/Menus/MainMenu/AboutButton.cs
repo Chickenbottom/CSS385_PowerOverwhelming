@@ -10,5 +10,6 @@ public class AboutButton : ButtonBehaviour {
 	void OnMouseDown(){
 		mMainMenuObject.SetActive(false);
 		mAboutObject.SetActive(true);
+		ChangeScreen();
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameState {
+
 	public static CurrentLevel gameLevel {get; set;}
 	private static int[] numEnemies;
 
@@ -18,7 +19,9 @@ public class GameState {
 	public static Dictionary<UnitType, int> UnitExperience { get; set; }
 	public static Dictionary<UnitType, int> RequiredUnitExperience { get; set; }
 	public static Dictionary<UnitType, float> SpawnTimes { get; set; }
-	
+
+
+
 	static GameState()
 	{
 		// TODO pull these values from a file
@@ -78,5 +81,6 @@ public class GameState {
 	}
 	
 	private static int mKingsHealth;
+
 }
 

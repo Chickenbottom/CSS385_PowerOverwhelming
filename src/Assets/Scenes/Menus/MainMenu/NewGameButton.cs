@@ -3,11 +3,13 @@ using System.Collections;
 
 public class NewGameButton : ButtonBehaviour {
 	public GameObject mSaveMenuObject;
-	public GameObject mNewGameObject;
+	public GameObject mMenuObject;
 
 	void OnMouseDown(){
-		mNewGameObject.SetActive(true);
-		mSaveMenuObject.SetActive(false);
+		mSaveMenuObject.SetActive(true);
+		mMenuObject.SetActive(false);
+		ChangeScreen();
+		
 	}
 
 }

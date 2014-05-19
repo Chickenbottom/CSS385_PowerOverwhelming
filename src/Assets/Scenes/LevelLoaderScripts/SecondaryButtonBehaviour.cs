@@ -33,7 +33,7 @@ public class SecondaryButtonBehaviour : MonoBehaviour {
 				Application.LoadLevel("TowerStore");
 				break;
 			case Destination.MainMenu:
-				Application.LoadLevel("MainMenu");
+				Application.LoadLevel("Menu");
 				break;
 			}
 		}

@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour {
 	public Progressbar SwordsmanExperienceBar;
 	public Progressbar ArcherExperienceBar;
 	public Progressbar MageExperienceBar;
-	
+	public AudioSource mMusic;
+	//private float mMusicVolume = 1;
+	//private float mSFXVolume = 1;
+
 	public void OnGUI()
 	{
 		if (GUI.Button(new Rect(120, 35, 150, 50), "Return to Level Selector"))
@@ -45,5 +48,8 @@ public class GameManager : MonoBehaviour {
 		}
 		
 		KingsHealthBar.UpdateValue(GameState.KingsHealth);
+	}
+	public void SetMusicVolume(float v){
+		mMusic.volume = v;
 	}
 }
