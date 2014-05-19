@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 //the subject of the conversation
@@ -12,6 +13,28 @@ public enum DialogType
     PeasantInvade = 4
 }
 
+public enum Speaker 
+{
+    None,
+    King,
+    Advisor,
+    Swordsman,
+    Peasant,
+}
+
+public enum SpeakerState
+{
+    Normal,
+    Nervous,
+}
+
+public enum SpeakerLocation
+{
+    Left,
+    Right
+}
+
+
 public class DialogueManager : MonoBehaviour
 {
     ///////////////////////////////////////////////////////////////////////////////////
@@ -19,33 +42,38 @@ public class DialogueManager : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////
 
     public GUIText DialogueLeft;
+    public GUIText NameLeft;
+    
     public GUIText DialogueRight;
+    public GUIText NameRight;
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
     
     // TODO: prioritize statements
-    public void SetRodelleStatment (DialogType d)
+    
+    //public void TriggerDialogue()
+    /*public void SetRodelleStatment (DialogType d)
     {
-        mCurPerson = kRod;
+        mCurrentSpeaker = Speaker.King;
         mCurConvo = (int)d;
         mLength = 1;
         GameObject.Find ("dialogueL").GetComponent<SpriteRenderer> ().sortingOrder = 1100;
         GameObject.Find ("dialogueR").GetComponent<SpriteRenderer> ().sortingOrder = -1110;
-        SetDialog ("", mDialogueBoxes [1]);
+        SetDialog ("", mTextBoxes [1]);
     }
     
     public void SetAdvisorStatment (DialogType d)
     {
-        mCurPerson = kAdv;
+        mCurrentSpeaker = Speaker.Advisor;
         mCurConvo = (int)d;
         mLength = 1;
         GameObject.Find ("dialogueR").GetComponent<SpriteRenderer> ().sortingOrder = 1100;
         GameObject.Find ("dialogueL").GetComponent<SpriteRenderer> ().sortingOrder = -1110;
         GameObject.Find ("DialoguePortrait").GetComponent<SpriteRenderer> ().sortingOrder = -1110;
-        SetDialog ("", mDialogueBoxes [0]);
-    }
+        SetDialog ("", mTextBoxes [0]);
+    }*/
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Private
@@ -53,22 +81,24 @@ public class DialogueManager : MonoBehaviour
     #region Private Variables
     #region const variables
     //which perons has the conversation
-    private const int kRod = 0;
-    private const int kAdv = 1;
+    private Speaker mCurrentSpeaker;
     private const int kTotalArray = 5;
     private const float kLetterDisplayTime = .05f;
     private const string kPath = "Dialog.txt"; //path of the txt file
     #endregion
 
-    int mCurPerson;
     int mCurConvo;
     int mLength; // used to display one letter at a time
     float mPreviousLetter = 0f; //used for keeping time for display
 
-    private GUIText[] mDialogueBoxes;
+    private Dictionary<SpeakerLocation, GUIText> mTextBoxes;
+    private Dictionary<SpeakerLocation, GUIText> mNameBoxes;
+    private Dictionary<Speaker, SpriteRenderer> mSpeakers;
+    Dictionary<SpeakerLocation, SpriteRenderer> mGuiLayers;
     private ArrayList[][] mConversations;
 
     #endregion
+    
     
     private void SetDialog (string text, GUIText textBox)
     {
@@ -81,7 +111,7 @@ public class DialogueManager : MonoBehaviour
      * line
      * line
      */
-    private void loadDialog (StreamReader file)
+    /*private void LoadDialog (StreamReader file)
     {
         int person = -1;
         int dialogType = -1;
@@ -109,37 +139,57 @@ public class DialogueManager : MonoBehaviour
         }
     }
     
-    private void printStatement ()
+    private void PrintStatement ()
     {
-        string line = (string)mConversations [mCurPerson] [mCurConvo] [0];
+        string line = (string)mConversations [mCurrentSpeaker] [mCurConvo] [0];
         if (mLength > line.Length) {
             mLength = -1;
-            mConversations [mCurPerson] [mCurConvo].RemoveAt (0);
-            mConversations [mCurPerson] [mCurConvo].Add (line);
+            mConversations [mCurrentSpeaker] [mCurConvo].RemoveAt (0);
+            mConversations [mCurrentSpeaker] [mCurConvo].Add (line);
             return;
         }
         
-        SetDialog (line.Substring (0, mLength), mDialogueBoxes [mCurPerson]);
+        SetDialog (line.Substring (0, mLength), mDialogueBoxes [mCurrentSpeaker]);
         mLength++;
-    }
+    }*/
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
     ///////////////////////////////////////////////////////////////////////////////////
 
+    Dialogue mDialogue;
     void Start ()
     {
-        mDialogueBoxes = new GUIText[2] { DialogueLeft, DialogueRight };
+        mDialogue = new Dialogue();
+        mDialogue.AddMessage(7f, SpeakerState.Normal, Speaker.King, SpeakerLocation.Left, 
+                             "Welcome, left click a tower to select it, and right click to send \nunits from that tower to a location.");
+        mDialogue.AddMessage(10f, SpeakerState.Normal, Speaker.Advisor, SpeakerLocation.Right, 
+                             "Don't forget you can double click to force your units to go to a \nspecific location M'Lord.");
+    
+        mTextBoxes = new Dictionary<SpeakerLocation, GUIText>() ;
+        mTextBoxes.Add (SpeakerLocation.Left, DialogueLeft);
+        mTextBoxes.Add (SpeakerLocation.Right, DialogueRight);
+        
+        mNameBoxes = new Dictionary<SpeakerLocation, GUIText>() ;
+        mNameBoxes.Add (SpeakerLocation.Left, NameLeft);
+        mNameBoxes.Add (SpeakerLocation.Right, NameRight);
+        
+        mGuiLayers = new Dictionary<SpeakerLocation, SpriteRenderer>();
+        mGuiLayers.Add (SpeakerLocation.Left, GameObject.Find ("ChatImageLeft").GetComponent<SpriteRenderer>());
+        mGuiLayers.Add (SpeakerLocation.Right, GameObject.Find ("ChatImageRight").GetComponent<SpriteRenderer>());
+        
+        mSpeakers = new Dictionary<Speaker, SpriteRenderer>();
+        mSpeakers.Add (Speaker.King, GameObject.Find ("DialoguePortrait").GetComponent<SpriteRenderer>());
 
         #region initialize conversation arrays
         mConversations = new ArrayList[2][];
-        mConversations [kRod] = new ArrayList[kTotalArray];
+        /*mConversations [kRod] = new ArrayList[kTotalArray];
         mConversations [kAdv] = new ArrayList[kTotalArray];
 
         for (int i = 0; i < kTotalArray; i++) {
             mConversations [kRod] [i] = new ArrayList ();
             mConversations [kAdv] [i] = new ArrayList ();
-        }
+        }*/
         #endregion
 
         #region check for dialog boxes
@@ -159,25 +209,70 @@ public class DialogueManager : MonoBehaviour
             Debug.Log (e.ToString ());
         }
         if (file != null) {
-            loadDialog (file);
+           // LoadDialog (file);
         }
         #endregion
 
         mLength = -1;
-        mCurPerson = -1;
+        mCurrentSpeaker = Speaker.None;
         mCurConvo = -1;
 
-        SetRodelleStatment (DialogType.Tutorial);
+        //SetRodelleStatment (DialogType.Tutorial);
     }
+
+    private void DisplayMessage(Message message)
+    {
+        ResetGui();
+        
+        Speaker speaker = message.Who;
+        if (mSpeakers.ContainsKey(speaker)) // TODO add speaker state change here
+            mSpeakers[speaker].enabled = true;
+        
+        SpeakerLocation location = message.Location;
+        
+        mTextBoxes[location].enabled = true;
+        mTextBoxes[location].text = message.Text;
+        
+        mNameBoxes[location].enabled = true;
+        mNameBoxes[location].text = MapSpeakerToName(message.Who);
+        
+        mGuiLayers[location].enabled = true;
+    }
+    
+    private string MapSpeakerToName(Speaker speaker)
+    {
+        switch(speaker){
+        case (Speaker.King):
+            return "King Rodelle";
+        default:
+            return speaker.ToString();
+        }
+    }
+    
+    void ResetGui()
+    {
+        foreach (Speaker s in mSpeakers.Keys)
+            mSpeakers[s].enabled = false;
+            
+        foreach (SpeakerLocation l in mTextBoxes.Keys)
+            mTextBoxes[l].enabled = false;
+            
+        foreach (SpeakerLocation l in mNameBoxes.Keys)
+            mNameBoxes[l].enabled = false;
+             
+        foreach (SpeakerLocation l in mGuiLayers.Keys)
+            mGuiLayers[l].enabled = false;
+    }
+    
 
     void Update ()
     {
-        if (Time.time - mPreviousLetter > kLetterDisplayTime && mLength != -1) {
-            printStatement ();
-            mPreviousLetter = Time.time;
-        }
-        if (mLength == -1) {
-            SetAdvisorStatment (DialogType.Tutorial);
+        Message message;
+        bool isValid = mDialogue.AdvanceMessage(Time.deltaTime, out message);
+        
+        if (isValid) {
+            DisplayMessage(message);
+            // CheckForAdditionalDialogue();
         }
     }
 }

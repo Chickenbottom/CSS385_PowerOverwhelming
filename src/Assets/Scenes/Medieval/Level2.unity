@@ -1131,8 +1131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343c7ce68c0c9c2499831d375e8eb307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueLeft: {fileID: 592758732}
-  DialogueRight: {fileID: 1091989124}
+  dialogueLeft: {fileID: 592758732}
+  dialogueRight: {fileID: 1091989124}
 --- !u!4 &237291328
 Transform:
   m_ObjectHideFlags: 0
