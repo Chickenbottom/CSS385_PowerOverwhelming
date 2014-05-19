@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-//the subject of the conversation
-public enum DialogType
+public enum DialogueTrigger
 {
     Tutorial = 0,
     TowerDestroyed = 1,
     RodelleDamaged = 2,
     TowerDamaged = 3,
-    PeasantInvade = 4
+    PeasantInvade = 5,
+    ArcherMage = 6,
 }
 
 public enum Speaker 
@@ -19,6 +19,8 @@ public enum Speaker
     King,
     Advisor,
     Swordsman,
+    Archer,
+    Mage,
     Peasant,
 }
 
@@ -26,6 +28,7 @@ public enum SpeakerState
 {
     Normal,
     Nervous,
+    Angry,
 }
 
 public enum SpeakerLocation
@@ -33,7 +36,6 @@ public enum SpeakerLocation
     Left,
     Right
 }
-
 
 public class DialogueManager : MonoBehaviour
 {
@@ -50,42 +52,18 @@ public class DialogueManager : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
-    
-    // TODO: prioritize statements
-    
-    //public void TriggerDialogue()
-    /*public void SetRodelleStatment (DialogType d)
+        
+    public void TriggerDialogue(DialogueTrigger trigger)
     {
-        mCurrentSpeaker = Speaker.King;
-        mCurConvo = (int)d;
-        mLength = 1;
-        GameObject.Find ("dialogueL").GetComponent<SpriteRenderer> ().sortingOrder = 1100;
-        GameObject.Find ("dialogueR").GetComponent<SpriteRenderer> ().sortingOrder = -1110;
-        SetDialog ("", mTextBoxes [1]);
+        if (mTriggers.ContainsKey(trigger))
+            mDialogueQueue.Enqueue(mTriggers[trigger]);
     }
-    
-    public void SetAdvisorStatment (DialogType d)
-    {
-        mCurrentSpeaker = Speaker.Advisor;
-        mCurConvo = (int)d;
-        mLength = 1;
-        GameObject.Find ("dialogueR").GetComponent<SpriteRenderer> ().sortingOrder = 1100;
-        GameObject.Find ("dialogueL").GetComponent<SpriteRenderer> ().sortingOrder = -1110;
-        GameObject.Find ("DialoguePortrait").GetComponent<SpriteRenderer> ().sortingOrder = -1110;
-        SetDialog ("", mTextBoxes [0]);
-    }*/
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Private
     ///////////////////////////////////////////////////////////////////////////////////
-    #region Private Variables
-    #region const variables
-    //which perons has the conversation
-    private Speaker mCurrentSpeaker;
-    private const int kTotalArray = 5;
-    private const float kLetterDisplayTime = .05f;
+
     private const string kPath = "Dialog.txt"; //path of the txt file
-    #endregion
 
     int mCurConvo;
     int mLength; // used to display one letter at a time
@@ -94,17 +72,11 @@ public class DialogueManager : MonoBehaviour
     private Dictionary<SpeakerLocation, GUIText> mTextBoxes;
     private Dictionary<SpeakerLocation, GUIText> mNameBoxes;
     private Dictionary<Speaker, SpriteRenderer> mSpeakers;
-    Dictionary<SpeakerLocation, SpriteRenderer> mGuiLayers;
-    private ArrayList[][] mConversations;
-
-    #endregion
+    private Dictionary<SpeakerLocation, SpriteRenderer> mGuiLayers;
     
-    
-    private void SetDialog (string text, GUIText textBox)
-    {
-        textBox.text = text;
-    }
-
+    private Dictionary<DialogueTrigger, Dialogue> mTriggers;
+    private Queue<Dialogue> mDialogueQueue;
+  
     // File must be in format
     /* !<PERSON> (in number format)
      * #<DIALOG TYPE> (in number format)
@@ -137,22 +109,8 @@ public class DialogueManager : MonoBehaviour
             }
             
         }
-    }
-    
-    private void PrintStatement ()
-    {
-        string line = (string)mConversations [mCurrentSpeaker] [mCurConvo] [0];
-        if (mLength > line.Length) {
-            mLength = -1;
-            mConversations [mCurrentSpeaker] [mCurConvo].RemoveAt (0);
-            mConversations [mCurrentSpeaker] [mCurConvo].Add (line);
-            return;
-        }
-        
-        SetDialog (line.Substring (0, mLength), mDialogueBoxes [mCurrentSpeaker]);
-        mLength++;
     }*/
-
+    
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
     ///////////////////////////////////////////////////////////////////////////////////
@@ -160,11 +118,38 @@ public class DialogueManager : MonoBehaviour
     Dialogue mDialogue;
     void Start ()
     {
-        mDialogue = new Dialogue();
-        mDialogue.AddMessage(7f, SpeakerState.Normal, Speaker.King, SpeakerLocation.Left, 
+        mDialogueQueue = new Queue<Dialogue>();
+        
+        mTriggers = new Dictionary<DialogueTrigger, Dialogue>();
+        Dialogue dialogue;
+        
+        dialogue = new Dialogue();
+        dialogue.AddMessage(7f, SpeakerState.Normal, Speaker.King, SpeakerLocation.Left, 
                              "Welcome, left click a tower to select it, and right click to send \nunits from that tower to a location.");
-        mDialogue.AddMessage(10f, SpeakerState.Normal, Speaker.Advisor, SpeakerLocation.Right, 
+        dialogue.AddMessage(7f, SpeakerState.Normal, Speaker.Advisor, SpeakerLocation.Right, 
                              "Don't forget you can double click to force your units to go to a \nspecific location M'Lord.");
+        
+        mTriggers.Add(DialogueTrigger.Tutorial, dialogue);
+        
+        dialogue = new Dialogue();
+        dialogue.AddMessage(5f, SpeakerState.Normal, Speaker.Swordsman, SpeakerLocation.Right, 
+                            "Sir, it appears that the peasants have taken over a tower.");
+        dialogue.AddMessage(5f, SpeakerState.Normal, Speaker.King, SpeakerLocation.Left, 
+                            "Well don't just stand there. Go get some more swordsman and get it back!");
+        dialogue.AddMessage(12f, SpeakerState.Normal, Speaker.Advisor, SpeakerLocation.Right, 
+                            "If you send a group of units torwards the destroyed tower, they will \nattack it and you'll regain control");
+        mTriggers.Add(DialogueTrigger.TowerDestroyed, dialogue);
+            
+        dialogue = new Dialogue();
+        dialogue.AddMessage(4f, SpeakerState.Angry, Speaker.Mage, SpeakerLocation.Right, 
+                            "Hey Archer, you almost hit me!");
+        dialogue.AddMessage(5f, SpeakerState.Nervous, Speaker.Archer, SpeakerLocation.Left, 
+                            "It's not my fault you're blocking my view. Stop wearing such a \nbig hat!");
+        dialogue.AddMessage(3f, SpeakerState.Normal, Speaker.Mage, SpeakerLocation.Right, 
+                            ".....");
+        mTriggers.Add(DialogueTrigger.ArcherMage, dialogue);
+        
+        this.TriggerDialogue(DialogueTrigger.ArcherMage);
     
         mTextBoxes = new Dictionary<SpeakerLocation, GUIText>() ;
         mTextBoxes.Add (SpeakerLocation.Left, DialogueLeft);
@@ -181,25 +166,14 @@ public class DialogueManager : MonoBehaviour
         mSpeakers = new Dictionary<Speaker, SpriteRenderer>();
         mSpeakers.Add (Speaker.King, GameObject.Find ("DialoguePortrait").GetComponent<SpriteRenderer>());
 
-        #region initialize conversation arrays
-        mConversations = new ArrayList[2][];
-        /*mConversations [kRod] = new ArrayList[kTotalArray];
-        mConversations [kAdv] = new ArrayList[kTotalArray];
-
-        for (int i = 0; i < kTotalArray; i++) {
-            mConversations [kRod] [i] = new ArrayList ();
-            mConversations [kAdv] [i] = new ArrayList ();
-        }*/
-        #endregion
-
-        #region check for dialog boxes
-        if (DialogueLeft == null || DialogueRight == null) {
-            Debug.LogError ("Dialogue Manager not instantiated. Add GUIText for DialogueLeft and DialogueRight!");
+        if (DialogueLeft == null || DialogueRight == null || NameLeft == null || NameRight == null) {
+            Debug.LogError ("Dialogue Manager not instantiated. Ensure all of the Unity presets are set.");
         }
-            
+        
         DialogueLeft.text = "";
         DialogueRight.text = "";
-        #endregion
+        NameLeft.text = "";
+        NameRight.text = "";
 
         #region file read
         StreamReader file = null;
@@ -212,14 +186,10 @@ public class DialogueManager : MonoBehaviour
            // LoadDialog (file);
         }
         #endregion
-
-        mLength = -1;
-        mCurrentSpeaker = Speaker.None;
-        mCurConvo = -1;
-
-        //SetRodelleStatment (DialogType.Tutorial);
     }
 
+    // Resets the GUI and re-enables the relevant portions
+    // Updates the dialogue text and name box
     private void DisplayMessage(Message message)
     {
         ResetGui();
@@ -244,12 +214,16 @@ public class DialogueManager : MonoBehaviour
         switch(speaker){
         case (Speaker.King):
             return "King Rodelle";
+        case (Speaker.Swordsman):
+            return "Swordsman Smith";
         default:
             return speaker.ToString();
         }
     }
     
-    void ResetGui()
+    // Hides all of the Dialogue UI elements
+    // DisplayMessage is responsible for enabling the correct ones
+    private void ResetGui()
     {
         foreach (Speaker s in mSpeakers.Keys)
             mSpeakers[s].enabled = false;
@@ -264,15 +238,25 @@ public class DialogueManager : MonoBehaviour
             mGuiLayers[l].enabled = false;
     }
     
-
     void Update ()
     {
+        // no dialogue to play
+        if (mDialogue == null && mDialogueQueue.Count == 0) { 
+            return;
+        }
+        
+        // No dialgoue is currently playing, grab one from the queue
+        if (mDialogue == null)
+            mDialogue = mDialogueQueue.Dequeue();
+        
         Message message;
         bool isValid = mDialogue.AdvanceMessage(Time.deltaTime, out message);
         
         if (isValid) {
             DisplayMessage(message);
-            // CheckForAdditionalDialogue();
+            // CheckForHigherPriorityDialogues();
+        } else { // indicate that more dialogue needs to be read
+            mDialogue = null;
         }
     }
 }
