@@ -2,7 +2,7 @@
 using System.Collections;
 using System.IO;
 
-public class DialogManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
     #region Variables
     #region const variables
