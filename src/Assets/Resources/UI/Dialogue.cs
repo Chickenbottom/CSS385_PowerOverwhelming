@@ -85,6 +85,16 @@ public class Dialogue
         
         mPreviousLetterTime = Time.time;
         mStringLength++;
+        
+        // TODO only add newlines between words, get rid of extra space after newline
+        // TODO dynamically calculate this width based on the font?
+        if (mStringLength % 60 == 0) { // add a newline every 60 characters
+            string modifiedText = mCurrentText.Substring(0, mStringLength);
+            modifiedText += "\n";
+            mCurrentText = modifiedText + 
+                mCurrentText.Substring(mStringLength, mCurrentText.Length - mStringLength);            
+        }
+        
         mCurrentMessage.Text = mCurrentText.Substring(0, mStringLength);
     }
     

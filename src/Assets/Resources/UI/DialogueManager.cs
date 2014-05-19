@@ -2,15 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 
+// TODO need a method to create additional triggers without modifying this enum?
+// Can possibly use a string instead of a trigger
 public enum DialogueTrigger
 {
-    Tutorial = 0,
-    TowerDestroyed = 1,
-    RodelleDamaged = 2,
-    TowerDamaged = 3,
-    PeasantInvade = 5,
-    ArcherMage = 6,
+    Tutorial,
+    TowerDestroyed,
+    RodelleDamaged,
+    TowerDamaged,
+    PeasantInvade,
+    ArcherMage,
 }
 
 public enum Speaker 
@@ -52,7 +55,9 @@ public class DialogueManager : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
-        
+    
+    // Queues the related dialogue for play
+    // TODO add priority
     public void TriggerDialogue(DialogueTrigger trigger)
     {
         if (mTriggers.ContainsKey(trigger))
@@ -63,12 +68,6 @@ public class DialogueManager : MonoBehaviour
     // Private
     ///////////////////////////////////////////////////////////////////////////////////
 
-    private const string kPath = "Dialog.txt"; //path of the txt file
-
-    int mCurConvo;
-    int mLength; // used to display one letter at a time
-    float mPreviousLetter = 0f; //used for keeping time for display
-
     private Dictionary<SpeakerLocation, GUIText> mTextBoxes;
     private Dictionary<SpeakerLocation, GUIText> mNameBoxes;
     private Dictionary<Speaker, SpriteRenderer> mSpeakers;
@@ -77,39 +76,58 @@ public class DialogueManager : MonoBehaviour
     private Dictionary<DialogueTrigger, Dialogue> mTriggers;
     private Queue<Dialogue> mDialogueQueue;
   
-    // File must be in format
-    /* !<PERSON> (in number format)
-     * #<DIALOG TYPE> (in number format)
-     * line
-     * line
-     */
-    /*private void LoadDialog (StreamReader file)
+    // See src/dialogue_1.txt for formatting the file
+    // TODO load the dialogue file for the current level instead of hardcoding dialogue_1.txt
+    private void LoadDialogueFromFile (string filepath)
     {
-        int person = -1;
-        int dialogType = -1;
-        string line = file.ReadLine ();
+        StreamReader file = new StreamReader (filepath);
+        char[] delim = { ' ', ',' };
+        
         while (!file.EndOfStream) {
-            if (line.StartsWith ("!")) {
-                person = int.Parse (line.Substring (1, 1));
-                dialogType = int.Parse (file.ReadLine ().Substring (1, 1));
-            } else if (line.StartsWith ("#")) {
-                dialogType = int.Parse (line.Substring (1, 1));
+            string line = file.ReadLine ();
+            
+            //string [] values = line.Split (delim, StringSplitOptions.RemoveEmptyEntries);
+            string [] values = line.Split(delim, 5, StringSplitOptions.RemoveEmptyEntries);
+            if (values.Length == 0 || values[0]== "#") // ignore blank lines and comments
+                continue;
+            
+            if (values[0] == ">>>") { // start trigger
+                DialogueTrigger trigger = EnumHelper.FromString<DialogueTrigger>(values[1]);
+                
+                Dialogue dialogue = GetMessagesFromFile(file);
+                mTriggers.Add(trigger, dialogue);
             }
-            
-            line = file.ReadLine ();
-            
-            while (!line.StartsWith("!") && !line.StartsWith("#")) {
-                string line2 = line.Substring (1);
-                line = file.ReadLine ();
-                while (line != null && !line.StartsWith("-") && !line.StartsWith("!") && !line.StartsWith("#")) {
-                    line2 += '\n' + line;
-                    line = file.ReadLine ();
-                }
-                mConversations [person] [dialogType].Add (line2);
-            }
-            
         }
-    }*/
+        
+        file.Close ();
+    }  
+    
+    private Dialogue GetMessagesFromFile(StreamReader file)
+    {
+        Dialogue dialogue = new Dialogue();
+        
+        char[] delim = { ' ', ',' };
+        
+        while (true) {
+            string line = file.ReadLine ();
+            string [] values = line.Split(delim, 6, StringSplitOptions.RemoveEmptyEntries);
+            
+            if (values[0] == "<<<") // end trigger
+                break;
+            
+            // read the message
+            float duration = float.Parse(values[0]);
+            SpeakerState state = EnumHelper.FromString<SpeakerState>(values[1]);
+            Speaker speaker = EnumHelper.FromString<Speaker>(values[2]);
+            SpeakerLocation location = EnumHelper.FromString<SpeakerLocation>(values[3]);
+            // ignore the literal "---"
+            string message = values[5];
+            
+            dialogue.AddMessage(duration, state, speaker, location, message);
+        }
+        
+        return dialogue;
+    }
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
@@ -119,37 +137,7 @@ public class DialogueManager : MonoBehaviour
     void Start ()
     {
         mDialogueQueue = new Queue<Dialogue>();
-        
         mTriggers = new Dictionary<DialogueTrigger, Dialogue>();
-        Dialogue dialogue;
-        
-        dialogue = new Dialogue();
-        dialogue.AddMessage(7f, SpeakerState.Normal, Speaker.King, SpeakerLocation.Left, 
-                             "Welcome, left click a tower to select it, and right click to send \nunits from that tower to a location.");
-        dialogue.AddMessage(7f, SpeakerState.Normal, Speaker.Advisor, SpeakerLocation.Right, 
-                             "Don't forget you can double click to force your units to go to a \nspecific location M'Lord.");
-        
-        mTriggers.Add(DialogueTrigger.Tutorial, dialogue);
-        
-        dialogue = new Dialogue();
-        dialogue.AddMessage(5f, SpeakerState.Normal, Speaker.Swordsman, SpeakerLocation.Right, 
-                            "Sir, it appears that the peasants have taken over a tower.");
-        dialogue.AddMessage(5f, SpeakerState.Normal, Speaker.King, SpeakerLocation.Left, 
-                            "Well don't just stand there. Go get some more swordsman and get it back!");
-        dialogue.AddMessage(12f, SpeakerState.Normal, Speaker.Advisor, SpeakerLocation.Right, 
-                            "If you send a group of units torwards the destroyed tower, they will \nattack it and you'll regain control");
-        mTriggers.Add(DialogueTrigger.TowerDestroyed, dialogue);
-            
-        dialogue = new Dialogue();
-        dialogue.AddMessage(4f, SpeakerState.Angry, Speaker.Mage, SpeakerLocation.Right, 
-                            "Hey Archer, you almost hit me!");
-        dialogue.AddMessage(5f, SpeakerState.Nervous, Speaker.Archer, SpeakerLocation.Left, 
-                            "It's not my fault you're blocking my view. Stop wearing such a \nbig hat!");
-        dialogue.AddMessage(3f, SpeakerState.Normal, Speaker.Mage, SpeakerLocation.Right, 
-                            ".....");
-        mTriggers.Add(DialogueTrigger.ArcherMage, dialogue);
-        
-        this.TriggerDialogue(DialogueTrigger.ArcherMage);
     
         mTextBoxes = new Dictionary<SpeakerLocation, GUIText>() ;
         mTextBoxes.Add (SpeakerLocation.Left, DialogueLeft);
@@ -174,18 +162,11 @@ public class DialogueManager : MonoBehaviour
         DialogueRight.text = "";
         NameLeft.text = "";
         NameRight.text = "";
-
-        #region file read
-        StreamReader file = null;
-        try {
-            file = new StreamReader (kPath);
-        } catch (System.Exception e) {
-            Debug.Log (e.ToString ());
-        }
-        if (file != null) {
-           // LoadDialog (file);
-        }
-        #endregion
+        
+        LoadDialogueFromFile("dialogue_1.txt");
+        this.TriggerDialogue(DialogueTrigger.Tutorial);
+        this.TriggerDialogue(DialogueTrigger.TowerDestroyed);
+        this.TriggerDialogue(DialogueTrigger.ArcherMage);
     }
 
     // Resets the GUI and re-enables the relevant portions

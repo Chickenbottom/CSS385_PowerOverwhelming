@@ -1,0 +1,29 @@
+# Empty lines and ines starting with # are ignored
+# Dialogues begin with ">>>" followed by the name of the trigger mapped to the enum
+# Ex. ">>> LevelStart" begins a dialogue mapped to DialgoueTrigger.LevelStart
+
+# Dialogue Format
+# Duration State Speaker Location --- Message
+# Duration - the amount of time the dialogue remains on the screen before the next dialogue is displayed
+# State - (Not Implemented) The emotion of the speaker. Used to swap out the unit portrait
+# Speaker - Who is speaking. Used to choose the unit portrait as state the name
+# Location - The location the dialogue is displayed (Currently only Left or Right)
+# --- - Three dashes used to separate dialogue meta from the message
+# Message - the message that is displayed to the user
+
+>>> Tutorial # begin tutorial dialogue
+7.0 Normal King Left       --- Welcome, left click a tower to select it, and right click to send units from that tower to a location.
+7.0 Normal Advisor Right   --- Don't forget you can double click to force your units to go to a specific location M'Lord.
+<<< Tutorial # end tutorial dialogue
+
+>>> TowerDestroyed # begin tower destroyed dialogue
+5.0 Normal Swordsman Right --- Sir, it appears that the peasants have taken over a tower.
+5.0 Normal King      Left  --- Well don't just stand there. Go get some more swordsman and get it back!
+12.0 Normal Advisor  Right --- Send units towards the tower and they will bring it back under your control. Beware of the now stronger peasants though!
+<<< TowerDestroyed  # end tower destroyed dialogue
+
+>>> ArcherMage # begin conversation between archer and mage
+4.0 Angry   Mage    Right  --- Hey Archer, you almost hit me!
+5.0 Nervous Archer  Left   --- It's not my fault you're blocking my view. Stop wearing such a big hat!
+3.0 Normal  Mage    Right  --- . . . . .
+<<< ArcherMage  # end conversation between archer and mage
