@@ -29,7 +29,7 @@ public static class WeaponUpgrades
             for (int j = 0; j < numStats; j++)
                 mWeaponStats [i, j] = 0f;
         
-        LoadStatsFromFile ("Assets/Resources/State/weaponstats.txt");
+        LoadStatsFromFile ("weaponstats.txt");
     }
     
     public static float GetStat (WeaponType weapon, WeaponStat stat)

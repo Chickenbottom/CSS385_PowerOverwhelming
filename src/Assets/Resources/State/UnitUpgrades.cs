@@ -34,7 +34,7 @@ public static class UnitUpgrades
             for (int j = 0; j < numStats; j++)
                 mUnitStats [i, j] = 0f;
                 
-        LoadStatsFromFile ("Assets/Resources/State/unitstats.txt");
+        LoadStatsFromFile ("unitstats.txt");
     }
     
     public static float GetStat (UnitType unit, UnitStat stat)
