@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Medieval/Level1.unity
   - enabled: 1
     path: Assets/Scenes/Medieval/Level0.unity
+  - enabled: 1
+    path: Assets/Scenes/CutScenes/Medieval/Medieval0.unity

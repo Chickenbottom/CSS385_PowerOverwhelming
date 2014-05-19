@@ -49,7 +49,7 @@ public class LevelLoaderButtonBehavior : MonoBehaviour {
 		gameObject.GetComponent<SpriteRenderer> ().sprite = mButton;
 	}
 	void OnMouseDown(){
-		if(myLevel < GameState.gameLevel){
+		if(myLevel <= GameState.gameLevel){
 			switch(myLevel){
 			case CurrentLevel.Prehistoric:
 				Application.LoadLevel("TowerStore");
