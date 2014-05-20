@@ -4520,7 +4520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shape: {fileID: 2015310675}
-  ForegroundColor: {r: .188235298, g: .192156866, b: .580392182, a: 1}
+  ForegroundColor: {r: 0, g: .213793039, b: 1, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
   BorderColor: {r: 0, g: 0, b: 0, a: 0}
   BorderWidth: 3

@@ -26,16 +26,6 @@ public class GameManager : MonoBehaviour
 	//private float mSFXVolume = 1;
     
     private Dictionary<UnitType, Progressbar> mExpBars;
-    
-	public void OnGUI()
-	{
-		if (GUI.Button(new Rect(120, 35, 150, 50), "Return to Level Selector"))
-			Application.LoadLevel("LevelLoader");
-			
-		GUI.Label(new Rect(135, 65, 150, 50), "Left-Alt to spawn");
-	}
-	
-	private Dictionary<UnitType, Progressbar> mExpBars;
 	
     void Awake()
     {
@@ -75,6 +65,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale += 0.5f;
 	}
 	public void SetMusicVolume(float v){
-		mMusic.volume = v;\
+		mMusic.volume = v;
 	}
 }

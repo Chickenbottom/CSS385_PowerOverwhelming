@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class StoryBook : MonoBehaviour
-{
+{	
     public List<Camera> CameraViews;
     public SpriteRenderer Image;
-    public float SceneInterval = 3f;
+    public float SceneInterval = 1f;
     
     const float kFadeRate = 0.01f;
     
@@ -42,6 +42,9 @@ public class StoryBook : MonoBehaviour
         if (mIsFadingIn)
             FadeIn ();
         
+		if (mCurrentCamera >= mCameraArray.Count)
+			StartGame ();
+
         if (Time.time - mCameraStartTime > mCameraInterval && mCurrentCamera < mCameraArray.Count) {
             if (FadeOut ()) {
                 mCameraArray [mCurrentCamera].enabled = true;
