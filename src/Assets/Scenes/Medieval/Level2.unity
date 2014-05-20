@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shape: {fileID: 12678820}
-  ForegroundColor: {r: 1, g: 0, b: 0, a: 0}
+  ForegroundColor: {r: .929411769, g: .113725491, b: .141176477, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
   BorderColor: {r: 0, g: 0, b: 0, a: 0}
   BorderWidth: 1
@@ -933,6 +933,75 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300002, guid: 4de22124fa92007459e5eebbb1e7a017, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &194421881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 1a49d20b5f616d64c861ef11986de93b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 194421882}
+  - 212: {fileID: 194421884}
+  - 114: {fileID: 194421883}
+  m_Layer: 0
+  m_Name: CooldownBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &194421882
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 1a49d20b5f616d64c861ef11986de93b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194421881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.375, y: 3.86062551, z: 0}
+  m_LocalScale: {x: .9375, y: 1.28590643, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1091159853}
+--- !u!114 &194421883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 1a49d20b5f616d64c861ef11986de93b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194421881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b74835518bbf84c8d18b3e26c9852b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Shape: {fileID: 194421884}
+  ForegroundColor: {r: .996078432, g: .996078432, b: .996078432, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+  BorderColor: {r: 0, g: 0, b: 0, a: 0}
+  BorderWidth: 3
+--- !u!212 &194421884
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200000, guid: 1a49d20b5f616d64c861ef11986de93b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194421881}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 1200
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 0e89534ad8913584eae2d57bdf15ae52, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &216576491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,7 +1121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shape: {fileID: 229377077}
-  ForegroundColor: {r: 0, g: .131034374, b: 1, a: 0}
+  ForegroundColor: {r: .188235298, g: .192156866, b: .580392182, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
   BorderColor: {r: 0, g: 0, b: 0, a: 0}
   BorderWidth: 1
@@ -1328,7 +1397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shape: {fileID: 354176784}
-  ForegroundColor: {r: .737930775, g: 0, b: 1, a: 1}
+  ForegroundColor: {r: .541176498, g: .258823544, b: .541176498, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
   BorderColor: {r: 0, g: 0, b: 0, a: 0}
   BorderWidth: 3
@@ -2547,7 +2616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shape: {fileID: 950509913}
-  ForegroundColor: {r: 1, g: 0, b: 0, a: 1}
+  ForegroundColor: {r: .929411769, g: .113725491, b: .141176477, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
   BorderColor: {r: 0, g: 0, b: 0, a: 0}
   BorderWidth: 3
@@ -2746,7 +2815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shape: {fileID: 1067516639}
-  ForegroundColor: {r: .944827557, g: 1, b: 0, a: 0}
+  ForegroundColor: {r: .97647059, g: .945098042, b: .505882382, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
   BorderColor: {r: 0, g: 0, b: 0, a: 0}
   BorderWidth: 1
@@ -2845,6 +2914,7 @@ Transform:
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children:
   - {fileID: 538972985}
+  - {fileID: 194421882}
   - {fileID: 1660554372}
   - {fileID: 1143817242}
   m_Father: {fileID: 865861350}
@@ -3056,7 +3126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shape: {fileID: 1143817244}
-  ForegroundColor: {r: 1, g: 1, b: 1, a: 0}
+  ForegroundColor: {r: .996078432, g: .996078432, b: .996078432, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
   BorderColor: {r: 0, g: 0, b: 0, a: 0}
   BorderWidth: 1
@@ -4116,7 +4186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shape: {fileID: 1748308533}
-  ForegroundColor: {r: .967229486, g: .977941155, b: .201340839, a: 1}
+  ForegroundColor: {r: .97647059, g: .945098042, b: .505882382, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
   BorderColor: {r: 0, g: 0, b: 0, a: 0}
   BorderWidth: 3
