@@ -48,8 +48,10 @@ public class DialogueManager : MonoBehaviour
     // TODO add priority
     public void TriggerDialogue(string trigger)
     {
-        if (mTriggers.ContainsKey(trigger))
+        if (mTriggers.ContainsKey(trigger)) {
             mDialogueQueue.Enqueue(mTriggers[trigger]);
+            mTriggers.Remove(trigger); // only plays once
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////

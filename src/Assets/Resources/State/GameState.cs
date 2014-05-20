@@ -15,10 +15,7 @@ public class GameState
 
     public static int KingsHealth { 
         get { return mKingsHealth; }
-        set { 
-            mKingsHealth = value; 
-            CheckLoseCondition ();
-        } 
+        set { UpdateKingsHealth(value); }
     }
 
     public static Dictionary<UnitType, int> UnitSquadCount { get; set; }
@@ -66,8 +63,17 @@ public class GameState
         //text.text = "The peasants are gone!";
     }
     
-    public static void CheckLoseCondition ()
+    public static void UpdateKingsHealth (int value)
     {
+        mKingsHealth = value;
+        float maxHealth = UnitUpgrades.GetStat(UnitType.King, UnitStat.Health);
+        
+        if (mKingsHealth < (int)(0.75 * maxHealth))
+            GameObject.Find("Dialogue").GetComponent<DialogueManager>().TriggerDialogue("KingDamaged");
+        
+        if (mKingsHealth < (int)(0.35 * maxHealth))
+            GameObject.Find("Dialogue").GetComponent<DialogueManager>().TriggerDialogue("KingInjured");
+        
         if (mKingsHealth <= 0)
             TriggerLoss ();
         else if (CurrentEra < Era.Future) {
