@@ -20,4 +20,11 @@ public class King : Unit
         base.Damage (damage);
         GameState.KingsHealth = mHealth;
     }
+    
+    public override Vector3 Position {
+        get {
+            return base.Position + new Vector3(0f, -5f, 0f); // hit box is slightly lower than center
+        }
+        set {} // doesn't move
+    }
 }

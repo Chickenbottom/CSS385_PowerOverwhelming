@@ -26,7 +26,8 @@ public class IceWand : Weapon
         
         GameObject o = (GameObject)GameObject.Instantiate (projectilePrefab);
         IceBomb b = (IceBomb)o.GetComponent (typeof(IceBomb));
-        b.transform.position = src.transform.position;
-        b.SetParameters (src, target);
+        b.transform.position = src.Position;
+        
+        b.SetParameters ((Unit)src, target);
     }
 }

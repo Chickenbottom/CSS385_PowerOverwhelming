@@ -24,6 +24,10 @@ public abstract class Target : MonoBehaviour
         set { mMaxHealth = value; }
     }
     
+    public bool IsDead {
+        get { return mHealth <= 0; }
+    }
+    
     public abstract void Damage (int damage);
     
     protected int mMaxHealth;

@@ -19,7 +19,7 @@ public class Unit : Target
     public float Range { get { return mCurrentWeapon.Range; } }
 
     public bool IsIdle { get { return this.mMovementState == MovementState.Idle; } }
-
+    
     public float SightRange = 39f;
     
     // TODO replace with unit stats dictionary
@@ -32,6 +32,10 @@ public class Unit : Target
         get { return mChargeSpeed; } 
         set { mChargeSpeed = value; }
     } 
+    
+    public UnitType UnitType { 
+        get { return mUnitType; }
+    }
     
 ///////////////////////////////////////////////////////////////////////////////////
 // Public Methods

@@ -57,14 +57,16 @@ public class IceBomb : MonoBehaviour
             f.Freeze ();
             
             target.Damage (5);
+            if (target.IsDead)
+                UnitUpgrades.AddToExperience (mSource.UnitType, 1);
         }
     
     }
     
     Target mTarget;
-    Target mSource;
+    Unit mSource;
 
-    public void SetParameters (Target src, Target target)
+    public void SetParameters (Unit src, Target target)
     {
         //mTarget = target;
         mSource = src;
@@ -76,6 +78,10 @@ public class IceBomb : MonoBehaviour
     {
         mEmitterPrefab = (GameObject)Instantiate (emitter);
         mEmitterPrefab.transform.position = this.transform.position;
+        
+        int sortingOrder = (int)(4 * (-this.transform.position.y + Camera.main.orthographicSize));
+        mEmitterPrefab.GetComponent<Renderer> ().sortingOrder = (int)(sortingOrder);        
+        
         kStartTime = Time.time;
     }
     
