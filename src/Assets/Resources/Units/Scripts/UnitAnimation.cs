@@ -41,7 +41,7 @@ public class UnitAnimation : MonoBehaviour
     private Animator mAnimator;
     Dictionary<UnitAnimationState, bool> mAnimationStates;
     
-    void Start ()
+    void Awake ()
     {
         mAnimator = this.GetComponent<Animator> ();
         
