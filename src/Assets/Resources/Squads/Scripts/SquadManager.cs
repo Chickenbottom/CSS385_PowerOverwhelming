@@ -8,6 +8,10 @@ public class SquadManager : MonoBehaviour
     // Public Methods and Variables
     ///////////////////////////////////////////////////////////////////////////////////
     public UnitType squadType = UnitType.None;
+    public Tower ControllingTower;
+    
+    public Sprite DefaultSprite;
+    public Sprite GlowingSprite;
     
     public void SetDestination (Vector3 location)
     {
@@ -51,6 +55,17 @@ public class SquadManager : MonoBehaviour
         return squads.Count;
     }
     
+    public void Glow()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = GlowingSprite;
+        Invoke ("DisableGlow", 2f);
+    }
+    
+    public void DisableGlow()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = DefaultSprite;
+    }
+    
     ///////////////////////////////////////////////////////////////////////////////////
     // Private Methods and Variables
     ///////////////////////////////////////////////////////////////////////////////////
@@ -59,6 +74,8 @@ public class SquadManager : MonoBehaviour
     private float squadWidth = 8f; // TODO replace with function calculating width of squad
     private Vector3 rallyPoint;
     private static GameObject squadPrefab = null;
+    
+    float mDoubleClickStart = 0;
     
     private Squad SpawnSquadFromUnitType (Vector3 location, UnitType unitType)
     {
@@ -122,6 +139,12 @@ public class SquadManager : MonoBehaviour
         }
     }
     
+    private void OnDoubleClick ()
+    {
+        this.ForceMove(this.transform.position);
+        this.Glow();
+    }
+    
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
     ///////////////////////////////////////////////////////////////////////////////////
@@ -133,5 +156,20 @@ public class SquadManager : MonoBehaviour
         
         squads = new List<Squad> ();
         rallyPoint = this.transform.position;
+    }
+    
+    void OnMouseDown()
+    {
+        GameObject.Find ("GameManager").GetComponent<MouseManager> ().TowerClicked(ControllingTower);
+    }
+    
+    void OnMouseUpAsButton ()
+    {
+        if ((Time.time - mDoubleClickStart) < 0.3f) {
+            this.OnDoubleClick ();
+            mDoubleClickStart = -1;
+        } else {
+            mDoubleClickStart = Time.time;
+        }
     }
 }
