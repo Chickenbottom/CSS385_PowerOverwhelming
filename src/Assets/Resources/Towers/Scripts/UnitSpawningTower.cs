@@ -20,7 +20,7 @@ public class UnitSpawningTower : Tower
     }
     
     public void SpawnUnit ()
-    {           
+    {
         this.squadManager.AddSquad (Tent.transform.position, this.UnitSpawnType);
     }
     
@@ -48,7 +48,7 @@ public class UnitSpawningTower : Tower
     void Update ()
     {
         // only reset the spawn timer if you own the tower and can produce more squads
-        if (squadManager.NumSquads () >= mMaxNumSquads && this.Allegiance == Allegiance.Rodelle)
+        if (squadManager.NumSquads () >= mMaxNumSquads || this.Allegiance == Allegiance.AI)
             return;
             
         if (Time.time - mLastSpawnTime > mSpawnTime) {
