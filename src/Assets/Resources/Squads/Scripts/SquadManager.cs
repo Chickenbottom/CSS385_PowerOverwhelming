@@ -139,11 +139,11 @@ public class SquadManager : MonoBehaviour
         }
     }
     
-    private void OnDoubleClick ()
-    {
-        this.ForceMove(this.transform.position);
-        this.Glow();
-    }
+    //private void OnDoubleClick ()
+    //{
+    //    this.ForceMove(this.transform.position);
+    //    this.Glow();
+    //}
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
@@ -158,18 +158,20 @@ public class SquadManager : MonoBehaviour
         rallyPoint = this.transform.position;
     }
     
-    void OnMouseDown()
-    {
-        GameObject.Find ("GameManager").GetComponent<MouseManager> ().TowerClicked(ControllingTower);
-    }
+    //void OnMouseDown()
+    //{
+    //    GameObject.Find ("GameManager").GetComponent<MouseManager> ().TowerClicked(ControllingTower);
+    //}
     
     void OnMouseUpAsButton ()
     {
-        if ((Time.time - mDoubleClickStart) < 0.3f) {
-            this.OnDoubleClick ();
-            mDoubleClickStart = -1;
-        } else {
-            mDoubleClickStart = Time.time;
-        }
+        //if ((Time.time - mDoubleClickStart) < 0.3f) {
+        //    this.OnDoubleClick ();
+        //    mDoubleClickStart = -1;
+        //} else {
+        //    mDoubleClickStart = Time.time;
+        //}
+        this.ForceMove(this.transform.position);
+        this.Glow();
     }
 }
