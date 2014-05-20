@@ -6,10 +6,12 @@ using System;
 
 public enum UnitStat
 {
-    Health = 0,
-    MovementSpeed = 1,
-    ChargeSpeed = 2,
-    SightRange = 3,
+    Level = 0,
+    Experience,
+    Health,
+    MovementSpeed,
+    ChargeSpeed,
+    SightRange,
 }
 
 public static class EnumUtil {
