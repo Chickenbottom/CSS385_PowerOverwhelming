@@ -49,6 +49,19 @@ public static class UnitUpgrades
         mUnitStats [(int)subject, (int)stat] = value;
     }
     
+    public static void AddToExperience (UnitType subject, float value)
+    {
+        mUnitStats [(int)subject, (int)UnitStat.Experience] += value;
+        if (mUnitStats [(int)subject, (int)UnitStat.Experience] > GetExpToNextLevel(subject)) {
+            // Increase unit level
+        }
+    }
+    
+    public static int GetExpToNextLevel(UnitType unit)
+    {
+        return (int)mUnitStats[(int) unit, (int) UnitStat.Level] * 5 + 15;
+    }
+    
     /*
     public static void WriteStats ()
     {

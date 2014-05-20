@@ -23,8 +23,6 @@ public class GameState
 
     public static Dictionary<UnitType, int> UnitSquadCount { get; set; }
 
-    public static Dictionary<UnitType, int> UnitExperience { get; set; }
-
     public static Dictionary<UnitType, int> RequiredUnitExperience { get; set; }
 
     public static Dictionary<UnitType, float> SpawnTimes { get; set; }
@@ -36,11 +34,6 @@ public class GameState
         UnitSquadCount.Add (UnitType.Archer, 3);
         UnitSquadCount.Add (UnitType.Swordsman, 4);
         UnitSquadCount.Add (UnitType.Mage, 1);
-        
-        UnitExperience = new Dictionary<UnitType, int> ();
-        UnitExperience.Add (UnitType.Archer, 0);
-        UnitExperience.Add (UnitType.Swordsman, 0);
-        UnitExperience.Add (UnitType.Mage, 0);
         
         RequiredUnitExperience = new Dictionary<UnitType, int> ();
         RequiredUnitExperience.Add (UnitType.Archer, 20);
@@ -55,14 +48,6 @@ public class GameState
         Gold = 0;
     }
     
-    public static void AddExperience (UnitType unitType, int exp)
-    {
-        if (!UnitExperience.ContainsKey (unitType))
-            return;
-        
-        UnitExperience [unitType] += exp;
-    }
-
     public static void LoadLevel (int level)
     {
         //mGameLevel = level;

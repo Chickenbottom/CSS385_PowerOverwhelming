@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
     void Update ()
     {
         foreach (UnitType u in mExpBars.Keys) {
-            mExpBars [u].UpdateValue (GameState.UnitExperience [u]);
+            mExpBars [u].MaxValue = UnitUpgrades.GetExpToNextLevel(u);
+            mExpBars [u].UpdateValue ((int)UnitUpgrades.GetStat(u, UnitStat.Experience));
             mLevelText [u].text = ((int)UnitUpgrades.GetStat(u, UnitStat.Level)).ToString();
         }
         
