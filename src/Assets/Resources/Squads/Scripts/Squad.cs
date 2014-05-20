@@ -170,7 +170,7 @@ public class Squad : MonoBehaviour
     
     private void AttackTarget (Target target)
     {
-        if (this.IsEngaged) // already occupied
+        if (!(mTargetSquad == null || mTargetSquad.UnitType == UnitType.King))
             return;
             
         if (target == null) 
@@ -233,8 +233,7 @@ public class Squad : MonoBehaviour
             mSquadMembers [i].Engage (mEnemies [i % numEnemies], positions [i]);
         }
         
-        if (! enemySquad.IsEngaged)
-            enemySquad.Notify (SquadAction.EnemySighted, this.SquadLeader);
+        enemySquad.Notify (SquadAction.EnemySighted, this.SquadLeader);
     }
     
     private void AttackEnemyTower (Tower tower)
@@ -259,6 +258,7 @@ public class Squad : MonoBehaviour
     // re-enable the search for new enemies
     private void Disengage ()
     {
+        mTargetSquad = null;
         this.SquadState = SquadState.Moving;
         for (int i = 0; i < mSquadMembers.Count; ++i) {
             mSquadMembers [i].Disengage ();
