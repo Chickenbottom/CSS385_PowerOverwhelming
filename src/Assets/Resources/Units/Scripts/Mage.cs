@@ -7,12 +7,13 @@ public class Mage : Unit
     protected override void Awake ()
     {
         mUnitType = UnitType.Mage;
-        mMeleeWeapon = new Dagger ();
-        mRangedWeapon = new IceWand ();
+        base.Awake();
+        this.InitializeStats();
+        
+        mMeleeWeapon = new Dagger (mLevel);
+        mRangedWeapon = new IceWand (mLevel);
         mCurrentWeapon = mRangedWeapon;
         
         ((IceWand)mRangedWeapon).src = this;
-        
-        base.Awake();
     }
 }

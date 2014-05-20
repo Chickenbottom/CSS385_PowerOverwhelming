@@ -5,7 +5,7 @@ public class Crossbow : Weapon
 {
     private static GameObject mProjectilePrefab = null;
         
-    public Crossbow ()
+    public Crossbow (int level) : base (level)
     {       
         if (mProjectilePrefab == null)
             mProjectilePrefab = Resources.Load ("Weapons/ArrowPrefab") as GameObject;

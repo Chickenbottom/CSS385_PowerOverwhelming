@@ -6,11 +6,11 @@ public class King : Unit
     protected override void Awake ()
     {
         mUnitType = UnitType.King;
-        
-        mMeleeWeapon = new Sword ();
-        mCurrentWeapon = mMeleeWeapon;
-        
         base.Awake();
+        this.InitializeStats();
+        
+        mMeleeWeapon = new Sword (mLevel);
+        mCurrentWeapon = mMeleeWeapon;
         
         GameState.KingsHealth = mMaxHealth;
     }

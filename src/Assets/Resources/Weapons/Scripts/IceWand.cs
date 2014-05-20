@@ -5,7 +5,7 @@ public class IceWand : Weapon
 {
     private static GameObject projectilePrefab = null;
     
-    public IceWand ()
+    public IceWand (int level) : base (level)
     {       
         if (projectilePrefab == null)
             projectilePrefab = Resources.Load ("Weapons/IceBombPrefab") as GameObject;

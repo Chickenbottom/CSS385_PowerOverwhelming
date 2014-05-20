@@ -5,7 +5,7 @@ public class Pitchfork : Weapon
 {
     private static GameObject projectilePrefab = null;
     
-    public Pitchfork ()
+    public Pitchfork (int level) : base (level)
     {        
         if (projectilePrefab == null)
             projectilePrefab = Resources.Load ("Weapons/ArrowPrefab") as GameObject;

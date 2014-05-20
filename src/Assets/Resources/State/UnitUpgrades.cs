@@ -53,7 +53,7 @@ public static class UnitUpgrades
     {
         mUnitStats [(int)subject, (int)UnitStat.Experience] += value;
         if (mUnitStats [(int)subject, (int)UnitStat.Experience] > GetExpToNextLevel(subject)) {
-            // Increase unit level
+            IncreaseUnitLevel(subject);
         }
     }
     
@@ -82,6 +82,13 @@ public static class UnitUpgrades
     ///////////////////////////////////////////////////////////////////////////////////
     
     static float[,] mUnitStats;
+    
+    private static void IncreaseUnitLevel(UnitType unit)
+    {
+        mUnitStats[(int) unit, (int) UnitStat.Level] += 1;
+        mUnitStats[(int) unit, (int) UnitStat.Health] += 1;
+        mUnitStats[(int) unit, (int) UnitStat.Experience] = 0;
+    }
     
     private static void LoadStatsFromFile (string filepath)
     {

@@ -136,6 +136,7 @@ public class Unit : Target
     protected UnitAnimation mUnitAnimator;
     protected float mMovementSpeed; // units per second
     protected float mChargeSpeed;   // speed used to engage enemies
+    protected int mLevel;
     
     protected Weapon mCurrentWeapon = null;
     protected Weapon mMeleeWeapon;
@@ -252,6 +253,18 @@ public class Unit : Target
         GetComponent<SpriteRenderer> ().sortingOrder = (int)(sortingOrder);
     }
     
+    // pre: this.UnitType is set to the unit's type
+    // Pulls the unit stat information from the Global UnitUpgrades class
+    protected virtual void InitializeStats()
+    {
+        mMaxHealth = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.Health);
+        mHealth = mMaxHealth;
+        mMovementSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.MovementSpeed);
+        mChargeSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.ChargeSpeed);
+        mLevel = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.Level);
+        this.SightRange = UnitUpgrades.GetStat(mUnitType, UnitStat.SightRange);
+    }
+    
 ///////////////////////////////////////////////////////////////////////////////////
 // Unity Overrides
 ///////////////////////////////////////////////////////////////////////////////////
@@ -299,12 +312,5 @@ public class Unit : Target
         mUnitAnimator = this.GetComponent<UnitAnimation> ();
         if (mUnitAnimator == null)
             Debug.LogError ("UnitAnimation script was not attached to this Unit!");
-        
-        mMaxHealth = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.Health);
-        mHealth = mMaxHealth;
-        
-        mMovementSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.MovementSpeed);
-        mChargeSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.ChargeSpeed);
-        this.SightRange = UnitUpgrades.GetStat(mUnitType, UnitStat.SightRange);
     }
 }

@@ -5,7 +5,7 @@ public class Sword : Weapon
 {
     private static GameObject projectilePrefab = null;
     
-    public Sword ()
+    public Sword (int level) : base (level)
     {        
         if (projectilePrefab == null)
             projectilePrefab = Resources.Load ("Weapons/ArrowPrefab") as GameObject;
