@@ -4,18 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 
-// TODO need a method to create additional triggers without modifying this enum?
-// Can possibly use a string instead of a trigger
-public enum DialogueTrigger
-{
-    Tutorial,
-    TowerDestroyed,
-    RodelleDamaged,
-    TowerDamaged,
-    PeasantInvade,
-    ArcherMage,
-}
-
 public enum Speaker 
 {
     None,
@@ -58,7 +46,7 @@ public class DialogueManager : MonoBehaviour
     
     // Queues the related dialogue for play
     // TODO add priority
-    public void TriggerDialogue(DialogueTrigger trigger)
+    public void TriggerDialogue(string trigger)
     {
         if (mTriggers.ContainsKey(trigger))
             mDialogueQueue.Enqueue(mTriggers[trigger]);
@@ -73,7 +61,7 @@ public class DialogueManager : MonoBehaviour
     private Dictionary<Speaker, SpriteRenderer> mSpeakers;
     private Dictionary<SpeakerLocation, SpriteRenderer> mGuiLayers;
     
-    private Dictionary<DialogueTrigger, Dialogue> mTriggers;
+    private Dictionary<string, Dialogue> mTriggers;
     private Queue<Dialogue> mDialogueQueue;
   
     // See src/dialogue_1.txt for formatting the file
@@ -91,8 +79,8 @@ public class DialogueManager : MonoBehaviour
             if (values.Length == 0 || values[0]== "#") // ignore blank lines and comments
                 continue;
             
-            if (values[0] == ">>>") { // start trigger
-                DialogueTrigger trigger = EnumHelper.FromString<DialogueTrigger>(values[1]);
+            if (values[0].Contains(">>>")) { // start trigger
+                string trigger = values[1];
                 
                 Dialogue dialogue = GetMessagesFromFile(file);
                 mTriggers.Add(trigger, dialogue);
@@ -112,7 +100,7 @@ public class DialogueManager : MonoBehaviour
             string line = file.ReadLine ();
             string [] values = line.Split(delim, 6, StringSplitOptions.RemoveEmptyEntries);
             
-            if (values[0] == "<<<") // end trigger
+            if (values[0].Contains ("<<<")) // end trigger
                 break;
             
             // read the message
@@ -137,7 +125,7 @@ public class DialogueManager : MonoBehaviour
     void Start ()
     {
         mDialogueQueue = new Queue<Dialogue>();
-        mTriggers = new Dictionary<DialogueTrigger, Dialogue>();
+        mTriggers = new Dictionary<string, Dialogue>();
     
         mTextBoxes = new Dictionary<SpeakerLocation, GUIText>() ;
         mTextBoxes.Add (SpeakerLocation.Left, DialogueLeft);
@@ -164,9 +152,9 @@ public class DialogueManager : MonoBehaviour
         NameRight.text = "";
         
         LoadDialogueFromFile("dialogue_1.txt");
-        this.TriggerDialogue(DialogueTrigger.Tutorial);
-        this.TriggerDialogue(DialogueTrigger.TowerDestroyed);
-        this.TriggerDialogue(DialogueTrigger.ArcherMage);
+        this.TriggerDialogue("Tutorial");
+        this.TriggerDialogue("TowerDestroyed");
+        this.TriggerDialogue("ArcherMage");
     }
 
     // Resets the GUI and re-enables the relevant portions
