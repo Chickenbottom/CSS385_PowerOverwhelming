@@ -155,8 +155,6 @@ public class DialogueManager : MonoBehaviour
         
         LoadDialogueFromFile("dialogue_1.txt");
         this.TriggerDialogue("Tutorial");
-        this.TriggerDialogue("TowerDestroyed");
-        this.TriggerDialogue("ArcherMage");
     }
 
     // Resets the GUI and re-enables the relevant portions
@@ -227,6 +225,7 @@ public class DialogueManager : MonoBehaviour
             DisplayMessage(message);
             // CheckForHigherPriorityDialogues();
         } else { // indicate that more dialogue needs to be read
+            ResetGui();
             mDialogue = null;
         }
     }

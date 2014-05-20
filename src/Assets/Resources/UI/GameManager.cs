@@ -15,8 +15,7 @@ public class GameManager : MonoBehaviour
     public GUIText MageLevel;
     
     public GUIText GoldCounterText;
-    public GUIText WaveCounter1;
-    public GUIText WaveCounter10;
+    public GUIText WaveCounter;
     public AudioSource Music;
        
 	//private float mMusicVolume = 1;
@@ -63,8 +62,8 @@ public class GameManager : MonoBehaviour
         }
         
         KingsHealthBar.UpdateValue (GameState.KingsHealth);
-        GoldCounterText.text = GameState.Gold.ToString ("D9");
-        WaveCounter1.text = (GameState.RemainingWaves % 10).ToString ();
+        GoldCounterText.text = GameState.Gold.ToString ();
+        WaveCounter.text = GameState.RemainingWaves.ToString ();
         
         if (Input.GetKeyDown ("a"))
             Time.timeScale += 0.5f;
