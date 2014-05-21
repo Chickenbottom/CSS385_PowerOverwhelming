@@ -3,24 +3,28 @@ using System.Collections;
 
 public class Heal : Ability
 {
-    private int mTarget = -1;
-    private bool mReadyToUse = true;
-    private float mCoolDown = 15f;
+    protected int mTarget = -1;
+    protected float mHealRate = 0.25f;
+
+    void Awake()
+    {
+        mCooldown = 15f;
+        mUseTimer = -mCooldown;
+    }
 
     public override void UseAbility (Vector3 mousePos)
     {
-        // add healing effects
-        if (mReadyToUse)
+        if (Time.time - mUseTimer > mCooldown)
         {
             Tower t = GameObject.Find("TargetFinder").GetComponent<TowerTargets>().GetTarget(mousePos);
             if (t.Allegiance == Allegiance.Rodelle)
             {
-                t.Damage(-1 * t.MaxHealth);
-                mReadyToUse = false;
-                // Add method to activate cooldown bar
-                StartBarCoolDown();
-                Invoke("SetReadyToUse", mCoolDown);
+                Debug.Log("Using heal on " + t);
+                mUseTimer = Time.time;
+                t.Damage((int)(-mHealRate * t.MaxHealth));
             }
+        } else {
+            //Debug.Log ((mCooldown - (Time.time - mUseTimer)).ToString() + " seconds remaining on heal cooldown.");
         }
     }
 
@@ -29,20 +33,4 @@ public class Heal : Ability
         mTarget = GameObject.Find ("TargetFinder").GetComponent<TowerTargets> ().ValidMousePos (mousePos);
         return mTarget > -1;
     }
-
-    private void SetReadyToUse()
-    {
-        mReadyToUse = true;
-    }
-
-    public float GetCoolDownTime()
-    {
-        return mCoolDown;
-    }
-
-    private void StartBarCoolDown()
-    {
-
-    }
-
 }

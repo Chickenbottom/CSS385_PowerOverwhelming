@@ -3048,6 +3048,7 @@ MonoBehaviour:
   CapturedSprite: {fileID: 21300030, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 1
   ability: {fileID: 538972986}
+  CooldownBar: {fileID: 194421883}
 --- !u!212 &1091159856
 SpriteRenderer:
   m_ObjectHideFlags: 0

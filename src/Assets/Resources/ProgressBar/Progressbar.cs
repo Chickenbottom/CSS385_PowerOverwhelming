@@ -80,7 +80,7 @@ public class Progressbar : MonoBehaviour
                              background, ScaleMode.StretchToFill);
                              
             GUI.DrawTexture (new Rect (BorderWidth, BorderWidth, 
-                                       (mGuiBox.width * mCurrentValue / MaxValue) - BorderWidth * 2, 
+                                       (mGuiBox.width - BorderWidth * 2) * mCurrentValue / MaxValue, 
                                        (mGuiBox.height) - BorderWidth * 2), 
                              foreground, ScaleMode.StretchToFill);
         }
