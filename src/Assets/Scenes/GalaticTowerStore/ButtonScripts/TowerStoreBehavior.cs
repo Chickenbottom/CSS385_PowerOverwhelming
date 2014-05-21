@@ -32,6 +32,9 @@ public class TowerStoreBehavior : MonoBehaviour {
 		mCurUpgrades.SetTowerArray(ref OriginalUpgrades);
 		mCurUpgrades.WriteBonuses();
 	}
+	public float GetUpgrade(){
+		return DynamicUpgrades[(int)mCurBonusSubject, (int)mCurBonusType] = mCurQuantity;
+	}
 	public void SetUpgrade(){
 		DynamicUpgrades[(int)mCurBonusSubject, (int)mCurBonusType] = mCurQuantity;
 		//mCurUpgrades.SetBonus(mCurBonusSubject, mCurBonusType, mCurQuantity);

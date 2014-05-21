@@ -6,7 +6,8 @@ public class SpawnSize : ButtonBehaviour {
 	public TowerStoreBehavior TowerStore;
 	public GUIText SpawnSizeText;
 	public static float BonusValue, BonusLevel = 1;
-	
+	public GUIText mTotalGold;
+
 	public void NewValue(int newLevel){
 		TowerStore.mCurBonusType = BonusType.SpawnSize;
 		//BonusLevel = float.Parse(SpawnSizeText.text);
