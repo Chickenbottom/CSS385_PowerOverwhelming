@@ -18,7 +18,7 @@ public class StoryBook : MonoBehaviour
     private bool mIsFadingIn = false;
 	private SpriteRenderer mCurrentImage;
     
-    void Start ()
+    void Awake ()
     {
         if (CameraViews == null || CameraViews.Count == 0)
             Debug.LogError ("Cameras need to be added to this script in the Unity inspector");
@@ -31,6 +31,7 @@ public class StoryBook : MonoBehaviour
             mCameraArray [i].enabled = false;
 			setAlphaToZero(i);
 		}
+
 
 		mCurrentImage = Image[0];
 		
