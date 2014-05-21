@@ -18,6 +18,7 @@ public class Heal : Ability
                 t.Damage(-1 * t.MaxHealth);
                 mReadyToUse = false;
                 // Add method to activate cooldown bar
+                StartBarCoolDown();
                 Invoke("SetReadyToUse", mCoolDown);
             }
         }
@@ -32,6 +33,16 @@ public class Heal : Ability
     private void SetReadyToUse()
     {
         mReadyToUse = true;
+    }
+
+    public float GetCoolDownTime()
+    {
+        return mCoolDown;
+    }
+
+    private void StartBarCoolDown()
+    {
+
     }
 
 }
