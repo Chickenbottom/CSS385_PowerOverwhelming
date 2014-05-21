@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MeleeWalkLeft
+  m_Name: EnemyAttackLeft
   serializedVersion: 4
   m_AnimationType: 2
   m_Compressed: 0
@@ -18,13 +18,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: eebe6ab3bd5fc6e45b8f5b32cf664a83, type: 3}
+      value: {fileID: 21300068, guid: eebe6ab3bd5fc6e45b8f5b32cf664a83, type: 3}
     - time: .0833333358
-      value: {fileID: 21300002, guid: eebe6ab3bd5fc6e45b8f5b32cf664a83, type: 3}
+      value: {fileID: 21300070, guid: eebe6ab3bd5fc6e45b8f5b32cf664a83, type: 3}
     - time: .166666672
-      value: {fileID: 21300004, guid: eebe6ab3bd5fc6e45b8f5b32cf664a83, type: 3}
-    - time: .25
-      value: {fileID: 21300006, guid: eebe6ab3bd5fc6e45b8f5b32cf664a83, type: 3}
+      value: {fileID: 21300072, guid: eebe6ab3bd5fc6e45b8f5b32cf664a83, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -37,7 +35,7 @@ AnimationClip:
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: .333333343
+    m_StopTime: .25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

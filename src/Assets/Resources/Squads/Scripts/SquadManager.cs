@@ -75,7 +75,7 @@ public class SquadManager : MonoBehaviour
     private Vector3 rallyPoint;
     private static GameObject squadPrefab = null;
     
-    float mDoubleClickStart = 0;
+    //float mDoubleClickStart = 0;
     
     private Squad SpawnSquadFromUnitType (Vector3 location, UnitType unitType)
     {

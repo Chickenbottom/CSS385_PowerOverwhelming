@@ -6,6 +6,8 @@ using System.Linq;
 
 enum UnitAnimationState
 {
+    AttackLeft,
+    AttackRight,
     WalkLeft,
     WalkRight,
     IdleLeft,
@@ -25,6 +27,16 @@ public class UnitAnimation : MonoBehaviour
     public void WalkRight ()
     {
         SetProperty (UnitAnimationState.WalkRight);
+    }
+    
+    public void AttackRight ()
+    {
+        SetProperty (UnitAnimationState.AttackRight);
+    }
+    
+    public void AttackLeft ()
+    {
+        SetProperty (UnitAnimationState.AttackLeft);
     }
     
     public void Idle ()
@@ -47,7 +59,7 @@ public class UnitAnimation : MonoBehaviour
         
         mAnimationStates = new Dictionary<UnitAnimationState, bool> ();
         foreach (UnitAnimationState state in Enum.GetValues(typeof(UnitAnimationState)))
-            mAnimationStates.Add (state, false);    
+            mAnimationStates.Add (state, false);
     }
     
     // Sets the property to true and other properties to false
@@ -71,6 +83,7 @@ public class UnitAnimation : MonoBehaviour
     {
         return
         mAnimationStates [UnitAnimationState.WalkLeft] 
-            || mAnimationStates [UnitAnimationState.IdleLeft];
+            || mAnimationStates [UnitAnimationState.IdleLeft]
+            || mAnimationStates [UnitAnimationState.AttackLeft];
     }
 }

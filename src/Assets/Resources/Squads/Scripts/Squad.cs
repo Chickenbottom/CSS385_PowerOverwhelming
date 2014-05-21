@@ -120,7 +120,11 @@ public class Squad : MonoBehaviour
             NumSquadMembers = GameState.UnitSquadCount [UnitType];
         
         this.transform.position = location; 
-        mUnitPrefab = mUnitPrefabs [this.UnitType];
+        
+        if (allegiance == Allegiance.Rodelle)
+            mUnitPrefab = mUnitPrefabs [this.UnitType];
+        else 
+            mUnitPrefab = mEnemyPrefabs [this.UnitType];
         
         if (mSquadMembers != null) {
             foreach (Unit u in mSquadMembers)
@@ -159,7 +163,6 @@ public class Squad : MonoBehaviour
     private Squad mTargetSquad;
     private List<Unit> mSquadMembers;
     protected Allegiance mAllegiance;
-    static Dictionary<UnitType, GameObject> mUnitPrefabs = null;
     private SquadState mSquadState;
         
     // Squad members form concentric circles around the squad center
@@ -365,6 +368,9 @@ public class Squad : MonoBehaviour
         return surroundingPositions;
     }
     
+    static Dictionary<UnitType, GameObject> mUnitPrefabs = null;
+    static Dictionary<UnitType, GameObject> mEnemyPrefabs = null;
+    
     public static void InitializePrefabs ()
     {
         mUnitPrefabs = new Dictionary<UnitType, GameObject> ();
@@ -373,6 +379,12 @@ public class Squad : MonoBehaviour
         mUnitPrefabs.Add (UnitType.Peasant, Resources.Load ("Units/PeasantPrefab") as GameObject);
         mUnitPrefabs.Add (UnitType.Mage, Resources.Load ("Units/MagePrefab") as GameObject);
         mUnitPrefabs.Add (UnitType.King, Resources.Load ("Units/KingPrefab") as GameObject);
+        
+        mEnemyPrefabs = new Dictionary<UnitType, GameObject> ();
+        mEnemyPrefabs.Add (UnitType.Swordsman, Resources.Load ("Units/EnemySwordsmanPrefab") as GameObject);
+        mEnemyPrefabs.Add (UnitType.Archer, Resources.Load ("Units/EnemyArcherPrefab") as GameObject);
+        mEnemyPrefabs.Add (UnitType.Peasant, Resources.Load ("Units/PeasantPrefab") as GameObject);
+        mEnemyPrefabs.Add (UnitType.Mage, Resources.Load ("Units/EnemyMagePrefab") as GameObject);
     }
         
     ///////////////////////////////////////////////////////////////////////////////////

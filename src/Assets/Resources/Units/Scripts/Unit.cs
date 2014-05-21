@@ -217,6 +217,7 @@ public class Unit : Target
             return;
         }
         
+        UpdateAnimation();
         mCurrentWeapon.Attack (this, target);
     }
     
@@ -247,11 +248,18 @@ public class Unit : Target
             direction = mAttackTarget.Position - this.Position;
         else 
             direction = mDestination - this.Position;
-            
-        if (direction.x > 0)
-            mUnitAnimator.WalkRight ();
-        else 
-            mUnitAnimator.WalkLeft ();
+        
+        if (direction.sqrMagnitude < Mathf.Pow(mCurrentWeapon.Range, 2)) {
+            if (mAttackTarget != null && direction.x >= 0)
+                mUnitAnimator.AttackRight ();
+            else if (mAttackTarget != null && direction.x < 0)
+                mUnitAnimator.AttackLeft ();
+        } else {
+            if (direction.x >= 0)
+                mUnitAnimator.WalkRight ();
+            else 
+                mUnitAnimator.WalkLeft ();
+        }
             
         int sortingOrder = (int)(4 * (-Position.y + Camera.main.orthographicSize));
         GetComponent<SpriteRenderer> ().sortingOrder = (int)(sortingOrder);
@@ -303,10 +311,12 @@ public class Unit : Target
         
         UpdateAnimation ();
     }
-    
+
     // Initialize variables
     protected virtual void Awake ()
-    {
+    {        
+        //GameObject.Destroy(this.GetComponent<Animator>());
+        //this.gameObject.AddComponent("")
         mAttackState = AttackState.Idle;
         mAttackTarget = null;
         
