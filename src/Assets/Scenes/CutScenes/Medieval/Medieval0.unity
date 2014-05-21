@@ -463,7 +463,7 @@ MonoBehaviour:
   - {fileID: 697029310}
   - {fileID: 1827645322}
   Image: {fileID: 758807215}
-  SceneInterval: 1
+  SceneInterval: 3
 --- !u!1 &1827645318
 GameObject:
   m_ObjectHideFlags: 0
