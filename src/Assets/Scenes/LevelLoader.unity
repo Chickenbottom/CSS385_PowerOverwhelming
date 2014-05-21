@@ -100,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 334996760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -23.1888084, y: -58.5, z: 0}
-  m_LocalScale: {x: 10, y: 5, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 786427542}
 --- !u!114 &334996762
@@ -114,11 +114,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef030928721e70141b0a5d5c64905d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButtonDown: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mButton: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLocked: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLockedDown: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mButtonSelected: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  mButtonDown: {fileID: 21300004, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
+  mButton: {fileID: 21300000, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
+  mLocked: {fileID: 21300000, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
+  mLockedDown: {fileID: 21300000, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
+  mButtonSelected: {fileID: 21300004, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
   mEra: 1
   mLevelSelectionButtons: {fileID: 786427541}
   mLevel: Level1
@@ -143,7 +143,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 200
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: f514a517891b1e040abf29ae9b1dc5cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!61 &334996764
 BoxCollider2D:
@@ -154,8 +154,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 3.80999994, y: 2.71000004}
-  m_Center: {x: 0, y: 1.90734863e-06}
+  m_Size: {x: 6.78000021, y: 2.16000009}
+  m_Center: {x: 0, y: 0}
 --- !u!1 &364122351
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &786427542
 Transform:
   m_ObjectHideFlags: 0
@@ -599,11 +599,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef030928721e70141b0a5d5c64905d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButtonDown: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mButton: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLocked: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLockedDown: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mButtonSelected: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  mButtonDown: {fileID: 21300010, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
+  mButton: {fileID: 21300006, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
+  mLocked: {fileID: 21300006, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
+  mLockedDown: {fileID: 21300010, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
+  mButtonSelected: {fileID: 21300010, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
   mEra: 1
   mLevelSelectionButtons: {fileID: 786427541}
   mLevel: Level2
@@ -628,7 +628,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 200
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: f514a517891b1e040abf29ae9b1dc5cb, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1092445124
 Transform:
@@ -638,7 +638,7 @@ Transform:
   m_GameObject: {fileID: 1092445121}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 32, y: -58.5, z: 0}
-  m_LocalScale: {x: 10, y: 5, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 786427542}
 --- !u!61 &1092445125
@@ -650,8 +650,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 3.80999994, y: 2.71000004}
-  m_Center: {x: 0, y: 1.90734863e-06}
+  m_Size: {x: 6.78000021, y: 2.16000009}
+  m_Center: {x: 0, y: 0}
 --- !u!1 &1134486427
 GameObject:
   m_ObjectHideFlags: 0
