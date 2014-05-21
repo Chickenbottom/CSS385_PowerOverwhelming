@@ -1,6 +1,6 @@
 # UnitType Level  Experience  Health   MovementSpeed   ChargeSpeed Sight
-Archer      1     0           4       10              10          45
-Swordsman   1     0           6       12              15          30
-Mage        1     0           4       06              08          50
-Peasant     1     0           4       10              12          10
-King        1     0           100     00              00          00
+Archer      1     0           40       10              10          45
+Swordsman   1     0           80       12              15          30
+Mage        1     0           40       06              08          50
+Peasant     1     0           60       10              12          10
+King        1     0           1000     00              00          00

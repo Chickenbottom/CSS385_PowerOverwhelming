@@ -1,6 +1,6 @@
 ﻿#           Damage  Range   ReloadTime  ReloadVariance  Accuracy
-Crossbow    5       35      1.5         0.1             0.8
-Sword       4       12      1.0         0.5             0.7 
-Dagger      1       12      1.0         0.5             0.7
-Pitchfork   6       12      2.0         0.2             0.5
-IceWand     5       70      2.0         0.1             0.8
+Crossbow    60       35      1.5         0.1             0.8
+Sword       45       12      1.0         0.5             0.7 
+Dagger      15       12      1.0         0.5             0.7
+Pitchfork   10       12      0.5         0.5             0.5
+IceWand     60       70      2.0         0.1             0.8

@@ -67,6 +67,9 @@ public class GameManager : MonoBehaviour
         
         if (Input.GetKeyDown ("a"))
             Time.timeScale += 0.5f;
+            
+        if (Input.GetKeyDown ("b"))
+            Time.timeScale -= 0.5f;
 	}
     
 	public void SetMusicVolume(float v)
