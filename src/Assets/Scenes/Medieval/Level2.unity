@@ -562,9 +562,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   squadType: 4
-  ControllingTower: {fileID: 307255315}
-  DefaultSprite: {fileID: 21300004, guid: 363c041b7e5b0f6418e145f183fb2b77, type: 3}
-  GlowingSprite: {fileID: 21300010, guid: 363c041b7e5b0f6418e145f183fb2b77, type: 3}
 --- !u!212 &84667853
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1074,6 +1071,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 229261864}
+  - 114: {fileID: 229261866}
+  - 114: {fileID: 229261865}
   m_Layer: 0
   m_Name: Buttons
   m_TagString: Untagged
@@ -1094,6 +1093,30 @@ Transform:
   - {fileID: 1436225226}
   - {fileID: 1393852959}
   m_Father: {fileID: 237291328}
+--- !u!114 &229261865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229261863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5299ff5ed5378943b45316be1c062e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mLoseFrame: {fileID: 0}
+--- !u!114 &229261866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229261863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a13ae9eaab1fd46bc09a633f707e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mWinFrame: {fileID: 0}
 --- !u!1 &229377074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,12 +1583,10 @@ MonoBehaviour:
   SwordsmanExperienceBar: {fileID: 950509912}
   ArcherExperienceBar: {fileID: 1748308532}
   MageExperienceBar: {fileID: 2015310674}
-  SwordsmanLevel: {fileID: 1924164336}
-  ArcherLevel: {fileID: 1230046307}
-  MageLevel: {fileID: 1373633867}
   GoldCounterText: {fileID: 216576493}
-  WaveCounter: {fileID: 1490749808}
-  Music: {fileID: 401559015}
+  WaveCounter1: {fileID: 0}
+  WaveCounter10: {fileID: 0}
+  mMusic: {fileID: 0}
 --- !u!114 &401559018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,9 +1640,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   squadType: 3
-  ControllingTower: {fileID: 35293065}
-  DefaultSprite: {fileID: 21300002, guid: 363c041b7e5b0f6418e145f183fb2b77, type: 3}
-  GlowingSprite: {fileID: 21300008, guid: 363c041b7e5b0f6418e145f183fb2b77, type: 3}
 --- !u!212 &402212069
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1779,9 +1797,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   squadType: 2
-  ControllingTower: {fileID: 674620534}
-  DefaultSprite: {fileID: 21300000, guid: 363c041b7e5b0f6418e145f183fb2b77, type: 3}
-  GlowingSprite: {fileID: 21300006, guid: 363c041b7e5b0f6418e145f183fb2b77, type: 3}
 --- !u!212 &456529789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3048,7 +3063,6 @@ MonoBehaviour:
   CapturedSprite: {fileID: 21300030, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 1
   ability: {fileID: 538972986}
-  CooldownBar: {fileID: 194421883}
 --- !u!212 &1091159856
 SpriteRenderer:
   m_ObjectHideFlags: 0
