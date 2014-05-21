@@ -51,6 +51,8 @@ public static class UnitUpgrades
     
     public static void AddToExperience (UnitType subject, float value)
     {
+        if (subject == UnitType.Peasant)
+            return;
         mUnitStats [(int)subject, (int)UnitStat.Experience] += value;
         if (mUnitStats [(int)subject, (int)UnitStat.Experience] > GetExpToNextLevel(subject)) {
             IncreaseUnitLevel(subject);

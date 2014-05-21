@@ -60,8 +60,10 @@ public class IceBomb : MonoBehaviour
             f = other.gameObject.GetComponent<FrozenEffect> ();
             f.target = target.GetComponent<Target> ();
             f.Freeze ();
-            
-            target.Damage (5);
+    
+            int damage = (int)WeaponUpgrades.GetStat(WeaponType.IceWand, WeaponStat.Damage);
+                                                                                                                                        
+            target.Damage (damage);
             if (target.IsDead && mSource.Allegiance == Allegiance.Rodelle)
                 UnitUpgrades.AddToExperience (mSource.UnitType, 1);
         }
@@ -70,7 +72,7 @@ public class IceBomb : MonoBehaviour
     
     Target mTarget;
     Unit mSource;
-
+    
     public void SetParameters (Unit src, Target target)
     {
         //mTarget = target;
