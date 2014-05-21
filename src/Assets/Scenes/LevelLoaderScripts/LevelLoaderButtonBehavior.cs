@@ -18,13 +18,16 @@ public class LevelLoaderButtonBehavior : MonoBehaviour {
 	public Sprite mButton;
 	public Sprite mLocked;
 	public Sprite mLockedDown;
+	public Sprite mButtonSelected;
 	public Era mEra;
+	public GameObject mLevelSelectionButtons;
 
 	bool mLevelLocked;
 
 	// Use this for initialization
 	void Start () {
 
+		//mLevelSelectionButtons.SetActive(false);
 		GameState.CurrentEra = Era.Medieval;
 		if(mEra <= GameState.CurrentEra)
 			mLevelLocked = false;
@@ -49,24 +52,12 @@ public class LevelLoaderButtonBehavior : MonoBehaviour {
 		gameObject.GetComponent<SpriteRenderer> ().sprite = mButton;
 	}
 	void OnMouseDown(){
-		if(mEra < GameState.CurrentEra){
-			switch(mEra){
-			case Era.Prehistoric:
-				Application.LoadLevel("TowerStore");
-				break;
-			case Era.Medieval:
-				Application.LoadLevel("Level2");
-				break;
-			case Era.Japanese:
-				Application.LoadLevel("TowerStore");
-				break;
-			case Era.ModernAmerica:
-				Application.LoadLevel("TowerStore");
-				break;
-			case Era.Future:
-				Application.LoadLevel("TowerStore");
-				break;
-			}
+		if(mEra <= GameState.CurrentEra){
+			mLevelSelectionButtons.SetActive(true);
+			gameObject.GetComponent<SpriteRenderer> ().sprite = mButtonSelected;
 		}
+	}
+	public Era GetEra(){
+		return mEra;
 	}
 }
