@@ -57,7 +57,7 @@ public class GameState
     {
 		LostGame = true;
 		//GameObject.Find("LoseFrame").GetComponent<LoseGame>().LostGame();
-       // Application.LoadLevel ("LevelLoader");
+        Application.LoadLevel("LevelLoader");
     }
     
     public static void TriggerWin ()
@@ -67,6 +67,7 @@ public class GameState
         //Debug.Log ("You win!");
         //GUIText text = GameObject.Find ("DialogueLeft").GetComponent<GUIText> ();
         //text.text = "The peasants are gone!";
+        Application.LoadLevel("LevelLoader");
     }
     
     public static void UpdateKingsHealth (int value)
