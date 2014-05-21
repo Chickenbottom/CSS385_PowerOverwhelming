@@ -3,6 +3,6 @@ using System.Collections;
 
 public class WinSkipButton : ButtonBehaviour {
 	void OnMouseDown(){
-		Application.LoadLevel("Level3");
+		Application.LoadLevel("LevelLoader");
 	}
 }
