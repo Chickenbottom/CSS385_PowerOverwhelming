@@ -1,29 +1,29 @@
 3
 @EnemyWave 30
 0 Large     Default AttackMove
-1 Medium    Default AttackMove SpawnLeft,ArcherTower
-3 Large     Default AttackMove SpawnRight,AbilityTower
+1 Medium    Default AttackMove ArcherTower
+3 Large     Default AttackMove AbilityTower
 4 Medium    Default AttackMove
-5 Medium    Default AttackMove SpawnRight,MageTower
-6 Large     Default AttackMove SpawnLeft,ArcherTower
+5 Medium    Default AttackMove MageTower
+6 Large     Default AttackMove ArcherTower
 7 Large     Default AttackMove
 
 @EnemyWave 30
-0 Individual Default AttackMove SpawnLeft,ArcherTower,SwordsmanTower
-0 Individual Default AttackMove SpawnLeft,ArcherTower,SwordsmanTower
-0 Individual Default AttackMove SpawnLeft,ArcherTower,SwordsmanTower
-1 Large     Default AttackMove SpawnLeft,ArcherTower,SwordsmanTower
+0 Individual Default AttackMove ArcherTower,SwordsmanTower
+0 Individual Default AttackMove ArcherTower,SwordsmanTower
+0 Individual Default AttackMove ArcherTower,SwordsmanTower
+1 Large     Default AttackMove ArcherTower,SwordsmanTower
 2 Large     Default AttackMove SpawnCenter,Center,MageTower
 3 Large     Default AttackMove SpawnCenter,Center,ArcherTower
 6 Large     Default AttackMove SpawnCenter,SwordsmanTower
-7 Large     Default AttackMove SpawnRight,MageTower
+7 Large     Default AttackMove MageTower
 
 @EnemyWave 30
-0 Medium    Default AttackMove SpawnLeft,ArcherTower
-1 Medium    Default AttackMove SpawnRight,AbilityTower
+0 Medium    Default AttackMove ArcherTower
+1 Medium    Default AttackMove AbilityTower
 2 Medium    Default AttackMove SpawnCenter,MageTower
 3 Medium    Default AttackMove Center,SwordsmanTower
-4 Medium    Default AttackMove SpawnLeft,ArcherTower
-5 Medium    Default AttackMove SpawnRight,AbilityTower
+4 Medium    Default AttackMove ArcherTower
+5 Medium    Default AttackMove AbilityTower
 6 Medium    Default AttackMove SpawnCenter,MageTower
 7 Medium    Default AttackMove Center,SwordsmanTower

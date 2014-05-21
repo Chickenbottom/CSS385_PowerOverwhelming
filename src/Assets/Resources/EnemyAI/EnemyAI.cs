@@ -12,6 +12,8 @@ public enum Waypoint
     SwordsmanTower,
     MageTower,
     Center,
+    CenterLeft,
+    CenterRight,
     SpawnLeft,
     SpawnCenter,
     SpawnRight,
@@ -88,9 +90,16 @@ public class EnemyAI : MonoBehaviour
         Waypoints.Add (Waypoint.SwordsmanTower, new Vector3 (-108, 50, 0));
         Waypoints.Add (Waypoint.King, new Vector3 (-33, 56, 0));
         Waypoints.Add (Waypoint.Center, new Vector3 (-33, 10, 0));
+        Waypoints.Add (Waypoint.CenterLeft, new Vector3 (-93, 0, 0));
+        Waypoints.Add (Waypoint.CenterRight, new Vector3 (-6, 0, 0));
         Waypoints.Add (Waypoint.SpawnLeft, new Vector3 (-44, -37, 0));
         Waypoints.Add (Waypoint.SpawnCenter, new Vector3 (-33, -37, 0));
         Waypoints.Add (Waypoint.SpawnRight, new Vector3 (-22, -37, 0));
+        
+        mSpawnPoint = new Queue<Vector3>();
+        mSpawnPoint.Enqueue(Waypoints[Waypoint.SpawnLeft]);
+        mSpawnPoint.Enqueue(Waypoints[Waypoint.SpawnCenter]);
+        mSpawnPoint.Enqueue(Waypoints[Waypoint.SpawnRight]);
         
         string aiData = "AI_Level";
         aiData += GameState.CurrentLevel.ToString ();
@@ -115,6 +124,7 @@ public class EnemyAI : MonoBehaviour
     List<string>[] mEnemyWaves;
     float[] mWaveTimers;
     private List<EnemySquad> units;
+    private Queue<Vector3> mSpawnPoint;
         
     private void SpawnWave (int waveNumber)
     {   
@@ -150,6 +160,10 @@ public class EnemyAI : MonoBehaviour
         //behavior = EnumHelper.FromString<SquadBehavior> (param [3]);
         
         EnemySquad es = new EnemySquad ((int)size, spawnTime);
+        
+        Vector3 spawn = mSpawnPoint.Dequeue();
+        mSpawnPoint.Enqueue(spawn);
+        es.AddWaypoint(spawn);
         
         for (int i = 4; i < param.Length; ++i) {
             Waypoint wp = EnumHelper.FromString<Waypoint> (param [i]);
