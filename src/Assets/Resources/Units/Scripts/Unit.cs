@@ -217,7 +217,6 @@ public class Unit : Target
             return;
         }
         
-        UpdateAnimation();
         mCurrentWeapon.Attack (this, target);
     }
     
@@ -242,23 +241,23 @@ public class Unit : Target
             mUnitAnimator.Idle ();
             return;
         }
-        
+                
         Vector3 direction;
         if (mAttackTarget != null)
             direction = mAttackTarget.Position - this.Position;
         else 
             direction = mDestination - this.Position;
-        
-        if (direction.sqrMagnitude < Mathf.Pow(mCurrentWeapon.Range, 2)) {
-            if (mAttackTarget != null && direction.x >= 0)
-                mUnitAnimator.AttackRight ();
-            else if (mAttackTarget != null && direction.x < 0)
-                mUnitAnimator.AttackLeft ();
-        } else {
+
+        if (mAttackState == AttackState.Idle || mAttackState == AttackState.Engaging) {
             if (direction.x >= 0)
                 mUnitAnimator.WalkRight ();
             else 
                 mUnitAnimator.WalkLeft ();
+        } else {
+            if (direction.x >= 0)
+                mUnitAnimator.AttackRight ();
+            else 
+                mUnitAnimator.AttackLeft ();
         }
             
         int sortingOrder = (int)(4 * (-Position.y + Camera.main.orthographicSize));
@@ -285,6 +284,7 @@ public class Unit : Target
     void FixedUpdate ()
     {
         UpdateTargetState ();
+        UpdateAnimation();
         
         switch (mAttackState) {
         case (AttackState.Idle):
@@ -309,7 +309,7 @@ public class Unit : Target
             break;
         }
         
-        UpdateAnimation ();
+        
     }
 
     // Initialize variables

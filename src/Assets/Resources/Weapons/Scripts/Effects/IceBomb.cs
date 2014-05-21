@@ -30,6 +30,11 @@ public class IceBomb : MonoBehaviour
             explosionDone = true;
     }
     
+    void OnTriggerEnter2D (Collider2D other)
+    {
+        OnTriggerStay2D (other);
+    }
+    
     void OnTriggerStay2D (Collider2D other)
     {
         if (explosionDone)
@@ -57,7 +62,7 @@ public class IceBomb : MonoBehaviour
             f.Freeze ();
             
             target.Damage (5);
-            if (target.IsDead)
+            if (target.IsDead && mSource.Allegiance == Allegiance.Rodelle)
                 UnitUpgrades.AddToExperience (mSource.UnitType, 1);
         }
     

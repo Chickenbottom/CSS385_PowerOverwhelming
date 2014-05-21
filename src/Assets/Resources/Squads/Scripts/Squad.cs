@@ -192,7 +192,10 @@ public class Squad : MonoBehaviour
     private void AssignNewTarget (Unit who)
     {
         GameState.Gold += 5;
-        UnitUpgrades.AddToExperience (this.UnitType, 1);
+        
+        if (this.mAllegiance == Allegiance.Rodelle)
+            UnitUpgrades.AddToExperience (this.UnitType, 1);
+            
         List<Unit> mEnemies = mTargetSquad.mSquadMembers;
         int numEnemies = mEnemies.Count;
         
@@ -217,6 +220,9 @@ public class Squad : MonoBehaviour
     
     private void AttackEnemySquad (Squad enemySquad)
     {
+        if (enemySquad == null)
+            return;
+            
         this.SquadState = SquadState.Engaging;
         
         Unit squadUnit = this.SquadLeader;
