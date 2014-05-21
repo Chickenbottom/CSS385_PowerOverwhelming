@@ -16,6 +16,7 @@ public class StoryBook : MonoBehaviour
     private float mCameraStartTime;
     private int mCurrentCamera = 1;
     private bool mIsFadingIn = false;
+	private SpriteRenderer mCurrentImage;
     
     void Start ()
     {
@@ -23,14 +24,16 @@ public class StoryBook : MonoBehaviour
             Debug.LogError ("Cameras need to be added to this script in the Unity inspector");
         
         mCameraInterval = SceneInterval;
-
         mCameraStartTime = Time.time;
         mCameraArray = CameraViews;
         mCameraArray [0].enabled = true;
         for (int i = 1; i < mCameraArray.Count; i++) {
             mCameraArray [i].enabled = false;
-        }
-        
+			setAlphaToZero(i);
+		}
+
+		mCurrentImage = Image[0];
+		
         // Have the first scene fade in
         setImageColor(0f);
         mIsFadingIn = true;
@@ -42,12 +45,17 @@ public class StoryBook : MonoBehaviour
         if (mIsFadingIn)
             FadeIn ();
         
-		if (mCurrentCamera >= mCameraArray.Count)
-			StartGame ();
 
-        if (Time.time - mCameraStartTime > mCameraInterval && mCurrentCamera < mCameraArray.Count) {
+
+        if (Time.time - mCameraStartTime > mCameraInterval && mCurrentCamera <= mCameraArray.Count) {
             if (FadeOut ()) {
-                mCameraArray [mCurrentCamera].enabled = true;
+
+				if (mCurrentCamera == mCameraArray.Count)
+					StartGame ();
+
+				mCameraArray [mCurrentCamera].enabled = true;
+				mCameraArray[mCurrentCamera-1].enabled = false;
+				mCurrentImage = Image[mCurrentCamera];
                 mCurrentCamera ++;
                 mCameraStartTime = Time.time;
                 mIsFadingIn = true;
@@ -81,18 +89,22 @@ public class StoryBook : MonoBehaviour
 
     float setAlpha ()
     {
-		if(mCurrentCamera < Image.Count)
-	        return Image[mCurrentCamera].material.color.a;
-		else
-			return 1f;
+        return mCurrentImage.material.color.a;
     }
 
+	void setAlphaToZero(int index){
+		Image[index].material.color = new Color (Image[index].material.color.r, 
+		                                         Image[index].material.color.g,
+		                                         Image[index].material.color.b, 
+	                                          	0);
+
+	}
     void setImageColor (float alpha)
     {
-		Image[mCurrentCamera].material.color = new Color (Image[mCurrentCamera].material.color.r, 
-                                  						  Image[mCurrentCamera].material.color.g,
-		                                                  Image[mCurrentCamera].material.color.b, 
-		                                                  alpha);
+		mCurrentImage.material.color = new Color (mCurrentImage.material.color.r, 
+		                                          mCurrentImage.material.color.g,
+		                                          mCurrentImage.material.color.b, 
+		                                          alpha);
 	}
 	void StartGame(){
 		Application.LoadLevel("Level1");
@@ -101,16 +113,27 @@ public class StoryBook : MonoBehaviour
 		if (mCurrentCamera >= mCameraArray.Count)
 			StartGame ();
 		mCameraArray [mCurrentCamera].enabled = true;
+		mCurrentImage = Image[mCurrentCamera];
 		mCurrentCamera ++;
 		mCameraStartTime = Time.time;
 		mIsFadingIn = true;
 	}
 	public void PreviousScene(){
-		if(mCurrentCamera <= 0)
+		if(mCurrentCamera <= 1)
+			return;
+
+		setAlphaToZero(mCurrentCamera-1);
+		int prevCam = mCurrentCamera-1;
+		if(mCurrentCamera <= 2){
 			mCurrentCamera = 0;
-		else
-			mCurrentCamera--;
+		}
+		else{
+			mCurrentCamera -= 2;
+		}
 		mCameraArray [mCurrentCamera].enabled = true;
+		mCameraArray[prevCam].enabled = false;
+		setAlphaToZero(mCurrentCamera);
+		mCurrentImage = Image[mCurrentCamera];
 		mCurrentCamera ++;
 		mCameraStartTime = Time.time;
 		mIsFadingIn = true;

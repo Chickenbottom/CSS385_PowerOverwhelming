@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CutSceneQuitButton : ButtonBehaviour {
 
-	void OnButtonDown(){
+	void OnMouseDown(){
 		Application.LoadLevel("Menu");
 	}
 }
