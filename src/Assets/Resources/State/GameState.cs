@@ -56,17 +56,17 @@ public class GameState
     public static void TriggerLoss ()
     {
 		LostGame = true;
-        GameObject.Find("LoseFrame").GetComponent<LoseGame>().LostGame();
+        //GameObject.Find("LoseFrame").GetComponent<LoseGame>().LostGame();
         //Application.LoadLevel("LevelLoader");
     }
     
     public static void TriggerWin ()
     {
 		WonGame = true;
-        GameObject.Find("WinFrame").GetComponent<WinGame>().WonGame();
+        //GameObject.Find("WinFrame").GetComponent<WinGame>().WonGame();
         //Debug.Log ("You win!");
-        GUIText text = GameObject.Find("DialogueLeft").GetComponent<GUIText>();
-        text.text = "The peasants are gone!";
+        //GUIText text = GameObject.Find("DialogueLeft").GetComponent<GUIText>();
+        //text.text = "The peasants are gone!";
         //Application.LoadLevel("LevelLoader");
     }
     
