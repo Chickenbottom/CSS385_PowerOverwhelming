@@ -8,7 +8,9 @@ public class GameState
 
     public static int CurrentLevel;
     public static int RemainingWaves;
-    
+	public static bool WonGame = false;
+	public static bool LostGame = false;
+
     public static int Gold;
         
     private static int[] numEnemies;
@@ -53,11 +55,15 @@ public class GameState
     
     public static void TriggerLoss ()
     {
-        Application.LoadLevel ("LevelLoader");
+		LostGame = true;
+		//GameObject.Find("LoseFrame").GetComponent<LoseGame>().LostGame();
+       // Application.LoadLevel ("LevelLoader");
     }
     
     public static void TriggerWin ()
     {
+		WonGame = true;
+		//GameObject.Find("WinFrame").GetComponent<WinGame>().WonGame();
         //Debug.Log ("You win!");
         //GUIText text = GameObject.Find ("DialogueLeft").GetComponent<GUIText> ();
         //text.text = "The peasants are gone!";
