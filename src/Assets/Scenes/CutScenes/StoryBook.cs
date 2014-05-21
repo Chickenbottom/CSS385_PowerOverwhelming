@@ -27,7 +27,7 @@ public class StoryBook : MonoBehaviour
         mCameraStartTime = Time.time;
         mCameraArray = CameraViews;
         mCameraArray [0].enabled = true;
-        for (int i = 1; i <= mCameraArray.Count; i++) {
+        for (int i = 1; i < mCameraArray.Count; i++) {
             mCameraArray [i].enabled = false;
         }
         

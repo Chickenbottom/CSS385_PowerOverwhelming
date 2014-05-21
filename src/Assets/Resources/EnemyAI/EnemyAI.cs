@@ -92,7 +92,7 @@ public class EnemyAI : MonoBehaviour
         Waypoints.Add (Waypoint.SpawnCenter, new Vector3 (-33, -37, 0));
         Waypoints.Add (Waypoint.SpawnRight, new Vector3 (-22, -37, 0));
         
-        string aiData = "Assets/Resources/EnemyAI/AI_Level";
+        string aiData = "AI_Level";
         aiData += GameState.CurrentLevel.ToString ();
         aiData += ".txt";
         ReadWavesFromFile (aiData);
