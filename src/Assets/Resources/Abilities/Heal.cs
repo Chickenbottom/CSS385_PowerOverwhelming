@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Heal : Ability
 {
-    protected int mTarget = -1;
+    // protected int mTarget = -1;
     protected float mHealRate = 0.25f;
 
     void Awake()
@@ -16,12 +16,20 @@ public class Heal : Ability
     {
         if (Time.time - mUseTimer > mCooldown)
         {
-            Tower t = GameObject.Find("TargetFinder").GetComponent<TowerTargets>().GetTarget(mousePos);
-            if (t.Allegiance == Allegiance.Rodelle)
+            if (GameObject.Find("GameManager").GetComponent<MouseManager>().RodelleClicked)
             {
-                Debug.Log("Using heal on " + t);
-                mUseTimer = Time.time;
-                t.Damage((int)(-mHealRate * t.MaxHealth));
+                King k = GameObject.Find("KingPrefab(Clone)").GetComponent<King>();
+                k.Damage((int)(-mHealRate * k.MaxHealth));
+            }
+            else
+            {
+                Tower t = GameObject.Find("TargetFinder").GetComponent<TowerTargets>().GetTarget(mousePos);
+                if (t.Allegiance == Allegiance.Rodelle)
+                {
+                    Debug.Log("Using heal on " + t);
+                    mUseTimer = Time.time;
+                    t.Damage((int)(-mHealRate * t.MaxHealth));
+                }
             }
         } else {
             //Debug.Log ((mCooldown - (Time.time - mUseTimer)).ToString() + " seconds remaining on heal cooldown.");
@@ -30,7 +38,9 @@ public class Heal : Ability
 
     public override bool ValidMousePos (Vector3 mousePos)
     {
-        mTarget = GameObject.Find ("TargetFinder").GetComponent<TowerTargets> ().ValidMousePos (mousePos);
-        return mTarget > -1;
+        //mTarget = GameObject.Find ("TargetFinder").GetComponent<TowerTargets> ().ValidMousePos (mousePos);
+        //return mTarget > -1;
+        return GameObject.Find("GameManager").GetComponent<MouseManager>().RodelleClicked ||
+            GameObject.Find("TargetFinder").GetComponent<TowerTargets>().ValidMousePos(mousePos) > -1;
     }
 }

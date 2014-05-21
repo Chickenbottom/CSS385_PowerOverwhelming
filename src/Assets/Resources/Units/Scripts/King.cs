@@ -19,6 +19,10 @@ public class King : Unit
     {
         base.Damage (damage);
         GameState.KingsHealth = mHealth;
+        if (GameState.KingsHealth > MaxHealth)
+        {
+            GameState.KingsHealth = MaxHealth;
+        }
     }
     
     public override Vector3 Position {
@@ -27,4 +31,11 @@ public class King : Unit
         }
         set {} // doesn't move
     }
+
+    void OnMouseDown()
+    {
+        GameObject.Find("GameManager").GetComponent<MouseManager>().RodelleClicked = true;
+
+    }
+
 }
