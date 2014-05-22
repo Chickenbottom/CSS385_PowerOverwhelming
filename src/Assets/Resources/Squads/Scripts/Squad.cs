@@ -30,6 +30,8 @@ public class Squad : MonoBehaviour
     public UnitType UnitType;
     public Vector3 SquadCenter;
     public Vector3 RallyPoint;
+    
+    public List<Unit> SquadMembers { get { return mSquadMembers; } }
 
     public Unit SquadLeader { get { return mSquadMembers [0]; } }
 
@@ -176,7 +178,7 @@ public class Squad : MonoBehaviour
         if (!(mTargetSquad == null || mTargetSquad.UnitType == UnitType.King))
             return;
             
-        if (target == null) 
+        if (target == null)
             Debug.Break ();
         
         if (target is Unit) {
@@ -184,6 +186,7 @@ public class Squad : MonoBehaviour
             mTargetSquad = u.Squad;
             AttackEnemySquad (u.Squad);
         } else if (target is Tower) {
+            mTargetSquad = null;
             Tower t = (Tower)target.GetComponent (typeof(Tower));
             AttackEnemyTower (t);
         }

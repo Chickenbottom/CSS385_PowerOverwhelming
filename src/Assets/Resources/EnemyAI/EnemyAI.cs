@@ -6,17 +6,17 @@ using System.IO;
 
 public enum Waypoint
 {
-    King,
-    ArcherTower,
-    AbilityTower,
+    King = 0,
+    TowerLeft,
+    TowerRight,
     SwordsmanTower,
     MageTower,
     Center,
     CenterLeft,
     CenterRight,
-    SpawnLeft,
-    SpawnCenter,
-    SpawnRight,
+    Left,
+    Middle,
+    Right,
 }
 
 public enum SquadPreset
@@ -78,28 +78,30 @@ public class EnemyAI : MonoBehaviour
         }
     }
     
-    void Start ()
+    void Awake ()
     {
         units = new List<EnemySquad> ();
         
         // TODO grab these locations from the map
         Waypoints = new Dictionary<Waypoint, Vector3> ();
-        Waypoints.Add (Waypoint.AbilityTower, new Vector3 (43, -45, 0));
-        Waypoints.Add (Waypoint.ArcherTower, new Vector3 (-105, -45, 0));
+        Waypoints.Add (Waypoint.TowerRight, GameObject.Find("TowerRight").transform.position);
+        Waypoints.Add (Waypoint.TowerLeft, GameObject.Find("TowerLeft").transform.position);
         Waypoints.Add (Waypoint.MageTower, new Vector3 (43, 50, 0));
         Waypoints.Add (Waypoint.SwordsmanTower, new Vector3 (-108, 50, 0));
-        Waypoints.Add (Waypoint.King, new Vector3 (-33, 56, 0));
-        Waypoints.Add (Waypoint.Center, new Vector3 (-33, 10, 0));
+        Waypoints.Add (Waypoint.King, GameObject.Find("KingWP").transform.position);
+        Waypoints.Add (Waypoint.Center, GameObject.Find("CenterWP").transform.position);
         Waypoints.Add (Waypoint.CenterLeft, new Vector3 (-93, 0, 0));
         Waypoints.Add (Waypoint.CenterRight, new Vector3 (-6, 0, 0));
-        Waypoints.Add (Waypoint.SpawnLeft, new Vector3 (-44, -37, 0));
-        Waypoints.Add (Waypoint.SpawnCenter, new Vector3 (-33, -37, 0));
-        Waypoints.Add (Waypoint.SpawnRight, new Vector3 (-22, -37, 0));
+        Waypoints.Add (Waypoint.Left, GameObject.Find("SpawnLeft").transform.position);
+        Waypoints.Add (Waypoint.Middle, GameObject.Find("SpawnCenter").transform.position);
+        Waypoints.Add (Waypoint.Right, GameObject.Find("SpawnRight").transform.position);
+        
+        GameObject.Find ("Waypoints").SetActive(false);
         
         mSpawnPoint = new Queue<Vector3>();
-        mSpawnPoint.Enqueue(Waypoints[Waypoint.SpawnLeft]);
-        mSpawnPoint.Enqueue(Waypoints[Waypoint.SpawnCenter]);
-        mSpawnPoint.Enqueue(Waypoints[Waypoint.SpawnRight]);
+        mSpawnPoint.Enqueue(Waypoints[Waypoint.Left]);
+        mSpawnPoint.Enqueue(Waypoints[Waypoint.Middle]);
+        mSpawnPoint.Enqueue(Waypoints[Waypoint.Right]);
         
         string aiData = "AI_Level";
         aiData += GameState.CurrentLevel.ToString ();
@@ -114,6 +116,12 @@ public class EnemyAI : MonoBehaviour
     // Public Methods and Variables
     /////////////////////////////////////////////////////////////////////////////////// 
     
+    public void AddSquad(Vector3 location)
+    {
+        EnemySquad es = new EnemySquad(4, 0, location);
+        es.AddWaypoint(Waypoints[Waypoint.King]);
+        units.Add(es);
+    }
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Private Methods and Variables
@@ -150,23 +158,22 @@ public class EnemyAI : MonoBehaviour
         //SquadBehavior behavior;
         
         float spawnTime;
+        Vector3 spawnLocation;
         
         char[] delimiters = { ' ', ',' };
         string[] param = input.Split (delimiters, StringSplitOptions.RemoveEmptyEntries);
         
         spawnTime = float.Parse (param [0]);
         size = EnumHelper.FromString<SquadSize> (param [1]);
+        Waypoint wp = EnumHelper.FromString<Waypoint> (param [4]);
+        spawnLocation = Waypoints[wp];
         //preset = EnumHelper.FromString<SquadPreset> (param [2]);
         //behavior = EnumHelper.FromString<SquadBehavior> (param [3]);
         
-        EnemySquad es = new EnemySquad ((int)size, spawnTime);
+        EnemySquad es = new EnemySquad ((int)size, spawnTime, spawnLocation);
         
-        Vector3 spawn = mSpawnPoint.Dequeue();
-        mSpawnPoint.Enqueue(spawn);
-        es.AddWaypoint(spawn);
-        
-        for (int i = 4; i < param.Length; ++i) {
-            Waypoint wp = EnumHelper.FromString<Waypoint> (param [i]);
+        for (int i = 5; i < param.Length; ++i) {
+            wp = EnumHelper.FromString<Waypoint> (param [i]);
             es.AddWaypoint (Waypoints [wp]);
         }
         es.AddWaypoint (Waypoints [Waypoint.King]);

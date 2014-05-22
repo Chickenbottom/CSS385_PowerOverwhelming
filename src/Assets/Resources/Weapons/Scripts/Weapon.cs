@@ -43,7 +43,8 @@ public abstract class Weapon
     
     public virtual void Reset ()
     {
-        reloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
+        reloadTimer = ReloadTime * 0.25f;
+        //reloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
     }
     
     protected virtual void PerformAttack (Target src, Target target)
@@ -68,6 +69,7 @@ public abstract class Weapon
         this.Accuracy = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.Accuracy);
         
         this.UpgradeWeapon(mLevel);
+        Reset ();
     }
     
     protected virtual void UpgradeWeapon(int level)

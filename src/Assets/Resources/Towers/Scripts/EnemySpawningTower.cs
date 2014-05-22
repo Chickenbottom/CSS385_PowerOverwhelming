@@ -1,27 +1,26 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
-public class UnitSpawningTower : Tower
+public class EnemySpawningTower : Tower
 {
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Inspector Presets
     ///////////////////////////////////////////////////////////////////////////////////
-    public SquadManager squadManager;
     public GameObject Tent;
     public UnitType UnitSpawnType;
-
+    
     ///////////////////////////////////////////////////////////////////////////////////
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
     
     public override void SetTarget (Vector3 location)
     {
-        this.squadManager.SetDestination (location);
+        // Do nothing
     }
-    
+                
     public void SpawnUnit ()
     {
-        this.squadManager.AddSquad (Tent.transform.position, this.UnitSpawnType);
+        //GameObject.Find("GameManager").GetComponent<EnemyAI>().AddSquad(this.transform.position);
     }
     
     public override Vector3 Position {
@@ -47,41 +46,42 @@ public class UnitSpawningTower : Tower
     
     void Update ()
     {
-        // only reset the spawn timer if you own the tower and can produce more squads
-        if (squadManager.NumSquads () >= mMaxNumSquads || this.Allegiance == Allegiance.AI)
+        // Only spawns squads if the enemy owns the tower
+        if (this.Allegiance == Allegiance.Rodelle)
             return;
-            
+        
         if (Time.time - mLastSpawnTime > mSpawnTime) {
             mLastSpawnTime = Time.time;
             this.SpawnUnit ();
         }
     }
     
-    protected override void Awake ()
-    {
-        base.Awake ();
-        towerType = TowerType.UnitSpawner;
-        mSpawnTime = GameState.SpawnTimes [this.UnitSpawnType];
-        mLastSpawnTime = Time.time;
-        mMaxNumSquads = 2; // TODO get from game state
-    }
-    
-    void Start ()
-    {
-        this.SpawnUnit ();
-        GameObject.Find ("TargetFinder").GetComponent<TowerTargets> ().AddTower (this);
-    }
-    
     void OnTriggerStay2D (Collider2D other)
     {
         if (this.Allegiance == Allegiance.Rodelle)
             return;
-            
+        
         Unit unit = other.gameObject.GetComponent<Unit> ();
-                
+        
         if (unit != null && unit.Squad.UnitType == UnitType.Peasant) {
             unit.Squad.NumSquadMembers = 2;
             unit.Squad.Spawn (Tent.transform.position, this.UnitSpawnType, Allegiance.AI);
         }
+    }
+    
+    protected override void Awake ()
+    {
+        base.Awake ();
+        this.Allegiance = Allegiance.Rodelle;
+        towerType = TowerType.UnitSpawner;
+        mSpawnTime = 20;
+        mLastSpawnTime = Time.time;
+        mMaxNumSquads = 4; // TODO get from game state
+        mHealth = 100;
+    }
+    
+    void Start ()
+    {
+        GameObject.Find ("TargetFinder").GetComponent<TowerTargets> ().AddTower (this);
     }
 }

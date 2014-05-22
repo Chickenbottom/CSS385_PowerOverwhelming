@@ -31,7 +31,7 @@ public class GameState
         // TODO pull these values from a file
         UnitSquadCount = new Dictionary<UnitType, int> ();
         UnitSquadCount.Add (UnitType.Archer, 3);
-        UnitSquadCount.Add (UnitType.Swordsman, 4);
+        UnitSquadCount.Add (UnitType.Swordsman, 3);
         UnitSquadCount.Add (UnitType.Mage, 1);
         
         RequiredUnitExperience = new Dictionary<UnitType, int> ();
