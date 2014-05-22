@@ -41,6 +41,19 @@ public class Unit : Target
 // Public Methods
 ///////////////////////////////////////////////////////////////////////////////////
     
+    public void BuffMovement (float percent, float duration)
+    {
+        mMovementSpeed *= percent;
+        mChargeSpeed *= percent;
+        Invoke("RestoreStat", duration);
+    }
+    
+    public void RestoreStat()
+    {
+        mMovementSpeed = UnitUpgrades.GetStat(this.mUnitType, UnitStat.MovementSpeed);
+        mChargeSpeed = UnitUpgrades.GetStat(this.mUnitType, UnitStat.ChargeSpeed);
+    }
+    
     /// <summary>
     /// Updates the destination of the unit.
     /// If the unit is not engaged in combat, it will move towards this desination.

@@ -8,15 +8,23 @@ class EnemySquad
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
     public bool IsDead { get; set; }
+    
+    public EnemySquad (Squad squad, Vector3 destination)
+    {
+        mWaypoints = new List<Vector3> ();
+        mWaypoints.Add(destination);
+        mSquad = squad;
+        mSquad.SetDestination(mWaypoints[0]);
+    }
 
-    public EnemySquad (int size, float spawnTime = 0f)
+    public EnemySquad (int size, float spawnTime = 0f, Vector3? spawnLocation = null)
     {
         if (mSquadPrefab == null) 
             mSquadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
         
-        if (mSpawnLocation == null) {
-            mSpawnLocation = GameObject.Find ("EnemySpawnPoint").transform.position;
-        }
+        mSpawnLocation = spawnLocation == null
+            ? GameObject.Find ("EnemySpawnPoint").transform.position
+            : spawnLocation;
 
         mSquadSize = size;
         mSpawnTime = spawnTime;
@@ -45,7 +53,7 @@ class EnemySquad
     // Private
     ///////////////////////////////////////////////////////////////////////////////////
     private static GameObject mSquadPrefab;
-    private static Vector3? mSpawnLocation;
+    private Vector3? mSpawnLocation;
     private Squad mSquad;
     private List<Vector3> mWaypoints;
     private float mSpawnTime; // time before squad spawns

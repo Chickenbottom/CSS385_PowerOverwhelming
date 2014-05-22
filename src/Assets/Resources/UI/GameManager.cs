@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown ("a"))
             Time.timeScale += 0.5f;
             
-        if (Input.GetKeyDown ("b"))
+        if (Input.GetKeyDown ("s"))
             Time.timeScale -= 0.5f;
 	}
     

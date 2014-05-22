@@ -11,7 +11,15 @@ public class IceBomb : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        
+        /*
+        if (mTarget is Unit) {
+            mTarget.gameObject.AddComponent ("FrozenEffect");
+            FrozenEffect f = mTarget.gameObject.GetComponent<FrozenEffect> ();
+            f.target = mTarget.GetComponent<Target> ();
+            f.Freeze ();
+        }
+          */  
+            
     }
     
     float kLiveTimer = 1.8f;
@@ -30,7 +38,7 @@ public class IceBomb : MonoBehaviour
             explosionDone = true;
     }
     
-    void OnTriggerEnter2D (Collider2D other)
+   void OnTriggerEnter2D (Collider2D other)
     {
         OnTriggerStay2D (other);
     }
@@ -46,11 +54,6 @@ public class IceBomb : MonoBehaviour
         // do not retarget frozen targets
         if (f != null) 
             return;
-
-        if (target is Tower) {
-            target.Damage (4);
-            return;
-        }
 
         if (! (target is Unit))
             return;
@@ -75,7 +78,7 @@ public class IceBomb : MonoBehaviour
     
     public void SetParameters (Unit src, Target target)
     {
-        //mTarget = target;
+        mTarget = target;
         mSource = src;
         transform.position = target.Position;
         StartExplosion ();
