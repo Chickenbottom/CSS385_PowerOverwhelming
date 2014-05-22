@@ -7,10 +7,10 @@ public class Swordsman : Unit
     protected override void Awake ()
     {
         mUnitType = UnitType.Swordsman;
-                   
-        mMeleeWeapon = new Sword ();
-        mCurrentWeapon = mMeleeWeapon;
-        
         base.Awake();
+        this.InitializeStats();
+                              
+        mMeleeWeapon = new Sword (mLevel);
+        mCurrentWeapon = mMeleeWeapon;
     }
 }

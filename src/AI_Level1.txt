@@ -1,0 +1,33 @@
+4
+@EnemyWave 25
+0 Individual Default AttackMove MageTower
+1 Large      Default AttackMove
+3 Medium      Default AttackMove MageTower
+5 Medium      Default AttackMove CenterRight,SwordsmanTower
+10 Medium     Default AttackMove
+
+@EnemyWave 35
+0 Medium      Default AttackMove 
+0 Medium     Default AttackMove 
+0 Individual Default AttackMove ArcherTower,SwordsmanTower
+1 Individual Default AttackMove ArcherTower,SwordsmanTower
+1 Individual Default AttackMove ArcherTower,SwordsmanTower
+1 Small     Default AttackMove ArcherTower,SwordsmanTower
+2 Medium     Default AttackMove Center,MageTower
+6 Medium      Default AttackMove SwordsmanTower
+15 Small      Default AttackMove AbilityTower
+20 Small      Default AttackMove ArcherTower
+
+@EnemyWave 35
+0 Medium    Default AttackMove ArcherTower
+2 Small    Default AttackMove AbilityTower,MageTower
+4 Medium  Default AttackMove ArcherTower,AbilityTower,MageTower
+15 Medium    Default AttackMove King
+18 Medium    Default AttackMove ArcherTower
+20 Medium    Default AttackMove King
+
+@EnemyWave 35
+0 Large    Default AttackMove ArcherTower
+1 Large    Default AttackMove CenterRight,MageTower
+6 Medium    Default AttackMove ArcherTower
+7 Small    Default AttackMove

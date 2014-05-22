@@ -48,28 +48,28 @@ TextureImporter:
     - name: targets_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 144
-        width: 65
-        height: 32
+        x: 0
+        y: 104
+        width: 106
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: targets_1
       rect:
         serializedVersion: 2
-        x: 127
-        y: 144
-        width: 64
-        height: 32
+        x: 106
+        y: 104
+        width: 106
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: targets_2
       rect:
         serializedVersion: 2
-        x: 238
-        y: 144
-        width: 64
-        height: 32
+        x: 212
+        y: 104
+        width: 106
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: targets_3
@@ -77,26 +77,26 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 97
-        height: 97
+        width: 106
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: targets_4
       rect:
         serializedVersion: 2
-        x: 111
+        x: 106
         y: 0
-        width: 96
-        height: 97
+        width: 106
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: targets_5
       rect:
         serializedVersion: 2
-        x: 222
+        x: 212
         y: 0
-        width: 96
-        height: 97
+        width: 106
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
   spritePackingTag: 

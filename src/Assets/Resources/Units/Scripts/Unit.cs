@@ -19,7 +19,7 @@ public class Unit : Target
     public float Range { get { return mCurrentWeapon.Range; } }
 
     public bool IsIdle { get { return this.mMovementState == MovementState.Idle; } }
-
+    
     public float SightRange = 39f;
     
     // TODO replace with unit stats dictionary
@@ -32,6 +32,10 @@ public class Unit : Target
         get { return mChargeSpeed; } 
         set { mChargeSpeed = value; }
     } 
+    
+    public UnitType UnitType { 
+        get { return mUnitType; }
+    }
     
 ///////////////////////////////////////////////////////////////////////////////////
 // Public Methods
@@ -136,6 +140,7 @@ public class Unit : Target
     protected UnitAnimation mUnitAnimator;
     protected float mMovementSpeed; // units per second
     protected float mChargeSpeed;   // speed used to engage enemies
+    protected int mLevel;
     
     protected Weapon mCurrentWeapon = null;
     protected Weapon mMeleeWeapon;
@@ -236,20 +241,39 @@ public class Unit : Target
             mUnitAnimator.Idle ();
             return;
         }
-        
+                
         Vector3 direction;
         if (mAttackTarget != null)
             direction = mAttackTarget.Position - this.Position;
         else 
             direction = mDestination - this.Position;
-            
-        if (direction.x > 0)
-            mUnitAnimator.WalkRight ();
-        else 
-            mUnitAnimator.WalkLeft ();
+
+        if (mAttackState == AttackState.Idle || mAttackState == AttackState.Engaging) {
+            if (direction.x >= 0)
+                mUnitAnimator.WalkRight ();
+            else 
+                mUnitAnimator.WalkLeft ();
+        } else {
+            if (direction.x >= 0)
+                mUnitAnimator.AttackRight ();
+            else 
+                mUnitAnimator.AttackLeft ();
+        }
             
         int sortingOrder = (int)(4 * (-Position.y + Camera.main.orthographicSize));
         GetComponent<SpriteRenderer> ().sortingOrder = (int)(sortingOrder);
+    }
+    
+    // pre: this.UnitType is set to the unit's type
+    // Pulls the unit stat information from the Global UnitUpgrades class
+    protected virtual void InitializeStats()
+    {
+        mMaxHealth = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.Health);
+        mHealth = mMaxHealth;
+        mMovementSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.MovementSpeed);
+        mChargeSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.ChargeSpeed);
+        mLevel = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.Level);
+        this.SightRange = UnitUpgrades.GetStat(mUnitType, UnitStat.SightRange);
     }
     
 ///////////////////////////////////////////////////////////////////////////////////
@@ -260,6 +284,7 @@ public class Unit : Target
     void FixedUpdate ()
     {
         UpdateTargetState ();
+        UpdateAnimation();
         
         switch (mAttackState) {
         case (AttackState.Idle):
@@ -284,12 +309,14 @@ public class Unit : Target
             break;
         }
         
-        UpdateAnimation ();
+        
     }
-    
+
     // Initialize variables
     protected virtual void Awake ()
-    {
+    {        
+        //GameObject.Destroy(this.GetComponent<Animator>());
+        //this.gameObject.AddComponent("")
         mAttackState = AttackState.Idle;
         mAttackTarget = null;
         
@@ -299,12 +326,5 @@ public class Unit : Target
         mUnitAnimator = this.GetComponent<UnitAnimation> ();
         if (mUnitAnimator == null)
             Debug.LogError ("UnitAnimation script was not attached to this Unit!");
-        
-        mMaxHealth = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.Health);
-        mHealth = mMaxHealth;
-        
-        mMovementSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.MovementSpeed);
-        mChargeSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.ChargeSpeed);
-        this.SightRange = UnitUpgrades.GetStat(mUnitType, UnitStat.SightRange);
     }
 }

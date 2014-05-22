@@ -23,6 +23,12 @@ public abstract class Weapon
     public float Accuracy { get; set; }
     
     protected float reloadTimer;
+    protected int mLevel;
+    
+    public Weapon(int level)
+    {
+        mLevel = level;
+    }
     
     public virtual void Attack (Target src, Target target)
     {
@@ -60,5 +66,16 @@ public abstract class Weapon
         this.ReloadTime = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.ReloadTime);
         this.ReloadVariance = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.ReloadVariance);
         this.Accuracy = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.Accuracy);
+        
+        this.UpgradeWeapon(mLevel);
+    }
+    
+    protected virtual void UpgradeWeapon(int level)
+    {
+        float newDamage = (this.Damage * (1 + (float)level / 10f)); // 10% increase every level
+        this.Damage = (int)(newDamage); 
+        
+        float newAccuracy = this.Accuracy + ((level-1) / 10) / 10f; // 10% increase every 10 levels
+        this.Accuracy = newAccuracy; 
     }
 }

@@ -6,11 +6,11 @@ public class King : Unit
     protected override void Awake ()
     {
         mUnitType = UnitType.King;
-        
-        mMeleeWeapon = new Sword ();
-        mCurrentWeapon = mMeleeWeapon;
-        
         base.Awake();
+        this.InitializeStats();
+        
+        mMeleeWeapon = new Sword (mLevel);
+        mCurrentWeapon = mMeleeWeapon;
         
         GameState.KingsHealth = mMaxHealth;
     }
@@ -19,5 +19,23 @@ public class King : Unit
     {
         base.Damage (damage);
         GameState.KingsHealth = mHealth;
+        if (GameState.KingsHealth > MaxHealth)
+        {
+            GameState.KingsHealth = MaxHealth;
+        }
     }
+    
+    public override Vector3 Position {
+        get {
+            return base.Position + new Vector3(0f, -5f, 0f); // hit box is slightly lower than center
+        }
+        set {} // doesn't move
+    }
+
+    void OnMouseDown()
+    {
+        GameObject.Find("GameManager").GetComponent<MouseManager>().RodelleClicked = true;
+
+    }
+
 }

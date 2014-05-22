@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.3792, y: 9.70162964, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!50 &5000000
@@ -56,8 +56,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .5, y: .159999996}
-  m_Center: {x: 0, y: -.379999995}
+  m_Size: {x: 1.79999995, y: .5}
+  m_Center: {x: 0, y: -1.79999995}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
@@ -67,7 +67,7 @@ Animator:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8be615f9598ee9e46bfc906418f4fbf6, type: 2}
+  m_Controller: {fileID: 9100000, guid: c4b47a1558ff32c459c08a1190e93860, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
@@ -116,7 +116,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300004, guid: d67c4dd651ad4fd4cb97e2c764145252, type: 3}
+  m_Sprite: {fileID: 21300044, guid: eebe6ab3bd5fc6e45b8f5b32cf664a83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

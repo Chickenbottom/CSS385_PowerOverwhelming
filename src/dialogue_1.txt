@@ -27,3 +27,11 @@
 5.0 Nervous Archer  Left   --- It's not my fault you're blocking my view. Stop wearing such a big hat!
 3.0 Normal  Mage    Right  --- . . . . .
 <<< ArcherMage  # end conversation between archer and mage
+
+>>> KingDamaged
+5.0 Angry King Left        --- Arrrgh, that hurt!! Defend me!
+<<< KingDamaged
+
+>>> KingInjured
+5.0 Nervous King Left      --- Quick! Heal me! And don't let those peasants get so close!
+<<< KingInjured

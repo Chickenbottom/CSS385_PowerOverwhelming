@@ -7,6 +7,7 @@ public class MouseManager : MonoBehaviour
     #region variables
     private Tower towerSelected;
     private Tower towerClicked;
+    private bool rodelleClicked;
     #endregion
     
     void Start ()
@@ -60,6 +61,7 @@ public class MouseManager : MonoBehaviour
             ((UnitSpawningTower)towerSelected).SpawnUnit ();
         }
         towerClicked = null;
+        rodelleClicked = false;
     }
 
     public void TowerClicked (Tower tower)
@@ -78,5 +80,7 @@ public class MouseManager : MonoBehaviour
         towerSelected.ShowSelector (false);
         towerSelected = null;
     }
+
+    public bool RodelleClicked { get; set; }
 
 }
