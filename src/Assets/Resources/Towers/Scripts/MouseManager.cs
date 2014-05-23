@@ -82,7 +82,6 @@ public class MouseManager : MonoBehaviour
 
     private void SelectTower (Tower t)
     {
-
         towerSelected = t;
         towerSelected.ShowSelector (true);
     }
