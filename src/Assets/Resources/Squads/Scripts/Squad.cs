@@ -410,7 +410,7 @@ public class Squad : MonoBehaviour
         if (target is Unit && ((Unit)target).UnitType == UnitType.King)
             return 2;
         
-        if (target is Unit)
+        if (target is Unit || target is Squad)
             return 3;
         
         return 0;

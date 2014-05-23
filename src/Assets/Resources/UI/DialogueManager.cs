@@ -153,7 +153,7 @@ public class DialogueManager : MonoBehaviour
         NameLeft.text = "";
         NameRight.text = "";
         
-        LoadDialogueFromFile("dialogue_1.txt");
+        LoadDialogueFromFile("Data/dialogue_1.txt");
         this.TriggerDialogue("Tutorial");
     }
 
