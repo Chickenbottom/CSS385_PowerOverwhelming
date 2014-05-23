@@ -38,7 +38,7 @@ public class UnitSpawningTower : Tower
     /////////////////////////////////////////////////////////////////////////////////// 
     
     private float mSpawnTime;
-    private float mLastSpawnTime;
+    private float mSpawnTimer;
     private int mMaxNumSquads;
     
     ///////////////////////////////////////////////////////////////////////////////////
@@ -47,12 +47,14 @@ public class UnitSpawningTower : Tower
     
     void Update ()
     {
-        // only reset the spawn timer if you own the tower and can produce more squads
-        if (squadManager.NumSquads () >= mMaxNumSquads || this.Allegiance == Allegiance.AI)
+        // only advance the spawn timer if you can produce more squads
+        if (squadManager.NumSquads () >= mMaxNumSquads)
             return;
             
-        if (Time.time - mLastSpawnTime > mSpawnTime) {
-            mLastSpawnTime = Time.time;
+        mSpawnTimer -= Time.deltaTime;
+        // Immediately gain a squad if you retake a tower after a long enough time
+        if (mSpawnTimer < 0 && this.Allegiance == Allegiance.Rodelle) {
+            mSpawnTimer = mSpawnTime;
             this.SpawnUnit ();
         }
     }
@@ -62,13 +64,14 @@ public class UnitSpawningTower : Tower
         base.Awake ();
         towerType = TowerType.UnitSpawner;
         mSpawnTime = GameState.SpawnTimes [this.UnitSpawnType];
-        mLastSpawnTime = Time.time;
+        mSpawnTimer = Time.time;
         mMaxNumSquads = 2; // TODO get from game state
     }
     
     void Start ()
     {
         this.SpawnUnit ();
+        mSpawnTimer = mSpawnTime;
         GameObject.Find ("TargetFinder").GetComponent<TowerTargets> ().AddTower (this);
     }
     

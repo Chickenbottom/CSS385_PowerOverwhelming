@@ -40,8 +40,8 @@ public class GameState
         RequiredUnitExperience.Add (UnitType.Mage, 20);
         
         SpawnTimes = new Dictionary<UnitType, float> ();
-        SpawnTimes.Add (UnitType.Archer, 15f);
-        SpawnTimes.Add (UnitType.Swordsman, 15f);
+        SpawnTimes.Add (UnitType.Archer, 10f);
+        SpawnTimes.Add (UnitType.Swordsman, 10f);
         SpawnTimes.Add (UnitType.Mage, 20f);
         
         Gold = 0;

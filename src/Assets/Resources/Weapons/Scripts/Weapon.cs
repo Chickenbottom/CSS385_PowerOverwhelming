@@ -43,7 +43,7 @@ public abstract class Weapon
     
     public virtual void Reset ()
     {
-        reloadTimer = ReloadTime * 0.25f;
+        reloadTimer = ReloadTime * 0.5f;
         //reloadTimer = Random.Range (ReloadTime * (1f - ReloadVariance), ReloadTime * (1f + ReloadVariance));
     }
     

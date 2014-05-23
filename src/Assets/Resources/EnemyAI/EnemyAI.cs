@@ -118,7 +118,7 @@ public class EnemyAI : MonoBehaviour
     
     public void AddSquad(Vector3 location)
     {
-        EnemySquad es = new EnemySquad(4, 0, location);
+        EnemySquad es = new EnemySquad(2, 0, location);
         es.AddWaypoint(Waypoints[Waypoint.King]);
         units.Add(es);
     }
