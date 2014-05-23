@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f514a517891b1e040abf29ae9b1dc5cb
+guid: 2eadab54090239244a4bce62a9ccc1e2
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -45,58 +45,31 @@ TextureImporter:
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: timelinebuttons3_0
+    - name: LevelSelectMenuTimelineButton_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 284
-        width: 381
-        height: 271
+        y: 314
+        width: 1277
+        height: 145
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: timelinebuttons3_1
+    - name: LevelSelectMenuTimelineButton_1
       rect:
         serializedVersion: 2
-        x: 393
-        y: 284
-        width: 383
-        height: 271
+        x: 0
+        y: 156
+        width: 1277
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: timelinebuttons3_2
-      rect:
-        serializedVersion: 2
-        x: 788
-        y: 284
-        width: 381
-        height: 271
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: timelinebuttons3_3
+    - name: LevelSelectMenuTimelineButton_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 381
-        height: 271
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: timelinebuttons3_4
-      rect:
-        serializedVersion: 2
-        x: 393
-        y: 0
-        width: 383
-        height: 271
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: timelinebuttons3_5
-      rect:
-        serializedVersion: 2
-        x: 788
-        y: 0
-        width: 381
-        height: 271
+        width: 1277
+        height: 145
       alignment: 0
       pivot: {x: 0, y: 0}
   spritePackingTag: 

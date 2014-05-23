@@ -74,6 +74,56 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &27555446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 27555447}
+  - 132: {fileID: 27555448}
+  m_Layer: 0
+  m_Name: SpawnRateText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &27555447
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 27555446}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.38821602, y: -6.74271154, z: 0}
+  m_LocalScale: {x: 1.04999995, y: 1.04999995, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2103692356}
+--- !u!132 &27555448
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 27555446}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: spawnRate
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 0
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_PixelCorrect: 1
+  m_RichText: 1
 --- !u!1 &48178462
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +149,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 48178462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.35850525, y: 9.42205238, z: 0}
+  m_LocalPosition: {x: 75, y: -34, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 1}
   m_Children: []
   m_Father: {fileID: 568721601}
@@ -111,7 +161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 48178462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 370246a83521e7044b4567d19cfebdf2, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
@@ -150,7 +200,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300012, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
+  m_Sprite: {fileID: 21300030, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &52513428
 GameObject:
@@ -228,6 +278,243 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: dfaa0ce0bdd5b8747b0520594197a307, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &148211746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 148211747}
+  - 114: {fileID: 148211750}
+  - 212: {fileID: 148211749}
+  - 61: {fileID: 148211748}
+  m_Layer: 0
+  m_Name: TowerHealthUpButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &148211747
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 148211746}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75, y: 10.5, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_Children: []
+  m_Father: {fileID: 568721601}
+--- !u!61 &148211748
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 148211746}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .75999999, y: .74000001}
+  m_Center: {x: -4.76837158e-07, y: -1.1920929e-07}
+--- !u!212 &148211749
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 148211746}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 11
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300022, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &148211750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 148211746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63cf9c40351026f43bb958522fafa9ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300006, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300018, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  TowerStore: {fileID: 669529554}
+  TowerHealthText: {fileID: 554411529}
+  mTotalGold: {fileID: 1320429636}
+--- !u!1 &188737688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 188737689}
+  - 114: {fileID: 188737692}
+  - 212: {fileID: 188737691}
+  - 61: {fileID: 188737690}
+  m_Layer: 0
+  m_Name: TowerHealthDownButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &188737689
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 188737688}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75, y: -3, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_Children: []
+  m_Father: {fileID: 568721601}
+--- !u!61 &188737690
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 188737688}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .75999999, y: .75}
+  m_Center: {x: -4.76837158e-07, y: 0}
+--- !u!212 &188737691
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 188737688}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 11
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300030, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &188737692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 188737688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4ec89439eeb934a9ebc5f645080658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300030, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300046, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  TowerStore: {fileID: 669529554}
+  TowerHealthText: {fileID: 554411529}
+  mTotalGold: {fileID: 1320429636}
+--- !u!1 &259070366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 259070367}
+  - 114: {fileID: 259070370}
+  - 212: {fileID: 259070369}
+  - 61: {fileID: 259070368}
+  m_Layer: 0
+  m_Name: SpawnSizeUpButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &259070367
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 259070366}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75, y: -20, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_Children: []
+  m_Father: {fileID: 283856576}
+--- !u!61 &259070368
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 259070366}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .75999999, y: .74000001}
+  m_Center: {x: -4.76837158e-07, y: 0}
+--- !u!212 &259070369
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 259070366}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 11
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &259070370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 259070366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f6f1a7d33754042bf92987ad90baaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300000, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300016, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  TowerStore: {fileID: 669529554}
+  SpawnSizeText: {fileID: 1698223699}
+  mTotalGold: {fileID: 1320429636}
 --- !u!1 &283856575
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +524,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 283856576}
   m_Layer: 0
-  m_Name: SpawnRate
+  m_Name: SpecialTabButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,9 +540,12 @@ Transform:
   m_LocalPosition: {x: -.477547765, y: .467514127, z: 0}
   m_LocalScale: {x: .0666666701, y: .0666666701, z: 1}
   m_Children:
-  - {fileID: 997255569}
-  - {fileID: 861185335}
-  - {fileID: 1002758228}
+  - {fileID: 1675912954}
+  - {fileID: 1698223698}
+  - {fileID: 259070367}
+  - {fileID: 1053477570}
+  - {fileID: 471713031}
+  - {fileID: 1233120294}
   m_Father: {fileID: 669529552}
 --- !u!1 &288026671
 GameObject:
@@ -307,6 +597,82 @@ GUIText:
     rgba: 4278190080
   m_PixelCorrect: 1
   m_RichText: 1
+--- !u!1 &402592861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 402592863}
+  - 132: {fileID: 402592862}
+  m_Layer: 0
+  m_Name: SpawnSizeText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!132 &402592862
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 402592861}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 40
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_PixelCorrect: 1
+  m_RichText: 1
+--- !u!4 &402592863
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 402592861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.74000168, y: -6.5600009, z: 0}
+  m_LocalScale: {x: 1.04999995, y: 1.04999995, z: 1}
+  m_Children: []
+  m_Father: {fileID: 764686393}
+--- !u!1 &455578354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 455578355}
+  m_Layer: 0
+  m_Name: LockedButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &455578355
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 455578354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.477547884, y: .467514157, z: 0}
+  m_LocalScale: {x: .0666666701, y: .0666666701, z: 1}
+  m_Children: []
+  m_Father: {fileID: 669529552}
 --- !u!1 &467218119
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +749,56 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_Radius: .75
   m_Center: {x: 0, y: 0}
+--- !u!1 &471713030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 471713031}
+  - 132: {fileID: 471713032}
+  m_Layer: 0
+  m_Name: TowerHealthText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &471713031
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 471713030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.73999929, y: -6.42599821, z: 0}
+  m_LocalScale: {x: 1.04999995, y: 1.04999995, z: 1}
+  m_Children: []
+  m_Father: {fileID: 283856576}
+--- !u!132 &471713032
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 471713030}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 40
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_PixelCorrect: 1
+  m_RichText: 1
 --- !u!1 &492288139
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +878,56 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .75999999, y: .75}
   m_Center: {x: -4.76837158e-07, y: 1.1920929e-07}
+--- !u!1 &554411527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 554411528}
+  - 132: {fileID: 554411529}
+  m_Layer: 0
+  m_Name: TowerHealthText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &554411528
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 554411527}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.73999929, y: -6.42599773, z: 0}
+  m_LocalScale: {x: 1.04999995, y: 1.04999995, z: 1}
+  m_Children: []
+  m_Father: {fileID: 568721601}
+--- !u!132 &554411529
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 554411527}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 40
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_PixelCorrect: 1
+  m_RichText: 1
 --- !u!1 &568721600
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +937,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 568721601}
   m_Layer: 0
-  m_Name: Cooldown
+  m_Name: HealTabButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -490,6 +956,9 @@ Transform:
   - {fileID: 48178463}
   - {fileID: 1833475590}
   - {fileID: 1728079572}
+  - {fileID: 188737689}
+  - {fileID: 554411528}
+  - {fileID: 148211747}
   m_Father: {fileID: 669529552}
 --- !u!1 &669529551
 GameObject:
@@ -519,9 +988,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 1}
   m_Children:
+  - {fileID: 455578355}
   - {fileID: 568721601}
+  - {fileID: 1821625832}
   - {fileID: 283856576}
   - {fileID: 1065126814}
+  - {fileID: 2103692356}
   - {fileID: 467218120}
   - {fileID: 698178114}
   - {fileID: 764686393}
@@ -624,6 +1096,13 @@ MonoBehaviour:
   - {fileID: 1270435987}
   - {fileID: 1339871694}
   - {fileID: 1542185299}
+  mAllTabButtons:
+  - {fileID: 1821625831}
+  - {fileID: 568721600}
+  - {fileID: 455578354}
+  - {fileID: 1065126813}
+  - {fileID: 283856575}
+  - {fileID: 764686392}
 --- !u!1 &717468027
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +1205,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 764686393}
   m_Layer: 0
-  m_Name: TowerHealth
+  m_Name: RangedTabButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -742,6 +1221,9 @@ Transform:
   m_LocalPosition: {x: -.477547854, y: .467514217, z: 0}
   m_LocalScale: {x: .0666666701, y: .0666666701, z: 1}
   m_Children:
+  - {fileID: 1440934391}
+  - {fileID: 402592863}
+  - {fileID: 1319502278}
   - {fileID: 2052378381}
   - {fileID: 1326351821}
   - {fileID: 851247285}
@@ -807,7 +1289,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 11
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300002, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &851247288
 MonoBehaviour:
@@ -820,61 +1302,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63cf9c40351026f43bb958522fafa9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300002, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  mButtonOver: {fileID: 21300018, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButton: {fileID: 21300004, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300020, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   TowerStore: {fileID: 669529554}
   TowerHealthText: {fileID: 1326351822}
   mTotalGold: {fileID: 1320429636}
---- !u!1 &861185334
+--- !u!1 &923577507
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 861185335}
-  - 132: {fileID: 861185336}
+  - 4: {fileID: 923577508}
+  - 114: {fileID: 923577511}
+  - 212: {fileID: 923577510}
+  - 61: {fileID: 923577509}
   m_Layer: 0
-  m_Name: SpawnRateText
+  m_Name: TowerHealthUpButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &861185335
+--- !u!4 &923577508
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 861185334}
+  m_GameObject: {fileID: 923577507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.38821602, y: -6.74271154, z: 0}
-  m_LocalScale: {x: 1.04999995, y: 1.04999995, z: 1}
+  m_LocalPosition: {x: 75, y: 10.5000019, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
   m_Children: []
-  m_Father: {fileID: 283856576}
---- !u!132 &861185336
-GUIText:
+  m_Father: {fileID: 1065126814}
+--- !u!61 &923577509
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 861185334}
+  m_GameObject: {fileID: 923577507}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Text: spawnRate
-  m_Anchor: 0
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Material: {fileID: 0}
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_PixelCorrect: 1
-  m_RichText: 1
+  m_IsTrigger: 0
+  m_Size: {x: .75999999, y: .74000001}
+  m_Center: {x: -4.76837158e-07, y: -1.1920929e-07}
+--- !u!212 &923577510
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 923577507}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 11
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300002, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &923577511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 923577507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63cf9c40351026f43bb958522fafa9ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300002, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300018, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  TowerStore: {fileID: 669529554}
+  TowerHealthText: {fileID: 1734817137}
+  mTotalGold: {fileID: 1320429636}
 --- !u!1 &925530972
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +1427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
+  TabButtons: {fileID: 0}
 --- !u!212 &925530975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -950,212 +1462,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 1.5, y: 1.29999995}
   m_Center: {x: -2.5999999, y: 2.5999999}
---- !u!1 &964826037
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 964826039}
-  - 132: {fileID: 964826038}
-  m_Layer: 0
-  m_Name: GUI Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!132 &964826038
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 964826037}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: "Welcome weary traveler.  I\u2019m Shady Seamus. "
-  m_Anchor: 6
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 12800000, guid: 2d601669e4027354cb047667dda64771, type: 3}
-  m_Material: {fileID: 0}
-  m_FontSize: 20
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_PixelCorrect: 1
-  m_RichText: 1
---- !u!4 &964826039
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 964826037}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .0700000003, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
---- !u!1 &997255568
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 997255569}
-  - 114: {fileID: 997255570}
-  - 212: {fileID: 997255571}
-  - 61: {fileID: 997255572}
-  m_Layer: 0
-  m_Name: SpawnRateDownButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &997255569
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 997255568}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.06029892, y: -41.2655907, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 1}
-  m_Children: []
-  m_Father: {fileID: 283856576}
---- !u!114 &997255570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 997255568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 245e58cee6e1e0249a970876a9152b25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
-  mButtonOver: {fileID: 21300002, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
-  TowerStore: {fileID: 669529554}
-  SpawnRateText: {fileID: 861185336}
---- !u!212 &997255571
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 997255568}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300022, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!61 &997255572
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 997255568}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Size: {x: 1.21000004, y: 1.21000004}
-  m_Center: {x: 0, y: 0}
---- !u!1 &1002758227
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1002758228}
-  - 114: {fileID: 1002758229}
-  - 212: {fileID: 1002758231}
-  - 61: {fileID: 1002758230}
-  m_Layer: 0
-  m_Name: SpawnRateUpButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1002758228
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1002758227}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.06028271, y: -59.5338478, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 1}
-  m_Children: []
-  m_Father: {fileID: 283856576}
---- !u!114 &1002758229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1002758227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6408ea6f9d7445c4f9d3f833ed6b389d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
-  mButtonOver: {fileID: 21300002, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
-  TowerStore: {fileID: 669529554}
-  SpawnRateText: {fileID: 861185336}
---- !u!61 &1002758230
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1002758227}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Size: {x: 1.21000004, y: 1.21000004}
-  m_Center: {x: 0, y: 0}
---- !u!212 &1002758231
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1002758227}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300018, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1014502136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1537,165 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
+  TabButtons: {fileID: 0}
+--- !u!1 &1030796986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1030796987}
+  - 114: {fileID: 1030796990}
+  - 212: {fileID: 1030796989}
+  - 61: {fileID: 1030796988}
+  m_Layer: 0
+  m_Name: TowerHealthDownButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1030796987
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030796986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75, y: -3, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1065126814}
+--- !u!61 &1030796988
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030796986}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .75999999, y: .75}
+  m_Center: {x: -4.76837158e-07, y: 0}
+--- !u!212 &1030796989
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030796986}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 11
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300026, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1030796990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030796986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4ec89439eeb934a9ebc5f645080658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300026, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300042, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  TowerStore: {fileID: 669529554}
+  TowerHealthText: {fileID: 1734817137}
+  mTotalGold: {fileID: 1320429636}
+--- !u!1 &1053477569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1053477570}
+  - 114: {fileID: 1053477573}
+  - 212: {fileID: 1053477572}
+  - 61: {fileID: 1053477571}
+  m_Layer: 0
+  m_Name: TowerHealthDownButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1053477570
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1053477569}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75, y: -3, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_Children: []
+  m_Father: {fileID: 283856576}
+--- !u!61 &1053477571
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1053477569}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .75999999, y: .75}
+  m_Center: {x: -4.76837158e-07, y: 0}
+--- !u!212 &1053477572
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1053477569}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 11
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300024, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1053477573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1053477569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4ec89439eeb934a9ebc5f645080658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300024, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300040, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  TowerStore: {fileID: 669529554}
+  TowerHealthText: {fileID: 471713032}
+  mTotalGold: {fileID: 1320429636}
 --- !u!1 &1061521578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,7 +1783,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1065126814}
   m_Layer: 0
-  m_Name: SpawnSize
+  m_Name: MeleeTabButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1337,7 +1802,167 @@ Transform:
   - {fileID: 492288140}
   - {fileID: 288026672}
   - {fileID: 1497586089}
+  - {fileID: 1030796987}
+  - {fileID: 1734817136}
+  - {fileID: 923577508}
   m_Father: {fileID: 669529552}
+--- !u!1 &1110407174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1110407175}
+  - 114: {fileID: 1110407178}
+  - 212: {fileID: 1110407177}
+  - 61: {fileID: 1110407176}
+  m_Layer: 0
+  m_Name: SpawnRateDownButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1110407175
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110407174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.06029892, y: -41.2655907, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2103692356}
+--- !u!61 &1110407176
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110407174}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 1.21000004, y: 1.21000004}
+  m_Center: {x: 0, y: 0}
+--- !u!212 &1110407177
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110407174}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300022, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1110407178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110407174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 245e58cee6e1e0249a970876a9152b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300000, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
+  mButtonOver: {fileID: 21300002, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
+  TowerStore: {fileID: 669529554}
+  SpawnRateText: {fileID: 27555448}
+--- !u!1 &1233120293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1233120294}
+  - 114: {fileID: 1233120297}
+  - 212: {fileID: 1233120296}
+  - 61: {fileID: 1233120295}
+  m_Layer: 0
+  m_Name: TowerHealthUpButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1233120294
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233120293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75, y: 10.5, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_Children: []
+  m_Father: {fileID: 283856576}
+--- !u!61 &1233120295
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233120293}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .75999999, y: .74000001}
+  m_Center: {x: -4.76837158e-07, y: -1.1920929e-07}
+--- !u!212 &1233120296
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233120293}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 11
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1233120297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233120293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63cf9c40351026f43bb958522fafa9ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300000, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300016, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  TowerStore: {fileID: 669529554}
+  TowerHealthText: {fileID: 471713032}
+  mTotalGold: {fileID: 1320429636}
 --- !u!1 &1270435987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +2038,86 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
+  TabButtons: {fileID: 0}
+--- !u!1 &1319502277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1319502278}
+  - 114: {fileID: 1319502281}
+  - 212: {fileID: 1319502280}
+  - 61: {fileID: 1319502279}
+  m_Layer: 0
+  m_Name: SpawnSizeUpButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1319502278
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1319502277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75, y: -20, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_Children: []
+  m_Father: {fileID: 764686393}
+--- !u!61 &1319502279
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1319502277}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .75999999, y: .74000001}
+  m_Center: {x: -4.76837158e-07, y: 0}
+--- !u!212 &1319502280
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1319502277}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 11
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300004, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1319502281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1319502277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f6f1a7d33754042bf92987ad90baaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300004, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300020, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  TowerStore: {fileID: 669529554}
+  SpawnSizeText: {fileID: 402592862}
+  mTotalGold: {fileID: 1320429636}
 --- !u!1 &1320429635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +2293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
+  TabButtons: {fileID: 0}
 --- !u!1 &1417252610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,6 +2344,85 @@ Transform:
   m_LocalScale: {x: 17, y: 17, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &1440934387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1440934391}
+  - 114: {fileID: 1440934390}
+  - 212: {fileID: 1440934389}
+  - 61: {fileID: 1440934388}
+  m_Layer: 0
+  m_Name: SpawnSizeDownButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1440934388
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1440934387}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .75999999, y: .75}
+  m_Center: {x: -4.76837158e-07, y: 1.1920929e-07}
+--- !u!212 &1440934389
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1440934387}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 11
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300028, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1440934390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1440934387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2e308eba2b7494680338cb5706fb1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300028, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300044, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  TowerStore: {fileID: 669529554}
+  SpawnSizeText: {fileID: 402592862}
+  mTotalGold: {fileID: 1320429636}
+--- !u!4 &1440934391
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1440934387}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75, y: -20, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_Children: []
+  m_Father: {fileID: 764686393}
 --- !u!1 &1497586088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,56 +2577,136 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
---- !u!1 &1724760155
+  TabButtons: {fileID: 0}
+--- !u!1 &1675912953
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1724760157}
-  - 132: {fileID: 1724760156}
+  - 4: {fileID: 1675912954}
+  - 114: {fileID: 1675912957}
+  - 212: {fileID: 1675912956}
+  - 61: {fileID: 1675912955}
   m_Layer: 0
-  m_Name: GUI Text
+  m_Name: SpawnSizeDownButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!132 &1724760156
+--- !u!4 &1675912954
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1675912953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75, y: -20, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_Children: []
+  m_Father: {fileID: 283856576}
+--- !u!61 &1675912955
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1675912953}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .75999999, y: .75}
+  m_Center: {x: -4.76837158e-07, y: 1.1920929e-07}
+--- !u!212 &1675912956
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1675912953}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 11
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300024, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1675912957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1675912953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2e308eba2b7494680338cb5706fb1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300024, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300040, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  TowerStore: {fileID: 669529554}
+  SpawnSizeText: {fileID: 1698223699}
+  mTotalGold: {fileID: 1320429636}
+--- !u!1 &1698223697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1698223698}
+  - 132: {fileID: 1698223699}
+  m_Layer: 0
+  m_Name: SpawnSizeText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1698223698
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1698223697}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.73999977, y: -6.55999947, z: 0}
+  m_LocalScale: {x: 1.04999995, y: 1.04999995, z: 1}
+  m_Children: []
+  m_Father: {fileID: 283856576}
+--- !u!132 &1698223699
 GUIText:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1724760155}
+  m_GameObject: {fileID: 1698223697}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: For a limited time, tower upgrades are buy one get three free.
-  m_Anchor: 6
+  m_Text: 1
+  m_Anchor: 0
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 12800000, guid: 2d601669e4027354cb047667dda64771, type: 3}
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Material: {fileID: 0}
-  m_FontSize: 20
+  m_FontSize: 40
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
   m_PixelCorrect: 1
   m_RichText: 1
---- !u!4 &1724760157
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1724760155}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .0299999993, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &1728079571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,7 +2747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffdb13faab705744866d3a02327916b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
+  mButton: {fileID: 21300006, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300002, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
   TowerStore: {fileID: 669529554}
   CoolDownText: {fileID: 1833475591}
@@ -1907,7 +2772,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300006, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
+  m_Sprite: {fileID: 21300022, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!61 &1728079575
 BoxCollider2D:
@@ -1920,6 +2785,160 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 1.21000004, y: 1.21000004}
   m_Center: {x: 0, y: 0}
+--- !u!1 &1734817135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1734817136}
+  - 132: {fileID: 1734817137}
+  m_Layer: 0
+  m_Name: TowerHealthText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1734817136
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1734817135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.73999929, y: -6.42599773, z: 0}
+  m_LocalScale: {x: 1.04999995, y: 1.04999995, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1065126814}
+--- !u!132 &1734817137
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1734817135}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 40
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_PixelCorrect: 1
+  m_RichText: 1
+--- !u!1 &1772718212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1772718213}
+  - 114: {fileID: 1772718216}
+  - 212: {fileID: 1772718215}
+  - 61: {fileID: 1772718214}
+  m_Layer: 0
+  m_Name: SpawnRateUpButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1772718213
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1772718212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.06028271, y: -59.5338478, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2103692356}
+--- !u!61 &1772718214
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1772718212}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 1.21000004, y: 1.21000004}
+  m_Center: {x: 0, y: 0}
+--- !u!212 &1772718215
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1772718212}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300018, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1772718216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1772718212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6408ea6f9d7445c4f9d3f833ed6b389d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300000, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
+  mButtonOver: {fileID: 21300002, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
+  TowerStore: {fileID: 669529554}
+  SpawnRateText: {fileID: 27555448}
+--- !u!1 &1821625831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1821625832}
+  m_Layer: 0
+  m_Name: AOEButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1821625832
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1821625831}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.477547824, y: .467514157, z: 0}
+  m_LocalScale: {x: .0666666701, y: .0666666701, z: 1}
+  m_Children: []
+  m_Father: {fileID: 669529552}
 --- !u!1 &1833475589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,6 +3064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
+  TabButtons: {fileID: 0}
 --- !u!1 &2052378380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,7 +3126,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 11
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300026, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  m_Sprite: {fileID: 21300028, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &2052378384
 MonoBehaviour:
@@ -2119,11 +3139,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4ec89439eeb934a9ebc5f645080658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300026, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  mButtonOver: {fileID: 21300042, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButton: {fileID: 21300028, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
+  mButtonOver: {fileID: 21300044, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   TowerStore: {fileID: 669529554}
   TowerHealthText: {fileID: 1326351822}
   mTotalGold: {fileID: 1320429636}
+--- !u!1 &2103692355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2103692356}
+  m_Layer: 0
+  m_Name: MISCTabButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2103692356
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2103692355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.477547824, y: .467514157, z: 0}
+  m_LocalScale: {x: .0666666701, y: .0666666701, z: 1}
+  m_Children:
+  - {fileID: 1110407175}
+  - {fileID: 27555447}
+  - {fileID: 1772718213}
+  m_Father: {fileID: 669529552}
 --- !u!1 &2133478426
 GameObject:
   m_ObjectHideFlags: 0
