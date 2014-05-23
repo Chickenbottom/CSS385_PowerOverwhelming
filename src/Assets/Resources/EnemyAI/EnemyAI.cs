@@ -103,7 +103,7 @@ public class EnemyAI : MonoBehaviour
         mSpawnPoint.Enqueue(Waypoints[Waypoint.Middle]);
         mSpawnPoint.Enqueue(Waypoints[Waypoint.Right]);
         
-        string aiData = "AI_Level";
+        string aiData = "Data/AI_Level";
         aiData += GameState.CurrentLevel.ToString ();
         aiData += ".txt";
         ReadWavesFromFile (aiData);
