@@ -12,7 +12,6 @@ public class LoadConfirmButton : ButtonBehaviour {
         //ChangeScreen();
         //mLoadMenuFrame.SetActive(false);
         //mNarativeContinueMenuFrame.SetActive(true);
-        Debug.Log(s.GetInfo(SaveLoad.SAVEFILE.Level) + "   CHECK");
         Application.LoadLevel("LevelLoader");
 	}
 }
