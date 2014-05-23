@@ -56,6 +56,11 @@ public class GameState
     public static void TriggerLoss ()
     {
 		LostGame = true;
+        SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
+        s.Clear(SaveLoad.SAVEFILE.Level);
+        s.Add("" + (int)CurrentEra, SaveLoad.SAVEFILE.Level);
+        s.Add("" + Gold, SaveLoad.SAVEFILE.Level);
+        s.Save();
         //GameObject.Find("LoseFrame").GetComponent<LoseGame>().LostGame();
         //Application.LoadLevel("LevelLoader");
     }
@@ -63,6 +68,11 @@ public class GameState
     public static void TriggerWin ()
     {
 		WonGame = true;
+        SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
+        s.Clear(SaveLoad.SAVEFILE.Level);
+        s.Add("" + (int)CurrentEra + 1, SaveLoad.SAVEFILE.Level);
+        s.Add("" + Gold, SaveLoad.SAVEFILE.Level);
+        s.Save();
         //GameObject.Find("WinFrame").GetComponent<WinGame>().WonGame();
         //Debug.Log ("You win!");
         //GUIText text = GameObject.Find("DialogueLeft").GetComponent<GUIText>();
