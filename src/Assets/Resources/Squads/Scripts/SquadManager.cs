@@ -8,6 +8,7 @@ public class SquadManager : MonoBehaviour
     // Public Methods and Variables
     ///////////////////////////////////////////////////////////////////////////////////
     public UnitType squadType = UnitType.None;
+    public List<Squad> Squads { get { return squads; } }
     public Tower ControllingTower;
     
     public Sprite DefaultSprite;
@@ -48,7 +49,7 @@ public class SquadManager : MonoBehaviour
         squads.Add (squad);
         squad.SetDestination (rallyPoint);
     }
-    
+        
     public int NumSquads ()
     {
         this.RemoveDeadSquads ();

@@ -42,6 +42,10 @@ public class Squad : MonoBehaviour
 
     public bool IsIdle { get { return SquadState == SquadState.Idle; } }
 
+    public bool IsDead {
+        get { return mSquadMembers == null || mSquadMembers.Count == 0; }
+    }
+
     public bool IsEngaged { 
         get { 
             return ! (SquadState == SquadState.Idle || 
@@ -154,9 +158,20 @@ public class Squad : MonoBehaviour
             
         }
         
-        this.GetComponent<CircleCollider2D> ().radius = mSquadMembers[0].SightRange;
+        float sightRadius = SquadLeader.SightRange;
+        
+        this.GetComponent<CircleCollider2D> ().radius = 3;
+        this.GetComponent<SpriteRenderer>().transform.localScale = new Vector3(sightRadius / 3, sightRadius / 3, 0f);
         
         this.SetDestination (this.RallyPoint);
+    }
+    
+    public void ShowSelector (bool status)
+    {
+        if (SquadLeader.Selector != null)
+            SquadLeader.Selector.enabled = status;
+            
+        this.GetComponent<SpriteRenderer>().enabled = status;
     }
     
     ///////////////////////////////////////////////////////////////////////////////////
@@ -228,7 +243,7 @@ public class Squad : MonoBehaviour
     
     private void AttackEnemySquad (Squad enemySquad)
     {
-        if (enemySquad == null)
+        if (enemySquad.IsDead)
             return;
             
         this.SquadState = SquadState.Engaging;
@@ -410,10 +425,29 @@ public class Squad : MonoBehaviour
         if (target is Unit && ((Unit)target).UnitType == UnitType.King)
             return 2;
         
-        if (target is Unit || target is Squad)
+        if (target is Unit)
             return 3;
         
         return 0;
+    }
+    
+    private void UpdateRangeCircle()
+    {
+        float sightRadius;
+        switch (this.SquadState) {
+        case (SquadState.Moving):
+            sightRadius = SquadLeader.SightRange * 0.85f;
+            break;
+        case (SquadState.Idle):
+            sightRadius = SquadLeader.SightRange;
+            break;
+        default:
+            sightRadius = 0;
+            break;
+        }
+        
+        this.GetComponent<CircleCollider2D> ().radius = 3;
+        this.GetComponent<SpriteRenderer>().transform.localScale = new Vector3(sightRadius / 3, sightRadius / 3, 0f);
     }
     
     ///////////////////////////////////////////////////////////////////////////////////
@@ -443,6 +477,8 @@ public class Squad : MonoBehaviour
         // Follow sight of squad leader
         this.SquadCenter = mSquadMembers[0].Position; 
         this.transform.position = SquadCenter;
+        
+        UpdateRangeCircle();
     }
     
     // Use this for initialization

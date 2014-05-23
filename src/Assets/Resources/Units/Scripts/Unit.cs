@@ -13,7 +13,9 @@ public enum UnitType
 }
 
 public class Unit : Target
-{   
+{
+    public SpriteRenderer Selector;
+    
     public Squad Squad { get; set; }
 
     public float Range { get { return mCurrentWeapon.Range; } }
@@ -293,6 +295,11 @@ public class Unit : Target
 // Unity Overrides
 ///////////////////////////////////////////////////////////////////////////////////
     
+    void OnMouseDown()
+    {
+        GameObject.Find("Squads").GetComponent<SquadSelector>().SelectSquad(this.Squad);
+    }
+    
     // Update is called once per frame
     void FixedUpdate ()
     {
@@ -339,5 +346,8 @@ public class Unit : Target
         mUnitAnimator = this.GetComponent<UnitAnimation> ();
         if (mUnitAnimator == null)
             Debug.LogError ("UnitAnimation script was not attached to this Unit!");
+            
+        if (Selector != null)
+            Selector.enabled = false;
     }
 }
