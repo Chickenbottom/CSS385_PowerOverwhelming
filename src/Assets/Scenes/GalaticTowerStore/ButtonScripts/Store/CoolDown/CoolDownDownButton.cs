@@ -6,7 +6,7 @@ public class CoolDownDownButton : CoolDown {
 
 	
 	void OnMouseDown(){
-		if( ( BonusLevel - 1) > 0 || ( BonusLevel - 1 ) > GetOriginal())  
+		if( ( mBonusLevel - 1) > 0 || ( mBonusLevel - 1 ) > GetOriginal())  
 			NewValue(-1);
 	}
 }

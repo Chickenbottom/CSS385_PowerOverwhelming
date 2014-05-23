@@ -4,6 +4,7 @@ using System.Collections;
 public class IndividualTab : MonoBehaviour {
 
 	public SelectBar mSelectBar;
+	public GameObject TabButtons;
 	// Use this for initialization
 	void Start () {
 	
@@ -14,6 +15,6 @@ public class IndividualTab : MonoBehaviour {
 	
 	}
 	void OnMouseDown(){
-		mSelectBar.SetTab(this.gameObject);
+		mSelectBar.SetTab(this.gameObject, TabButtons);
 	}
 }

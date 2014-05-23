@@ -5,7 +5,7 @@ public class CoolDownUpButton : CoolDown {
 
 	const int kBonusMax = 5;
 	void OnMouseDown(){
-		if( (BonusLevel+1) <= kBonusMax )
+		if( (mBonusLevel+1) <= kBonusMax )
 			NewValue(1);
 	}
 }

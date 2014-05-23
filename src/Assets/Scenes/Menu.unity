@@ -252,8 +252,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 189669939}
   - 212: {fileID: 189669942}
-  - 61: {fileID: 189669941}
   - 114: {fileID: 189669940}
+  - 61: {fileID: 189669941}
   m_Layer: 0
   m_Name: BackButton
   m_TagString: Untagged
@@ -268,7 +268,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 189669938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: -3.75, z: 0}
+  m_LocalPosition: {x: -3.4000001, y: -3.75, z: 0}
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 2123558009}
@@ -283,8 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c1253f5497dd94880cdac374a4c37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
-  mButtonOver: {fileID: 21300006, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  mButton: {fileID: 21300000, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
+  mButtonOver: {fileID: 21300004, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
   mMainMenuObject: {fileID: 1985620333}
   mSaveMenuObject: {fileID: 2123558008}
 --- !u!61 &189669941
@@ -296,8 +296,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 6.69999981, y: 1.58000004}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 3.65999985, y: 2}
+  m_Center: {x: 0, y: 4.76837158e-07}
 --- !u!212 &189669942
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -319,7 +319,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &242599047
 GameObject:
@@ -380,8 +380,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 456806631}
   - 212: {fileID: 456806634}
-  - 61: {fileID: 456806633}
   - 114: {fileID: 456806632}
+  - 61: {fileID: 456806633}
   m_Layer: 0
   m_Name: BackButton
   m_TagString: Untagged
@@ -396,7 +396,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 456806630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: -3.75, z: 0}
+  m_LocalPosition: {x: -3.4000001, y: -3.75, z: 0}
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 1525183791}
@@ -411,8 +411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c1253f5497dd94880cdac374a4c37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
-  mButtonOver: {fileID: 21300006, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  mButton: {fileID: 21300000, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
+  mButtonOver: {fileID: 21300004, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
   mMainMenuObject: {fileID: 1985620333}
   mSaveMenuObject: {fileID: 1525183790}
 --- !u!61 &456806633
@@ -424,8 +424,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 6.69999981, y: 1.58000004}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 3.65999985, y: 2}
+  m_Center: {x: 0, y: 4.76837158e-07}
 --- !u!212 &456806634
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -447,7 +447,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &470292480
 GameObject:
@@ -458,8 +458,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 470292484}
   - 212: {fileID: 470292483}
-  - 61: {fileID: 470292482}
   - 114: {fileID: 470292481}
+  - 61: {fileID: 470292482}
   m_Layer: 0
   m_Name: ConfirmOverwriteButton
   m_TagString: Untagged
@@ -478,8 +478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08f27ec4227a8e429069ee647b9cb76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
-  mButtonOver: {fileID: 21300006, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  mButton: {fileID: 21300000, guid: d94baf626e87ec348b067525bc056072, type: 3}
+  mButtonOver: {fileID: 21300008, guid: d94baf626e87ec348b067525bc056072, type: 3}
 --- !u!61 &470292482
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -489,8 +489,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 6.69999981, y: 1.58000004}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 5.32000017, y: 1.62}
+  m_Center: {x: 0, y: 4.76837158e-07}
 --- !u!212 &470292483
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -512,7 +512,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d94baf626e87ec348b067525bc056072, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &470292484
 Transform:
@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300002, guid: d94baf626e87ec348b067525bc056072, type: 3}
-  mButtonOver: {fileID: 21300006, guid: d94baf626e87ec348b067525bc056072, type: 3}
+  mButtonOver: {fileID: 21300010, guid: d94baf626e87ec348b067525bc056072, type: 3}
 --- !u!1 &664649492
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,8 +676,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 690535655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: -3.75, z: 0}
-  m_LocalScale: {x: .699999988, y: .400000006, z: 1}
+  m_LocalPosition: {x: -3.4000001, y: -3.75, z: 0}
+  m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 34292899}
 --- !u!61 &690535657
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
-  mButtonOver: {fileID: 21300002, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
+  mButtonOver: {fileID: 21300004, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
   mAboutObject: {fileID: 34292898}
   mMainMenuObject: {fileID: 1985620333}
 --- !u!212 &690535659
@@ -861,8 +861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907324a32beadca4bbd628c2ff017065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
-  mButtonOver: {fileID: 21300006, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  mButton: {fileID: 21300002, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  mButtonOver: {fileID: 21300008, guid: 486352d70f45007488ad057cc6380508, type: 3}
   mLoadMenuFrame: {fileID: 2034877792}
   mNarativeContinueMenuFrame: {fileID: 34292898}
 --- !u!61 &1108095085
@@ -897,7 +897,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 486352d70f45007488ad057cc6380508, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1255156184
 GameObject:
@@ -947,7 +947,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1255156184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.94843745, y: -3.75322938, z: 0}
+  m_LocalPosition: {x: -3.4000001, y: -3.75322938, z: 0}
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 80975392}
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
-  mButtonOver: {fileID: 21300002, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
+  mButtonOver: {fileID: 21300004, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
   mAboutObject: {fileID: 80975390}
   mMainMenuObject: {fileID: 1985620333}
 --- !u!1 &1427059396
@@ -986,8 +986,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1427059397}
   - 212: {fileID: 1427059400}
-  - 61: {fileID: 1427059399}
   - 114: {fileID: 1427059398}
+  - 61: {fileID: 1427059399}
   m_Layer: 0
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -1017,8 +1017,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08f27ec4227a8e429069ee647b9cb76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
-  mButtonOver: {fileID: 21300006, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  mButton: {fileID: 21300000, guid: d94baf626e87ec348b067525bc056072, type: 3}
+  mButtonOver: {fileID: 21300008, guid: d94baf626e87ec348b067525bc056072, type: 3}
 --- !u!61 &1427059399
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1028,8 +1028,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 6.69999981, y: 1.58000004}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 5.32000017, y: 1.62}
+  m_Center: {x: 0, y: 4.76837158e-07}
 --- !u!212 &1427059400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1051,7 +1051,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d94baf626e87ec348b067525bc056072, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1440760001
 GameObject:
@@ -1078,7 +1078,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1440760001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.75, z: 0}
+  m_LocalPosition: {x: -.400000006, y: -3.75, z: 0}
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 34292899}
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: d94baf626e87ec348b067525bc056072, type: 3}
-  mButtonOver: {fileID: 21300004, guid: d94baf626e87ec348b067525bc056072, type: 3}
+  mButtonOver: {fileID: 21300008, guid: d94baf626e87ec348b067525bc056072, type: 3}
   mText: {fileID: 664649494}
 --- !u!1 &1450367772
 GameObject:
@@ -1338,7 +1338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1867489028
 Transform:
   m_ObjectHideFlags: 0
@@ -1643,8 +1643,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 2084936153}
   - 212: {fileID: 2084936156}
-  - 61: {fileID: 2084936155}
   - 114: {fileID: 2084936154}
+  - 61: {fileID: 2084936155}
   m_Layer: 0
   m_Name: LoadBackButton
   m_TagString: Untagged
@@ -1659,7 +1659,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2084936152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: -3.75, z: 0}
+  m_LocalPosition: {x: -3.4000001, y: -3.75, z: 0}
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 2034877793}
@@ -1674,8 +1674,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c1253f5497dd94880cdac374a4c37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
-  mButtonOver: {fileID: 21300006, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  mButton: {fileID: 21300000, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
+  mButtonOver: {fileID: 21300004, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
   mMainMenuObject: {fileID: 1985620333}
   mSaveMenuObject: {fileID: 2034877792}
 --- !u!61 &2084936155
@@ -1687,8 +1687,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 6.69999981, y: 1.58000004}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 3.65999985, y: 2}
+  m_Center: {x: 0, y: 4.76837158e-07}
 --- !u!212 &2084936156
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1710,7 +1710,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 486352d70f45007488ad057cc6380508, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a27ca0462a072354a89a69131e1ab503, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2089074070
 GameObject:
