@@ -40,7 +40,7 @@ public class Heal : Ability
     {
         //mTarget = GameObject.Find ("TargetFinder").GetComponent<TowerTargets> ().ValidMousePos (mousePos);
         //return mTarget > -1;
-        return GameObject.Find("Tower").GetComponent<MouseManager>().RodelleClicked ||
+        return GameObject.Find("Towers").GetComponent<MouseManager>().RodelleClicked ||
             GameObject.Find("TargetFinder").GetComponent<TowerTargets>().ValidMousePos(mousePos) > -1;
     }
 }
