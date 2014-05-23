@@ -38,7 +38,6 @@ public class EnemySpawningTower : Tower
     
     private float mSpawnTime;
     private float mLastSpawnTime;
-    private int mMaxNumSquads;
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
@@ -76,7 +75,6 @@ public class EnemySpawningTower : Tower
         towerType = TowerType.UnitSpawner;
         mSpawnTime = 30;
         mLastSpawnTime = Time.time;
-        mMaxNumSquads = 4; // TODO get from game state
         mHealth = 100;
     }
     
