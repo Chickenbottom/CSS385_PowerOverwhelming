@@ -69,7 +69,7 @@ public class EnemyAI : MonoBehaviour
                 units [i].Update (Time.deltaTime);
         }
         
-        if (mCurrentWave > mMaxWaves && units.Count == 0) {
+        if (mCurrentWave >= mMaxWaves && units.Count == 0) {
             GameState.TriggerWin ();
         }
         
