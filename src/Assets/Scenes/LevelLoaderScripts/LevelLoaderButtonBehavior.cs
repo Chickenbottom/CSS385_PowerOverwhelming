@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 
 
 public enum Era{
@@ -27,8 +27,10 @@ public class LevelLoaderButtonBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        
+
 		//mLevelSelectionButtons.SetActive(false);
-		GameState.CurrentEra = Era.Medieval;
+        GameState.CurrentEra = Era.Medieval;
 		if(mEra <= GameState.CurrentEra)
 			mLevelLocked = false;
 		else

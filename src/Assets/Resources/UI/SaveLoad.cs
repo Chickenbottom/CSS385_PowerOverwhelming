@@ -12,6 +12,9 @@ public class SaveLoad : MonoBehaviour {
 
     private string levelPath;
     private string upgradePath;
+    // Level file contains
+    // line 1: highest level
+    // line 2: gold
     private List<string> levelStrings;
     private List<string> upgradeStrings;
 
