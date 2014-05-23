@@ -30,7 +30,7 @@ public class LevelLoaderButtonBehavior : MonoBehaviour {
         
 
 		//mLevelSelectionButtons.SetActive(false);
-        GameState.CurrentEra = Era.Medieval;
+        GameState.CurrentEra = (Era)int.Parse(GameObject.Find("SaveLoad").GetComponent<SaveLoad>().GetInfo(SaveLoad.SAVEFILE.Level)[0]);
 		if(mEra <= GameState.CurrentEra)
 			mLevelLocked = false;
 		else

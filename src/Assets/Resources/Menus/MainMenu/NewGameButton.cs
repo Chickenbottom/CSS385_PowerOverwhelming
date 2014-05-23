@@ -12,7 +12,11 @@ public class NewGameButton : ButtonBehaviour {
 
 		//after save / load game is up and running
 		//mSaveMenuObject.SetActive(true);
-
+        SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
+        s.Clear(SaveLoad.SAVEFILE.Level);
+        s.Add("1", SaveLoad.SAVEFILE.Level);
+        s.Add("0", SaveLoad.SAVEFILE.Level);
+        s.Save();
 
 		//remove after save load is working
 		mNarativeContinueFrame.SetActive(true);
