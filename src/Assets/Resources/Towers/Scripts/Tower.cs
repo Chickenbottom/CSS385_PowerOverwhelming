@@ -105,7 +105,7 @@ public abstract class Tower : Target
     void OnMouseDown ()
     {
         if (this.Allegiance == Allegiance.Rodelle) {
-            GameObject.Find ("GameManager").GetComponent<MouseManager> ().TowerClicked (this);
+            GameObject.Find ("Towers").GetComponent<MouseManager> ().TowerClicked (this);
         }   
     }
 }

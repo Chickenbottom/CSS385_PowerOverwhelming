@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour
+public class ControlPanel : MonoBehaviour
 {
     public int CurrentLevel;
     public Progressbar KingsHealthBar;
