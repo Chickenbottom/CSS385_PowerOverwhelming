@@ -4,11 +4,11 @@ using System.Collections;
 public class Heal : Ability
 {
     // protected int mTarget = -1;
-    protected float mHealRate = 0.25f;
+    protected float mHealRate = 0.5f;
 
     void Awake()
     {
-        mCooldown = 15f;
+        mCooldown = 10f;
         mUseTimer = -mCooldown;
     }
 
@@ -16,7 +16,7 @@ public class Heal : Ability
     {
         if (Time.time - mUseTimer > mCooldown)
         {
-            if (GameObject.Find("GameManager").GetComponent<MouseManager>().RodelleClicked)
+            if (GameObject.Find("Towers").GetComponent<MouseManager>().RodelleClicked)
             {
                 King k = GameObject.Find("KingPrefab(Clone)").GetComponent<King>();
                 k.Damage((int)(-mHealRate * k.MaxHealth));

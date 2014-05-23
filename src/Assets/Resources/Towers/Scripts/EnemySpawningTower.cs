@@ -20,7 +20,7 @@ public class EnemySpawningTower : Tower
                 
     public void SpawnUnit ()
     {
-        //GameObject.Find("GameManager").GetComponent<EnemyAI>().AddSquad(this.transform.position);
+        GameObject.Find("AI").GetComponent<EnemyAI>().AddSquad(this.transform.position);
     }
     
     public override Vector3 Position {
@@ -74,7 +74,7 @@ public class EnemySpawningTower : Tower
         base.Awake ();
         this.Allegiance = Allegiance.Rodelle;
         towerType = TowerType.UnitSpawner;
-        mSpawnTime = 20;
+        mSpawnTime = 30;
         mLastSpawnTime = Time.time;
         mMaxNumSquads = 4; // TODO get from game state
         mHealth = 100;
