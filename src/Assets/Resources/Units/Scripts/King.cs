@@ -34,7 +34,7 @@ public class King : Unit
 
     void OnMouseDown()
     {
-        GameObject.Find("GameManager").GetComponent<MouseManager>().RodelleClicked = true;
+        GameObject.Find("Towers").GetComponent<MouseManager>().RodelleClicked = true;
 
     }
 
