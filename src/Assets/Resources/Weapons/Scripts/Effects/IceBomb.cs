@@ -73,12 +73,10 @@ public class IceBomb : MonoBehaviour
     
     }
     
-    Target mTarget;
     Unit mSource;
     
     public void SetParameters (Unit src, Target target)
     {
-        mTarget = target;
         mSource = src;
         transform.position = target.Position;
         StartExplosion ();

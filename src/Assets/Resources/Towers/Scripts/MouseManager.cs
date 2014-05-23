@@ -7,7 +7,6 @@ public class MouseManager : MonoBehaviour
     #region variables
     private Tower towerSelected;
     private Tower towerClicked;
-    private bool rodelleClicked;
     #endregion
     
     void Start ()
@@ -74,7 +73,6 @@ public class MouseManager : MonoBehaviour
             SelectTower(GameObject.Find("AbilityTower").GetComponent<Tower>());
         
         towerClicked = null;
-        rodelleClicked = false;
     }
 
     public void TowerClicked (Tower tower)

@@ -15,8 +15,6 @@ public class FrozenEffect : MonoBehaviour
     }
     
     float mStartTimer;
-    float originalCharge;
-    float originalMovement;
 
     public void Freeze ()
     {
@@ -30,30 +28,10 @@ public class FrozenEffect : MonoBehaviour
         foreach (Unit u in squad) {
             u.BuffMovement(0f, mDuration);
         }
-        
-        /*
-        if (u != null) {
-            originalCharge = u.ChargeSpeed;
-            originalMovement = u.MoveSpeed;
-
-            
-
-            u.ChargeSpeed = 0f;
-            u.MoveSpeed = 0f;
-        }   
-        */
     }
     
     private void Unfreeze ()
     {
-        if (target == null)
-            return;
-            
-        Unit u = target.GetComponent<Unit> ();
-        if (u != null) {
-            u.ChargeSpeed = originalCharge;
-            u.MoveSpeed = originalMovement;
-        }
         Destroy (this);
     }
 }
