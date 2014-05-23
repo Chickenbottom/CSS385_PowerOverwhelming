@@ -60,6 +60,19 @@ public class MouseManager : MonoBehaviour
         if (Input.GetButtonDown ("Fire2") && towerSelected is UnitSpawningTower) {
             ((UnitSpawningTower)towerSelected).SpawnUnit ();
         }
+        
+        if (Input.GetButtonDown("SelectRanged"))
+            SelectTower(GameObject.Find("ArcherTower").GetComponent<Tower>());
+            
+        if (Input.GetButtonDown("SelectMelee"))
+            SelectTower(GameObject.Find("SwordsmanTower").GetComponent<Tower>());
+            
+        if (Input.GetButtonDown("SelectSpecial"))
+            SelectTower(GameObject.Find("MageTower").GetComponent<Tower>());
+            
+        if (Input.GetButtonDown("SelectAbility1"))
+            SelectTower(GameObject.Find("AbilityTower").GetComponent<Tower>());
+        
         towerClicked = null;
         rodelleClicked = false;
     }
@@ -71,6 +84,7 @@ public class MouseManager : MonoBehaviour
 
     private void SelectTower (Tower t)
     {
+
         towerSelected = t;
         towerSelected.ShowSelector (true);
     }
