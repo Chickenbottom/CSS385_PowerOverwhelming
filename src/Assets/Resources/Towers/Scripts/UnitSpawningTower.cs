@@ -70,7 +70,9 @@ public class UnitSpawningTower : Tower
     
     void Start ()
     {
+        // start with full squad size
         this.SpawnUnit ();
+        this.SpawnUnit (); 
         mSpawnTimer = mSpawnTime;
         GameObject.Find ("TargetFinder").GetComponent<TowerTargets> ().AddTower (this);
     }
