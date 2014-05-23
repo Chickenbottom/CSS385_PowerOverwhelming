@@ -151,8 +151,10 @@ public class Squad : MonoBehaviour
             memberPosition += randomPositions [i];
             u.transform.position = memberPosition;
             u.Allegiance = mAllegiance;
-            this.GetComponent<CircleCollider2D> ().radius = u.SightRange;
+            
         }
+        
+        this.GetComponent<CircleCollider2D> ().radius = mSquadMembers[0].SightRange;
         
         this.SetDestination (this.RallyPoint);
     }
@@ -166,7 +168,8 @@ public class Squad : MonoBehaviour
     private List<Unit> mSquadMembers;
     protected Allegiance mAllegiance;
     private SquadState mSquadState;
-        
+    public int mTargetPriority;
+    
     // Squad members form concentric circles around the squad center
     // the member width is used to determine the width of each band of the circles
     // ie. inner circle radius = kSquadMemberWidth * 1.5
@@ -175,11 +178,13 @@ public class Squad : MonoBehaviour
     
     private void AttackTarget (Target target)
     {
-        if (!(mTargetSquad == null || mTargetSquad.UnitType == UnitType.King))
+        if (target == null || TargetPriority(target) <= mTargetPriority)
             return;
             
         if (target == null)
             Debug.Break ();
+        
+        mTargetPriority = TargetPriority(target);
         
         if (target is Unit) {
             Unit u = (Unit)target.GetComponent (typeof(Unit));
@@ -271,6 +276,7 @@ public class Squad : MonoBehaviour
     private void Disengage ()
     {
         mTargetSquad = null;
+        mTargetPriority = 0;
         this.SquadState = SquadState.Moving;
         for (int i = 0; i < mSquadMembers.Count; ++i) {
             mSquadMembers [i].Disengage ();
@@ -395,7 +401,21 @@ public class Squad : MonoBehaviour
         mEnemyPrefabs.Add (UnitType.Peasant, Resources.Load ("Units/PeasantPrefab") as GameObject);
         mEnemyPrefabs.Add (UnitType.Mage, Resources.Load ("Units/EnemyMagePrefab") as GameObject);
     }
+    
+    public int TargetPriority(Target target)
+    {
+        if (target is Tower)
+            return 1;
+               
+        if (target is Unit && ((Unit)target).UnitType == UnitType.King)
+            return 2;
         
+        if (target is Unit)
+            return 3;
+        
+        return 0;
+    }
+    
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
     ///////////////////////////////////////////////////////////////////////////////////
@@ -408,32 +428,20 @@ public class Squad : MonoBehaviour
     // Check for enemies in sight range
     void OnTriggerEnter2D (Collider2D other)
     {
-        if (this.IsEngaged)
-            return;
-        
         Target target = other.gameObject.GetComponent<Target> ();
-        
+                
         if (target != null && target.Allegiance != mAllegiance) {
             Notify (SquadAction.EnemySighted, target);
         }
-        //this.OnTriggerEnter2D(other);
     }
         
     void FixedUpdate ()
     {
         if (mSquadMembers == null)
             return;
-                
-        float xTotal = 0;
-        float yTotal = 0;
-        float unitCount = (float)mSquadMembers.Count;
-        foreach (Unit unit in mSquadMembers) {
-            xTotal += unit.transform.position.x;
-            yTotal += unit.transform.position.y;
-        }
         
-        // average central location
-        this.SquadCenter = new Vector3 (xTotal / unitCount, yTotal / unitCount, 0f);
+        // Follow sight of squad leader
+        this.SquadCenter = mSquadMembers[0].Position; 
         this.transform.position = SquadCenter;
     }
     
