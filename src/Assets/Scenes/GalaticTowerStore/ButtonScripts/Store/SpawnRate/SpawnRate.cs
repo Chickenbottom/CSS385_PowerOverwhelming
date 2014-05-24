@@ -5,8 +5,9 @@ public class SpawnRate : ButtonBehaviour {
 
 	public TowerStoreBehavior mStore;
 	public GUIText SpawnRateText;
-	public static float BonusValue, BonusLevel = 1;
 	public GUIText mTotalGoldText;
+
+	protected float mBonusLevel;
 	protected const int kBonusMax = 5;
 	protected const int kBonusMin = 1;
 

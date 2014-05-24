@@ -53,7 +53,7 @@ public class Upgrades : MonoBehaviour
 			LoadBonuses();		
 		}
 		else{
-			PopulateArray();
+		//	PopulateArray();
 			WriteBonuses();
 		}
 		
@@ -121,11 +121,9 @@ public class Upgrades : MonoBehaviour
 	}	
 	float GetBonus(BonusSubject subject, BonusType bonus){
 		float bonusLevel = mBonusArray[(int)subject ,(int) bonus];
-		if(bonusLevel <= 1)
+		if(bonusLevel <= 0)
 			return 1.0f;
-		if(bonusLevel == 2)
-			return 1.2f;
-		if(bonusLevel > 5)
+		if(bonusLevel >= 5)
 		   return 2.0f;
 
 		//each level represents 20%
@@ -149,7 +147,7 @@ public class Upgrades : MonoBehaviour
 	void PopulateArray(){
 		for(int i = 0; i < mSubjectMax; i ++)
 			for(int j = 0; j < mBonusMax; j++)
-				mBonusArray[i ,j] = 1;
+				mBonusArray[i ,j] = 0;
 	}
 	public float GetUnitUpgrades(UnitType unit, BonusType sType){
 		BonusSubject mySubject = (BonusSubject)(-1);

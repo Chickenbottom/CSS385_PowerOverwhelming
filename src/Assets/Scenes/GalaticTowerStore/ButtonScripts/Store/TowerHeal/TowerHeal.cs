@@ -7,7 +7,7 @@ public class TowerHeal : ButtonBehaviour {
 	public GUIText TowerHealthText;
 	public GUIText mTotalGoldText;
 
-	protected int mBonusLevel = 1;
+	protected int mBonusLevel;
 	protected const int kBonusMax = 5;
 	protected const int kBonusMin = 1;
 

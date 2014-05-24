@@ -6,9 +6,8 @@ public class CoolDown : ButtonBehaviour {
 	public TowerStoreBehavior mStore;
 	public GUIText CoolDownText;
 
-	const float kBonusValue = 0.2f;
 
-	protected int mBonusLevel = 1;
+	protected int mBonusLevel;
 	protected const int kBonusMax = 5;
 	protected const int kBonusMin = 1;
 
