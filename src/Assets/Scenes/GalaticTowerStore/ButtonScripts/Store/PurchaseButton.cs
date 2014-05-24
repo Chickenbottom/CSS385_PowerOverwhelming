@@ -9,7 +9,7 @@ public class PurchaseButton : ButtonBehaviour {
 		mTotalGoal.text = GameState.Gold.ToString();
 	}
 	void OnMouseDown(){
-	//	TowerStoreFrame.GetComponent<TowerStoreBehavior>().Purchase();
+		TowerStoreFrame.GetComponent<TowerStoreBehavior>().Purchase();
 		mTotalGoal.text = "0";
 	}
 }

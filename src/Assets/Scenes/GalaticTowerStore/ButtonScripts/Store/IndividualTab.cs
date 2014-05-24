@@ -5,16 +5,9 @@ public class IndividualTab : MonoBehaviour {
 
 	public SelectBar mSelectBar;
 	public GameObject TabButtons;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public BonusSubject mBonusSubject;
+
 	void OnMouseDown(){
-		mSelectBar.SetTab(this.gameObject, TabButtons);
+		mSelectBar.SetTab(this.gameObject, TabButtons, mBonusSubject);
 	}
 }

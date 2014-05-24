@@ -166,8 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300030, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300046, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
-  CoolDownText: {fileID: 1833475591}
+  mStore: {fileID: 669529554}
+  CoolDownText: {fileID: 604311785}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!61 &48178465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -354,9 +355,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300006, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300022, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   TowerHealthText: {fileID: 554411529}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &188737688
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,9 +434,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300030, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300046, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   TowerHealthText: {fileID: 554411529}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &259070366
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,9 +513,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300016, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   SpawnSizeText: {fileID: 1698223699}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &283856575
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,9 +842,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300026, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300042, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   SpawnSizeText: {fileID: 288026673}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!212 &492288142
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -942,7 +943,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &568721601
 Transform:
   m_ObjectHideFlags: 0
@@ -954,12 +955,62 @@ Transform:
   m_LocalScale: {x: .0666666701, y: .0666666701, z: 1}
   m_Children:
   - {fileID: 48178463}
-  - {fileID: 1833475590}
   - {fileID: 1728079572}
   - {fileID: 188737689}
   - {fileID: 554411528}
+  - {fileID: 604311784}
   - {fileID: 148211747}
   m_Father: {fileID: 669529552}
+--- !u!1 &604311783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 604311784}
+  - 132: {fileID: 604311785}
+  m_Layer: 0
+  m_Name: CoolDownText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &604311784
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 604311783}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.73999929, y: -6.55000019, z: 0}
+  m_LocalScale: {x: 1.04999995, y: 1.04999995, z: 1}
+  m_Children: []
+  m_Father: {fileID: 568721601}
+--- !u!132 &604311785
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 604311783}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 40
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_PixelCorrect: 1
+  m_RichText: 1
 --- !u!1 &669529551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,6 +1154,7 @@ MonoBehaviour:
   - {fileID: 1065126813}
   - {fileID: 283856575}
   - {fileID: 764686392}
+  mStore: {fileID: 669529554}
 --- !u!1 &717468027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,9 +1356,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300004, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300020, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   TowerHealthText: {fileID: 1326351822}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &923577507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,9 +1435,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300002, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300018, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   TowerHealthText: {fileID: 1734817137}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &925530972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,6 +1480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
   TabButtons: {fileID: 1065126813}
+  mBonusSubject: 0
 --- !u!212 &925530975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1538,6 +1591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
   TabButtons: {fileID: 1821625831}
+  mBonusSubject: 3
 --- !u!1 &1030796986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,9 +1668,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300026, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300042, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   TowerHealthText: {fileID: 1734817137}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1053477569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1693,9 +1747,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300024, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300040, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   TowerHealthText: {fileID: 471713032}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1061521578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,7 +1842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1065126814
 Transform:
   m_ObjectHideFlags: 0
@@ -1882,8 +1936,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
   mButtonOver: {fileID: 21300002, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 0}
   SpawnRateText: {fileID: 27555448}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1233120293
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,9 +2015,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300016, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   TowerHealthText: {fileID: 471713032}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1270435987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,6 +2094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
   TabButtons: {fileID: 764686392}
+  mBonusSubject: 1
 --- !u!1 &1319502277
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,9 +2171,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300004, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300020, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   SpawnSizeText: {fileID: 402592862}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1320429635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,6 +2350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
   TabButtons: {fileID: 283856575}
+  mBonusSubject: 2
 --- !u!1 &1417252610
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,9 +2466,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300028, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300044, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   SpawnSizeText: {fileID: 402592862}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!4 &1440934391
 Transform:
   m_ObjectHideFlags: 0
@@ -2488,9 +2545,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300002, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300018, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   SpawnSizeText: {fileID: 288026673}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!61 &1497586092
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2578,6 +2635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
   TabButtons: {fileID: 568721600}
+  mBonusSubject: 3
 --- !u!1 &1675912953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2654,9 +2712,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300024, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300040, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   SpawnSizeText: {fileID: 1698223699}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1698223697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,7 +2750,7 @@ GUIText:
   m_GameObject: {fileID: 1698223697}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 1
+  m_Text: 11
   m_Anchor: 0
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}
@@ -2749,8 +2807,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300006, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300022, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
-  CoolDownText: {fileID: 1833475591}
+  mStore: {fileID: 669529554}
+  CoolDownText: {fileID: 604311785}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!212 &1728079574
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2911,8 +2970,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
   mButtonOver: {fileID: 21300002, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 0}
   SpawnRateText: {fileID: 27555448}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1821625831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,56 +2999,6 @@ Transform:
   m_LocalScale: {x: .0666666701, y: .0666666701, z: 1}
   m_Children: []
   m_Father: {fileID: 669529552}
---- !u!1 &1833475589
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1833475590}
-  - 132: {fileID: 1833475591}
-  m_Layer: 0
-  m_Name: CoolDownText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1833475590
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1833475589}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.38821602, y: -6.5027113, z: 0}
-  m_LocalScale: {x: 1.04999995, y: 1.04999995, z: 1}
-  m_Children: []
-  m_Father: {fileID: 568721601}
---- !u!132 &1833475591
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1833475589}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: cooldown
-  m_Anchor: 0
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Material: {fileID: 0}
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_PixelCorrect: 1
-  m_RichText: 1
 --- !u!1 &1957062875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,6 +3075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mSelectBar: {fileID: 698178115}
   TabButtons: {fileID: 455578354}
+  mBonusSubject: 0
 --- !u!1 &2052378380
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,9 +3152,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300028, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300044, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
-  TowerStore: {fileID: 669529554}
+  mStore: {fileID: 669529554}
   TowerHealthText: {fileID: 1326351822}
-  mTotalGold: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &2103692355
 GameObject:
   m_ObjectHideFlags: 0

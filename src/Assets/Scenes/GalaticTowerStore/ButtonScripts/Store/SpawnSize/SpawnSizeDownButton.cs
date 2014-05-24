@@ -5,10 +5,9 @@ public class SpawnSizeDownButton : SpawnSize {
 
 
 	void OnMouseDown(){
-		if( ( BonusLevel - 1) > 0 || ( BonusLevel - 1 ) > GetOriginal())  {
-			int temp = int.Parse(mTotalGold.text);
-			temp -= 15;
-			mTotalGold.text = temp.ToString();
+		if( mBonusLevel > kBonusMin && mBonusLevel > GetOriginal())  {
+			mStore.mCurCost -= 15;
+			mTotalGoldText.text = mStore.mCurCost.ToString();
 			NewValue(-1);
 		}
 	}

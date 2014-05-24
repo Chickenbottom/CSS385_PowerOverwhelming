@@ -3,23 +3,27 @@ using System.Collections;
 
 public class SpawnSize : ButtonBehaviour {
 
-	public TowerStoreBehavior TowerStore;
+	public TowerStoreBehavior mStore;
 	public GUIText SpawnSizeText;
-	public static float BonusValue, BonusLevel = 1;
-	public GUIText mTotalGold;
+	//public static float BonusValue, BonusLevel = 1;
+	public GUIText mTotalGoldText;
+
+	protected int mBonusLevel;
+	protected const int kBonusMax = 5;
+	protected const int kBonusMin = 1;
+
+
+	void Update(){
+		mBonusLevel = mStore.DynamicUpgrades[(int)mStore.mCurBonusSubject, (int)BonusType.SpawnSize];	
+		SpawnSizeText.text =  mBonusLevel.ToString();
+	}
 
 	public void NewValue(int newLevel){
-		TowerStore.mCurBonusType = BonusType.SpawnSize;
-		//BonusLevel = float.Parse(SpawnSizeText.text);
-		//BonusValue = TowerStore.TempUpGrades[(int)TowerStore.mCurBonusSubject, (int)TowerStore.mCurBonusType];
-		BonusLevel += newLevel;
-		TowerStore.mCurQuantity = 1 + BonusLevel * 0.2f;
-		SpawnSizeText.text = BonusLevel.ToString();
-		
-		TowerStore.SetUpgrade();
+		mBonusLevel += newLevel;
+		mStore.SetUpgrade(mStore.mCurBonusSubject, BonusType.SpawnSize, mBonusLevel);
 	}
 	public int GetOriginal(){
-		return (int)TowerStore.GetOringalValue(TowerStore.mCurBonusSubject, TowerStore.mCurBonusType);
-		
+		return (int)mStore.GetOringalValue(mStore.mCurBonusSubject, BonusType.SpawnSize);
 	}
+
 }

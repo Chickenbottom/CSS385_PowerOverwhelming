@@ -5,7 +5,10 @@ public class SpawnRateDownButton : SpawnRate {
 
 
 	void OnMouseDown(){
-		if( ( BonusLevel - 1) > 0 || ( BonusLevel - 1 ) > GetOriginal())  
-		NewValue(-1);
+//		if( BonusLevel > kBonusMax && BonusLevel > GetOriginal()){  
+//			mStore.mCurCost -= 15;
+//			mTotalGoldText.text = mStore.mCurCost.ToString();
+//			NewValue(-1);
+//		}
 	}
 }

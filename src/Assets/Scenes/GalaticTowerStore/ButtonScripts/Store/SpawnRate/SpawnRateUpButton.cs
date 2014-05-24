@@ -2,9 +2,11 @@
 using System.Collections;
 
 public class SpawnRateUpButton : SpawnRate {
-	const int kBonusMax = 5;
 	void OnMouseDown(){
-		if( (BonusLevel+1) <= kBonusMax )
-		NewValue(1);
+//		if( BonusLevel < kBonusMax ){
+//			mStore.mCurCost += 15;
+//			mTotalGoldText.text = mStore.mCurCost.ToString();
+//			NewValue(1);
+//		}
 	}
 }

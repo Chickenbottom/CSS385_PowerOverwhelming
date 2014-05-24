@@ -3,22 +3,27 @@ using System.Collections;
 
 public class SpawnRate : ButtonBehaviour {
 
-	public TowerStoreBehavior TowerStore;
+	public TowerStoreBehavior mStore;
 	public GUIText SpawnRateText;
 	public static float BonusValue, BonusLevel = 1;
-	
+	public GUIText mTotalGoldText;
+	protected const int kBonusMax = 5;
+	protected const int kBonusMin = 1;
+
+//	void Update(){
+//		int SpawnR = mStore.ConvertBonusToInt(mStore.DynamicUpgrades[(int)mStore.mCurBonusSubject, (int)BonusType.CoolDown]);	
+//		SpawnRateText.text =  SpawnR.ToString();
+//	}
+
 	public void NewValue(int newLevel ){
-		TowerStore.mCurBonusType = BonusType.SpawnRate;
-		//BonusValue = float.Parse(SpawnRateText.text);
-		//BonusValue = TowerStore.TempUpGrades[(int)TowerStore.mCurBonusSubject, (int)TowerStore.mCurBonusType];
-		BonusLevel += newLevel;
-		TowerStore.mCurQuantity = 1 + BonusLevel * 0.2f;
-		SpawnRateText.text = BonusLevel.ToString();
-		
-		TowerStore.SetUpgrade();
+		//mStore.mCurBonusType = BonusType.SpawnRate;
+//		BonusLevel += newLevel;
+		//SpawnRateText.text = BonusLevel.ToString();
+
+//		float value = 1 + BonusLevel * 0.2f;
+//		mStore.SetUpgrade(mStore.mCurBonusSubject, BonusType.SpawnRate, value);
 	}
-	public int GetOriginal(){
-		return (int)TowerStore.GetOringalValue(TowerStore.mCurBonusSubject, TowerStore.mCurBonusType);
-		
-	}
+//	public int GetOriginal(){
+//		return (int)mStore.GetOringalValue(mStore.mCurBonusSubject, BonusType.SpawnRate);		
+//	}
 }

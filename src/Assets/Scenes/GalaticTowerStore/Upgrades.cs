@@ -6,7 +6,7 @@ using System;
 public enum BonusSubject : int {
 	Melee = 0,
 	Ranged = 1,
-	Magic = 2,
+	Special = 2,
 	Ability = 3,
 }
 
@@ -14,8 +14,7 @@ public enum BonusType : int{
 	Health = 0,
 	CoolDown = 1,
 	SpawnSize = 2,
-	SpawnRate = 3,
-	AmpAbility = 4,
+	AmpAbility = 3,
 }
 
 
@@ -41,14 +40,14 @@ public class Upgrades : MonoBehaviour
 	string line; //used to read line from mfile and arrays
 	
 	
-	float[,] mBonusArray;
+	int[,] mBonusArray;
 
 	#endregion
 	
 	// Use this for initialization
 	void Start()
 	{
-		mBonusArray = new float[mSubjectMax, mBonusMax];
+		mBonusArray = new int[mSubjectMax, mBonusMax];
 		
 		if(File.Exists(path)){
 			LoadBonuses();		
@@ -90,7 +89,7 @@ public class Upgrades : MonoBehaviour
 			int magic = ci.CompareInfo.IndexOf(numbers[0], "Special", System.Globalization.CompareOptions.IgnoreCase);
 
 			int health = ci.CompareInfo.IndexOf(numbers[1], "Health", System.Globalization.CompareOptions.IgnoreCase);
-			int spawnRate = ci.CompareInfo.IndexOf(numbers[1], "CoolDown", System.Globalization.CompareOptions.IgnoreCase);
+			int coolD = ci.CompareInfo.IndexOf(numbers[1], "CoolDown", System.Globalization.CompareOptions.IgnoreCase);
 			int spawnSize = ci.CompareInfo.IndexOf(numbers[1], "SpawnSize", System.Globalization.CompareOptions.IgnoreCase);
 			int ampAbiilty = ci.CompareInfo.IndexOf(numbers[1], "AmpAbility", System.Globalization.CompareOptions.IgnoreCase);
 			
@@ -102,12 +101,12 @@ public class Upgrades : MonoBehaviour
 			else if(ranged >= 0)
 				curSubject = (int)BonusSubject.Ranged;
 			else if(magic >= 0)
-				curSubject = (int)BonusSubject.Magic;
+				curSubject = (int)BonusSubject.Special;
 
 			if(health >= 0)
 				curBonus = (int)BonusType.Health;
-			else if(spawnRate >= 0)
-				curBonus = (int)BonusType.SpawnRate;
+			else if(coolD >= 0)
+				curBonus = (int)BonusType.CoolDown;
 			else if(ampAbiilty >= 0)
 				curBonus = (int)BonusType.AmpAbility;
 			else if(spawnSize >= 0)
@@ -115,15 +114,24 @@ public class Upgrades : MonoBehaviour
 		
 
 			if (curSubject != -1 && curBonus != -1){
-				mBonusArray[curSubject, curBonus] = float.Parse(numbers[2]);				
+				mBonusArray[curSubject, curBonus] = int.Parse(numbers[2]);				
 			}
 		}
 		mFile.Close();
 	}	
 	float GetBonus(BonusSubject subject, BonusType bonus){
-		return mBonusArray[(int)subject ,(int) bonus];
+		float bonusLevel = mBonusArray[(int)subject ,(int) bonus];
+		if(bonusLevel <= 1)
+			return 1.0f;
+		if(bonusLevel == 2)
+			return 1.2f;
+		if(bonusLevel > 5)
+		   return 2.0f;
+
+		//each level represents 20%
+		return 1 + bonusLevel * 0.2f;
 	}
-	public void SetBonus(BonusSubject subject, BonusType bonus, float value){
+	public void SetBonus(BonusSubject subject, BonusType bonus, int value){
 		mBonusArray[(int)subject ,(int) bonus] = value;
 	}
 	public void WriteBonuses(){
@@ -141,7 +149,7 @@ public class Upgrades : MonoBehaviour
 	void PopulateArray(){
 		for(int i = 0; i < mSubjectMax; i ++)
 			for(int j = 0; j < mBonusMax; j++)
-				mBonusArray[i ,j] = 1f;
+				mBonusArray[i ,j] = 1;
 	}
 	public float GetUnitUpgrades(UnitType unit, BonusType sType){
 		BonusSubject mySubject = (BonusSubject)(-1);
@@ -155,7 +163,7 @@ public class Upgrades : MonoBehaviour
 			mySubject = BonusSubject.Ranged;
 			break;
 		case UnitType.Mage:
-			mySubject = BonusSubject.Magic;
+			mySubject = BonusSubject.Special;
 			break;
 
 		}
@@ -164,15 +172,15 @@ public class Upgrades : MonoBehaviour
 		else
 			return 1.0f;
 	}
-	public void SetTowerArray(ref float[,] tempArray){
+	public void SetTowerArray(ref int[,] tempArray){
 		for(int i = 0; i < mSubjectMax; i ++)
 			for(int j= 0; j < mBonusMax; j++){
 				tempArray[i,j] = mBonusArray[i,j]; 
 		}
 	}
-	public void SetUpgradeArray(float[,] tempArray){
+	public void SetUpgradeArray(int[,] tempArray){
 		for(int i = 0; i < mSubjectMax; i ++)
-			for(int j= 0; j < mBonusMax; j++){
+			for(int j = 0; j < mBonusMax; j++){
 				mBonusArray[i,j] = tempArray[i,j]; 
 		}
 	}

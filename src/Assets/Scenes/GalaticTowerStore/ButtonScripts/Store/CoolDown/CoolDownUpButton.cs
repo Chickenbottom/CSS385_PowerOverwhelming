@@ -3,9 +3,11 @@ using System.Collections;
 
 public class CoolDownUpButton : CoolDown {
 
-	const int kBonusMax = 5;
 	void OnMouseDown(){
-		if( (mBonusLevel+1) <= kBonusMax )
+		if( mBonusLevel < kBonusMax ){
+			mStore.mCurCost += 20;
+			mTotalGoldText.text = mStore.mCurCost.ToString();
 			NewValue(1);
+		}
 	}
 }

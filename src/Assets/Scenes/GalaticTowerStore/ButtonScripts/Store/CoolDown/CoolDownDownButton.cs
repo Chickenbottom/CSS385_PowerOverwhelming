@@ -6,7 +6,10 @@ public class CoolDownDownButton : CoolDown {
 
 	
 	void OnMouseDown(){
-		if( ( mBonusLevel - 1) > 0 || ( mBonusLevel - 1 ) > GetOriginal())  
+		if( mBonusLevel > kBonusMin && mBonusLevel > GetOriginal()){
+			mStore.mCurCost -= 20;
+			mTotalGoldText.text = mStore.mCurCost.ToString();
 			NewValue(-1);
+		}
 	}
 }
