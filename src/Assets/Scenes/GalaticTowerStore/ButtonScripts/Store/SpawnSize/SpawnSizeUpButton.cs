@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpawnSizeUpButton : SpawnSize {
+public class SpawnSizeUpButton : GTSButtonBehavior {
 
 	void OnMouseDown(){
 		if( mBonusLevel < kBonusMax ){

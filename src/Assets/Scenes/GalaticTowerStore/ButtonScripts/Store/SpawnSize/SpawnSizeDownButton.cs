@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpawnSizeDownButton : SpawnSize {
+public class SpawnSizeDownButton : GTSButtonBehavior {
 
 
 	void OnMouseDown(){

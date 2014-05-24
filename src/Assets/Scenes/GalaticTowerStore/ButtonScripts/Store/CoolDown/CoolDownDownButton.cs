@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CoolDownDownButton : CoolDown {
+public class CoolDownDownButton : GTSButtonBehavior {
 
 
 	

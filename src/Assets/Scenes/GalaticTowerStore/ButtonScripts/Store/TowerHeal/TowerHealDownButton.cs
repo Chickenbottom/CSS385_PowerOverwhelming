@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TowerHealDownButton : TowerHeal {
+public class TowerHealDownButton : GTSButtonBehavior {
 
 	void OnMouseDown(){
 		if( mBonusLevel > kBonusMin && mBonusLevel > GetOriginal()) {

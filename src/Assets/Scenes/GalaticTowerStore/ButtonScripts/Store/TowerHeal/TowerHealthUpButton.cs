@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TowerHealthUpButton : TowerHeal {
+public class TowerHealthUpButton : GTSButtonBehavior {
 
 	const int kBonusMax = 5;
 	void OnMouseDown(){

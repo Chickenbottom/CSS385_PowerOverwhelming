@@ -167,7 +167,8 @@ MonoBehaviour:
   mButton: {fileID: 21300030, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300046, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  CoolDownText: {fileID: 604311785}
+  mText: {fileID: 604311785}
+  mBonusType: 1
   mTotalGoldText: {fileID: 1320429636}
 --- !u!61 &48178465
 BoxCollider2D:
@@ -356,7 +357,8 @@ MonoBehaviour:
   mButton: {fileID: 21300006, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300022, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  TowerHealthText: {fileID: 554411529}
+  mText: {fileID: 554411529}
+  mBonusType: 0
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &188737688
 GameObject:
@@ -435,7 +437,8 @@ MonoBehaviour:
   mButton: {fileID: 21300030, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300046, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  TowerHealthText: {fileID: 554411529}
+  mText: {fileID: 554411529}
+  mBonusType: 0
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &259070366
 GameObject:
@@ -514,7 +517,8 @@ MonoBehaviour:
   mButton: {fileID: 21300000, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300016, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  SpawnSizeText: {fileID: 1698223699}
+  mText: {fileID: 1698223699}
+  mBonusType: 2
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &283856575
 GameObject:
@@ -722,7 +726,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 12
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: 893b56740517ef9419ad7067c583478f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -843,7 +847,8 @@ MonoBehaviour:
   mButton: {fileID: 21300026, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300042, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  SpawnSizeText: {fileID: 288026673}
+  mText: {fileID: 288026673}
+  mBonusType: 2
   mTotalGoldText: {fileID: 1320429636}
 --- !u!212 &492288142
 SpriteRenderer:
@@ -1042,6 +1047,7 @@ Transform:
   - {fileID: 455578355}
   - {fileID: 568721601}
   - {fileID: 1821625832}
+  - {fileID: 1061521581}
   - {fileID: 283856576}
   - {fileID: 1065126814}
   - {fileID: 2103692356}
@@ -1357,7 +1363,8 @@ MonoBehaviour:
   mButton: {fileID: 21300004, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300020, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  TowerHealthText: {fileID: 1326351822}
+  mText: {fileID: 1326351822}
+  mBonusType: 0
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &923577507
 GameObject:
@@ -1436,7 +1443,8 @@ MonoBehaviour:
   mButton: {fileID: 21300002, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300018, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  TowerHealthText: {fileID: 1734817137}
+  mText: {fileID: 1734817137}
+  mBonusType: 0
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &925530972
 GameObject:
@@ -1669,7 +1677,8 @@ MonoBehaviour:
   mButton: {fileID: 21300026, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300042, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  TowerHealthText: {fileID: 1734817137}
+  mText: {fileID: 1734817137}
+  mBonusType: 0
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1053477569
 GameObject:
@@ -1748,7 +1757,8 @@ MonoBehaviour:
   mButton: {fileID: 21300024, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300040, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  TowerHealthText: {fileID: 471713032}
+  mText: {fileID: 471713032}
+  mBonusType: 0
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1061521578
 GameObject:
@@ -1780,9 +1790,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: e8941a585f53a0345bec00add64fb771, type: 3}
-  mButtonOver: {fileID: 21300002, guid: e8941a585f53a0345bec00add64fb771, type: 3}
+  mButtonOver: {fileID: 21300004, guid: e8941a585f53a0345bec00add64fb771, type: 3}
   TowerStoreFrame: {fileID: 669529551}
   mTotalGoal: {fileID: 1320429636}
+  mStoreClosed: {fileID: 0}
 --- !u!212 &1061521580
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1813,10 +1824,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1061521578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 54.3671684, y: -62, z: 0}
-  m_LocalScale: {x: 17.7188339, y: 16, z: 1}
+  m_LocalPosition: {x: 3.6244781, y: -4.13333368, z: 0}
+  m_LocalScale: {x: 1.1812557, y: 1.06666672, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 669529552}
 --- !u!61 &1061521582
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1937,7 +1948,8 @@ MonoBehaviour:
   mButton: {fileID: 21300000, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
   mButtonOver: {fileID: 21300002, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
   mStore: {fileID: 0}
-  SpawnRateText: {fileID: 27555448}
+  mText: {fileID: 0}
+  mBonusType: 0
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1233120293
 GameObject:
@@ -2016,7 +2028,8 @@ MonoBehaviour:
   mButton: {fileID: 21300000, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300016, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  TowerHealthText: {fileID: 471713032}
+  mText: {fileID: 471713032}
+  mBonusType: 0
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1270435987
 GameObject:
@@ -2172,7 +2185,8 @@ MonoBehaviour:
   mButton: {fileID: 21300004, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300020, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  SpawnSizeText: {fileID: 402592862}
+  mText: {fileID: 402592862}
+  mBonusType: 2
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1320429635
 GameObject:
@@ -2467,7 +2481,8 @@ MonoBehaviour:
   mButton: {fileID: 21300028, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300044, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  SpawnSizeText: {fileID: 402592862}
+  mText: {fileID: 402592862}
+  mBonusType: 2
   mTotalGoldText: {fileID: 1320429636}
 --- !u!4 &1440934391
 Transform:
@@ -2546,7 +2561,8 @@ MonoBehaviour:
   mButton: {fileID: 21300002, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300018, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  SpawnSizeText: {fileID: 288026673}
+  mText: {fileID: 288026673}
+  mBonusType: 2
   mTotalGoldText: {fileID: 1320429636}
 --- !u!61 &1497586092
 BoxCollider2D:
@@ -2713,7 +2729,8 @@ MonoBehaviour:
   mButton: {fileID: 21300024, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300040, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  SpawnSizeText: {fileID: 1698223699}
+  mText: {fileID: 1698223699}
+  mBonusType: 2
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1698223697
 GameObject:
@@ -2808,7 +2825,8 @@ MonoBehaviour:
   mButton: {fileID: 21300006, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300022, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  CoolDownText: {fileID: 604311785}
+  mText: {fileID: 604311785}
+  mBonusType: 1
   mTotalGoldText: {fileID: 1320429636}
 --- !u!212 &1728079574
 SpriteRenderer:
@@ -2971,7 +2989,8 @@ MonoBehaviour:
   mButton: {fileID: 21300000, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
   mButtonOver: {fileID: 21300002, guid: 12c28ede75e641d4283714a16c58b140, type: 3}
   mStore: {fileID: 0}
-  SpawnRateText: {fileID: 27555448}
+  mText: {fileID: 0}
+  mBonusType: 0
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &1821625831
 GameObject:
@@ -3153,7 +3172,8 @@ MonoBehaviour:
   mButton: {fileID: 21300028, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mButtonOver: {fileID: 21300044, guid: 8347e5b3f5df1f749b212270235d32cd, type: 3}
   mStore: {fileID: 669529554}
-  TowerHealthText: {fileID: 1326351822}
+  mText: {fileID: 1326351822}
+  mBonusType: 0
   mTotalGoldText: {fileID: 1320429636}
 --- !u!1 &2103692355
 GameObject:

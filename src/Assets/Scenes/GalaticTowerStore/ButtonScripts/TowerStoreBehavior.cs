@@ -9,11 +9,7 @@ public class TowerStoreBehavior : MonoBehaviour {
 	public int[,] OriginalUpgrades;
 
 	public BonusSubject mCurBonusSubject{get; set; }
-//	public BonusType mCurBonusType{get; set; }
-
-//	public float mCurQuantity{get;set;}
 	public int mCurCost{ get; set;}
-
 	public GameObject TheStore;
 
 	int mSubjectMax = Enum.GetNames(typeof(BonusSubject)).Length;
@@ -25,8 +21,8 @@ public class TowerStoreBehavior : MonoBehaviour {
 		DynamicUpgrades = new int[mSubjectMax, mBonusMax];
 		OriginalUpgrades = new int[mSubjectMax, mBonusMax];
 		mCurUpgrades =  GameObject.Find("Store").GetComponent<Upgrades>();
-		mCurUpgrades.SetTowerArray(ref DynamicUpgrades);
-		mCurUpgrades.SetTowerArray(ref OriginalUpgrades);
+		mCurUpgrades.SetStoreArray(ref DynamicUpgrades);
+		mCurUpgrades.SetStoreArray(ref OriginalUpgrades);
 	}
 	
 	public void Purchase(){
@@ -35,7 +31,7 @@ public class TowerStoreBehavior : MonoBehaviour {
 		//mCurUpgrades.SetTowerArray(ref OriginalUpgrades);
 		mCurUpgrades.WriteBonuses();
 	}
-	public float GetUpgrade(BonusSubject curSub, BonusType curType){
+	public int GetUpgrade(BonusSubject curSub, BonusType curType){
 		return DynamicUpgrades[(int)curSub, (int)curType];
 	}
 	public void SetUpgrade(BonusSubject curSub, BonusType curType, int curValue ){

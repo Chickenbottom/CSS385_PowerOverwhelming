@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpawnRateDownButton : SpawnRate {
+public class SpawnRateDownButton : GTSButtonBehavior {
 
 
 	void OnMouseDown(){

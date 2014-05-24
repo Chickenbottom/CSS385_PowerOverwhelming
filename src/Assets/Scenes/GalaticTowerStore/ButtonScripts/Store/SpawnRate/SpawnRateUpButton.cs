@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpawnRateUpButton : SpawnRate {
+public class SpawnRateUpButton : GTSButtonBehavior {
 	void OnMouseDown(){
 //		if( BonusLevel < kBonusMax ){
 //			mStore.mCurCost += 15;

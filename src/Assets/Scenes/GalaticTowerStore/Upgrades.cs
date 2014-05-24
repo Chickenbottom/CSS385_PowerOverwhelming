@@ -170,7 +170,7 @@ public class Upgrades : MonoBehaviour
 		else
 			return 1.0f;
 	}
-	public void SetTowerArray(ref int[,] tempArray){
+	public void SetStoreArray(ref int[,] tempArray){
 		for(int i = 0; i < mSubjectMax; i ++)
 			for(int j= 0; j < mBonusMax; j++){
 				tempArray[i,j] = mBonusArray[i,j]; 
