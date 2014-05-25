@@ -1,33 +1,33 @@
 4
 @EnemyWave 25
-0 Individual Default AttackMove MageTower
-1 Large      Default AttackMove
-3 Medium      Default AttackMove MageTower
-5 Medium      Default AttackMove CenterRight,SwordsmanTower
-10 Medium     Default AttackMove
+0 Individual Default AttackMove SpawnCenter,TopRight
+1 Large      Default AttackMove SpawnCenter,
+3 Medium      Default AttackMove SpawnCenter,TopRight
+5 Medium      Default AttackMove SpawnCenter,CenterRight,TopLeft
+10 Medium     Default AttackMove SpawnCenter,
 
 @EnemyWave 35
-0 Medium      Default AttackMove 
-0 Medium     Default AttackMove 
-0 Individual Default AttackMove ArcherTower,SwordsmanTower
-1 Individual Default AttackMove ArcherTower,SwordsmanTower
-1 Individual Default AttackMove ArcherTower,SwordsmanTower
-1 Small     Default AttackMove ArcherTower,SwordsmanTower
-2 Medium     Default AttackMove Center,MageTower
-6 Medium      Default AttackMove SwordsmanTower
-15 Small      Default AttackMove AbilityTower
-20 Small      Default AttackMove ArcherTower
+0 Medium      Default AttackMove SpawnCenter,
+0 Medium     Default AttackMove SpawnCenter,
+0 Individual Default AttackMove SpawnCenter,BottomLeft,TopLeft
+1 Individual Default AttackMove SpawnCenter,BottomLeft,TopLeft
+1 Individual Default AttackMove SpawnCenter,BottomLeft,TopLeft
+1 Small     Default AttackMove SpawnCenter,BottomLeft,TopLeft
+2 Medium     Default AttackMove SpawnCenter,Center,TopRight
+6 Medium      Default AttackMove SpawnCenter,TopLeft
+15 Small      Default AttackMove SpawnCenter,BottomRight
+20 Small      Default AttackMove SpawnCenter,BottomLeft
 
 @EnemyWave 35
-0 Medium    Default AttackMove ArcherTower
-2 Small    Default AttackMove AbilityTower,MageTower
-4 Medium  Default AttackMove ArcherTower,AbilityTower,MageTower
-15 Medium    Default AttackMove King
-18 Medium    Default AttackMove ArcherTower
-20 Medium    Default AttackMove King
+0 Medium    Default AttackMove SpawnCenter,BottomLeft
+2 Small    Default AttackMove SpawnCenter,BottomRight,TopRight
+4 Medium  Default AttackMove SpawnCenter,BottomLeft,BottomRight,TopRight
+15 Medium    Default AttackMove SpawnCenter,King
+18 Medium    Default AttackMove SpawnCenter,BottomLeft
+20 Medium    Default AttackMove SpawnCenter,King
 
 @EnemyWave 35
-0 Large    Default AttackMove ArcherTower
-1 Large    Default AttackMove CenterRight,MageTower
-6 Medium    Default AttackMove ArcherTower
-7 Small    Default AttackMove
+0 Large    Default AttackMove SpawnCenter,BottomLeft
+1 Large    Default AttackMove SpawnCenter,CenterRight,TopRight
+6 Medium    Default AttackMove SpawnCenter,BottomLeft
+7 Small    Default AttackMove SpawnCenter,
