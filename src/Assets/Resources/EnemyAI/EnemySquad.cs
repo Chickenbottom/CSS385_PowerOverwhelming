@@ -17,7 +17,9 @@ class EnemySquad
         mSquad.SetDestination(mWaypoints[0]);
     }
 
-    public EnemySquad (int size, float spawnTime = 0f, Vector3? spawnLocation = null)
+    public EnemySquad (int size, float spawnTime = 0f, 
+	                   Vector3? spawnLocation = null, 
+	                   UnitType unitType = UnitType.Peasant)
     {
         if (mSquadPrefab == null) 
             mSquadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
@@ -28,6 +30,7 @@ class EnemySquad
 
         mSquadSize = size;
         mSpawnTime = spawnTime;
+		mUnitType = unitType;
         
         mWaypoints = new List<Vector3> ();
     }
@@ -60,7 +63,8 @@ class EnemySquad
         
     private int mCurrentWaypoint;
     private int mSquadSize;
-    
+	private UnitType mUnitType;
+
     private void UpdateDestination ()
     {
         if (mSquad == null) // squad has not spawned yet
@@ -79,7 +83,7 @@ class EnemySquad
         Squad squad = o.GetComponent<Squad> ();
         
         squad.NumSquadMembers = size;
-        squad.Spawn (mSpawnLocation.Value, UnitType.Peasant, Allegiance.AI);
+        squad.Spawn (mSpawnLocation.Value, mUnitType, Allegiance.AI);
         
         mSquad = squad;
         mSquad.SetDestination (mWaypoints [0]);
