@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 
 
 public enum Era{
@@ -11,24 +11,25 @@ public enum Era{
 	Future = 4,
 };
 
-public class LevelLoaderButtonBehavior : MonoBehaviour {
+public class LevelLoaderButtonBehavior : ButtonBehaviour {
 
 
-	public Sprite mButtonDown;
-	public Sprite mButton;
 	public Sprite mLocked;
-	public Sprite mLockedDown;
-	public Sprite mButtonSelected;
+	public Sprite mLockedOver;
+//	public Sprite mButtonSelected;
 	public Era mEra;
 	public GameObject mLevelSelectionButtons;
+//	public GameObject mEraButtons;
 
 	bool mLevelLocked;
 
 	// Use this for initialization
 	void Start () {
 
+        
+
 		//mLevelSelectionButtons.SetActive(false);
-		GameState.CurrentEra = Era.Medieval;
+        GameState.CurrentEra = (Era)int.Parse(GameObject.Find("SaveLoad").GetComponent<SaveLoad>().GetInfo(SaveLoad.SAVEFILE.Level)[0]);
 		if(mEra <= GameState.CurrentEra)
 			mLevelLocked = false;
 		else
@@ -36,7 +37,7 @@ public class LevelLoaderButtonBehavior : MonoBehaviour {
 
 		if(mLevelLocked){
 			mButton = mLocked;
-			mButtonDown = mLockedDown;
+			mButtonOver = mLockedOver;
 		}
 		gameObject.GetComponent<SpriteRenderer> ().sprite = mButton;
 	}
@@ -46,18 +47,23 @@ public class LevelLoaderButtonBehavior : MonoBehaviour {
 		
 	}
 	void OnMouseOver(){
-		gameObject.GetComponent<SpriteRenderer> ().sprite = mButtonDown;
+		gameObject.GetComponent<SpriteRenderer> ().sprite = mButtonOver;
 	}
 	void OnMouseExit(){
 		gameObject.GetComponent<SpriteRenderer> ().sprite = mButton;
 	}
 	void OnMouseDown(){
 		if(mEra <= GameState.CurrentEra){
+			ChangeScreen();	
+			DifficultyLoader.mCurrentEra = mEra;
 			mLevelSelectionButtons.SetActive(true);
-			gameObject.GetComponent<SpriteRenderer> ().sprite = mButtonSelected;
+			GameObject.Find("LevelPicture").GetComponent<SpriteRenderer>().sprite = mButton;
+			//mEraButtons.SetActive(false);
+			GameObject.Find("EraButtons").SetActive(false);
 		}
 	}
 	public Era GetEra(){
 		return mEra;
 	}
+
 }
