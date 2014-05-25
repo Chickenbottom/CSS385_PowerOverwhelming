@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InGameMenuQuitButton : ButtonBehaviour {
+public class PauseMenuTimelineButton :  ButtonBehaviour {
 
-	public GameObject mInGameMenuFrame;
 	public GameObject mConfirmQuitFrame;
+	public GameObject mPauseMenuFrame;
 	public DestinationBehavior destination;
-
+	
 	void OnMouseDown(){
 		ChangeScreen();
-		destination.mDestination = "Menu";
+		destination.mDestination = "LevelLoader";
 		mConfirmQuitFrame.SetActive(true);
-		mInGameMenuFrame.SetActive(false);
+		mPauseMenuFrame.SetActive(false);
 	}
 }

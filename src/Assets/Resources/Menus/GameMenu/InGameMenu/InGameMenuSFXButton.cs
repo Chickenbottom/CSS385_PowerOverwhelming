@@ -13,11 +13,11 @@ public class InGameMenuSFXButton : InGameMenuButtonBehavior {
 	
 	// Update is called once per frame
 	void Update () {
-		mSFXText.text = ((int)mSliderValue).ToString();
+		//mSFXText.text = ((int)mSliderValue).ToString();
 		//GameObject.Find("GameManager").GetComponent<GameManager>().MusicVolume = mSliderValue/100.0f;		
 	}
 	void OnGUI() {
-		mSliderValue = GUI.HorizontalSlider(new Rect(240f, 350f, 200, 20), mSliderValue, 0.0f, 100.0f);	
+		mSliderValue = GUI.HorizontalSlider(new Rect(240f, 320f, 200, 20), mSliderValue, 0.0f, 100.0f);	
 	}
 	public override void MuteUnmute ()
 	{	

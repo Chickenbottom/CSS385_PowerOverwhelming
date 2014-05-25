@@ -5,10 +5,12 @@ public class PauseMenuQuitButton : ButtonBehaviour {
 
 	public GameObject mConfirmQuitFrame;
 	public GameObject mPauseMenuFrame;
+	public DestinationBehavior destination;
 
 	void OnMouseDown(){
-		ChangeScreen();
-		mConfirmQuitFrame.SetActive(true);
-		mPauseMenuFrame.SetActive(false);
+			ChangeScreen();
+			destination.mDestination = "Menu";
+			mConfirmQuitFrame.SetActive(true);
+			mPauseMenuFrame.SetActive(false);
 	}
 }

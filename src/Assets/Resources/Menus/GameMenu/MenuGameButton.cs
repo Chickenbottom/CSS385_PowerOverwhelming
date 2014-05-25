@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuGameButton : MonoBehaviour {
+public class MenuGameButton : ButtonBehaviour {
 
 	// Use this for initialization
 	const float kMenuInterval = 0.3f;
 	float mPreviousMenuInterval = 0f;
+
+	public WinLoseBehavior mButtons;
 	public GameObject GameMenuFrame;
 	void Start () {
 	
@@ -13,22 +15,14 @@ public class MenuGameButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Time.timeScale == 1) // If paused do nothing
-		if(Time.realtimeSinceStartup - mPreviousMenuInterval > kMenuInterval){ // get one key press
-			if(Input.GetKey(KeyCode.Escape)){
-				OnMouseDown();
-				mPreviousMenuInterval = Time.realtimeSinceStartup;
-				GameObject.Find("GameMenuResumeButton").GetComponent<InGameMenuResumeButton>().SetPauseInterval(Time.realtimeSinceStartup);	
-			}
-		}
+		if(Input.GetKeyDown(KeyCode.Escape))
+			OnMouseDown();
 	}
 	void OnMouseDown(){
-		if(Time.timeScale == 1){
+		if(Time.timeScale == 1 && !GameState.WonGame && !GameState.LostGame){
 			Time.timeScale = 0;
 			GameMenuFrame.SetActive(true);
 		}
 	}
-	public void setPreviousMenuInterval(float t){
-		mPreviousMenuInterval = t;
-	}
+
 }

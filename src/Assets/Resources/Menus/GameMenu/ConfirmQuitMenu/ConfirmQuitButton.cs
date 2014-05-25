@@ -3,18 +3,13 @@ using System.Collections;
 
 public class ConfirmQuitButton : ButtonBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
+	public DestinationBehavior destination;
 
-	}
 	void OnMouseDown(){
 		ChangeScreen();
 		Time.timeScale = 1;
-		Application.LoadLevel("LevelLoader");
+		string temp = destination.mDestination;
+		Application.LoadLevel(destination.mDestination);
 	}
 
 }

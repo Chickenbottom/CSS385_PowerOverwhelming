@@ -12,11 +12,11 @@ public class InGameMenuMusicButton : InGameMenuButtonBehavior {
 	
 	// Update is called once per frame
 	void Update () {
-		VolumeReadout.text =((int)mSliderValue).ToString();
+		//VolumeReadout.text =((int)mSliderValue).ToString();
 		GameObject.Find("GameManager").GetComponent<GameManager>().SetMusicVolume(mSliderValue/100.0f);
 	}
 	void OnGUI() {
-		mSliderValue = GUI.HorizontalSlider(new Rect(240f, 275f, 200, 20), mSliderValue, 0.0f, 100.0f);		
+		mSliderValue = GUI.HorizontalSlider(new Rect(240f, 250f, 200, 20), mSliderValue, 0.0f, 100.0f);		
 	}
 	public override void MuteUnmute ()
 	{	

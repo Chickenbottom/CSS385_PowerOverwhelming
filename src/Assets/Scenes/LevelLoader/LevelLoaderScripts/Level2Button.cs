@@ -4,7 +4,7 @@ using System.Collections;
 public class Level2Button : ButtonBehaviour {
 
 	void OnMouseDown(){
-		DifficultyLoader.mCurrentLevel = "Level2";
+		DifficultyLoader.mCurrentLevel = "Level.2";
 		DifficultyLoader.LoadGame();
 	}
 }

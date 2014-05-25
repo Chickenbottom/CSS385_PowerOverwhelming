@@ -19,7 +19,7 @@ public class LevelLoaderButtonBehavior : ButtonBehaviour {
 //	public Sprite mButtonSelected;
 	public Era mEra;
 	public GameObject mLevelSelectionButtons;
-//	public GameObject mEraButtons;
+	public GameObject mEraButtons;
 
 	bool mLevelLocked;
 
@@ -29,7 +29,8 @@ public class LevelLoaderButtonBehavior : ButtonBehaviour {
         
 
 		//mLevelSelectionButtons.SetActive(false);
-        GameState.CurrentEra = (Era)int.Parse(GameObject.Find("SaveLoad").GetComponent<SaveLoad>().GetInfo(SaveLoad.SAVEFILE.Level)[0]);
+//        GameState.CurrentEra = (Era)int.Parse(GameObject.Find("SaveLoad").GetComponent<SaveLoad>().GetInfo(SaveLoad.SAVEFILE.Level)[0]);
+		GameState.CurrentEra = Era.Japanese;
 		if(mEra <= GameState.CurrentEra)
 			mLevelLocked = false;
 		else
@@ -46,17 +47,18 @@ public class LevelLoaderButtonBehavior : ButtonBehaviour {
 	void Update () {
 		
 	}
-	void OnMouseOver(){
-		gameObject.GetComponent<SpriteRenderer> ().sprite = mButtonOver;
-	}
-	void OnMouseExit(){
-		gameObject.GetComponent<SpriteRenderer> ().sprite = mButton;
-	}
+	//void OnMouseOver(){
+	//	gameObject.GetComponent<SpriteRenderer> ().sprite = mButtonOver;
+	//}
+	//void OnMouseExit(){
+	//	gameObject.GetComponent<SpriteRenderer> ().sprite = mButton;
+	//}
 	void OnMouseDown(){
 		if(mEra <= GameState.CurrentEra){
 			ChangeScreen();	
 			DifficultyLoader.mCurrentEra = mEra;
 			mLevelSelectionButtons.SetActive(true);
+			mEraButtons.SetActive(false);
 			GameObject.Find("LevelPicture").GetComponent<SpriteRenderer>().sprite = mButton;
 			//mEraButtons.SetActive(false);
 			GameObject.Find("EraButtons").SetActive(false);

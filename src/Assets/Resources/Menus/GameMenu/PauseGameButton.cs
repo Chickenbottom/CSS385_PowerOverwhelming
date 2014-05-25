@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PauseGameButton : MonoBehaviour
+public class PauseGameButton : ButtonBehaviour
 {
 
 		public GameObject mPauseMenuObject;
+		public WinLoseBehavior mButtons;	
 		const float kPauseInterval = 0.3f;
 		float mPreviousPauseInterval = 0f;
+		
 		// Use this for initialization
 		void Start ()
 		{
@@ -16,27 +18,15 @@ public class PauseGameButton : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
-
-			if (Time.timeScale == 1) {// If paused do nothing
-
-				if (Input.GetKeyDown (KeyCode.Space)) {
-					OnMouseDown ();
-					mPreviousPauseInterval = Time.realtimeSinceStartup;
-					GameObject.Find ("PauseMenuResumeButton").GetComponent<PauseMenuResumeButton> ().SetPauseInterval (Time.realtimeSinceStartup);		
-				}
-			}
+			if (Input.GetKeyDown (KeyCode.Space))
+				OnMouseDown ();
 		}
 
 		void OnMouseDown ()
 		{
-				if (Time.timeScale == 1) {
-						mPauseMenuObject.SetActive (true);
-						Time.timeScale = 0;
+			if (Time.timeScale == 1 && !GameState.WonGame && !GameState.LostGame) {
+				mPauseMenuObject.SetActive (true);
+				Time.timeScale = 0;
 				}
-		}
-
-		public void SetPauseInterval (float t)
-		{
-				mPreviousPauseInterval = t;
 		}
 }
