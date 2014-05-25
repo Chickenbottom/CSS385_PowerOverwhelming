@@ -61,8 +61,6 @@ public class GameState
         s.Add("" + (int)CurrentEra, SaveLoad.SAVEFILE.Level);
         s.Add("" + Gold, SaveLoad.SAVEFILE.Level);
         s.Save();
-        //GameObject.Find("LoseFrame").GetComponent<LoseGame>().LostGame();
-        //Application.LoadLevel("LevelLoader");
     }
     
     public static void TriggerWin ()
@@ -73,11 +71,6 @@ public class GameState
         s.Add("" + (int)CurrentEra + 1, SaveLoad.SAVEFILE.Level);
         s.Add("" + Gold, SaveLoad.SAVEFILE.Level);
         s.Save();
-        //GameObject.Find("WinFrame").GetComponent<WinGame>().WonGame();
-        //Debug.Log ("You win!");
-        //GUIText text = GameObject.Find("DialogueLeft").GetComponent<GUIText>();
-        //text.text = "The peasants are gone!";
-        //Application.LoadLevel("LevelLoader");
     }
     
     public static void UpdateKingsHealth (int value)

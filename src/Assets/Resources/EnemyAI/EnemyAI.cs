@@ -7,16 +7,16 @@ using System.IO;
 public enum Waypoint
 {
     King = 0,
-    TowerLeft,
-    TowerRight,
-    SwordsmanTower,
-    MageTower,
+    BottomLeft,
+    BottomRight,
+    TopLeft,
+    TopRight,
     Center,
     CenterLeft,
     CenterRight,
-    Left,
-    Middle,
-    Right,
+    SpawnLeft,
+    SpawnCenter,
+    SpawnRight,
 }
 
 public enum SquadPreset
@@ -50,6 +50,7 @@ public static class EnumHelper
 public class EnemyAI : MonoBehaviour
 {
     public Dictionary<Waypoint, Vector3> Waypoints;
+    public int CurrentLevel = 5;
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
@@ -78,33 +79,30 @@ public class EnemyAI : MonoBehaviour
         }
     }
     
-    void Awake ()
+    void Start ()
     {
         units = new List<EnemySquad> ();
         
-        // TODO grab these locations from the map
         Waypoints = new Dictionary<Waypoint, Vector3> ();
-        Waypoints.Add (Waypoint.TowerRight, GameObject.Find("TowerRight").transform.position);
-        Waypoints.Add (Waypoint.TowerLeft, GameObject.Find("TowerLeft").transform.position);
-        Waypoints.Add (Waypoint.MageTower, new Vector3 (43, 50, 0));
-        Waypoints.Add (Waypoint.SwordsmanTower, new Vector3 (-108, 50, 0));
-        Waypoints.Add (Waypoint.King, GameObject.Find("KingWP").transform.position);
-        Waypoints.Add (Waypoint.Center, GameObject.Find("CenterWP").transform.position);
-        Waypoints.Add (Waypoint.CenterLeft, new Vector3 (-93, 0, 0));
-        Waypoints.Add (Waypoint.CenterRight, new Vector3 (-6, 0, 0));
-        Waypoints.Add (Waypoint.Left, GameObject.Find("SpawnLeft").transform.position);
-        Waypoints.Add (Waypoint.Middle, GameObject.Find("SpawnCenter").transform.position);
-        Waypoints.Add (Waypoint.Right, GameObject.Find("SpawnRight").transform.position);
+        
+        Waypoints.Add (Waypoint.BottomLeft, GameObject.Find("WP_BottomLeft").transform.position);
+        Waypoints.Add (Waypoint.BottomRight, GameObject.Find("WP_BottomRight").transform.position);
+        Waypoints.Add (Waypoint.TopRight, GameObject.Find("WP_TopRight").transform.position);
+        Waypoints.Add (Waypoint.TopLeft, GameObject.Find("WP_TopLeft").transform.position);
+        Waypoints.Add (Waypoint.CenterRight, GameObject.Find("WP_CenterRight").transform.position);
+        Waypoints.Add (Waypoint.CenterLeft, GameObject.Find("WP_CenterRight").transform.position);
+        Waypoints.Add (Waypoint.King, GameObject.Find("WP_King").transform.position);
+        Waypoints.Add (Waypoint.Center, GameObject.Find("WP_Center").transform.position);
+        Waypoints.Add (Waypoint.SpawnLeft, GameObject.Find("WP_SpawnLeft").transform.position);
+        Waypoints.Add (Waypoint.SpawnCenter, GameObject.Find("WP_SpawnCenter").transform.position);
+        Waypoints.Add (Waypoint.SpawnRight, GameObject.Find("WP_SpawnRight").transform.position);
         
         GameObject.Find ("Waypoints").SetActive(false);
         
-        mSpawnPoint = new Queue<Vector3>();
-        mSpawnPoint.Enqueue(Waypoints[Waypoint.Left]);
-        mSpawnPoint.Enqueue(Waypoints[Waypoint.Middle]);
-        mSpawnPoint.Enqueue(Waypoints[Waypoint.Right]);
+        Debug.Log ("Loading AI level " + CurrentLevel);
         
         string aiData = "Data/AI_Level";
-        aiData += GameState.CurrentLevel.ToString ();
+        aiData += CurrentLevel.ToString ();
         aiData += ".txt";
         ReadWavesFromFile (aiData);
         

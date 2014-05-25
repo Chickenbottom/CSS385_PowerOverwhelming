@@ -164,6 +164,7 @@ public class Squad : MonoBehaviour
         this.GetComponent<SpriteRenderer>().transform.localScale = new Vector3(sightRadius / 3, sightRadius / 3, 0f);
         
         this.SetDestination (this.RallyPoint);
+        this.ShowSelector(false);
     }
     
     public void ShowSelector (bool status)

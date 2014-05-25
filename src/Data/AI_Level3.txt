@@ -1,30 +1,30 @@
 3
 @EnemyWave 50
-0 Large     Default AttackMove Middle
-1 Medium    Default AttackMove Left,TowerLeft
-3 Medium    Default AttackMove Right,TowerRight
-#5 Large     Default AttackMove Left,TowerLeft
-16 Medium    Default AttackMove Left,TowerLeft
-17 Medium    Default AttackMove Right,TowerRight
-18 Large     Default AttackMove Right,TowerRight
+0 Large     Default AttackMove SpawnCenter
+1 Medium    Default AttackMove SpawnLeft,BottomLeft
+3 Medium    Default AttackMove SpawnRight,BottomRight
+#5 Large     Default AttackMove SpawnLeft,BottomLeft
+16 Medium    Default AttackMove SpawnLeft,BottomLeft
+17 Medium    Default AttackMove SpawnRight,BottomRight
+18 Large     Default AttackMove SpawnRight,BottomRight
 
 @EnemyWave 30
-0 Individual Default AttackMove Left,TowerLeft,SwordsmanTower
-1 Large     Default AttackMove Left,TowerLeft,SwordsmanTower
-2 Large     Default AttackMove Right,TowerRight
-#3 Medium     Default AttackMove Left,TowerLeft
-6 Large     Default AttackMove Left,TowerLeft
-7 Individual     Default AttackMove Right,TowerRight
-7 Individual     Default AttackMove Right,TowerRight
-7 Individual     Default AttackMove Right,TowerRight
-7 Individual     Default AttackMove Right,TowerRight
+0 Individual Default AttackMove SpawnLeft,BottomLeft,TopLeft
+1 Large     Default AttackMove SpawnLeft,BottomLeft,TopLeft
+2 Large     Default AttackMove SpawnRight,BottomRight
+#3 Medium     Default AttackMove SpawnLeft,BottomLeft
+6 Large     Default AttackMove SpawnLeft,BottomLeft
+7 Individual     Default AttackMove SpawnRight,BottomRight
+7 Individual     Default AttackMove SpawnRight,BottomRight
+7 Individual     Default AttackMove SpawnRight,BottomRight
+7 Individual     Default AttackMove SpawnRight,BottomRight
 
 @EnemyWave 30
-0 Large    Default AttackMove Right,TowerLeft
-1 Large     Default AttackMove Left,TowerRight
-2 Medium    Default AttackMove Left,TowerLeft
-3 Medium    Default AttackMove Right,TowerRight
-#4 Medium    Default AttackMove Middle,TowerLeft
-#5 Medium    Default AttackMove Middle,TowerRight
-#6 Medium    Default AttackMove Middle,MageTower
-#7 Medium    Default AttackMove Middle,SwordsmanTower
+0 Large    Default AttackMove SpawnRight,BottomLeft
+1 Large     Default AttackMove SpawnLeft,BottomRight
+2 Medium    Default AttackMove SpawnLeft,BottomLeft
+3 Medium    Default AttackMove SpawnRight,BottomRight
+#4 Medium    Default AttackMove SpawnCenter,BottomLeft
+#5 Medium    Default AttackMove SpawnCenter,BottomRight
+#6 Medium    Default AttackMove SpawnCenter,TopRight
+#7 Medium    Default AttackMove SpawnCenter,TopLeft

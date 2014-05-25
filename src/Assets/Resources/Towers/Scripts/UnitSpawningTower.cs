@@ -47,11 +47,12 @@ public class UnitSpawningTower : Tower
     
     void Update ()
     {
-        // only advance the spawn timer if you can produce more squads
-        if (squadManager.NumSquads () >= mMaxNumSquads)
-            return;
-            
         mSpawnTimer -= Time.deltaTime;
+        
+        // only spawn squads if you are able to
+        if (squadManager.NumSquads () >= mMaxNumSquads)
+            return;  
+        
         // Immediately gain a squad if you retake a tower after a long enough time
         if (mSpawnTimer < 0 && this.Allegiance == Allegiance.Rodelle) {
             mSpawnTimer = mSpawnTime;
