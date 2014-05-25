@@ -7,14 +7,16 @@ public enum BonusSubject : int {
 	Melee = 0,
 	Ranged = 1,
 	Special = 2,
-	Ability = 3,
+	HealTower = 3,
+	AOETower = 4,
+	BuffTower = 5,
 }
 
 public enum BonusType : int{
 	Health = 0,
 	CoolDown = 1,
 	SpawnSize = 2,
-	AmpAbility = 3,
+	TowerModifier = 3,
 }
 
 
@@ -59,12 +61,7 @@ public class Upgrades : MonoBehaviour
 		
 	}
 	
-	// Update is called once per frame
-	void Update()
-	{
-		
-	}
-	
+
 	void LoadBonuses()
 	{
 		mFile = new StreamReader(path);	
@@ -83,7 +80,7 @@ public class Upgrades : MonoBehaviour
 				continue;
 
 
-			int ability = ci.CompareInfo.IndexOf(numbers[0], "Ability", System.Globalization.CompareOptions.IgnoreCase);
+			int ability = ci.CompareInfo.IndexOf(numbers[0], "Heal", System.Globalization.CompareOptions.IgnoreCase);
 			int melee = ci.CompareInfo.IndexOf(numbers[0], "Melee", System.Globalization.CompareOptions.IgnoreCase);
 			int ranged = ci.CompareInfo.IndexOf(numbers[0], "Ranged", System.Globalization.CompareOptions.IgnoreCase);
 			int magic = ci.CompareInfo.IndexOf(numbers[0], "Special", System.Globalization.CompareOptions.IgnoreCase);
@@ -91,11 +88,11 @@ public class Upgrades : MonoBehaviour
 			int health = ci.CompareInfo.IndexOf(numbers[1], "Health", System.Globalization.CompareOptions.IgnoreCase);
 			int coolD = ci.CompareInfo.IndexOf(numbers[1], "CoolDown", System.Globalization.CompareOptions.IgnoreCase);
 			int spawnSize = ci.CompareInfo.IndexOf(numbers[1], "SpawnSize", System.Globalization.CompareOptions.IgnoreCase);
-			int ampAbiilty = ci.CompareInfo.IndexOf(numbers[1], "AmpAbility", System.Globalization.CompareOptions.IgnoreCase);
+			int ampAbiilty = ci.CompareInfo.IndexOf(numbers[1], "TowerModifier", System.Globalization.CompareOptions.IgnoreCase);
 			
 
 			if(ability >= 0)
-				curSubject = (int)BonusSubject.Ability;
+				curSubject = (int)BonusSubject.HealTower;
 			else if(melee >= 0)
 				curSubject = (int)BonusSubject.Melee;
 			else if(ranged >= 0)
@@ -108,7 +105,7 @@ public class Upgrades : MonoBehaviour
 			else if(coolD >= 0)
 				curBonus = (int)BonusType.CoolDown;
 			else if(ampAbiilty >= 0)
-				curBonus = (int)BonusType.AmpAbility;
+				curBonus = (int)BonusType.TowerModifier;
 			else if(spawnSize >= 0)
 				curBonus = (int)BonusType.SpawnSize;
 		
