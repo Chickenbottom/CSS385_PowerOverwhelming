@@ -20,7 +20,13 @@ public class EnemySpawningTower : Tower
                 
     public void SpawnUnit ()
     {
-        GameObject.Find("AI").GetComponent<EnemyAI>().AddSquad(this.transform.position);
+		if (mUnitCount == 0)
+			return;
+
+		int squadSize = Mathf.Min (mUnitCount, 4);
+
+		mUnitCount -= squadSize;
+        GameObject.Find("AI").GetComponent<EnemyAI>().AddSquad(squadSize, this.transform.position);
     }
     
     public override Vector3 Position {
@@ -38,6 +44,7 @@ public class EnemySpawningTower : Tower
     
     private float mSpawnTime;
     private float mLastSpawnTime;
+	private int mUnitCount;
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
@@ -63,8 +70,8 @@ public class EnemySpawningTower : Tower
         Unit unit = other.gameObject.GetComponent<Unit> ();
         
         if (unit != null && unit.Squad.UnitType == UnitType.Peasant) {
-            unit.Squad.NumSquadMembers = 1;
-            unit.Squad.Spawn (Tent.transform.position, this.UnitSpawnType, Allegiance.AI);
+			unit.Damage(unit.MaxHealth);
+			mUnitCount ++;
         }
     }
     
@@ -73,7 +80,7 @@ public class EnemySpawningTower : Tower
         base.Awake ();
         this.Allegiance = Allegiance.Rodelle;
         towerType = TowerType.UnitSpawner;
-        mSpawnTime = 30;
+        mSpawnTime = 3;
         mLastSpawnTime = Time.time;
         mHealth = 100;
     }
