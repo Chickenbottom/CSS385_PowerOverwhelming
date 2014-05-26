@@ -67,6 +67,8 @@ public class EnemyAI : MonoBehaviour
     void Awake ()
     {
         this.ValidatePresets();
+        GameState.CurrentEra = this.CurrentEra;
+        GameState.CurrentLevel = this.CurrentLevel;
     }
     
     void Update ()
