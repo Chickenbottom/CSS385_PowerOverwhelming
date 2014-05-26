@@ -67,23 +67,63 @@ public class UnitSpawningTower : Tower
     private int mMaxNumSquads;
     private bool mIsSelected;
     
+    private int mGarrisonedPeasants = 0;
+    private float mEnemySpawnTime = 3.0f;
+    private float mEnemySpawnTimer;
+    
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
     ///////////////////////////////////////////////////////////////////////////////////
     
     void Update ()
     {
-	    mSpawnTimer -= Time.deltaTime;
+	    UpdateFriendlySpawnTimer();
+        UpdateEnemySpawnTimer();
+    }
+    
+    private void UpdateFriendlySpawnTimer ()
+    {
+        mSpawnTimer -= Time.deltaTime;
         
         // only spawn squads if you are able to
         if (squadManager.NumSquads () >= mMaxNumSquads)
             return;  
-		
+        
         // Immediately gain a squad if you retake a tower after a long enough time
         if (mSpawnTimer < 0 && this.Allegiance == Allegiance.Rodelle) {
             mSpawnTimer = mSpawnTime;
             this.SpawnUnit ();
         }
+    }
+    
+    private void UpdateEnemySpawnTimer ()
+    {
+        // Only spawns squads if the enemy owns the tower
+        if (this.Allegiance == Allegiance.Rodelle) {
+            // reset the spawn timer and number of peasants
+            mGarrisonedPeasants = 0;
+            mEnemySpawnTimer = mEnemySpawnTime;
+            return;
+        }
+        
+        mEnemySpawnTimer -= Time.deltaTime;
+        
+        if (mEnemySpawnTimer < 0) {
+            mEnemySpawnTimer = mEnemySpawnTime;
+            this.SpawnEnemyUnit ();
+        }
+    }
+    
+    private void SpawnEnemyUnit()
+    {
+        if (mGarrisonedPeasants <= 0)
+            return;
+        
+        int squadSize = Mathf.Min (mGarrisonedPeasants, 3);
+        
+        mGarrisonedPeasants -= (squadSize + 1); // lose a peasant when being armed
+        
+        GameObject.Find ("AI").GetComponent<EnemyAI> ().AddSquad (squadSize, this.transform.position);
     }
     
     protected override void Awake ()
@@ -93,6 +133,7 @@ public class UnitSpawningTower : Tower
         mSpawnTime = GameState.SpawnTimes [this.UnitSpawnType];
         mSpawnTimer = Time.time;
         mMaxNumSquads = 2; // TODO get from game state
+        mEnemySpawnTimer = mEnemySpawnTime;
     }
     
     void Start ()
@@ -110,8 +151,8 @@ public class UnitSpawningTower : Tower
         Unit unit = other.gameObject.GetComponent<Unit> ();
                 
         if (unit != null && unit.Squad.UnitType == UnitType.Peasant) {
-            unit.Squad.NumSquadMembers = 2;
-            unit.Squad.Spawn (SpawnPoint.transform.position, this.UnitSpawnType, Allegiance.AI);
+            unit.Damage (unit.MaxHealth);
+            mGarrisonedPeasants ++;
         }
     }
 }

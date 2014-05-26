@@ -25,39 +25,45 @@ public class EnemySpawningTower : Tower
         // does nothing
     }
 
-    public void SpawnUnit ()
+    private void SpawnEnemyUnit()
     {
-        if (mUnitCount == 0)
+        if (mGarrisonedPeasants <= 0)
             return;
-
-        int squadSize = Mathf.Min (mUnitCount, 4);
-
-        mUnitCount -= squadSize;
+        
+        int squadSize = Mathf.Min (mGarrisonedPeasants, 3);
+        
+        mGarrisonedPeasants -= (squadSize + 1); // lose a peasant when being armed
+        
         GameObject.Find ("AI").GetComponent<EnemyAI> ().AddSquad (squadSize, this.transform.position);
     }
    
-    
     ///////////////////////////////////////////////////////////////////////////////////
     // Private
     /////////////////////////////////////////////////////////////////////////////////// 
     
-    private float mSpawnTime;
-    private float mLastSpawnTime;
-    private int mUnitCount;
+    private float mEnemySpawnTime = 3; // 3 seconds for peasants to arm themselves
+    private float mEnemySpawnTimer;
+    private int mGarrisonedPeasants;
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
     ///////////////////////////////////////////////////////////////////////////////////
     
     void Update ()
-    {
+    {        
         // Only spawns squads if the enemy owns the tower
-        if (this.Allegiance == Allegiance.Rodelle)
+        if (this.Allegiance == Allegiance.Rodelle) {
+            // reset the spawn timer and number of peasants
+            mGarrisonedPeasants = 0;
+            mEnemySpawnTimer = mEnemySpawnTime;
             return;
+        }
         
-        if (Time.time - mLastSpawnTime > mSpawnTime) {
-            mLastSpawnTime = Time.time;
-            this.SpawnUnit ();
+        mEnemySpawnTimer -= Time.deltaTime;
+        
+        if (mEnemySpawnTimer < 0) {
+            mEnemySpawnTimer = mEnemySpawnTime;
+            this.SpawnEnemyUnit ();
         }
     }
     
@@ -70,7 +76,7 @@ public class EnemySpawningTower : Tower
         
         if (unit != null && unit.Squad.UnitType == UnitType.Peasant) {
             unit.Damage (unit.MaxHealth);
-            mUnitCount ++;
+            mGarrisonedPeasants ++;
         }
     }
     
@@ -79,8 +85,6 @@ public class EnemySpawningTower : Tower
         base.Awake ();
         this.Allegiance = Allegiance.Rodelle;
         towerType = TowerType.UnitSpawner;
-        mSpawnTime = 3;
-        mLastSpawnTime = Time.time;
-        mHealth = 100;
+        mEnemySpawnTimer = mEnemySpawnTime;
     }
 }
