@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PauseGameButton : ButtonBehaviour
 {
+
 		public GameObject mPauseMenuObject;
 		public WinLoseBehavior mButtons;	
 		const float kPauseInterval = 0.3f;

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PauseMenuResumeButton : ButtonBehaviour
-{
+public class PauseMenuResumeButton : ButtonBehaviour {
+
 	public GameObject mPauseMenuFrame;
 	// Use this for initialization
 	void Start () {
