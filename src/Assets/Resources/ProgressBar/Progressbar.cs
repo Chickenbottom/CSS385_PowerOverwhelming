@@ -31,10 +31,13 @@ public class Progressbar : MonoBehaviour
     private Texture2D foreground;
     private Texture2D border;
     
-    void Start ()
+    void Awake ()
     {
         Shape.enabled = false;
-        
+    }
+    
+    void Start ()
+    {
         Bounds b = Shape.bounds;
         mGuiBox = new Rect (b.min.x, b.min.y, b.size.x, b.size.y);
         
@@ -85,6 +88,5 @@ public class Progressbar : MonoBehaviour
                              foreground, ScaleMode.StretchToFill);
         }
         GUI.EndGroup ();
-        ;
     }
 }
