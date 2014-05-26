@@ -129,9 +129,13 @@ public class EnemyAI : MonoBehaviour
     // Public Methods and Variables
     /////////////////////////////////////////////////////////////////////////////////// 
     
-    public void AddSquad(int size, Vector3 location)
+    public void AddSquad(int size, Vector3 location, UnitType unitType, Vector3? destination = null)
     {
-        EnemySquad es = new EnemySquad(size, 0, location, UnitType.Swordsman);
+        EnemySquad es = new EnemySquad(size, 0, location, unitType);
+        
+        if (destination != null)
+            es.AddWaypoint(destination.Value);
+            
         es.AddWaypoint(Waypoints[Waypoint.King]);
         units.Add(es);
     }

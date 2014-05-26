@@ -7,7 +7,6 @@ public class EnemySpawningTower : Tower
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Inspector Presets
     ///////////////////////////////////////////////////////////////////////////////////
-    public UnitType UnitSpawnType;
     public List<GameObject> SpawnPoints;
     public List<GameObject> SpawnWaypoint;
     
@@ -34,7 +33,31 @@ public class EnemySpawningTower : Tower
         
         mGarrisonedPeasants -= (squadSize + 1); // lose a peasant when being armed
         
-        GameObject.Find ("AI").GetComponent<EnemyAI> ().AddSquad (squadSize, this.transform.position);
+        UnitType unitType = RandomUnitType();
+        
+        // random spawn point and waypoint
+        int r = Random.Range (0, SpawnPoints.Count);
+        Vector3 spawnLocation = SpawnPoints[r].transform.position;
+        Vector3 destination = SpawnWaypoint[r].transform.position;
+        
+        GameObject.Find ("AI").GetComponent<EnemyAI> ().AddSquad (
+            squadSize, this.transform.position, unitType, destination);
+    }
+    
+    private UnitType RandomUnitType()
+    {
+        int type = Random.Range(0, 3);
+        
+        switch (type) {
+        case (0):
+            return UnitType.Archer;
+        case (1):
+            return UnitType.Mage;
+        case (2):
+            return UnitType.Swordsman;
+        default:
+            return UnitType.Swordsman;
+        }
     }
    
     ///////////////////////////////////////////////////////////////////////////////////

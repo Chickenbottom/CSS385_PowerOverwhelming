@@ -123,7 +123,7 @@ public class UnitSpawningTower : Tower
         
         mGarrisonedPeasants -= (squadSize + 1); // lose a peasant when being armed
         
-        GameObject.Find ("AI").GetComponent<EnemyAI> ().AddSquad (squadSize, this.transform.position);
+        GameObject.Find ("AI").GetComponent<EnemyAI> ().AddSquad (squadSize, this.transform.position, this.UnitSpawnType);
     }
     
     protected override void Awake ()
