@@ -83,7 +83,17 @@ public class MouseManager : MonoBehaviour
             
             mSelected[i].SetDestination (destination);
         }
-
+    }
+    
+    private void CheckTowerHotkey(string hotkey, string towerName) 
+    {
+        if (Input.GetButtonDown (hotkey)) {
+            GameObject tower = GameObject.Find(towerName);
+            if (tower == null)
+                return;
+        
+            Select (tower.GetComponent<Tower> ());
+        }
     }
     
     ///////////////////////////////////////////////////////////////////////////////////
@@ -108,20 +118,14 @@ public class MouseManager : MonoBehaviour
             ((UnitSpawningTower)mSelected[0]).SpawnUnit ();
         }
         
-        if (Input.GetButtonDown ("SelectRanged")) {
-            Select (GameObject.Find ("ArcherTower").GetComponent<Tower> ());
-        }
-        if (Input.GetButtonDown ("SelectMelee"))
-            Select (GameObject.Find ("SwordsmanTower").GetComponent<Tower> ());
-        
-        if (Input.GetButtonDown ("SelectSpecial"))
-            Select (GameObject.Find ("MageTower").GetComponent<Tower> ());
-        
-        if (Input.GetButtonDown ("SelectAbility1"))
-            Select (GameObject.Find ("HealTower").GetComponent<Tower> ());
+        CheckTowerHotkey("SelectRanged", "ArcherTower");
+        CheckTowerHotkey("SelectMelee", "SwordsmanTower");
+        CheckTowerHotkey("SelectSpecial", "MageTower");
+        CheckTowerHotkey("SelectHeal", "HealTower");
+        CheckTowerHotkey("SelectAoe", "AoeTower");
+        CheckTowerHotkey("SelectBoost", "BoostTower");
             
         mWasJustSelected = false;
         mTarget = null;
     }
-
 }
