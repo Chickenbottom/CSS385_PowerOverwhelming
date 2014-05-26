@@ -21,7 +21,7 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 4096
   textureSettings:
     filterMode: -1
     aniso: 1
@@ -45,148 +45,148 @@ TextureImporter:
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: towers_0
+    - name: TowerSpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1544
-        width: 197
-        height: 502
+        y: 944
+        width: 140
+        height: 301
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: towers_1
+    - name: TowerSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 213
-        y: 1544
-        width: 204
-        height: 502
+        x: 155
+        y: 944
+        width: 141
+        height: 301
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: towers_2
+    - name: TowerSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 430
-        y: 1544
-        width: 202
-        height: 502
+        x: 310
+        y: 944
+        width: 141
+        height: 301
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: towers_3
+    - name: TowerSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 644
-        y: 1544
-        width: 204
-        height: 502
+        x: 465
+        y: 944
+        width: 140
+        height: 301
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: towers_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1028
-        width: 195
-        height: 503
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: towers_5
-      rect:
-        serializedVersion: 2
-        x: 213
-        y: 1028
-        width: 202
-        height: 503
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: towers_6
-      rect:
-        serializedVersion: 2
-        x: 430
-        y: 1028
-        width: 202
-        height: 503
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: towers_7
-      rect:
-        serializedVersion: 2
-        x: 644
-        y: 1028
-        width: 202
-        height: 503
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: towers_8
+    - name: TowerSpriteSheet_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 515
-        width: 201
-        height: 503
+        y: 630
+        width: 140
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: towers_9
+    - name: TowerSpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 213
-        y: 515
-        width: 204
-        height: 503
+        x: 155
+        y: 630
+        width: 141
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: towers_10
+    - name: TowerSpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 430
-        y: 515
-        width: 202
-        height: 503
+        x: 310
+        y: 630
+        width: 141
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: towers_11
+    - name: TowerSpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 644
-        y: 515
-        width: 204
-        height: 503
+        x: 465
+        y: 630
+        width: 140
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: towers_12
+    - name: TowerSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 315
+        width: 140
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: TowerSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 315
+        width: 141
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: TowerSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 315
+        width: 141
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: TowerSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 315
+        width: 140
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: TowerSpriteSheet_12
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 213
-        height: 503
+        width: 140
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: towers_13
+    - name: TowerSpriteSheet_13
       rect:
         serializedVersion: 2
-        x: 213
+        x: 155
         y: 0
-        width: 208
-        height: 503
+        width: 141
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: towers_14
+    - name: TowerSpriteSheet_14
       rect:
         serializedVersion: 2
-        x: 430
+        x: 310
         y: 0
-        width: 206
-        height: 503
+        width: 141
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: towers_15
+    - name: TowerSpriteSheet_15
       rect:
         serializedVersion: 2
-        x: 644
+        x: 465
         y: 0
-        width: 207
-        height: 503
+        width: 140
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
   spritePackingTag: 
