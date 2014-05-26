@@ -437,17 +437,27 @@ public class Squad : MonoBehaviour, Selectable
     private static void InitializePrefabs ()
     {
         mUnitPrefabs = new Dictionary<UnitType, GameObject> ();
-        mUnitPrefabs.Add (UnitType.Swordsman, Resources.Load ("Units/SwordsmanPrefab") as GameObject);
-        mUnitPrefabs.Add (UnitType.Archer, Resources.Load ("Units/ArcherPrefab") as GameObject);
-        mUnitPrefabs.Add (UnitType.Peasant, Resources.Load ("Units/PeasantPrefab") as GameObject);
-        mUnitPrefabs.Add (UnitType.Mage, Resources.Load ("Units/MagePrefab") as GameObject);
-        mUnitPrefabs.Add (UnitType.King, Resources.Load ("Units/KingPrefab") as GameObject);
+        mUnitPrefabs.Add (UnitType.Swordsman, UnitPrefab(GameState.CurrentEra, "SwordsmanPrefab"));
+        mUnitPrefabs.Add (UnitType.Archer, UnitPrefab(GameState.CurrentEra, "ArcherPrefab"));
+        mUnitPrefabs.Add (UnitType.Mage, UnitPrefab(GameState.CurrentEra, "MagePrefab"));
+        mUnitPrefabs.Add (UnitType.King, UnitPrefab(GameState.CurrentEra, "KingPrefab"));
         
         mEnemyPrefabs = new Dictionary<UnitType, GameObject> ();
-        mEnemyPrefabs.Add (UnitType.Swordsman, Resources.Load ("Units/EnemySwordsmanPrefab") as GameObject);
-        mEnemyPrefabs.Add (UnitType.Archer, Resources.Load ("Units/EnemyArcherPrefab") as GameObject);
-        mEnemyPrefabs.Add (UnitType.Peasant, Resources.Load ("Units/PeasantPrefab") as GameObject);
-        mEnemyPrefabs.Add (UnitType.Mage, Resources.Load ("Units/EnemyMagePrefab") as GameObject);
+        mEnemyPrefabs.Add (UnitType.Swordsman, UnitPrefab(GameState.CurrentEra, "EnemySwordsmanPrefab"));
+        mEnemyPrefabs.Add (UnitType.Archer, UnitPrefab(GameState.CurrentEra, "EnemyArcherPrefab"));
+        mEnemyPrefabs.Add (UnitType.Peasant, UnitPrefab(GameState.CurrentEra, "EnemyPeasantPrefab"));
+        mEnemyPrefabs.Add (UnitType.Mage, UnitPrefab(GameState.CurrentEra, "EnemyMagePrefab"));
+    }
+    
+    private static GameObject UnitPrefab(Era era, string name)
+    {
+        string prefabPath = "Units/Prefabs/";
+        
+        prefabPath += era.ToString();
+        prefabPath += "/";
+        prefabPath += name;
+        
+        return Resources.Load (prefabPath) as GameObject;
     }
     
     private bool HasLowerPriority (Target target)
