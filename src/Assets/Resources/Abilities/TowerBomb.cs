@@ -8,7 +8,7 @@ public class TowerBomb : Ability
     
     void Awake()
     {
-        mCooldown = 12f;
+        mCooldown = 35f;
         mUseTimer = -mCooldown;
     }
     

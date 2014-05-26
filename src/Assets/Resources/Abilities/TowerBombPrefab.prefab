@@ -70,7 +70,7 @@ EllipsoidParticleEmitter:
   serializedVersion: 2
   m_Enabled: 1
   m_Emit: 1
-  minSize: 8
+  minSize: 7
   maxSize: 3
   minEnergy: 1.5
   maxEnergy: 2
@@ -128,7 +128,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: 15
+  m_Radius: 10
   m_Center: {x: 0, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
