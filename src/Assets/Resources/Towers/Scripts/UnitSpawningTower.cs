@@ -7,7 +7,7 @@ public class UnitSpawningTower : Tower
     // Unity Inspector Presets
     ///////////////////////////////////////////////////////////////////////////////////
     public SquadManager squadManager;
-    public GameObject Tent;
+    public GameObject SpawnPoint;
     public UnitType UnitSpawnType;
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ public class UnitSpawningTower : Tower
     
     public void SpawnUnit ()
     {
-        this.squadManager.AddSquad (Tent.transform.position, this.UnitSpawnType);
+        this.squadManager.AddSquad (SpawnPoint.transform.position, this.UnitSpawnType);
         
         if (mIsSelected)
             foreach (Squad s in squadManager.Squads)
@@ -34,7 +34,7 @@ public class UnitSpawningTower : Tower
     }
     
     public override Vector3 Position {
-        get { return this.Tent.transform.position; }
+        get { return this.SpawnPoint.transform.position; }
     }
     
     public override void Select ()
@@ -115,7 +115,7 @@ public class UnitSpawningTower : Tower
                 
         if (unit != null && unit.Squad.UnitType == UnitType.Peasant) {
             unit.Squad.NumSquadMembers = 2;
-            unit.Squad.Spawn (Tent.transform.position, this.UnitSpawnType, Allegiance.AI);
+            unit.Squad.Spawn (SpawnPoint.transform.position, this.UnitSpawnType, Allegiance.AI);
         }
     }
 }

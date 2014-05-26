@@ -50,11 +50,24 @@ public static class EnumHelper
 public class EnemyAI : MonoBehaviour
 {
     public Dictionary<Waypoint, Vector3> Waypoints;
-    public int CurrentLevel = 5;
+    public int CurrentLevel;
+    public Era CurrentEra;
+    
+    private void ValidatePresets ()
+    {
+        if (CurrentLevel == 0) {// || CurrentErra == Era.None
+            Debug.LogError("The level or era was not set in the Unity Inspector.");
+        }
+    }
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
     /////////////////////////////////////////////////////////////////////////////////// 
+    
+    void Awake ()
+    {
+        this.ValidatePresets();
+    }
     
     void Update ()
     {
@@ -101,10 +114,12 @@ public class EnemyAI : MonoBehaviour
         
         Debug.Log ("Loading AI level " + CurrentLevel);
         
-        string aiData = "Data/AI_Level";
-        aiData += CurrentLevel.ToString ();
-        aiData += ".txt";
-        ReadWavesFromFile (aiData);
+        string aiDataPath = "Data/AI/AI_";
+        aiDataPath += CurrentEra.ToString ();
+        aiDataPath += "_";
+        aiDataPath += CurrentLevel.ToString ();
+        aiDataPath += ".txt";
+        ReadWavesFromFile (aiDataPath);
         
         mCurrentWave = 1;
         this.SpawnWave (mCurrentWave);

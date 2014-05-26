@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class ControlPanel : MonoBehaviour
 {
-    public int CurrentLevel;
     public Progressbar KingsHealthBar;
     public Progressbar SwordsmanExperienceBar;
     public Progressbar ArcherExperienceBar;
     public Progressbar MageExperienceBar;
+    public Progressbar HealCooldownBar;
     
     public GUIText SwordsmanLevel;
     public GUIText ArcherLevel;
@@ -23,10 +23,11 @@ public class ControlPanel : MonoBehaviour
     
     private Dictionary<UnitType, Progressbar> mExpBars;
     private Dictionary<UnitType, GUIText> mLevelText;
-	
-    void Awake()
+    private AbilityTower HealTower;
+    
+    void Awake ()
     {
-        GameState.CurrentLevel = this.CurrentLevel;
+        HealTower = GameObject.Find ("HealTower").GetComponent<AbilityTower>();
     }
     
     void Start ()
@@ -60,6 +61,9 @@ public class ControlPanel : MonoBehaviour
             mExpBars [u].UpdateValue ((int)UnitUpgrades.GetStat(u, UnitStat.Experience));
             mLevelText [u].text = ((int)UnitUpgrades.GetStat(u, UnitStat.Level)).ToString();
         }
+        
+        HealCooldownBar.MaxValue = (int)(HealTower.ability.CoolDown * 100);
+        HealCooldownBar.UpdateValue((int)(HealTower.ability.CooldownTimer * 100));
         
         KingsHealthBar.UpdateValue (GameState.KingsHealth);
         GoldCounterText.text = GameState.Gold.ToString ();
