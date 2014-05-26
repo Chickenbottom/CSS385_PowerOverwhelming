@@ -70,7 +70,7 @@ EllipsoidParticleEmitter:
   serializedVersion: 2
   m_Enabled: 1
   m_Emit: 1
-  minSize: 3
+  minSize: 8
   maxSize: 3
   minEnergy: 1.5
   maxEnergy: 2

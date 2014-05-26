@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TowerBomb : Ability
 {
-    protected int mDamage = 1000;
+    protected int mDamage = 60;
     protected static GameObject mTowerBombPrefab;
     
     void Awake()
@@ -13,7 +13,9 @@ public class TowerBomb : Ability
     }
     
     // does nothing
-    public override void UseAbility (Target target) {}
+    public override void UseAbility (Target target) {
+        UsePositionalAbility (target.Position);
+    }
     
     public override void UsePositionalAbility (Vector3 location)
     {
