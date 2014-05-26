@@ -18,4 +18,7 @@ public class Heal : Ability
             mUseTimer = Time.time;
         }
     }
+    
+    // does nothing
+    public override void UsePositionalAbility (Vector3 location) {}
 }

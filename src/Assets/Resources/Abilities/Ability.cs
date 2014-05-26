@@ -12,4 +12,5 @@ public abstract class Ability : MonoBehaviour
     protected float mUseTimer;
 
     public abstract void UseAbility (Target target);
+    public abstract void UsePositionalAbility (Vector3 location);
 }
