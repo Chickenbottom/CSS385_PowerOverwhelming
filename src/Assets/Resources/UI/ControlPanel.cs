@@ -8,7 +8,10 @@ public class ControlPanel : MonoBehaviour
     public Progressbar SwordsmanExperienceBar;
     public Progressbar ArcherExperienceBar;
     public Progressbar MageExperienceBar;
+    
     public Progressbar HealCooldownBar;
+    public Progressbar AoeCooldownBar;
+    public Progressbar BoostCooldownBar;
     
     public GUIText SwordsmanLevel;
     public GUIText ArcherLevel;
@@ -18,16 +21,26 @@ public class ControlPanel : MonoBehaviour
     public GUIText WaveCounter;
     public AudioSource Music;
        
+    public AbilityTower HealTower;
+    public AbilityTower AoeTower;
+    public AbilityTower BoostTower;
+       
 	//private float mMusicVolume = 1;
 	//private float mSFXVolume = 1;
     
     private Dictionary<UnitType, Progressbar> mExpBars;
     private Dictionary<UnitType, GUIText> mLevelText;
-    private AbilityTower HealTower;
-    
+
     void Awake ()
     {
-        HealTower = GameObject.Find ("HealTower").GetComponent<AbilityTower>();
+        if (HealTower == null)
+            Destroy (HealCooldownBar);
+            
+        if (AoeTower == null)
+            Destroy (AoeCooldownBar);
+            
+        if (BoostTower == null)
+            Destroy (BoostCooldownBar);
     }
     
     void Start ()
@@ -62,8 +75,9 @@ public class ControlPanel : MonoBehaviour
             mLevelText [u].text = ((int)UnitUpgrades.GetStat(u, UnitStat.Level)).ToString();
         }
         
-        HealCooldownBar.MaxValue = (int)(HealTower.ability.CoolDown * 100);
-        HealCooldownBar.UpdateValue((int)(HealTower.ability.CooldownTimer * 100));
+        UpdateCooldownBar(HealCooldownBar, HealTower);
+        UpdateCooldownBar(AoeCooldownBar, AoeTower);
+        UpdateCooldownBar(BoostCooldownBar, BoostTower);
         
         KingsHealthBar.UpdateValue (GameState.KingsHealth);
         GoldCounterText.text = GameState.Gold.ToString ();
@@ -75,6 +89,14 @@ public class ControlPanel : MonoBehaviour
         if (Input.GetKeyDown ("s"))
             Time.timeScale -= 0.5f;
 	}
+    
+    private void UpdateCooldownBar(Progressbar cooldownBar, AbilityTower tower)
+    {
+        if (tower != null) {
+            cooldownBar.MaxValue = (int)(tower.ability.CoolDown * 100);
+            cooldownBar.UpdateValue((int)(tower.ability.CooldownTimer * 100));
+        }
+    }
     
 	public void SetMusicVolume(float v)
     {
