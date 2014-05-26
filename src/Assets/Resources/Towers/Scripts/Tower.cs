@@ -14,7 +14,6 @@ public abstract class Tower : Target
     // Inspector Presets
     ///////////////////////////////////////////////////////////////////////////////////
     
-    public Renderer TowerSelector;
     public Progressbar TowermHealthBar;
     public List<Sprite> DamagedSprites;
     public Sprite CapturedSprite;
@@ -24,24 +23,15 @@ public abstract class Tower : Target
     // Public Methods and Variables
     ///////////////////////////////////////////////////////////////////////////////////
     
-    public abstract bool ValidMousePos (Vector3 mousePos);
-    
     /// <summary>
-    /// Action performed when the user right-clicks on a location after
+    /// Action performed when the user left-clicks on a location after
     /// selecting the tower
     /// </summary>
     /// <param name="location">Location. The game coodinate clicked on.</param>
-    public abstract void SetTarget (Vector3 location);
+    public abstract override void SetDestination(Vector3 destination);
+    public abstract override void UseTargetedAbility(Target Target);
     
     protected TowerType towerType;
-    
-    public void ShowSelector (bool status)
-    {
-        if (this.TowerSelector == null)
-            return;
-            
-        TowerSelector.enabled = status;
-    }
 
     public override void Damage (int damage)
     {
@@ -98,14 +88,15 @@ public abstract class Tower : Target
         
         TowermHealthBar.MaxValue = mMaxHealth;
         TowermHealthBar.Value = mHealth;
-        this.ShowSelector (false);
+        this.Deselect();
         UpdateAnimation ();
     }
     
     void OnMouseDown ()
     {
         if (this.Allegiance == Allegiance.Rodelle) {
-            GameObject.Find ("Towers").GetComponent<MouseManager> ().TowerClicked (this);
+            GameObject.Find ("Towers").GetComponent<MouseManager> ().SetAbilityTarget (this);
+            GameObject.Find ("Towers").GetComponent<MouseManager> ().Select (this);
         }   
     }
 }

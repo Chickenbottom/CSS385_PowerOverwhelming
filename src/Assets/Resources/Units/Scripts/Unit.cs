@@ -13,9 +13,7 @@ public enum UnitType
 }
 
 public class Unit : Target
-{
-    public SpriteRenderer Selector;
-    
+{    
     public Squad Squad { get; set; }
 
     public float Range { get { return mCurrentWeapon.Range; } }
@@ -39,6 +37,12 @@ public class Unit : Target
         get { return mUnitType; }
     }
     
+    // do nothing
+    public override void SetDestination (Vector3 destination) {}
+    
+    // do nothing
+    public override void UseTargetedAbility (Target target) {}
+    
 ///////////////////////////////////////////////////////////////////////////////////
 // Public Methods
 ///////////////////////////////////////////////////////////////////////////////////
@@ -58,9 +62,9 @@ public class Unit : Target
     
     /// <summary>
     /// Updates the destination of the unit.
-    /// If the unit is not engaged in combat, it will move towards this desination.
+    /// If the unit is not engaged in combat, it will move towards this destination.
     /// </summary>
-    /// <param name="target">Desination. The location to move towards. </param>
+    /// <param name="target">Destination. The location to move towards. </param>
     public void MoveTo (Vector3 destination)
     {
         this.mDestination = destination;
@@ -297,7 +301,11 @@ public class Unit : Target
     
     void OnMouseDown()
     {
-        GameObject.Find("Squads").GetComponent<SquadSelector>().SelectSquad(this.Squad);
+        if (this.Allegiance == Allegiance.Rodelle) {
+            // uncomment this line if you want abilities to be able to target squads
+            // GameObject.Find ("Towers").GetComponent<MouseManager> ().SetAbilityTarget (this.Squad);
+            GameObject.Find ("Towers").GetComponent<MouseManager> ().Select (this.Squad);
+        }
     }
     
     // Update is called once per frame
@@ -328,15 +336,11 @@ public class Unit : Target
             UpdateMovement (mDestination, mMovementSpeed);
             break;
         }
-        
-        
     }
 
     // Initialize variables
     protected virtual void Awake ()
     {        
-        //GameObject.Destroy(this.GetComponent<Animator>());
-        //this.gameObject.AddComponent("")
         mAttackState = AttackState.Idle;
         mAttackTarget = null;
         

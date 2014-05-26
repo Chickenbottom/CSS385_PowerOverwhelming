@@ -16,6 +16,9 @@ public class SquadManager : MonoBehaviour
     
     public void SetDestination (Vector3 location)
     {
+        if (!mValidDestinationArea.OverlapPoint(new Vector2(location.x, location.y)))
+            return;
+    
         location.z = 0;
         RemoveDeadSquads ();
         rallyPoint = location;
@@ -75,6 +78,7 @@ public class SquadManager : MonoBehaviour
     private float squadWidth = 8f; // TODO replace with function calculating width of squad
     private Vector3 rallyPoint;
     private static GameObject squadPrefab = null;
+    private static PolygonCollider2D mValidDestinationArea;
     
     //float mDoubleClickStart = 0;
     
@@ -140,12 +144,6 @@ public class SquadManager : MonoBehaviour
         }
     }
     
-    //private void OnDoubleClick ()
-    //{
-    //    this.ForceMove(this.transform.position);
-    //    this.Glow();
-    //}
-    
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
     ///////////////////////////////////////////////////////////////////////////////////
@@ -154,24 +152,15 @@ public class SquadManager : MonoBehaviour
     {
         if (squadPrefab == null)
             squadPrefab = Resources.Load ("Squads/SquadPrefab") as GameObject;
+            
+        mValidDestinationArea = GameObject.Find ("RallyPointArea").GetComponent<PolygonCollider2D>();
         
         squads = new List<Squad> ();
         rallyPoint = this.transform.position;
     }
     
-    //void OnMouseDown()
-    //{
-    //    GameObject.Find ("GameManager").GetComponent<MouseManager> ().TowerClicked(ControllingTower);
-    //}
-    
     void OnMouseUpAsButton ()
     {
-        //if ((Time.time - mDoubleClickStart) < 0.3f) {
-        //    this.OnDoubleClick ();
-        //    mDoubleClickStart = -1;
-        //} else {
-        //    mDoubleClickStart = Time.time;
-        //}
         this.ForceMove(this.transform.position);
         this.Glow();
     }

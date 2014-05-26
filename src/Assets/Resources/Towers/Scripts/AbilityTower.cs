@@ -10,23 +10,24 @@ public class AbilityTower: Tower
     {
         towerType = TowerType.Ability;
         CooldownBar.MaxValue = (int)(ability.CoolDown * 100);
-        GameObject.Find ("TargetFinder").GetComponent<TowerTargets> ().AddTower (this);
     }
 
-    public override void SetTarget (Vector3 location)
+    public override void UseTargetedAbility (Target target)
     {
-        ability.UseAbility (location);
+        if (target == this) 
+            return;
+            
+        ability.UseAbility (target);
         CooldownBar.UpdateValue((int)(ability.CooldownTimer * 100));
     }
 
-    public override bool ValidMousePos (Vector3 mousePos)
+    public override void SetDestination (Vector3 destination)
     {
-        return ability.ValidMousePos (mousePos);
+        GameObject.Find ("Towers").GetComponent<MouseManager>().Deselect(this);
     }
 
     void OnGUI()
     {
         CooldownBar.UpdateValue((int)(ability.CooldownTimer * 100));
     }
-
 }

@@ -7,7 +7,7 @@ public enum Allegiance
     AI,
 }
 
-public abstract class Target : MonoBehaviour
+public abstract class Target : MonoBehaviour, Selectable
 {
     public Allegiance Allegiance {
         get { return mAllegiance; }
@@ -27,8 +27,37 @@ public abstract class Target : MonoBehaviour
     public bool IsDead {
         get { return mHealth <= 0; }
     }
-    
+
     public abstract void Damage (int damage);
+    
+    ///////////////////////////////////////////////////////////////////////////////////
+    // Interface: Selectable
+    ///////////////////////////////////////////////////////////////////////////////////
+    public Renderer Selector;
+    
+    public abstract void SetDestination (Vector3 destination);
+    
+    public abstract void UseTargetedAbility (Target target);
+    
+    public virtual void Select ()
+    {
+        ShowSelector (true);
+    }
+    
+    public virtual void Deselect ()
+    {
+        ShowSelector (false);
+    }
+    
+    protected virtual void ShowSelector (bool doSelect)
+    {
+        if (Selector != null)
+            Selector.enabled = doSelect;
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////////
+    // Protected/Private
+    ///////////////////////////////////////////////////////////////////////////////////
     
     protected int mMaxHealth;
     protected int mHealth;

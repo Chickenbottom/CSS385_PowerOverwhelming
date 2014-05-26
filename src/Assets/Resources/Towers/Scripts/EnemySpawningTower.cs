@@ -12,12 +12,17 @@ public class EnemySpawningTower : Tower
     ///////////////////////////////////////////////////////////////////////////////////
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
-    
-    public override void SetTarget (Vector3 location)
+
+    public override void SetDestination (Vector3 destination)
     {
-        // Do nothing
+        // does nothing
     }
-                
+    
+    public override void UseTargetedAbility (Target Target)
+    {
+        // does nothing
+    }
+
     public void SpawnUnit ()
     {
 		if (mUnitCount == 0)
@@ -31,11 +36,6 @@ public class EnemySpawningTower : Tower
     
     public override Vector3 Position {
         get { return this.Tent.transform.position; }
-    }
-    
-    public override bool ValidMousePos (Vector3 mousePos)
-    {
-        return GameObject.Find ("TargetFinder").GetComponent<ClickBox> ().GetClickBoxBounds ().Contains (mousePos);
     }
     
     ///////////////////////////////////////////////////////////////////////////////////
@@ -83,10 +83,5 @@ public class EnemySpawningTower : Tower
         mSpawnTime = 3;
         mLastSpawnTime = Time.time;
         mHealth = 100;
-    }
-    
-    void Start ()
-    {
-        GameObject.Find ("TargetFinder").GetComponent<TowerTargets> ().AddTower (this);
     }
 }

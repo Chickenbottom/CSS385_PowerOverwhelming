@@ -14,23 +14,52 @@ public class UnitSpawningTower : Tower
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
     
-    public override void SetTarget (Vector3 location)
+    public override void SetDestination (Vector3 location)
     {
         this.squadManager.SetDestination (location);
+    }
+    
+    public override void UseTargetedAbility (Target target)
+    {
+        // does nothing
     }
     
     public void SpawnUnit ()
     {
         this.squadManager.AddSquad (Tent.transform.position, this.UnitSpawnType);
+        
+        if (mIsSelected)
+            foreach (Squad s in squadManager.Squads)
+                s.Select();
     }
     
     public override Vector3 Position {
         get { return this.Tent.transform.position; }
     }
     
-    public override bool ValidMousePos (Vector3 mousePos)
+    public override void Select ()
     {
-        return GameObject.Find ("TargetFinder").GetComponent<ClickBox> ().GetClickBoxBounds ().Contains (mousePos);
+        base.Select ();
+        if (squadManager == null || squadManager.Squads == null)
+            return;
+        
+        foreach (Squad s in squadManager.Squads)
+            s.Select();
+            
+        mIsSelected = true;
+    }
+    
+    public override void Deselect ()
+    {
+        base.Deselect ();
+        
+        if (squadManager == null || squadManager.Squads == null)
+            return;
+            
+        foreach (Squad s in squadManager.Squads)
+            s.Deselect();
+            
+        mIsSelected = false;
     }
     
     ///////////////////////////////////////////////////////////////////////////////////
@@ -40,6 +69,7 @@ public class UnitSpawningTower : Tower
     private float mSpawnTime;
     private float mSpawnTimer;
     private int mMaxNumSquads;
+    private bool mIsSelected;
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
@@ -71,11 +101,9 @@ public class UnitSpawningTower : Tower
     
     void Start ()
     {
-        // start with full squad size
         this.SpawnUnit ();
-        this.SpawnUnit (); 
+        this.SpawnUnit ();
         mSpawnTimer = mSpawnTime;
-        GameObject.Find ("TargetFinder").GetComponent<TowerTargets> ().AddTower (this);
     }
     
     void OnTriggerStay2D (Collider2D other)

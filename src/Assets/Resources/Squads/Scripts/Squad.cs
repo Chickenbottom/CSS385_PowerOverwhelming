@@ -21,7 +21,7 @@ public enum SquadState
     Melee,
 }
 
-public class Squad : MonoBehaviour
+public class Squad : MonoBehaviour, Selectable
 {
     ///////////////////////////////////////////////////////////////////////////////////
     // Public Methods
@@ -48,8 +48,9 @@ public class Squad : MonoBehaviour
 
     public bool IsEngaged { 
         get { 
-            return ! (SquadState == SquadState.Idle || 
-                SquadState == SquadState.Moving); 
+            return ! (SquadState == SquadState.Idle 
+                || SquadState == SquadState.Moving
+                || SquadState == SquadState.ForcedMove); 
         } 
     }
     
@@ -60,6 +61,8 @@ public class Squad : MonoBehaviour
     {
         switch (action) {
         case(SquadAction.EnemySighted):
+            if (this.SquadState == SquadState.ForcedMove)
+                return;
             AttackTarget ((Target)args [0]);
             break;
             
@@ -98,21 +101,29 @@ public class Squad : MonoBehaviour
     
     public void ForceMove (Vector3 location)
     {
-        Disengage ();
-        this.SquadState = SquadState.ForcedMove;
         RallyPoint = location;
         location.z = 0;
-        
-        UpdateSquadCoherency ();
+
+        Disengage (); 
+        this.SquadState = SquadState.ForcedMove;
+        foreach (Unit u in mSquadMembers)
+            u.MoveTo(RallyPoint);
     }
     
     public void SetDestination (Vector3 location)
     {
-        this.SquadState = SquadState.Moving;
-        RallyPoint = location;
-        location.z = 0;
-        
-        UpdateSquadCoherency ();
+        if (Vector3.Distance (RallyPoint, location) < 5f) {
+            ForceMove(location);
+        } else {
+            RallyPoint = location;
+            location.z = 0;
+            
+            if (IsEngaged)
+                return;
+            
+            this.SquadState = SquadState.Moving;
+            UpdateSquadCoherency ();
+        }
     }
     
     public void Spawn (Vector3 location, UnitType? type = null, Allegiance allegiance = Allegiance.Rodelle)
@@ -167,12 +178,33 @@ public class Squad : MonoBehaviour
         this.ShowSelector(false);
     }
     
+    ///////////////////////////////////////////////////////////////////////////////////
+    // Interface: Selectable
+    ///////////////////////////////////////////////////////////////////////////////////
+    
     public void ShowSelector (bool status)
     {
-        if (SquadLeader.Selector != null)
-            SquadLeader.Selector.enabled = status;
+        if (mSquadMembers.Count == 0)
+            return;
+            
+        foreach (Unit u in mSquadMembers)
+            if (u.Selector != null)
+                u.Selector.enabled = status;
             
         this.GetComponent<SpriteRenderer>().enabled = status;
+    }
+    
+    // does nothing
+    public void UseTargetedAbility (Target target) {}
+    
+    public void Select ()
+    {
+        ShowSelector (true);
+    }
+    
+    public void Deselect ()
+    {
+        ShowSelector (false);
     }
     
     ///////////////////////////////////////////////////////////////////////////////////
@@ -193,10 +225,10 @@ public class Squad : MonoBehaviour
     private const float kSquadMemberWidth = 3.0f;
     
     private void AttackTarget (Target target)
-    {
-        if (target == null || TargetPriority(target) <= mTargetPriority)
+    {      
+        if (target == null || HasLowerPriority(target))
             return;
-            
+
         if (target == null)
             Debug.Break ();
         
@@ -402,7 +434,7 @@ public class Squad : MonoBehaviour
     static Dictionary<UnitType, GameObject> mUnitPrefabs = null;
     static Dictionary<UnitType, GameObject> mEnemyPrefabs = null;
     
-    public static void InitializePrefabs ()
+    private static void InitializePrefabs ()
     {
         mUnitPrefabs = new Dictionary<UnitType, GameObject> ();
         mUnitPrefabs.Add (UnitType.Swordsman, Resources.Load ("Units/SwordsmanPrefab") as GameObject);
@@ -418,17 +450,38 @@ public class Squad : MonoBehaviour
         mEnemyPrefabs.Add (UnitType.Mage, Resources.Load ("Units/EnemyMagePrefab") as GameObject);
     }
     
-    public int TargetPriority(Target target)
+    private bool HasLowerPriority (Target target)
+    {
+        int targetPriority = TargetPriority (target);
+            
+        if (mTargetPriority == 3 && targetPriority == 3) {
+            Unit unit = (Unit) target;
+            if (unit.Squad == mTargetSquad)
+                return true;
+            
+            if (mTargetSquad.IsDead || this.IsDead)
+                return false;
+            
+            if (Vector3.Distance(mTargetSquad.SquadLeader.Position, this.SquadLeader.Position) <
+                Vector3.Distance(unit.Position, this.SquadLeader.Position))
+                return true;
+            return false;
+        }
+        
+        return targetPriority <= mTargetPriority;
+    }
+    
+    private int TargetPriority (Target target)
     {
         if (target is Tower)
             return 1;
-               
+        
         if (target is Unit && ((Unit)target).UnitType == UnitType.King)
             return 2;
         
         if (target is Unit)
             return 3;
-        
+            
         return 0;
     }
     
@@ -462,15 +515,15 @@ public class Squad : MonoBehaviour
     
     // Check for enemies in sight range
     void OnTriggerEnter2D (Collider2D other)
-    {
+    {            
         Target target = other.gameObject.GetComponent<Target> ();
-                
+        
         if (target != null && target.Allegiance != mAllegiance) {
             Notify (SquadAction.EnemySighted, target);
         }
     }
         
-    void FixedUpdate ()
+    void Update ()
     {
         if (mSquadMembers == null)
             return;
