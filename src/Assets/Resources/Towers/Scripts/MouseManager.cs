@@ -1,97 +1,100 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class MouseManager : MonoBehaviour
 {
-    #region variables
-    private Tower towerSelected;
-    private Tower towerClicked;
-    #endregion
+    ///////////////////////////////////////////////////////////////////////////////////
+    // Public Methods and Variables
+    ///////////////////////////////////////////////////////////////////////////////////
     
-    void Start ()
+    public bool RodelleClicked { get; set; }
+        
+    public void TowerClicked (Tower tower)
     {
-        towerSelected = null;
-        towerClicked = null;
+        mClickedTower = tower;
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////////
+    // Private Methods and Variables
+    ///////////////////////////////////////////////////////////////////////////////////
+    
+    private Tower mSelectedTower = null;
+    private Tower mClickedTower = null;
+    
+    private void SelectTower (Tower t)
+    {
+        mSelectedTower = t;
+        mSelectedTower.ShowSelector (true);
     }
 
+    private void DeSelectTower ()
+    {
+        mSelectedTower.ShowSelector (false);
+        mSelectedTower = null;
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////////
+    // Unity Overrides
+    /////////////////////////////////////////////////////////////////////////////////// 
+    
     void Update ()
     {
         // Must be called last in the script order to work 100% of the time
         if (Input.GetMouseButtonDown (0)) {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
             mousePos.z = 0f;
-            if (towerSelected != null) {
-                if (towerSelected.canTargetTowers) {
-                    if (towerClicked != null) {
-                        if (towerClicked != towerSelected) {
-                            towerSelected.SetTarget (mousePos);
+            if (mSelectedTower != null) {
+                if (mSelectedTower.canTargetTowers) {
+                    if (mClickedTower != null) {
+                        if (mClickedTower != mSelectedTower) {
+                            mSelectedTower.SetTarget (mousePos);
                         }
                         DeSelectTower ();
                     } else { // towerClicked == null
-                        if (towerSelected.ValidMousePos (mousePos)) {
-                            towerSelected.SetTarget (mousePos);
+                        if (mSelectedTower.ValidMousePos (mousePos)) {
+                            mSelectedTower.SetTarget (mousePos);
                             DeSelectTower ();
                         }
                         // else do nothing
                     }
                 } else { // can NOT target towers
-                    if (towerClicked != null) {
+                    if (mClickedTower != null) {
                         DeSelectTower ();
-                        SelectTower (towerClicked);
+                        SelectTower (mClickedTower);
                     } else { // did NOT click on a tower
                         //Debug.Log("HERE");
-                        if (towerSelected.ValidMousePos (mousePos)) {
-                            towerSelected.SetTarget (mousePos);
+                        if (mSelectedTower.ValidMousePos (mousePos)) {
+                            mSelectedTower.SetTarget (mousePos);
                             DeSelectTower ();
                         }
                     }
                 }
             } else { // towerSelected == null
-                if (towerClicked != null) {
-                    SelectTower (towerClicked);
+                if (mClickedTower != null) {
+                    SelectTower (mClickedTower);
                 }
                 // else do nothing
             }
-
         }
         
-        if (Input.GetButtonDown ("Fire2") && towerSelected is UnitSpawningTower) {
-            ((UnitSpawningTower)towerSelected).SpawnUnit ();
+        if (Input.GetButtonDown ("Fire2") && mSelectedTower is UnitSpawningTower) {
+            ((UnitSpawningTower)mSelectedTower).SpawnUnit ();
         }
         
-        if (Input.GetButtonDown("SelectRanged"))
-            SelectTower(GameObject.Find("ArcherTower").GetComponent<Tower>());
-            
-        if (Input.GetButtonDown("SelectMelee"))
-            SelectTower(GameObject.Find("SwordsmanTower").GetComponent<Tower>());
-            
-        if (Input.GetButtonDown("SelectSpecial"))
-            SelectTower(GameObject.Find("MageTower").GetComponent<Tower>());
-            
-        if (Input.GetButtonDown("SelectAbility1"))
-            SelectTower(GameObject.Find("AbilityTower").GetComponent<Tower>());
+        if (Input.GetButtonDown ("SelectRanged"))
+            SelectTower (GameObject.Find ("ArcherTower").GetComponent<Tower> ());
         
-        towerClicked = null;
+        if (Input.GetButtonDown ("SelectMelee"))
+            SelectTower (GameObject.Find ("SwordsmanTower").GetComponent<Tower> ());
+        
+        if (Input.GetButtonDown ("SelectSpecial"))
+            SelectTower (GameObject.Find ("MageTower").GetComponent<Tower> ());
+        
+        if (Input.GetButtonDown ("SelectAbility1"))
+            SelectTower (GameObject.Find ("AbilityTower").GetComponent<Tower> ());
+        
+        mClickedTower = null;
     }
-
-    public void TowerClicked (Tower tower)
-    {
-        towerClicked = tower;
-    }
-
-    private void SelectTower (Tower t)
-    {
-        towerSelected = t;
-        towerSelected.ShowSelector (true);
-    }
-
-    private void DeSelectTower ()
-    {
-        towerSelected.ShowSelector (false);
-        towerSelected = null;
-    }
-
-    public bool RodelleClicked { get; set; }
 
 }
