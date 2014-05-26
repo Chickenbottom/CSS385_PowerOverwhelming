@@ -67,7 +67,7 @@ Animator:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 11233a4f708890047972e3c5196dc7c9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 84c4702a9109cc940b9df52b357cadbd, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f031597c105904e419b22ee5b4eec525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Selector: {fileID: 0}
   SightRange: 39
 --- !u!212 &21200000
 SpriteRenderer:
