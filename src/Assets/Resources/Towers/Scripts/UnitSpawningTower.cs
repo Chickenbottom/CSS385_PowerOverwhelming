@@ -32,11 +32,7 @@ public class UnitSpawningTower : Tower
             foreach (Squad s in squadManager.Squads)
                 s.Select();
     }
-    
-    public override Vector3 Position {
-        get { return this.SpawnPoint.transform.position; }
-    }
-    
+   
     public override void Select ()
     {
         base.Select ();
