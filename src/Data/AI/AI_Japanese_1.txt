@@ -1,8 +1,9 @@
 3
 @EnemyWave 50
-0 Large     Default AttackMove SpawnCenter
+0 Large     Default AttackMove SpawnRight
+0 Medium    Default AttackMove SpawnLeft
+1 Medium    Default AttackMove SpawnRight,BottomRight
 1 Medium    Default AttackMove SpawnLeft,BottomLeft
-3 Medium    Default AttackMove SpawnRight,BottomRight
 #5 Large     Default AttackMove SpawnLeft,BottomLeft
 16 Medium    Default AttackMove SpawnLeft,BottomLeft
 17 Medium    Default AttackMove SpawnRight,BottomRight

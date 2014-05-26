@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemySpawningTower : Tower
 {
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Inspector Presets
     ///////////////////////////////////////////////////////////////////////////////////
-    public GameObject Tent;
     public UnitType UnitSpawnType;
+    public List<GameObject> SpawnPoints;
+    public List<GameObject> SpawnWaypoint;
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Public
@@ -25,18 +27,15 @@ public class EnemySpawningTower : Tower
 
     public void SpawnUnit ()
     {
-		if (mUnitCount == 0)
-			return;
+        if (mUnitCount == 0)
+            return;
 
-		int squadSize = Mathf.Min (mUnitCount, 4);
+        int squadSize = Mathf.Min (mUnitCount, 4);
 
-		mUnitCount -= squadSize;
-        GameObject.Find("AI").GetComponent<EnemyAI>().AddSquad(squadSize, this.transform.position);
+        mUnitCount -= squadSize;
+        GameObject.Find ("AI").GetComponent<EnemyAI> ().AddSquad (squadSize, this.transform.position);
     }
-    
-    public override Vector3 Position {
-        get { return this.Tent.transform.position; }
-    }
+   
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Private
@@ -44,7 +43,7 @@ public class EnemySpawningTower : Tower
     
     private float mSpawnTime;
     private float mLastSpawnTime;
-	private int mUnitCount;
+    private int mUnitCount;
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
@@ -70,8 +69,8 @@ public class EnemySpawningTower : Tower
         Unit unit = other.gameObject.GetComponent<Unit> ();
         
         if (unit != null && unit.Squad.UnitType == UnitType.Peasant) {
-			unit.Damage(unit.MaxHealth);
-			mUnitCount ++;
+            unit.Damage (unit.MaxHealth);
+            mUnitCount ++;
         }
     }
     

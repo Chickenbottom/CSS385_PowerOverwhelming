@@ -118,7 +118,7 @@ public class MouseManager : MonoBehaviour
             Select (GameObject.Find ("MageTower").GetComponent<Tower> ());
         
         if (Input.GetButtonDown ("SelectAbility1"))
-            Select (GameObject.Find ("AbilityTower").GetComponent<Tower> ());
+            Select (GameObject.Find ("HealTower").GetComponent<Tower> ());
             
         mWasJustSelected = false;
         mTarget = null;

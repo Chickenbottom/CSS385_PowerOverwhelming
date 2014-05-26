@@ -112,7 +112,7 @@ public class EnemyAI : MonoBehaviour
         
         GameObject.Find ("Waypoints").SetActive(false);
         
-        Debug.Log ("Loading AI level " + CurrentLevel);
+        Debug.Log ("Loading " + CurrentEra.ToString() + " AI level " + CurrentLevel);
         
         string aiDataPath = "Data/AI/AI_";
         aiDataPath += CurrentEra.ToString ();
