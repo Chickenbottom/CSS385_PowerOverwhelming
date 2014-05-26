@@ -3,6 +3,8 @@ using System.Collections;
 
 public class King : Unit
 {
+    public Progressbar HealthBar;
+
     protected override void Awake ()
     {
         mUnitType = UnitType.King;
@@ -12,6 +14,8 @@ public class King : Unit
         mMeleeWeapon = new Sword (mLevel);
         mCurrentWeapon = mMeleeWeapon;
         
+        HealthBar.MaxValue = mMaxHealth;
+        HealthBar.UpdateValue(mMaxHealth);
         GameState.KingsHealth = mMaxHealth;
     }
     
@@ -19,6 +23,7 @@ public class King : Unit
     {
         base.Damage (damage);
         GameState.KingsHealth = mHealth;
+        HealthBar.UpdateValue(mHealth);
         if (GameState.KingsHealth > MaxHealth)
         {
             GameState.KingsHealth = MaxHealth;
