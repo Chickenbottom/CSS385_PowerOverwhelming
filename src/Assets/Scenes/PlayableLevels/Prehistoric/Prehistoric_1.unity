@@ -3368,7 +3368,7 @@ MonoBehaviour:
   GoldCounterText: {fileID: 1132824316}
   WaveCounter: {fileID: 369714175}
   Music: {fileID: 1098905010}
-  HealTower: {fileID: 0}
+  HealTower: {fileID: 17470440}
   AoeTower: {fileID: 0}
   BoostTower: {fileID: 0}
 --- !u!1 &1132824314
@@ -5981,6 +5981,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400030, guid: e4b44294564155b4a8f7f15469774b50, type: 2}
+      propertyPath: HealTower
+      value: 
+      objectReference: {fileID: 17470440}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e4b44294564155b4a8f7f15469774b50, type: 2}
   m_RootGameObject: {fileID: 1080181891}

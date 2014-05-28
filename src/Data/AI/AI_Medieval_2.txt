@@ -1,29 +1,36 @@
-3
+4
 @EnemyWave 30
-0 Large     Default AttackMove SpawnCenter
+0 Medium     Default AttackMove SpawnCenter
 1 Medium    Default AttackMove SpawnCenter,BottomLeft
+2 Medium     Default AttackMove SpawnCenter,TopRight
 3 Large     Default AttackMove SpawnCenter,BottomRight
-4 Medium    Default AttackMove SpawnCenter,
-5 Medium    Default AttackMove SpawnCenter,TopRight
-6 Large     Default AttackMove SpawnCenter,BottomLeft
-7 Large     Default AttackMove SpawnCenter,
+15 Medium    Default AttackMove SpawnCenter,TopRight
+16 Large     Default AttackMove SpawnCenter,BottomRight
+17 Large     Default AttackMove SpawnCenter,
 
-@EnemyWave 30
-0 Individual Default AttackMove SpawnCenter,BottomLeft,TopLeft
-0 Individual Default AttackMove SpawnCenter,BottomLeft,TopLeft
-0 Individual Default AttackMove SpawnCenter,BottomLeft,TopLeft
+@EnemyWave 40
 1 Large     Default AttackMove SpawnCenter,BottomLeft,TopLeft
-2 Large     Default AttackMove SpawnCenter,Center,TopRight
-3 Large     Default AttackMove SpawnCenter,Center,BottomLeft
-6 Large     Default AttackMove SpawnCenter,TopLeft
-7 Large     Default AttackMove SpawnCenter,TopRight
+2 Medium     Default AttackMove SpawnCenter,Center,TopRight
+3 Large     Default AttackMove SpawnCenter,Center,BottomRight
+10 Medium     Default AttackMove SpawnCenter,TopLeft
+15 Large     Default AttackMove SpawnCenter,TopRight
 
 @EnemyWave 30
-0 Medium    Default AttackMove SpawnCenter,BottomLeft
+0 Medium    Default AttackMove SpawnCenter,
 1 Medium    Default AttackMove SpawnCenter,BottomRight
 2 Medium    Default AttackMove SpawnCenter,TopRight
 3 Medium    Default AttackMove SpawnCenter,Center,TopLeft
-4 Medium    Default AttackMove SpawnCenter,BottomLeft
+4 Medium    Default AttackMove SpawnCenter,Center,TopLeft
 5 Medium    Default AttackMove SpawnCenter,BottomRight
 6 Medium    Default AttackMove SpawnCenter,TopRight
 7 Medium    Default AttackMove SpawnCenter,Center,TopLeft
+
+@EnemyWave 30
+0 Large     Default AttackMove SpawnCenter,Center,TopRight
+1 Large    Default AttackMove SpawnCenter,BottomLeft
+2 Large    Default AttackMove SpawnCenter,BottomRight
+3 Small   Default AttackMove SpawnCenter,
+13 Medium    Default AttackMove SpawnCenter,Center,BottomLeft
+14 Large    Default AttackMove SpawnCenter,Center,BottomLeft
+15 Medium    Default AttackMove SpawnCenter,Center,BottomRight
+16 Large    Default AttackMove SpawnCenter,BottomRight
