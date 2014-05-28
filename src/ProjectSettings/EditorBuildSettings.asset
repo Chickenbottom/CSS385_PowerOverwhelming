@@ -13,15 +13,11 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelLoader.unity
   - enabled: 1
     path: Assets/Scenes/CutScenes/Prologue/Prologue.unity
-  - enabled: 0
-    path: Assets/Scenes/Medieval/Level1.unity
-  - enabled: 0
-    path: Assets/Scenes/Medieval/Level2.unity
-  - enabled: 0
-    path: Assets/Scenes/Medieval/MedievalLevel.1.unity
-  - enabled: 0
-    path: Assets/Scenes/Medieval/MedievalLevel.2.unity
   - enabled: 1
-    path: Assets/Scenes/Medieval/Medieval_1.unity
+    path: Assets/Scenes/PlayableLevels/Prehistoric/Prehistoric_1.unity
   - enabled: 1
-    path: Assets/Scenes/CutScenes/Tutorial/TutorialCutScene.unity
+    path: Assets/Scenes/PlayableLevels/Medieval/Medieval_1.unity
+  - enabled: 1
+    path: Assets/Scenes/PlayableLevels/Medieval/Medieval_2.unity
+  - enabled: 1
+    path: Assets/Scenes/PlayableLevels/Japanese/Japanese_1.unity
