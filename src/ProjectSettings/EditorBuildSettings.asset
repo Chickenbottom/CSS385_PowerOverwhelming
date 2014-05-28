@@ -12,6 +12,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelLoader.unity
   - enabled: 1
+    path: Assets/Scenes/CutScenes/Tutorial/TutorialCutScene.unity
+  - enabled: 1
     path: Assets/Scenes/CutScenes/Prologue/Prologue.unity
   - enabled: 1
     path: Assets/Scenes/PlayableLevels/Prehistoric/Prehistoric_1.unity
