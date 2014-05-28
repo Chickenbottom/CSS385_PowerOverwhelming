@@ -13,7 +13,7 @@ public class InGameMenuMusicButton : InGameMenuButtonBehavior {
 	// Update is called once per frame
 	void Update () {
 		VolumeReadout.text =((int)mSliderValue).ToString();
-		GameObject.Find("ControlPanel").GetComponent<ControlPanel>().SetMusicVolume(mSliderValue/100.0f);
+		//GameObject.Find("ControlPanel").GetComponent<ControlPanel>().SetMusicVolume(mSliderValue/100.0f);
 	}
 	void OnGUI() {
 		mSliderValue = GUI.HorizontalSlider(new Rect(240f, 250f, 200, 20), mSliderValue, 0.0f, 100.0f);		
