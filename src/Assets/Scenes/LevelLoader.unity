@@ -553,7 +553,8 @@ MonoBehaviour:
   mLockedOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
   mEra: 4
   mLevelSelectionButtons: {fileID: 786427541}
-  mEraButtons: {fileID: 0}
+  mEraButtons: {fileID: 1235969710}
+  mMultipleLevels: 0
 --- !u!212 &1020592367
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -623,7 +624,8 @@ MonoBehaviour:
   mLockedOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
   mEra: 2
   mLevelSelectionButtons: {fileID: 786427541}
-  mEraButtons: {fileID: 0}
+  mEraButtons: {fileID: 1235969710}
+  mMultipleLevels: 0
 --- !u!212 &1060952843
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -809,7 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: eb127f0c9bb0415428d2ba84fdd7b483, type: 3}
-  mButtonOver: {fileID: 21300004, guid: eb127f0c9bb0415428d2ba84fdd7b483, type: 3}
+  mButtonOver: {fileID: 21300002, guid: eb127f0c9bb0415428d2ba84fdd7b483, type: 3}
 --- !u!4 &1134486431
 Transform:
   m_ObjectHideFlags: 0
@@ -999,7 +1001,8 @@ MonoBehaviour:
   mLockedOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
   mEra: 3
   mLevelSelectionButtons: {fileID: 786427541}
-  mEraButtons: {fileID: 0}
+  mEraButtons: {fileID: 1235969710}
+  mMultipleLevels: 0
 --- !u!212 &1556733074
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1080,7 +1083,8 @@ MonoBehaviour:
   mLockedOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
   mEra: 0
   mLevelSelectionButtons: {fileID: 786427541}
-  mEraButtons: {fileID: 0}
+  mEraButtons: {fileID: 1235969710}
+  mMultipleLevels: 0
 --- !u!212 &1730589140
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1162,6 +1166,7 @@ MonoBehaviour:
   mEra: 1
   mLevelSelectionButtons: {fileID: 786427541}
   mEraButtons: {fileID: 1235969710}
+  mMultipleLevels: 0
 --- !u!212 &1843354366
 SpriteRenderer:
   m_ObjectHideFlags: 0

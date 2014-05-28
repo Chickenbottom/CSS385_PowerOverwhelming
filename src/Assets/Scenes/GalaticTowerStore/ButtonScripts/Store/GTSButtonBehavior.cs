@@ -3,11 +3,19 @@ using System.Collections;
 
 public class GTSButtonBehavior : ButtonBehaviour {
 
+
+	protected enum UpgradeCost{
+		CoolDown = 10,
+		SpawnRate = 15,
+		SpawnSize = 25,
+		TowerHealth = 20,
+	};
 	public TowerStoreBehavior mStore;
 	public GUIText mText;
 	public BonusType mBonusType;
 
 	protected int mBonusLevel;
+	protected int mCost;
 	protected const int kBonusMax = 5;
 	protected const int kBonusMin = 0;
 	public GUIText mTotalGoldText;

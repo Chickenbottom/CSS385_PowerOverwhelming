@@ -18,10 +18,12 @@ public class NewGameButton : ButtonBehaviour {
         s.Add("0", SaveLoad.SAVEFILE.Level);
         s.Save();
 
+
+		Application.LoadLevel("TutorialCutScene");
 		//remove after save load is working
-		mNarativeContinueFrame.SetActive(true);
-		mMenuObject.SetActive(false);
-		ChangeScreen();
+		//mNarativeContinueFrame.SetActive(true);
+		//mMenuObject.SetActive(false);
+		//ChangeScreen();
 		
 	}
 

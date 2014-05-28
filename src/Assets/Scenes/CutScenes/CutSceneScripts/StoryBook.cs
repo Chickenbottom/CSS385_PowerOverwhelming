@@ -7,6 +7,7 @@ public class StoryBook : MonoBehaviour
     public List<Camera> CameraViews;
     public List<SpriteRenderer> Image;
     public float SceneInterval = 3f;
+	public string NextScene;
     
     const float kFadeRate = 0.01f;
     
@@ -108,7 +109,7 @@ public class StoryBook : MonoBehaviour
 		                                          alpha);
 	}
 	void StartGame(){
-		Application.LoadLevel("Level1");
+		Application.LoadLevel(NextScene);
 	}
 	public void SkipScene(){
 		if (mCurrentCamera >= mCameraArray.Count)

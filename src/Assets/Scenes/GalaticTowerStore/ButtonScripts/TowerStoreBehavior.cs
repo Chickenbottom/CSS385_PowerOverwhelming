@@ -28,7 +28,7 @@ public class TowerStoreBehavior : MonoBehaviour {
 	public void Purchase(){
 		//GameState.Gold -= mCurCost;
 		mCurUpgrades.SetUpgradeArray(DynamicUpgrades);
-		//mCurUpgrades.SetTowerArray(ref OriginalUpgrades);
+		mCurUpgrades.SetStoreArray(ref OriginalUpgrades);
 		mCurUpgrades.WriteBonuses();
 	}
 	public int GetUpgrade(BonusSubject curSub, BonusType curType){
