@@ -685,7 +685,7 @@ MonoBehaviour:
   - {fileID: 21300022, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300030, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 1
-  SpawnPoint: {fileID: 0}
+  SpawnPoint: {fileID: 100006}
   ability: {fileID: 11400016}
 --- !u!114 &11400002
 MonoBehaviour:
