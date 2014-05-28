@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class SpawnSizeDownButton : GTSButtonBehavior {
@@ -6,7 +6,8 @@ public class SpawnSizeDownButton : GTSButtonBehavior {
 
 	void OnMouseDown(){
 		if( mBonusLevel > kBonusMin && mBonusLevel > GetOriginal())  {
-			mStore.mCurCost -= 15;
+			GameObject.Find("ShaddySeamus").GetComponent<ShaddySeamusDialogue>().WriteNegDialogue();
+			mStore.mCurCost -= (int)UpgradeCost.SpawnSize * mBonusLevel;
 			mTotalGoldText.text = mStore.mCurCost.ToString();
 			NewValue(-1);
 		}

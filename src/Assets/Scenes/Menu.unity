@@ -381,7 +381,7 @@ GameObject:
   - 4: {fileID: 367940289}
   - 212: {fileID: 367940292}
   - 61: {fileID: 367940291}
-  - 114: {fileID: 367940290}
+  - 114: {fileID: 367940293}
   m_Layer: 8
   m_Name: QuitGameButton
   m_TagString: Untagged
@@ -400,22 +400,6 @@ Transform:
   m_LocalScale: {x: .75, y: .75, z: 1}
   m_Children: []
   m_Father: {fileID: 1985620334}
---- !u!114 &367940290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 367940288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4465fa32133fed49aaa375a566a1894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mButton: {fileID: 21300018, guid: cd8942d32f487ee499323216960c3437, type: 3}
-  mButtonOver: {fileID: 21300022, guid: cd8942d32f487ee499323216960c3437, type: 3}
-  mMainMenuObject: {fileID: 1985620333}
-  mAboutObject: {fileID: 80975390}
-  mText: {fileID: 1450367774}
 --- !u!61 &367940291
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -450,6 +434,19 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300018, guid: cd8942d32f487ee499323216960c3437, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &367940293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 367940288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed497825fa24f9458c151f5804b3daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mButton: {fileID: 21300018, guid: cd8942d32f487ee499323216960c3437, type: 3}
+  mButtonOver: {fileID: 21300022, guid: cd8942d32f487ee499323216960c3437, type: 3}
 --- !u!1 &456806630
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +627,7 @@ Transform:
   m_GameObject: {fileID: 606131875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3, y: -3.75, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: 1}
+  m_LocalScale: {x: .600000024, y: .600000024, z: 1}
   m_Children: []
   m_Father: {fileID: 34292899}
 --- !u!61 &606131877
@@ -1196,7 +1193,7 @@ Transform:
   m_GameObject: {fileID: 1440760001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.400000006, y: -3.75, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: 1}
+  m_LocalScale: {x: .600000024, y: .600000024, z: 1}
   m_Children: []
   m_Father: {fileID: 34292899}
 --- !u!61 &1440760003
@@ -1209,7 +1206,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Size: {x: 5.32000017, y: 1.62}
-  m_Center: {x: 0, y: 4.76837158e-07}
+  m_Center: {x: 5.96046448e-08, y: 4.76837158e-07}
 --- !u!212 &1440760004
 SpriteRenderer:
   m_ObjectHideFlags: 0

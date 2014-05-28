@@ -13,8 +13,16 @@ public class LoadButton : ButtonBehaviour {
 	}
 
 	void OnMouseDown(){
-		mLoadFrameObject.SetActive(true);
-		mMenuFrameObject.SetActive(false);
-		ChangeScreen();
+		SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
+		s.Clear(SaveLoad.SAVEFILE.Level);
+		s.Load(SaveLoad.SAVEFILE.Level);
+		//ChangeScreen();
+		//mLoadMenuFrame.SetActive(false);
+		//mNarativeContinueMenuFrame.SetActive(true);
+		Application.LoadLevel("LevelLoader");
+
+		//mLoadFrameObject.SetActive(true);
+		//mMenuFrameObject.SetActive(false);
+		//ChangeScreen();
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System;
 
 public enum Era{
 	Prehistoric = 0,
@@ -10,27 +10,26 @@ public enum Era{
 	ModernAmerica = 3,
 	Future = 4,
 };
-
+public enum EraLevel{
+	_1 = 1,
+	_2 = 2,
+};
 public class LevelLoaderButtonBehavior : ButtonBehaviour {
 
 
 	public Sprite mLocked;
 	public Sprite mLockedOver;
-//	public Sprite mButtonSelected;
 	public Era mEra;
 	public GameObject mLevelSelectionButtons;
 	public GameObject mEraButtons;
+	public bool mMultipleLevels;
 
 	bool mLevelLocked;
 
 	// Use this for initialization
 	void Start () {
 
-        
-
-		//mLevelSelectionButtons.SetActive(false);
-//        GameState.CurrentEra = (Era)int.Parse(GameObject.Find("SaveLoad").GetComponent<SaveLoad>().GetInfo(SaveLoad.SAVEFILE.Level)[0]);
-		GameState.CurrentEra = Era.Japanese;
+		//GameState.CurrentEra = Era.Japanese;
 		if(mEra <= GameState.CurrentEra)
 			mLevelLocked = false;
 		else
@@ -47,21 +46,20 @@ public class LevelLoaderButtonBehavior : ButtonBehaviour {
 	void Update () {
 		
 	}
-	//void OnMouseOver(){
-	//	gameObject.GetComponent<SpriteRenderer> ().sprite = mButtonOver;
-	//}
-	//void OnMouseExit(){
-	//	gameObject.GetComponent<SpriteRenderer> ().sprite = mButton;
-	//}
+
 	void OnMouseDown(){
 		if(mEra <= GameState.CurrentEra){
-			ChangeScreen();	
-			DifficultyLoader.mCurrentEra = mEra;
-			mLevelSelectionButtons.SetActive(true);
-			mEraButtons.SetActive(false);
-			GameObject.Find("LevelPicture").GetComponent<SpriteRenderer>().sprite = mButton;
-			//mEraButtons.SetActive(false);
-			GameObject.Find("EraButtons").SetActive(false);
+			if(mMultipleLevels){
+				ChangeScreen();	
+				DifficultyLoader.mCurrentEra = mEra;
+				mLevelSelectionButtons.SetActive(true);
+				mEraButtons.SetActive(false);
+				GameObject.Find("LevelPicture").GetComponent<SpriteRenderer>().sprite = mButton;
+				mEraButtons.SetActive(false);
+			}
+			else{
+				Application.LoadLevel(Enum.GetName(typeof(Era),mEra) + Enum.GetName(typeof(EraLevel), EraLevel._1));
+			}
 		}
 	}
 	public Era GetEra(){

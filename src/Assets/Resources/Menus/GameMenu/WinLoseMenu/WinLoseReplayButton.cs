@@ -9,6 +9,6 @@ public class WinLoseReplayButton : ButtonBehaviour {
 
 
 		GameState.WonGame = GameState.LostGame = false;
-		Application.LoadLevel(pathEnd[0] + "." + pathEnd[1]);
+		Application.LoadLevel(pathEnd[0]);
 	}
 }

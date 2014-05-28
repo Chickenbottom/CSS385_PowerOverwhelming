@@ -5,9 +5,9 @@ public class PurchaseButton : ButtonBehaviour {
 	public GameObject TowerStoreFrame;
 	public GUIText mTotalGoal;	
 	bool canAfford = true;
-	public Sprite mStoreClosed;
 	
 	void Start(){
+		//remove for game
 		GameState.Gold = 100;
 
 		mTotalGoal.text = GameState.Gold.ToString();
