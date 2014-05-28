@@ -883,8 +883,8 @@ MonoBehaviour:
   GoldCounterText: {fileID: 400641905}
   WaveCounter: {fileID: 1917308799}
   Music: {fileID: 254779648}
-  HealTower: {fileID: 2044326398}
-  AoeTower: {fileID: 1149073309}
+  HealTower: {fileID: 0}
+  AoeTower: {fileID: 0}
   BoostTower: {fileID: 0}
 --- !u!1 &256354669
 GameObject:
@@ -2813,6 +2813,58 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: c6451dd506f706e49b7062ca4dcea953, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &891586718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100106, guid: c4a2abbec9c5e3c4e9e013ca2ae30fb7, type: 2}
+  m_PrefabInternal: {fileID: 1697891766}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 891586719}
+  - 114: {fileID: 891586721}
+  - 114: {fileID: 891586720}
+  m_Layer: 0
+  m_Name: SaveLoad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &891586719
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400106, guid: c4a2abbec9c5e3c4e9e013ca2ae30fb7, type: 2}
+  m_PrefabInternal: {fileID: 1697891766}
+  m_GameObject: {fileID: 891586718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.5803375, y: 19.6125526, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1649723823}
+--- !u!114 &891586720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400064, guid: c4a2abbec9c5e3c4e9e013ca2ae30fb7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1697891766}
+  m_GameObject: {fileID: 891586718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a772b1b2b37cd09459a669450eb352fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &891586721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400062, guid: c4a2abbec9c5e3c4e9e013ca2ae30fb7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1697891766}
+  m_GameObject: {fileID: 891586718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10e0b09fea98da4ba221e48ca21e16d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &911042980
 GameObject:
   m_ObjectHideFlags: 0
@@ -4397,45 +4449,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: 5d4e77dae6c45564a8ea1008129f2aaf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &1342825607
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: fb30266c8102fa9418e7cb6b7f089ebf, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1342825609}
-  - 114: {fileID: 1342825608}
-  m_Layer: 0
-  m_Name: SaveLoad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1342825608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: fb30266c8102fa9418e7cb6b7f089ebf,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1342825607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a10e0b09fea98da4ba221e48ca21e16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1342825609
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: fb30266c8102fa9418e7cb6b7f089ebf, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1342825607}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.5803375, y: 19.6125526, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &1343702237
 GameObject:
   m_ObjectHideFlags: 0
@@ -5606,6 +5619,7 @@ Transform:
   - {fileID: 394745757}
   - {fileID: 1469558875}
   - {fileID: 676062734}
+  - {fileID: 891586719}
   - {fileID: 400641904}
   - {fileID: 254779647}
   - {fileID: 1131641609}
@@ -5731,14 +5745,6 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11400004, guid: c4a2abbec9c5e3c4e9e013ca2ae30fb7, type: 2}
-      propertyPath: HealTower
-      value: 
-      objectReference: {fileID: 2044326398}
-    - target: {fileID: 11400004, guid: c4a2abbec9c5e3c4e9e013ca2ae30fb7, type: 2}
-      propertyPath: AoeTower
-      value: 
-      objectReference: {fileID: 1149073309}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c4a2abbec9c5e3c4e9e013ca2ae30fb7, type: 2}
   m_RootGameObject: {fileID: 1649723822}
