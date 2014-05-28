@@ -82,8 +82,7 @@ class EnemySquad
         GameObject o = (GameObject)GameObject.Instantiate (mSquadPrefab);
         Squad squad = o.GetComponent<Squad> ();
         
-        squad.NumSquadMembers = size;
-        squad.Spawn (mSpawnLocation.Value, mUnitType, Allegiance.AI);
+        squad.Spawn(mUnitType, mSpawnLocation.Value, size, Allegiance.AI);
         
         mSquad = squad;
         mSquad.SetDestination (mWaypoints [0]);

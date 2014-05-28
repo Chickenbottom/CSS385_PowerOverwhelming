@@ -2,12 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum TowerType
-{
-    Ability,
-    UnitSpawner
-}
-
 public abstract class Tower : Target
 {
     ///////////////////////////////////////////////////////////////////////////////////
@@ -30,8 +24,6 @@ public abstract class Tower : Target
     /// <param name="location">Location. The game coodinate clicked on.</param>
     public abstract override void SetDestination(Vector3 destination);
     public abstract override void UseTargetedAbility(Target Target);
-    
-    protected TowerType towerType;
 
     public override void Damage (int damage)
     {

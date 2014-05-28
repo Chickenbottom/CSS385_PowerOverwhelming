@@ -4,11 +4,6 @@ using System.Collections;
 public class AbilityTower: Tower
 {
     public Ability ability;
-    
-    void Start ()
-    {
-        towerType = TowerType.Ability;
-    }
 
     public override void UseTargetedAbility (Target target)
     {

@@ -41,7 +41,7 @@ public class EnemySpawningTower : Tower
         Vector3 destination = SpawnWaypoint[r].transform.position;
         
         GameObject.Find ("AI").GetComponent<EnemyAI> ().AddSquad (
-            squadSize, this.transform.position, unitType, destination);
+            squadSize, spawnLocation, unitType, destination);
     }
     
     private UnitType RandomUnitType()
@@ -107,7 +107,6 @@ public class EnemySpawningTower : Tower
     {
         base.Awake ();
         this.Allegiance = Allegiance.Rodelle;
-        towerType = TowerType.UnitSpawner;
         mEnemySpawnTimer = mEnemySpawnTime;
     }
 }

@@ -26,7 +26,7 @@ public class UnitSpawningTower : Tower
     
     public void SpawnUnit ()
     {
-        this.squadManager.AddSquad (SpawnPoint.transform.position, this.UnitSpawnType);
+        this.squadManager.AddSquad (this.UnitSpawnType, SpawnPoint.transform.position, mSquadSize);
         
         if (mIsSelected)
             foreach (Squad s in squadManager.Squads)
@@ -65,7 +65,9 @@ public class UnitSpawningTower : Tower
     private float mSpawnTime;
     private float mSpawnTimer;
     private int mMaxNumSquads;
+    private int mSquadSize;
     private bool mIsSelected;
+        
     
     private int mGarrisonedPeasants = 0;
     private float mEnemySpawnTime = 3.0f;
@@ -129,17 +131,20 @@ public class UnitSpawningTower : Tower
     protected override void Awake ()
     {
         base.Awake ();
-        towerType = TowerType.UnitSpawner;
         mSpawnTime = GameState.SpawnTimes [this.UnitSpawnType];
         mSpawnTimer = Time.time;
         mMaxNumSquads = 2; // TODO get from game state
         mEnemySpawnTimer = mEnemySpawnTime;
+        
+        //int squadSizeBonus = (int)(GameObject.Find ("SaveLoad").GetComponent<Upgrades>().GetUnitUpgrades(this.UnitSpawnType, TowerBonus.SpawnSize));
+        int squadSizeBonus = 0;
+        mSquadSize = GameState.UnitSquadCount [this.UnitSpawnType] + squadSizeBonus;
     }
     
     void Start ()
     {
-        this.SpawnUnit ();
-        this.SpawnUnit ();
+        this.SpawnUnit();
+        Invoke ("SpawnUnit", 2);
         mSpawnTimer = mSpawnTime;
     }
     

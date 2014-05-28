@@ -37,7 +37,7 @@ public class SquadManager : MonoBehaviour
         this.SetDestination (rallyPoint);
     }
     
-    public void AddSquad (Vector3 spawnLocation, UnitType unitType = UnitType.None)
+    public void AddSquad (UnitType unitType, Vector3 spawnLocation, int squadSize)
     {
         // nothing to instantiate
         if (unitType == UnitType.None && this.squadType == UnitType.None)
@@ -45,9 +45,9 @@ public class SquadManager : MonoBehaviour
             
         Squad squad;
         if (unitType == UnitType.None)
-            squad = SpawnSquadFromUnitType (spawnLocation, this.squadType);
+            squad = SpawnSquadFromUnitType (this.squadType, spawnLocation, squadSize);
         else
-            squad = SpawnSquadFromUnitType (spawnLocation, unitType);
+            squad = SpawnSquadFromUnitType (unitType, spawnLocation, squadSize);
             
         squads.Add (squad);
         squad.SetDestination (rallyPoint);
@@ -82,12 +82,12 @@ public class SquadManager : MonoBehaviour
     
     //float mDoubleClickStart = 0;
     
-    private Squad SpawnSquadFromUnitType (Vector3 location, UnitType unitType)
+    private Squad SpawnSquadFromUnitType (UnitType unitType, Vector3 location, int count)
     {
         GameObject o = (GameObject)Instantiate (squadPrefab);
         Squad squad = (Squad)o.GetComponent (typeof(Squad));
         squad.UnitType = unitType;
-        squad.Spawn (location, unitType, Allegiance.Rodelle);
+        squad.Spawn(unitType, location, count, Allegiance.Rodelle);
         return squad;
     }
     

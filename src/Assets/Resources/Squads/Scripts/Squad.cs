@@ -126,15 +126,11 @@ public class Squad : MonoBehaviour, Selectable
         }
     }
     
-    public void Spawn (Vector3 location, UnitType? type = null, Allegiance allegiance = Allegiance.Rodelle)
+    public void Spawn (UnitType type, Vector3 location, int count, Allegiance allegiance)
     {
-        if (type != null)
-            UnitType = type.Value;
-
+        UnitType = type;
+        NumSquadMembers = count;
         mAllegiance = allegiance;
-
-        if (NumSquadMembers == 0)
-            NumSquadMembers = GameState.UnitSquadCount [UnitType];
         
         this.transform.position = location; 
         
@@ -553,7 +549,7 @@ public class Squad : MonoBehaviour, Selectable
     
         this.SquadState = SquadState.Idle;
         if (IsIndependent) {
-            this.Spawn (this.transform.position);
+            this.Spawn (this.UnitType, this.transform.position, 1, Allegiance.Rodelle);
             this.SetDestination (this.transform.position);
         }
     }
