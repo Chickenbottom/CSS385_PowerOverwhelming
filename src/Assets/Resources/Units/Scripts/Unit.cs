@@ -100,6 +100,8 @@ public class Unit : Target
         mHealth -= damage;
         if (mHealth <= 0) {
             this.Squad.Notify (SquadAction.UnitDied, this);
+            GameObject o = GameObject.Instantiate(mWarpPrefab) as GameObject;
+            o.transform.position = this.Position;
             Destroy (this.gameObject);
         }
     }
@@ -173,6 +175,8 @@ public class Unit : Target
     protected AttackState mAttackState;
     
     protected UnitType mUnitType;
+    
+    protected static GameObject mWarpPrefab;
     
     private void UpdateTargetState ()
     {
@@ -353,5 +357,8 @@ public class Unit : Target
             
         if (Selector != null)
             Selector.enabled = false;
+            
+        if (mWarpPrefab == null)
+            mWarpPrefab = Resources.Load("Units/Prefabs/UnitWarpPrefab") as GameObject;
     }
 }
