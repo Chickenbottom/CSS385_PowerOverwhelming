@@ -12,10 +12,20 @@ public abstract class Tower : Target
     public List<Sprite> DamagedSprites;
     public Sprite CapturedSprite;
     public bool canTargetTowers;
+    public GameObject SpawnPoint;
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Public Methods and Variables
     ///////////////////////////////////////////////////////////////////////////////////
+    
+    public override Vector3 Position {
+        get {
+            return SpawnPoint.transform.position;
+        }
+        set {
+            base.Position = value;
+        }
+    }
     
     /// <summary>
     /// Action performed when the user left-clicks on a location after

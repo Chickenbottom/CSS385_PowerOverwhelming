@@ -121,6 +121,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100014
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400014}
+  m_Layer: 10
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &100016
 GameObject:
   m_ObjectHideFlags: 1
@@ -300,6 +315,7 @@ Transform:
   m_Children:
   - {fileID: 400026}
   - {fileID: 400042}
+  - {fileID: 400006}
   - {fileID: 400004}
   m_Father: {fileID: 400002}
 --- !u!4 &400002
@@ -335,10 +351,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.31930959, y: -.512717903, z: 0}
+  m_LocalPosition: {x: -.940068185, y: -1.60007429, z: 0}
   m_LocalScale: {x: .615384638, y: .615384638, z: 1}
   m_Children: []
-  m_Father: {fileID: 400010}
+  m_Father: {fileID: 400000}
 --- !u!4 &400008
 Transform:
   m_ObjectHideFlags: 1
@@ -360,7 +376,7 @@ Transform:
   m_LocalPosition: {x: 56.7309113, y: -41.0396843, z: 0}
   m_LocalScale: {x: 13, y: 13, z: 1}
   m_Children:
-  - {fileID: 400006}
+  - {fileID: 400014}
   - {fileID: 400038}
   - {fileID: 400016}
   m_Father: {fileID: 400002}
@@ -378,6 +394,17 @@ Transform:
   - {fileID: 400008}
   - {fileID: 400034}
   m_Father: {fileID: 400002}
+--- !u!4 &400014
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100014}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.31930959, y: -.512717903, z: 0}
+  m_LocalScale: {x: .615384638, y: .615384638, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400010}
 --- !u!4 &400016
 Transform:
   m_ObjectHideFlags: 1
@@ -658,6 +685,7 @@ MonoBehaviour:
   - {fileID: 21300022, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300030, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 1
+  SpawnPoint: {fileID: 0}
   ability: {fileID: 11400016}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -720,8 +748,8 @@ MonoBehaviour:
   - {fileID: 21300018, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300026, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
+  SpawnPoint: {fileID: 100014}
   squadManager: {fileID: 11400018}
-  SpawnPoint: {fileID: 100006}
   UnitSpawnType: 3
 --- !u!114 &11400012
 MonoBehaviour:
@@ -784,8 +812,8 @@ MonoBehaviour:
   - {fileID: 21300016, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300024, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
-  squadManager: {fileID: 11400006}
   SpawnPoint: {fileID: 100030}
+  squadManager: {fileID: 11400006}
   UnitSpawnType: 2
 --- !u!114 &11400022
 MonoBehaviour:

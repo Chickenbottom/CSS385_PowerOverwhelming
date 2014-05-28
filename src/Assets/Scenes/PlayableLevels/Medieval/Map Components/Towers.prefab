@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400018}
   m_Layer: 10
-  m_Name: SpawnPoint
+  m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +127,21 @@ GameObject:
   - 61: {fileID: 6100004}
   m_Layer: 0
   m_Name: ArcherSquads
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100016
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400024}
+  m_Layer: 10
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -451,7 +466,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .515536427, y: -.720135331, z: 0}
+  m_LocalPosition: {x: -.920264661, y: -.873970628, z: 0}
   m_LocalScale: {x: .615384638, y: .615384638, z: 1}
   m_Children: []
   m_Father: {fileID: 400032}
@@ -476,7 +491,7 @@ Transform:
   m_LocalPosition: {x: -98, y: -57.7957077, z: 0}
   m_LocalScale: {x: 13, y: 13, z: 1}
   m_Children:
-  - {fileID: 400018}
+  - {fileID: 400024}
   - {fileID: 400034}
   - {fileID: 400000}
   m_Father: {fileID: 400030}
@@ -487,10 +502,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .358149618, y: -1.77016604, z: 0}
+  m_LocalPosition: {x: .255592346, y: -1.37043297, z: 0}
   m_LocalScale: {x: .615384638, y: .615384638, z: 1}
   m_Children: []
-  m_Father: {fileID: 400016}
+  m_Father: {fileID: 400054}
 --- !u!4 &400020
 Transform:
   m_ObjectHideFlags: 1
@@ -513,6 +528,17 @@ Transform:
   m_LocalScale: {x: 16, y: 16, z: 1}
   m_Children: []
   m_Father: {fileID: 400008}
+--- !u!4 &400024
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .563264132, y: -.975347102, z: 0}
+  m_LocalScale: {x: .615384638, y: .615384638, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400016}
 --- !u!4 &400028
 Transform:
   m_ObjectHideFlags: 1
@@ -520,7 +546,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -103.06485, y: 38.7905769, z: .00390625}
+  m_LocalPosition: {x: 29.8524246, y: 38.1374207, z: .00390625}
   m_LocalScale: {x: 16, y: 16, z: 1}
   m_Children: []
   m_Father: {fileID: 400008}
@@ -636,6 +662,7 @@ Transform:
   - {fileID: 400046}
   - {fileID: 400048}
   - {fileID: 400044}
+  - {fileID: 400018}
   m_Father: {fileID: 400030}
 --- !u!50 &5000000
 Rigidbody2D:
@@ -739,7 +766,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: 1.5
+  m_Radius: 1.79999995
   m_Center: {x: 0, y: -1}
 --- !u!60 &6000000
 PolygonCollider2D:
@@ -863,8 +890,8 @@ MonoBehaviour:
   - {fileID: 21300016, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300024, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
+  SpawnPoint: {fileID: 100016}
   squadManager: {fileID: 11400004}
-  SpawnPoint: {fileID: 100010}
   UnitSpawnType: 2
 --- !u!114 &11400004
 MonoBehaviour:
@@ -946,8 +973,8 @@ MonoBehaviour:
   - {fileID: 21300018, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300026, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
-  squadManager: {fileID: 11400012}
   SpawnPoint: {fileID: 100022}
+  squadManager: {fileID: 11400012}
   UnitSpawnType: 3
 --- !u!114 &11400018
 MonoBehaviour:
@@ -1011,8 +1038,8 @@ MonoBehaviour:
   - {fileID: 21300020, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300028, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
-  squadManager: {fileID: 11400010}
   SpawnPoint: {fileID: 100018}
+  squadManager: {fileID: 11400010}
   UnitSpawnType: 4
 --- !u!114 &11400028
 MonoBehaviour:
@@ -1049,6 +1076,7 @@ MonoBehaviour:
   - {fileID: 21300022, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300030, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 1
+  SpawnPoint: {fileID: 100010}
   ability: {fileID: 11400024}
 --- !u!212 &21200000
 SpriteRenderer:

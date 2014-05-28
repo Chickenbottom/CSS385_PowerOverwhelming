@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AbilityTower: Tower
 {
-    public Ability ability;
+    public Ability ability;    
 
     public override void UseTargetedAbility (Target target)
     {

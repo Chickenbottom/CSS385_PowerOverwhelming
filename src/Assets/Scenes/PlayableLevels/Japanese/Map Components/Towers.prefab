@@ -540,6 +540,51 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100064
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400064}
+  m_Layer: 10
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100066
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400066}
+  m_Layer: 10
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100068
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400068}
+  m_Layer: 10
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -609,6 +654,7 @@ Transform:
   - {fileID: 400006}
   - {fileID: 400004}
   - {fileID: 400002}
+  - {fileID: 400030}
   - {fileID: 400008}
   m_Father: {fileID: 400036}
 --- !u!4 &400012
@@ -621,6 +667,7 @@ Transform:
   m_LocalPosition: {x: 73.3624268, y: 52.4945259, z: 0}
   m_LocalScale: {x: 13, y: 13, z: 1}
   m_Children:
+  - {fileID: 400066}
   - {fileID: 400016}
   - {fileID: 400014}
   - {fileID: 400018}
@@ -679,7 +726,7 @@ Transform:
   m_LocalPosition: {x: 73.7213898, y: -56.4849358, z: 0}
   m_LocalScale: {x: 13, y: 13, z: 1}
   m_Children:
-  - {fileID: 400030}
+  - {fileID: 400068}
   - {fileID: 400044}
   - {fileID: 400058}
   m_Father: {fileID: 400036}
@@ -723,10 +770,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.22742617, y: -.720135331, z: 0}
+  m_LocalPosition: {x: -.158623919, y: -1.17644596, z: 0}
   m_LocalScale: {x: .615384638, y: .615384638, z: 1}
   m_Children: []
-  m_Father: {fileID: 400022}
+  m_Father: {fileID: 400010}
 --- !u!4 &400032
 Transform:
   m_ObjectHideFlags: 1
@@ -907,6 +954,7 @@ Transform:
   m_Children:
   - {fileID: 400026}
   - {fileID: 400032}
+  - {fileID: 400064}
   - {fileID: 400024}
   m_Father: {fileID: 400036}
 --- !u!4 &400062
@@ -923,6 +971,39 @@ Transform:
   - {fileID: 400050}
   - {fileID: 400052}
   m_Father: {fileID: 400036}
+--- !u!4 &400064
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .319946289, y: -1.69093883, z: 0}
+  m_LocalScale: {x: .615384638, y: .615384638, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400060}
+--- !u!4 &400066
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100066}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.584470332, y: -1.69341016, z: 0}
+  m_LocalScale: {x: .615384638, y: .615384638, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400012}
+--- !u!4 &400068
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.22742617, y: -.720135331, z: 0}
+  m_LocalScale: {x: .615384638, y: .615384638, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400022}
 --- !u!50 &5000000
 Rigidbody2D:
   m_ObjectHideFlags: 1
@@ -1212,6 +1293,7 @@ MonoBehaviour:
   - {fileID: 21300020, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300028, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
+  SpawnPoint: {fileID: 100030}
   SpawnPoints:
   - {fileID: 100002}
   - {fileID: 100000}
@@ -1257,6 +1339,7 @@ MonoBehaviour:
   - {fileID: 21300022, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300030, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 1
+  SpawnPoint: {fileID: 100066}
   ability: {fileID: 11400008}
 --- !u!114 &11400008
 MonoBehaviour:
@@ -1304,8 +1387,8 @@ MonoBehaviour:
   - {fileID: 21300018, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300026, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
+  SpawnPoint: {fileID: 100068}
   squadManager: {fileID: 11400032}
-  SpawnPoint: {fileID: 100030}
   UnitSpawnType: 3
 --- !u!114 &11400014
 MonoBehaviour:
@@ -1368,8 +1451,8 @@ MonoBehaviour:
   - {fileID: 21300020, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300028, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
-  squadManager: {fileID: 11400026}
   SpawnPoint: {fileID: 100020}
+  squadManager: {fileID: 11400026}
   UnitSpawnType: 4
 --- !u!114 &11400022
 MonoBehaviour:
@@ -1479,6 +1562,7 @@ MonoBehaviour:
   - {fileID: 21300022, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300030, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 1
+  SpawnPoint: {fileID: 100064}
   ability: {fileID: 11400016}
 --- !u!114 &11400036
 MonoBehaviour:
@@ -1499,8 +1583,8 @@ MonoBehaviour:
   - {fileID: 21300016, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   CapturedSprite: {fileID: 21300024, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   canTargetTowers: 0
-  squadManager: {fileID: 11400018}
   SpawnPoint: {fileID: 100048}
+  squadManager: {fileID: 11400018}
   UnitSpawnType: 2
 --- !u!212 &21200000
 SpriteRenderer:
@@ -1544,7 +1628,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
-  m_SortingOrder: -1000
+  m_SortingOrder: 385
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300004, guid: 404d3de249aeb264bb7111753f44eb3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
