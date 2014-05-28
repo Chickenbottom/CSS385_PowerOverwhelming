@@ -22,10 +22,10 @@ public class Crossbow : Weapon
             return;
         base.PerformAttack (src, target);
         
-        GameObject o = (GameObject)GameObject.Instantiate (mProjectilePrefab);
+        /*GameObject o = (GameObject)GameObject.Instantiate (mProjectilePrefab);
         Arrow a = (Arrow)o.GetComponent (typeof(Arrow));
         
         a.transform.position = src.transform.position;      
-        a.SetDestination (target.transform.position);
+        a.SetDestination (target.transform.position);*/
     }
 }

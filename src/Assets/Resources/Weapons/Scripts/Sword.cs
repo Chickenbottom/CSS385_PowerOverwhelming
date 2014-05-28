@@ -2,14 +2,9 @@ using UnityEngine;
 using System.Collections;
 
 public class Sword : Weapon
-{
-    private static GameObject projectilePrefab = null;
-    
+{    
     public Sword (int level) : base (level)
-    {        
-        if (projectilePrefab == null)
-            projectilePrefab = Resources.Load ("Weapons/ArrowPrefab") as GameObject;
-        
+    {                
         mWeaponType = WeaponType.Sword;
         this.InitializeStats();
         
@@ -21,11 +16,5 @@ public class Sword : Weapon
         if (target == null)
             return;
         base.PerformAttack (src, target);
-        
-        GameObject o = (GameObject)GameObject.Instantiate (projectilePrefab);
-        Arrow a = (Arrow)o.GetComponent (typeof(Arrow));
-        
-        a.transform.position = src.transform.position;      
-        a.SetDestination (target.transform.position);
     }
 }
