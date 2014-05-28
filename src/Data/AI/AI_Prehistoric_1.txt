@@ -1,0 +1,29 @@
+4
+@EnemyWave 25
+0 Individual Default AttackMove SpawnCenter,TopRight
+1 Small      Default AttackMove SpawnCenter,
+3 Small      Default AttackMove SpawnCenter,TopRight
+5 Small      Default AttackMove SpawnCenter,CenterRight,TopLeft
+
+@EnemyWave 35
+0 Medium      Default AttackMove SpawnCenter,
+0 Medium     Default AttackMove SpawnCenter,
+0 Individual Default AttackMove SpawnCenter,BottomLeft,TopLeft
+1 Small     Default AttackMove SpawnCenter,BottomLeft,TopLeft
+2 Medium     Default AttackMove SpawnCenter,Center,TopRight
+6 Medium      Default AttackMove SpawnCenter,TopLeft
+15 Medium      Default AttackMove SpawnCenter,BottomRight
+
+@EnemyWave 35
+0 Individual    Default AttackMove SpawnCenter,BottomLeft
+2 Small    Default AttackMove SpawnCenter,BottomRight,TopRight
+4 Small  Default AttackMove SpawnCenter,BottomLeft,BottomRight,TopRight
+15 Small    Default AttackMove SpawnCenter,King
+18 Small    Default AttackMove SpawnCenter,BottomLeft
+20 Medium    Default AttackMove SpawnCenter,King
+
+@EnemyWave 35
+0 Small    Default AttackMove SpawnCenter,BottomLeft
+1 Small    Default AttackMove SpawnCenter,CenterRight,TopRight
+6 Medium    Default AttackMove SpawnCenter,BottomLeft
+7 Medium    Default AttackMove SpawnCenter,
