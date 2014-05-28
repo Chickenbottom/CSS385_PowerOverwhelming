@@ -11,6 +11,9 @@ public class UnitWarp : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        int sortingOrder = (int)(4 * (-this.transform.position.y + Camera.main.orthographicSize));
+        GetComponent<SpriteRenderer> ().sortingOrder = (int)(sortingOrder);
+        
         Invoke("DestroyThis", 1f);
 	}
 }
