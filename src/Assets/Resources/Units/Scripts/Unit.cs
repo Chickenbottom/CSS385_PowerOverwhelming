@@ -106,6 +106,12 @@ public class Unit : Target
         }
     }
     
+    public void Despawn ()
+    {
+        this.Squad.Notify (SquadAction.UnitDied, this);
+        Destroy (this.gameObject);
+    }
+    
     /// <summary>
     /// Switchs to weapon stored at the given index. If the index refers to an invalid weapon, no action is taken.
     /// </summary>

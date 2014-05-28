@@ -156,7 +156,7 @@ public class UnitSpawningTower : Tower
         Unit unit = other.gameObject.GetComponent<Unit> ();
                 
         if (unit != null && unit.Squad.UnitType == UnitType.Peasant) {
-            unit.Damage (unit.MaxHealth);
+            unit.Despawn();
             mGarrisonedPeasants ++;
         }
     }
