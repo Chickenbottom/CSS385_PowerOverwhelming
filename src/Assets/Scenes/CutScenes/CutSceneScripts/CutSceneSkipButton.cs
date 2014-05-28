@@ -3,10 +3,8 @@ using System.Collections;
 
 public class CutSceneSkipButton : ButtonBehaviour {
 
-	public string NextLevel;
+	public StoryBook mStoryBook;
 	void OnMouseDown(){
-		if(NextLevel.Length == 0)
-			NextLevel = "level1";
-		Application.LoadLevel(NextLevel);
+		mStoryBook.QuitNarative();
 	}
 }

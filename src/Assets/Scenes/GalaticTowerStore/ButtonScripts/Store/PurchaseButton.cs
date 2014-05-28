@@ -3,29 +3,30 @@ using System.Collections;
 
 public class PurchaseButton : ButtonBehaviour {
 	public GameObject TowerStoreFrame;
-	public GUIText mTotalGoal;	
+	public GUIText mTotalGold;	
+	public GUIText mTotalCost;
 	bool canAfford = true;
 	
 	void Start(){
 		//remove for game
-		GameState.Gold = 100;
-
-		mTotalGoal.text = GameState.Gold.ToString();
+		//GameState.Gold = 100;
+		mTotalCost.text = "0";
 	}
 	void Update(){
+		mTotalGold.text = GameState.Gold.ToString();
 		if(TowerStoreFrame.GetComponent<TowerStoreBehavior>().mCurCost > GameState.Gold){
-			mTotalGoal.color = Color.red;
+			mTotalCost.color = Color.red;
 			canAfford = false;
 		}
 		else{
-			mTotalGoal.color = Color.white;
+			mTotalCost.color = Color.white;
 			canAfford = true;
 		}
 	}
 	void OnMouseDown(){
 		if(canAfford){
 			TowerStoreFrame.GetComponent<TowerStoreBehavior>().Purchase();
-			mTotalGoal.text = "0";
+			mTotalGold.text = "0";
 		}
 	}
 }

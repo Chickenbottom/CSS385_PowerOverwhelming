@@ -111,11 +111,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 334996760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed873d269c780a44198967bcf70eb523, type: 3}
+  m_Script: {fileID: 11500000, guid: 4682f3dfcfcc07c4fa10d7a0c676c304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
   mButtonOver: {fileID: 21300004, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
+  mEraLevel: 1
 --- !u!212 &334996763
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -150,56 +151,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 6.78000021, y: 2.16000009}
   m_Center: {x: 0, y: 0}
---- !u!1 &364122351
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 364122352}
-  - 132: {fileID: 364122353}
-  m_Layer: 0
-  m_Name: RangedXPText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &364122352
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 364122351}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.2859993, y: 42.4490013, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 910062588}
---- !u!132 &364122353
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 364122351}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: 5
-  m_Anchor: 0
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Material: {fileID: 0}
-  m_FontSize: 22
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_PixelCorrect: 1
-  m_RichText: 1
 --- !u!1 &717468027
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,9 +271,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 15.6499996, z: 0}
   m_LocalScale: {x: 13.1999998, y: 13, z: 1}
   m_Children:
+  - {fileID: 1092445124}
   - {fileID: 2100831218}
   - {fileID: 334996761}
-  - {fileID: 1092445124}
   - {fileID: 934161668}
   m_Father: {fileID: 0}
 --- !u!212 &786427543
@@ -348,87 +299,56 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: 5dff263192866e84f81b9d313856b82b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &910062587
+--- !u!1 &925515167
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 910062588}
+  - 4: {fileID: 925515169}
+  - 132: {fileID: 925515168}
   m_Layer: 0
-  m_Name: Text
+  m_Name: EraNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &910062588
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 910062587}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.6666965, y: -42.3810997, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1141439863}
-  - {fileID: 1858510984}
-  - {fileID: 1498853219}
-  - {fileID: 364122352}
-  - {fileID: 931810373}
-  m_Father: {fileID: 0}
---- !u!1 &931810371
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 931810373}
-  - 132: {fileID: 931810372}
-  m_Layer: 0
-  m_Name: MeleeXPText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!132 &931810372
+--- !u!132 &925515168
 GUIText:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 931810371}
+  m_GameObject: {fileID: 925515167}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 5
+  m_Text: 
   m_Anchor: 0
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: 2d601669e4027354cb047667dda64771, type: 3}
   m_Material: {fileID: 0}
-  m_FontSize: 22
+  m_FontSize: 30
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
   m_PixelCorrect: 1
   m_RichText: 1
---- !u!4 &931810373
+--- !u!4 &925515169
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 931810371}
+  m_GameObject: {fileID: 925515167}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.3850002, y: 42.4490013, z: 0}
+  m_LocalPosition: {x: .200000003, y: .0900000036, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 910062588}
+  m_Father: {fileID: 0}
 --- !u!1 &934161667
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,8 +454,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 3.80999994, y: 2.71000004}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 5.07999992, y: 3.62999988}
+  m_Center: {x: 4.76837158e-07, y: 0}
 --- !u!114 &1020592366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,10 +467,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e8375589dc81b4c92db1b77aa18df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mButtonOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLocked: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLockedOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  mButton: {fileID: 21300014, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mButtonOver: {fileID: 21300006, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mLocked: {fileID: 21300014, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mLockedOver: {fileID: 21300006, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mDisplayText: "Modern America Era \u2013 President Rodelle\u2019s"
   mEra: 4
   mLevelSelectionButtons: {fileID: 786427541}
   mEraButtons: {fileID: 1235969710}
@@ -576,7 +497,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  m_Sprite: {fileID: 21300014, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1020592368
 Transform:
@@ -585,8 +506,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1020592364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 78, y: 40, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalPosition: {x: 85, y: 40, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1235969711}
 --- !u!1 &1060952841
@@ -618,10 +539,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e8375589dc81b4c92db1b77aa18df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300002, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mButtonOver: {fileID: 21300008, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLocked: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLockedOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  mButton: {fileID: 21300004, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mButtonOver: {fileID: 21300012, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mLocked: {fileID: 21300014, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mLockedOver: {fileID: 21300006, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mDisplayText: "Japanese Era \u2013 Shogun Rodelle's Palace"
   mEra: 2
   mLevelSelectionButtons: {fileID: 786427541}
   mEraButtons: {fileID: 1235969710}
@@ -647,7 +569,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300002, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1060952844
 Transform:
@@ -656,8 +578,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1060952841}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 40, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalPosition: {x: 5, y: 40, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1235969711}
 --- !u!61 &1060952845
@@ -669,7 +591,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 3.80999994, y: 2.71000004}
+  m_Size: {x: 5.08999968, y: 3.61000013}
   m_Center: {x: 0, y: 0}
 --- !u!1 &1092445121
 GameObject:
@@ -680,8 +602,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1092445124}
   - 212: {fileID: 1092445123}
-  - 114: {fileID: 1092445122}
   - 61: {fileID: 1092445125}
+  - 114: {fileID: 1092445122}
   m_Layer: 0
   m_Name: Level2Button
   m_TagString: Untagged
@@ -697,11 +619,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092445121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 587c74c0ff24d234f9469b35585110b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 4682f3dfcfcc07c4fa10d7a0c676c304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300006, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
   mButtonOver: {fileID: 21300010, guid: 68d26ef5ae2c92d4e873692c5bec7f45, type: 3}
+  mEraLevel: 2
 --- !u!212 &1092445123
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -786,7 +709,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: eb127f0c9bb0415428d2ba84fdd7b483, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 80f31059bcb922f4f9f85e4228dbd2a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!61 &1134486429
 BoxCollider2D:
@@ -810,8 +733,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2cae3bae74a2443bbe5268d826f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: eb127f0c9bb0415428d2ba84fdd7b483, type: 3}
-  mButtonOver: {fileID: 21300002, guid: eb127f0c9bb0415428d2ba84fdd7b483, type: 3}
+  mButton: {fileID: 21300000, guid: 80f31059bcb922f4f9f85e4228dbd2a7, type: 3}
+  mButtonOver: {fileID: 21300002, guid: 80f31059bcb922f4f9f85e4228dbd2a7, type: 3}
 --- !u!4 &1134486431
 Transform:
   m_ObjectHideFlags: 0
@@ -820,7 +743,7 @@ Transform:
   m_GameObject: {fileID: 1134486427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 114.978638, y: -83.7804337, z: 0}
-  m_LocalScale: {x: 13.7865124, y: 13.786521, z: 1}
+  m_LocalScale: {x: 13.6999998, y: 13.6999998, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1141439861
@@ -832,6 +755,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1141439863}
   - 132: {fileID: 1141439862}
+  - 114: {fileID: 1141439864}
   m_Layer: 0
   m_Name: GoldText
   m_TagString: Untagged
@@ -847,7 +771,7 @@ GUIText:
   m_GameObject: {fileID: 1141439861}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 10000
+  m_Text: 1
   m_Anchor: 0
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}
@@ -855,7 +779,7 @@ GUIText:
   m_TabSize: 4
   m_Font: {fileID: 12800000, guid: 2d601669e4027354cb047667dda64771, type: 3}
   m_Material: {fileID: 0}
-  m_FontSize: 20
+  m_FontSize: 25
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
@@ -869,10 +793,22 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1141439861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.936697, y: 42.5210991, z: 0}
+  m_LocalPosition: {x: .716695786, y: .14289856, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 910062588}
+  m_Father: {fileID: 0}
+--- !u!114 &1141439864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1141439861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a6e6c22cafe614e9247fd3cd02ae8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mText: {fileID: 1141439862}
 --- !u!1 &1235969710
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,58 +839,7 @@ Transform:
   - {fileID: 1843354367}
   - {fileID: 1556733075}
   - {fileID: 1730589141}
-  - {fileID: 2042267240}
   m_Father: {fileID: 0}
---- !u!1 &1498853218
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1498853219}
-  - 132: {fileID: 1498853220}
-  m_Layer: 0
-  m_Name: HealTowerXPText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1498853219
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1498853218}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.1870003, y: 42.4490013, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 910062588}
---- !u!132 &1498853220
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1498853218}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: 5
-  m_Anchor: 0
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Material: {fileID: 0}
-  m_FontSize: 22
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_PixelCorrect: 1
-  m_RichText: 1
 --- !u!1 &1556733071
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,8 +867,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 3.80999994, y: 2.71000004}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 5.07999992, y: 3.62999988}
+  m_Center: {x: 2.38418579e-07, y: 0}
 --- !u!114 &1556733073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,10 +880,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e8375589dc81b4c92db1b77aa18df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mButtonOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLocked: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLockedOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  mButton: {fileID: 21300014, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mButtonOver: {fileID: 21300006, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mLocked: {fileID: 21300014, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mLockedOver: {fileID: 21300006, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mDisplayText: "Modern America Era \u2013 President Rodelle\u2019s"
   mEra: 3
   mLevelSelectionButtons: {fileID: 786427541}
   mEraButtons: {fileID: 1235969710}
@@ -1024,7 +910,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  m_Sprite: {fileID: 21300014, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1556733075
 Transform:
@@ -1033,8 +919,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1556733071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41, y: -28, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalPosition: {x: 41, y: -40, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1235969711}
 --- !u!1 &1730589137
@@ -1064,7 +950,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 3.80999994, y: 2.71000004}
+  m_Size: {x: 5.07999992, y: 3.61000013}
   m_Center: {x: 0, y: 0}
 --- !u!114 &1730589139
 MonoBehaviour:
@@ -1077,10 +963,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e8375589dc81b4c92db1b77aa18df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mButtonOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLocked: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLockedOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  mButton: {fileID: 21300000, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mButtonOver: {fileID: 21300008, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mLocked: {fileID: 21300014, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mLockedOver: {fileID: 21300006, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mDisplayText: "Prehistoric Era \u2013 Caveman Rodelle's Lair"
   mEra: 0
   mLevelSelectionButtons: {fileID: 786427541}
   mEraButtons: {fileID: 1235969710}
@@ -1106,7 +993,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1730589141
 Transform:
@@ -1116,7 +1003,7 @@ Transform:
   m_GameObject: {fileID: 1730589137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -75, y: 40, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1235969711}
 --- !u!1 &1843354363
@@ -1146,7 +1033,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 3.80999994, y: 2.71000004}
+  m_Size: {x: 5.08999968, y: 3.61000013}
   m_Center: {x: 0, y: 0}
 --- !u!114 &1843354365
 MonoBehaviour:
@@ -1159,10 +1046,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e8375589dc81b4c92db1b77aa18df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mButtonOver: {fileID: 21300006, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLocked: {fileID: 21300010, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
-  mLockedOver: {fileID: 21300004, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  mButton: {fileID: 21300002, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mButtonOver: {fileID: 21300010, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mLocked: {fileID: 21300014, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mLockedOver: {fileID: 21300006, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
+  mDisplayText: "Medieval Era \u2013 King Rodelle I's Castle"
   mEra: 1
   mLevelSelectionButtons: {fileID: 786427541}
   mEraButtons: {fileID: 1235969710}
@@ -1188,7 +1076,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: e5504ddece1f09c44abc6eaf1202cef8, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 86b0b9318a101ba45863ca5526b17843, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1843354367
 Transform:
@@ -1197,60 +1085,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1843354363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.8479881, y: -28, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalPosition: {x: -34, y: -40, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1235969711}
---- !u!1 &1858510983
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1858510984}
-  - 132: {fileID: 1858510985}
-  m_Layer: 0
-  m_Name: SpecialXPText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1858510984
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1858510983}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.4850006, y: 42.4490013, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 910062588}
---- !u!132 &1858510985
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1858510983}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: 5
-  m_Anchor: 0
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Material: {fileID: 0}
-  m_FontSize: 22
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_PixelCorrect: 1
-  m_RichText: 1
 --- !u!1 &2042267236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,7 +1128,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 799d806b987a4944fa27db5f18a448a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3ab93a3f725370439790a15c06b0bd9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!61 &2042267238
 BoxCollider2D:
@@ -1301,7 +1139,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 8, y: .899999976}
+  m_Size: {x: 2.56999993, y: 1.96000004}
   m_Center: {x: 0, y: 0}
 --- !u!114 &2042267239
 MonoBehaviour:
@@ -1314,8 +1152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610c7c5f9a2aa98478b51df9cc6571ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: 799d806b987a4944fa27db5f18a448a7, type: 3}
-  mButtonOver: {fileID: 21300004, guid: 799d806b987a4944fa27db5f18a448a7, type: 3}
+  mButton: {fileID: 21300000, guid: d3ab93a3f725370439790a15c06b0bd9, type: 3}
+  mButtonOver: {fileID: 21300002, guid: d3ab93a3f725370439790a15c06b0bd9, type: 3}
 --- !u!4 &2042267240
 Transform:
   m_ObjectHideFlags: 0
@@ -1323,10 +1161,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2042267236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -95.4318314, y: -65.9504471, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalPosition: {x: -115, y: -83.7804337, z: 0}
+  m_LocalScale: {x: 13.6999998, y: 13.6999998, z: 1}
   m_Children: []
-  m_Father: {fileID: 1235969711}
+  m_Father: {fileID: 0}
 --- !u!1 &2070375498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,7 +1202,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: d00c4c6d11440da48bf824c428e601f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a5d9b7da6b258c543b90791deb60c8fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &2070375500
 Transform:

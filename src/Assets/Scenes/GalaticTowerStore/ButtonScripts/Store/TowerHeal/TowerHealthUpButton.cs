@@ -7,7 +7,7 @@ public class TowerHealthUpButton : GTSButtonBehavior {
 	void OnMouseDown(){
 		if( mBonusLevel < kBonusMax ){
 			NewValue(1);
-			GameObject.Find("ShaddySeamus").GetComponent<ShaddySeamusDialogue>().WritePosDialogue();
+			GameObject.Find("ShadySeamus").GetComponent<ShadySeamusDialogue>().WritePosDialogue();
 			mStore.mCurCost += (int)UpgradeCost.TowerHealth * mBonusLevel;
 			mTotalGoldText.text = mStore.mCurCost.ToString();
 		}

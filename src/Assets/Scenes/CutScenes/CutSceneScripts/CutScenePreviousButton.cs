@@ -5,6 +5,6 @@ public class CutScenePreviousButton : ButtonBehaviour {
 
 	public StoryBook mStoryBook;
 	void OnMouseDown(){
-		mStoryBook.PreviousScene();
+		mStoryBook.PreviousFrame();
 	}
 }

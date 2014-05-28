@@ -3,10 +3,10 @@ using System.Collections;
 
 public class TotalSceneText : MonoBehaviour {
 
-	public StoryBook mStoreBook;
+	public StoryBook mStoryBook;
 	public GUIText mText;
 	// Use this for initialization
 	void Start () {
-		mText.text = mStoreBook.CameraViews.Count.ToString();
+		mText.text = mStoryBook.GetTotalImages().ToString();
 	}
 }

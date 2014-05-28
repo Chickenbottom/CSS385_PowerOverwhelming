@@ -12,6 +12,6 @@ public class CurrentSceneText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		mText.text = mStoryBook.GetCurrentCamera().ToString();
+		mText.text = mStoryBook.GetCurrentImage().ToString();
 	}
 }

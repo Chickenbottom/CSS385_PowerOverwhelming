@@ -3,13 +3,13 @@ using System.Collections;
 using System.IO;
 using System;
 
-public class ShaddySeamusDialogue : MonoBehaviour
+public class ShadySeamusDialogue : MonoBehaviour
 {
 
 	public GUIText mDialogueText;
 		
 	
-	const string path = "Data/ShaddySeamusDialogue.txt"; //path of the txt file
+	const string path = "Data/ShadySeamusDialogue.txt"; //path of the txt file
 	StreamReader mFile;
 	string line; //used to read line from mfile and arrays
 

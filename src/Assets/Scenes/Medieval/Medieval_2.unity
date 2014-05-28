@@ -1260,6 +1260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300002, guid: 13ba829ec1d67844c90bc353f2de1af7, type: 3}
   mButtonOver: {fileID: 21300010, guid: 13ba829ec1d67844c90bc353f2de1af7, type: 3}
+  mNextStep: 
 --- !u!212 &298820950
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1408,6 +1409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: 13ba829ec1d67844c90bc353f2de1af7, type: 3}
   mButtonOver: {fileID: 21300008, guid: 13ba829ec1d67844c90bc353f2de1af7, type: 3}
+  mNextStep: 
 --- !u!212 &383666622
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1793,7 +1795,7 @@ Transform:
   m_GameObject: {fileID: 555232064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.70000005, y: -4.3499999, z: 0}
-  m_LocalScale: {x: .74000001, y: .899999976, z: 1}
+  m_LocalScale: {x: 1.04999995, y: 1.04999995, z: 1}
   m_Children: []
   m_Father: {fileID: 1583078563}
 --- !u!61 &555232066
@@ -1806,8 +1808,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 6.82000065, y: 1.6700002}
-  m_Center: {x: 0, y: -2.38418579e-07}
+  m_Size: {x: 4.80999994, y: 1.40999985}
+  m_Center: {x: -1.49011612e-08, y: -2.38418579e-07}
 --- !u!114 &555232067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,8 +1822,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caeb41138ba081046b129e9cb3030a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300006, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
-  mButtonOver: {fileID: 21300010, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
+  mButton: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
+  mButtonOver: {fileID: 21300022, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
 --- !u!212 &555232068
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1844,7 +1846,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2001
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300006, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &558056968
 GameObject:
@@ -2142,7 +2144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &674313581
 Transform:
   m_ObjectHideFlags: 0
@@ -2517,6 +2519,104 @@ Prefab:
     - target: {fileID: 400002, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200018, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e,
+        type: 3}
+    - target: {fileID: 11400014, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: mButtonOver
+      value: 
+      objectReference: {fileID: 21300022, guid: 7081ec6a2f361414c9e2261885cdda1e,
+        type: 3}
+    - target: {fileID: 11400014, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: mButton
+      value: 
+      objectReference: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e,
+        type: 3}
+    - target: {fileID: 100026, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400024, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.04999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 400024, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.04999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100012, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_Size.x
+      value: 4.80999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100012, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_Size.y
+      value: 1.40999985
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100012, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_Center.x
+      value: -1.49011612e-08
+      objectReference: {fileID: 0}
+    - target: {fileID: 400024, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.70000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 400024, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.3499999
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400034, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: mButton
+      value: 
+      objectReference: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e,
+        type: 3}
+    - target: {fileID: 11400034, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: mButtonOver
+      value: 
+      objectReference: {fileID: 21300022, guid: 7081ec6a2f361414c9e2261885cdda1e,
+        type: 3}
+    - target: {fileID: 21200038, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e,
+        type: 3}
+    - target: {fileID: 400048, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.04999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 400048, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.04999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100028, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_Size.x
+      value: 4.81000042
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100028, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_Size.y
+      value: 1.40999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100028, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_Center.x
+      value: -3.12924385e-07
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100028, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
+      propertyPath: m_Center.y
+      value: -4.76837158e-07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c2c1584433c5bd4fa541028dc8cbac1, type: 2}
@@ -4765,7 +4865,7 @@ Transform:
   m_GameObject: {fileID: 1390919929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.70000029, y: -3.5, z: 0}
-  m_LocalScale: {x: .74000001, y: .900000095, z: 1}
+  m_LocalScale: {x: 1.04999995, y: 1.04999995, z: 1}
   m_Children: []
   m_Father: {fileID: 1982909783}
 --- !u!61 &1390919931
@@ -4778,8 +4878,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 6.82000065, y: 1.6700002}
-  m_Center: {x: 0, y: -2.38418579e-07}
+  m_Size: {x: 4.81000042, y: 1.40999997}
+  m_Center: {x: -3.12924385e-07, y: -4.76837158e-07}
 --- !u!114 &1390919932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4792,8 +4892,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caeb41138ba081046b129e9cb3030a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300006, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
-  mButtonOver: {fileID: 21300010, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
+  mButton: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
+  mButtonOver: {fileID: 21300022, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
 --- !u!212 &1390919933
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4816,7 +4916,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2001
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300006, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1456337542
 GameObject:
