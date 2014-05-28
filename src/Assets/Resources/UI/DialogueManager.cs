@@ -225,7 +225,7 @@ public class DialogueManager : MonoBehaviour
             DisplayMessage(message);
             // CheckForHigherPriorityDialogues();
         } else { // indicate that more dialogue needs to be read
-            ResetGui();
+            //ResetGui();
             mDialogue = null;
         }
     }

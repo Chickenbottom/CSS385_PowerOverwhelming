@@ -12,16 +12,16 @@
 # Message - the message that is displayed to the user
 
 >>> Tutorial # begin tutorial dialogue
-7.0 Normal King Left       --- Welcome to my castle.  Click the towers to select them, and a location in the castle to send units there.
-7.0 Normal King Left       --- If you click the ‘X’ on the ground your units will ignore enemies and go to that point.
-6.0 Normal Advisor Right   --- Hit 'Escape' to pause the game.
-10.0 Normal Advisor Right   --- The white tower can heal your other towers if they become damaged.  Be careful though, the heal tower cannot heal itself.
+15 Normal King Left       --- Welcome to my castle.  Click the towers to select them, and a location in the castle to send units there.
+15 Normal King Left       --- If you click the 'X' on the ground your units will ignore enemies and go to that point.
+15 Normal Advisor Right   --- Hit 'Escape' to pause the game.
+15 Normal Advisor Right   --- The white tower can heal your other towers if they become damaged.  Be careful though, the heal tower cannot heal itself.
 <<< Tutorial # end tutorial dialogue
 
 >>> TowerDestroyed # begin tower destroyed dialogue
-5.0 Normal Swordsman Right --- Sir, it appears that the peasants have taken over a tower.
-5.0 Normal King      Left  --- Well don't just stand there. Go get some more swordsman and get it back!
-12.0 Normal Advisor  Right --- Send units towards the tower and they will bring it back under your control. Beware of the now stronger peasants though!
+10 Normal Swordsman Right --- Sir, it appears that the peasants have taken over a tower.
+10 Normal King      Left  --- Well don't just stand there. Go get some more swordsman and get it back!
+20 Normal Advisor  Right --- Send units towards the tower and they will bring it back under your control. Beware of the stronger peasants though!
 <<< TowerDestroyed  # end tower destroyed dialogue
 
 >>> ArcherMage # begin conversation between archer and mage
