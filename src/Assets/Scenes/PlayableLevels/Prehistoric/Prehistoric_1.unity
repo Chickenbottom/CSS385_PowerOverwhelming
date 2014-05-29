@@ -1672,6 +1672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300002, guid: 13ba829ec1d67844c90bc353f2de1af7, type: 3}
   mButtonOver: {fileID: 21300010, guid: 13ba829ec1d67844c90bc353f2de1af7, type: 3}
+  mNextStep: Medieval_1
 --- !u!212 &425637268
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5985,6 +5986,14 @@ Prefab:
       propertyPath: HealTower
       value: 
       objectReference: {fileID: 17470440}
+    - target: {fileID: 11400062, guid: e4b44294564155b4a8f7f15469774b50, type: 2}
+      propertyPath: mNextStep
+      value: Prologue
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: e4b44294564155b4a8f7f15469774b50, type: 2}
+      propertyPath: mNextStep
+      value: Medieval_1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e4b44294564155b4a8f7f15469774b50, type: 2}
   m_RootGameObject: {fileID: 1080181891}
@@ -6206,7 +6215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300000, guid: 13ba829ec1d67844c90bc353f2de1af7, type: 3}
   mButtonOver: {fileID: 21300008, guid: 13ba829ec1d67844c90bc353f2de1af7, type: 3}
-  mNextStep: 1
+  mNextStep: Prologue
 --- !u!212 &1937798163
 SpriteRenderer:
   m_ObjectHideFlags: 0
