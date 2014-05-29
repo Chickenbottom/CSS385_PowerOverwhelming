@@ -5,10 +5,10 @@ public class GTSButtonBehavior : ButtonBehaviour {
 
 
 	protected enum UpgradeCost{
-		CoolDown = 10,
-		SpawnRate = 15,
-		SpawnSize = 25,
-		TowerHealth = 20,
+		CoolDown = 1500,
+		SpawnRate = 1000,
+		SpawnSize = 2000,
+		TowerHealth = 10000,
 	};
 	public TowerStoreBehavior mStore;
 	public GUIText mText;

@@ -12,6 +12,7 @@ public class WinSkipButton : ButtonBehaviour {
 		}
 		catch(Exception e){
 			Application.LoadLevel("LevelLoader");
+			Debug.LogError (e);
 		}
 	}
 }

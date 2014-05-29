@@ -30,11 +30,12 @@ public class StoryBook : MonoBehaviour {
 	float mPreviousLetterDisplayTime = 0f;
 	string mCurrentDialogueString = null;
 	bool mDialogueExists = true;
-	bool mMultipleLines = false;
+	bool mWaitedCalled = false;
 
     const float kFadeRate = 0.01f;
 	const float kLetterDisplayDelay = 0.03f;	
-	float kSceneTransitionWaitTime = 1.5f;
+	const float kSceneTransitionWaitTime = 1.5f;
+
 
 	// Use this for initialization
 	void Start () {
@@ -43,7 +44,6 @@ public class StoryBook : MonoBehaviour {
 		else{
 			Debug.LogError ("Could not find Dialogue text file");
 			mDialogueExists = false;
-			kSceneTransitionWaitTime += 2f;
 		}
 
 		for (int i = 0; i < mImageArray.Count; i++) {
@@ -51,6 +51,7 @@ public class StoryBook : MonoBehaviour {
 		}
 
 		mMyAction = Action.FadeIn;
+
 		mDialogueText.text = "";
 		mCurrentDialogueString = mDialogueArray[mCurrentImageIndex].ToString();
 		mCurrentImage = mImageArray[0];
@@ -111,13 +112,17 @@ public class StoryBook : MonoBehaviour {
 			Application.LoadLevel(NextScene);
 			break;
 		case Action.Waiting:
-			Invoke("FrameWaited",kSceneTransitionWaitTime);
+			if(!mWaitedCalled){
+				Invoke("FrameWaited",kSceneTransitionWaitTime);
+				mWaitedCalled = true;
+			}
 			break;
 		}
 	}
 	void FrameWaited(){
 		mDialogueText.text = "";
 		mMyAction = Action.FadeOut;
+		mWaitedCalled = false;	
 	}
 	void LoadDialogue ()
 	{
@@ -154,8 +159,7 @@ public class StoryBook : MonoBehaviour {
 			return 1f;
 	}
 	public void NextFrame(){
-		if (mCurrentImageIndex + 1 >= mImageArray.Count || mMyAction == Action.FadeIn ||
-		    mMyAction == Action.ChangingSet || mMyAction == Action.Finished || mMyAction == Action.FadeOut){
+		if (mCurrentImageIndex + 1 >= mImageArray.Count && mMyAction == Action.ChangingSet){
 			return;
 		}
 		else{

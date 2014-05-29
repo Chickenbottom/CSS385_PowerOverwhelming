@@ -8,7 +8,7 @@ public class WinLoseBehavior : MonoBehaviour {
 	public GameObject LoseGameFrame;
 	public List<GameObject> mAllFrames;
 
-	bool TESTING = false;
+	bool TESTING = true;
 	
 	void Start(){
 		CloseAllFrames();

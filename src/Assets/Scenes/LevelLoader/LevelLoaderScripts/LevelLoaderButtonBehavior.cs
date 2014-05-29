@@ -9,6 +9,7 @@ public enum Era{
 	Japanese = 2,
 	ModernAmerica = 3,
 	Future = 4,
+	None = 5,
 };
 public enum EraLevel{
 	_1 = 1,

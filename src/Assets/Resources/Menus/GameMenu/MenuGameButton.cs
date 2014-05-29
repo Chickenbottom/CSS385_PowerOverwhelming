@@ -5,7 +5,6 @@ public class MenuGameButton : ButtonBehaviour {
 
 	// Use this for initialization
 	const float kMenuInterval = 0.3f;
-	float mPreviousMenuInterval = 0f;
 
 	public WinLoseBehavior mButtons;
 	public GameObject GameMenuFrame;

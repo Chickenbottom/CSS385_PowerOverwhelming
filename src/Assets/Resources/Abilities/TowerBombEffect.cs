@@ -25,7 +25,6 @@ public class TowerBombEffect : MonoBehaviour
     private ExplosionState mExplosionState = ExplosionState.Idle;
     
     float kLiveTimer = 1.8f;
-    float kExplosionDuration = 0.1f;
     float kStartTime;
 
     GameObject mEmitterPrefab = null;
@@ -58,10 +57,7 @@ public class TowerBombEffect : MonoBehaviour
         if (target == null || ! (target is Unit))
             return;
         
-        
         this.Knockback (target);
-                            
-        int damage = (int)WeaponUpgrades.GetStat(WeaponType.IceWand, WeaponStat.Damage);
     }
    
     void FixedUpdate()
