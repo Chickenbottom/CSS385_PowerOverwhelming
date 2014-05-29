@@ -3120,6 +3120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300002, guid: 13ba829ec1d67844c90bc353f2de1af7, type: 3}
   mButtonOver: {fileID: 21300010, guid: 13ba829ec1d67844c90bc353f2de1af7, type: 3}
+  mNextStep: 
 --- !u!212 &954161683
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5192,8 +5193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b31c90c63b16f44b4a1ce07438018e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentLevel: 2
-  CurrentEra: 1
+  GameLevel: 2
+  GameEra: 1
 --- !u!1 &1491823202
 GameObject:
   m_ObjectHideFlags: 0

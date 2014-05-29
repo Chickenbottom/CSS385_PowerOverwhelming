@@ -50,12 +50,12 @@ public static class EnumHelper
 public class EnemyAI : MonoBehaviour
 {
     public Dictionary<Waypoint, Vector3> Waypoints;
-    public int CurrentLevel;
-    public Era CurrentEra;
+    public int GameLevel;
+    public Era GameEra;
     
     private void ValidatePresets ()
     {
-        if (CurrentLevel == 0) {// || CurrentErra == Era.None
+        if (GameLevel == 0) {// || CurrentErra == Era.None
             Debug.LogError("The level or era was not set in the Unity Inspector.");
         }
     }
@@ -67,8 +67,8 @@ public class EnemyAI : MonoBehaviour
     void Awake ()
     {
         this.ValidatePresets();
-        GameState.CurrentEra = this.CurrentEra;
-        GameState.CurrentLevel = this.CurrentLevel;
+        GameState.GameEra = this.GameEra;
+        GameState.GameLevel = this.GameLevel;
     }
     
     void Update ()
@@ -114,12 +114,12 @@ public class EnemyAI : MonoBehaviour
         
         GameObject.Find ("Waypoints").SetActive(false);
         
-        Debug.Log ("Loading " + CurrentEra.ToString() + " AI level " + CurrentLevel);
+        Debug.Log ("Loading " + GameEra.ToString() + " AI level " + GameLevel);
         
         string aiDataPath = "Data/AI/AI_";
-        aiDataPath += CurrentEra.ToString ();
+        aiDataPath += GameEra.ToString ();
         aiDataPath += "_";
-        aiDataPath += CurrentLevel.ToString ();
+        aiDataPath += GameLevel.ToString ();
         aiDataPath += ".txt";
         ReadWavesFromFile (aiDataPath);
         

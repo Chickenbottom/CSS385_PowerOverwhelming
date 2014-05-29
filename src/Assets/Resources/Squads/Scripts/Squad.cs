@@ -433,16 +433,16 @@ public class Squad : MonoBehaviour, Selectable
     private static void InitializePrefabs ()
     {
         mUnitPrefabs = new Dictionary<UnitType, GameObject> ();
-        mUnitPrefabs.Add (UnitType.Swordsman, UnitPrefab(GameState.CurrentEra, "SwordsmanPrefab"));
-        mUnitPrefabs.Add (UnitType.Archer, UnitPrefab(GameState.CurrentEra, "ArcherPrefab"));
-        mUnitPrefabs.Add (UnitType.Mage, UnitPrefab(GameState.CurrentEra, "MagePrefab"));
-        mUnitPrefabs.Add (UnitType.King, UnitPrefab(GameState.CurrentEra, "KingPrefab"));
+        mUnitPrefabs.Add (UnitType.Swordsman, UnitPrefab(GameState.GameEra, "SwordsmanPrefab"));
+        mUnitPrefabs.Add (UnitType.Archer, UnitPrefab(GameState.GameEra, "ArcherPrefab"));
+        mUnitPrefabs.Add (UnitType.Mage, UnitPrefab(GameState.GameEra, "MagePrefab"));
+        mUnitPrefabs.Add (UnitType.King, UnitPrefab(GameState.GameEra, "KingPrefab"));
         
         mEnemyPrefabs = new Dictionary<UnitType, GameObject> ();
-        mEnemyPrefabs.Add (UnitType.Swordsman, UnitPrefab(GameState.CurrentEra, "EnemySwordsmanPrefab"));
-        mEnemyPrefabs.Add (UnitType.Archer, UnitPrefab(GameState.CurrentEra, "EnemyArcherPrefab"));
-        mEnemyPrefabs.Add (UnitType.Peasant, UnitPrefab(GameState.CurrentEra, "EnemyPeasantPrefab"));
-        mEnemyPrefabs.Add (UnitType.Mage, UnitPrefab(GameState.CurrentEra, "EnemyMagePrefab"));
+        mEnemyPrefabs.Add (UnitType.Swordsman, UnitPrefab(GameState.GameEra, "EnemySwordsmanPrefab"));
+        mEnemyPrefabs.Add (UnitType.Archer, UnitPrefab(GameState.GameEra, "EnemyArcherPrefab"));
+        mEnemyPrefabs.Add (UnitType.Peasant, UnitPrefab(GameState.GameEra, "EnemyPeasantPrefab"));
+        mEnemyPrefabs.Add (UnitType.Mage, UnitPrefab(GameState.GameEra, "EnemyMagePrefab"));
     }
     
     private static GameObject UnitPrefab(Era era, string name)

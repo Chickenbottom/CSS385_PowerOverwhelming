@@ -6,9 +6,12 @@ public class GameState
 {
     public static bool IsDebug = true;
 
+    
     public static Era CurrentEra { get; set; }
 
-    public static int CurrentLevel;
+    public static int GameLevel;
+    public static Era GameEra { get; set; }
+    
     public static int RemainingWaves;
 	public static bool WonGame = false;
 	public static bool LostGame = false;
@@ -88,9 +91,6 @@ public class GameState
         
         if (mKingsHealth <= 0)
             TriggerLoss ();
-        else if (CurrentEra < Era.Future) {
-            CurrentEra++;
-        }
     }
     
     private static int mKingsHealth;
