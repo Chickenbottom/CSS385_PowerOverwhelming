@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class GameState
 {
+    public static bool IsDebug = true;
+
     public static Era CurrentEra { get; set; }
 
     public static int CurrentLevel;

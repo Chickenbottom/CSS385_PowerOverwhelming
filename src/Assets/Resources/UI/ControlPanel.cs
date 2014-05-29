@@ -82,12 +82,12 @@ public class ControlPanel : MonoBehaviour
         KingsHealthBar.UpdateValue (GameState.KingsHealth);
         GoldCounterText.text = GameState.Gold.ToString ();
         WaveCounter.text = GameState.RemainingWaves.ToString ();
-        /*
-        if (Input.GetKeyDown ("a"))
+        
+        if (GameState.IsDebug && Input.GetKeyDown ("a"))
             Time.timeScale += 0.5f;
             
-        if (Input.GetKeyDown ("s"))
-            Time.timeScale -= 0.5f;*/
+        if (GameState.IsDebug && Input.GetKeyDown ("s"))
+            Time.timeScale -= 0.5f;
 	}
     
     private void UpdateCooldownBar(Progressbar cooldownBar, AbilityTower tower)

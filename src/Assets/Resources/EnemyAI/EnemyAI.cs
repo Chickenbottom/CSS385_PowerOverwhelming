@@ -89,9 +89,9 @@ public class EnemyAI : MonoBehaviour
             GameState.TriggerWin ();
         }
         
-        /*if (Input.GetButtonDown ("Fire1")) {
+        if (GameState.IsDebug && Input.GetButtonDown ("Fire1")) {
             SpawnWave (3);
-        }*/
+        }
     }
     
     void Start ()
