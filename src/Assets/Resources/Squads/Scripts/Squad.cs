@@ -134,10 +134,7 @@ public class Squad : MonoBehaviour, Selectable
         
         this.transform.position = location; 
         
-        if (allegiance == Allegiance.Rodelle)
-            mUnitPrefab = mUnitPrefabs [this.UnitType];
-        else 
-            mUnitPrefab = mEnemyPrefabs [this.UnitType];
+        mUnitPrefab = TextureResource.GetUnitPrefab(this.UnitType, (allegiance == Allegiance.Rodelle));
         
         if (mSquadMembers != null) {
             foreach (Unit u in mSquadMembers)
@@ -427,35 +424,6 @@ public class Squad : MonoBehaviour, Selectable
         return surroundingPositions;
     }
     
-    static Dictionary<UnitType, GameObject> mUnitPrefabs = null;
-    static Dictionary<UnitType, GameObject> mEnemyPrefabs = null;
-    
-    private static void InitializePrefabs ()
-    {
-        mUnitPrefabs = new Dictionary<UnitType, GameObject> ();
-        mUnitPrefabs.Add (UnitType.Swordsman, UnitPrefab(GameState.GameEra, "SwordsmanPrefab"));
-        mUnitPrefabs.Add (UnitType.Archer, UnitPrefab(GameState.GameEra, "ArcherPrefab"));
-        mUnitPrefabs.Add (UnitType.Mage, UnitPrefab(GameState.GameEra, "MagePrefab"));
-        mUnitPrefabs.Add (UnitType.King, UnitPrefab(GameState.GameEra, "KingPrefab"));
-        
-        mEnemyPrefabs = new Dictionary<UnitType, GameObject> ();
-        mEnemyPrefabs.Add (UnitType.Swordsman, UnitPrefab(GameState.GameEra, "EnemySwordsmanPrefab"));
-        mEnemyPrefabs.Add (UnitType.Archer, UnitPrefab(GameState.GameEra, "EnemyArcherPrefab"));
-        mEnemyPrefabs.Add (UnitType.Peasant, UnitPrefab(GameState.GameEra, "EnemyPeasantPrefab"));
-        mEnemyPrefabs.Add (UnitType.Mage, UnitPrefab(GameState.GameEra, "EnemyMagePrefab"));
-    }
-    
-    private static GameObject UnitPrefab(Era era, string name)
-    {
-        string prefabPath = "Units/Prefabs/";
-        
-        prefabPath += era.ToString();
-        prefabPath += "/";
-        prefabPath += name;
-        
-        return Resources.Load (prefabPath) as GameObject;
-    }
-    
     private bool HasLowerPriority (Target target)
     {
         int targetPriority = TargetPriority (target);
@@ -543,10 +511,7 @@ public class Squad : MonoBehaviour, Selectable
     
     // Use this for initialization
     void Awake ()
-    {
-        if (null == mUnitPrefabs) 
-            InitializePrefabs ();
-    
+    {    
         this.SquadState = SquadState.Idle;
         if (IsIndependent) {
             this.Spawn (this.UnitType, this.transform.position, 1, Allegiance.Rodelle);
