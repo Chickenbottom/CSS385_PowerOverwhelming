@@ -169,7 +169,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 604311785}
   mBonusType: 1
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!61 &48178465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 554411529}
   mBonusType: 0
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!1 &188737688
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +389,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 554411529}
   mBonusType: 0
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!1 &259070366
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +469,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 1698223699}
   mBonusType: 2
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!1 &283856575
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +799,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 288026673}
   mBonusType: 2
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!212 &492288142
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1328,7 +1328,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 1326351822}
   mBonusType: 0
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!1 &918977186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,7 +1458,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 1734817137}
   mBonusType: 0
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!1 &925530972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,7 +1692,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 1734817137}
   mBonusType: 0
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!1 &1053477569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,7 +1772,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 471713032}
   mBonusType: 0
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!1 &1061521578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,7 +2043,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 471713032}
   mBonusType: 0
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!1 &1270435987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,7 +2200,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 402592862}
   mBonusType: 2
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!1 &1320429635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2510,7 +2510,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 402592862}
   mBonusType: 2
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!4 &1440934391
 Transform:
   m_ObjectHideFlags: 0
@@ -2590,7 +2590,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 288026673}
   mBonusType: 2
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!61 &1497586092
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2758,7 +2758,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 1698223699}
   mBonusType: 2
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!1 &1698223697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2854,7 +2854,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 604311785}
   mBonusType: 1
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!212 &1728079574
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3251,7 +3251,7 @@ MonoBehaviour:
   mStore: {fileID: 669529554}
   mText: {fileID: 1326351822}
   mBonusType: 0
-  mTotalGoldText: {fileID: 1320429636}
+  mTotalGoldText: {fileID: 1816375616}
 --- !u!1 &2103692355
 GameObject:
   m_ObjectHideFlags: 0
