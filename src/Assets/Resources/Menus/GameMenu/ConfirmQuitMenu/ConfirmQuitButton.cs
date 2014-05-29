@@ -8,7 +8,6 @@ public class ConfirmQuitButton : ButtonBehaviour {
 	void OnMouseDown(){
 		ChangeScreen();
 		Time.timeScale = 1;
-		string temp = destination.mDestination;
 		Application.LoadLevel(destination.mDestination);
 	}
 

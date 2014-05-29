@@ -7,7 +7,6 @@ public class PauseGameButton : ButtonBehaviour
 		public GameObject mPauseMenuObject;
 		public WinLoseBehavior mButtons;	
 		const float kPauseInterval = 0.3f;
-		float mPreviousPauseInterval = 0f;
 		
 		// Use this for initialization
 		void Start ()

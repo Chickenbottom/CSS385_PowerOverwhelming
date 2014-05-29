@@ -10,8 +10,7 @@ public class DifficultyLoader : MonoBehaviour {
 	private static string[] mEraArray = Enum.GetNames(typeof(Era));
 
 	public static void LoadGame(){
-		if(mCurrentEra != null && mCurrentLevel != null){
-			string temp = mEraArray[(int)mCurrentEra];
+		if(mCurrentEra != Era.None && mCurrentLevel != null){
 			Application.LoadLevel(mEraArray[(int)mCurrentEra] + mCurrentLevel);
 		}
 	}

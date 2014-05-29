@@ -89,7 +89,9 @@ public class SaveLoad : MonoBehaviour {
                     levelStrings.Add(s);
                 }
             }
-            catch (System.Exception e) { }
+            catch (System.Exception e) { 
+				Debug.LogError (e);
+			}
         }
         else if (file == SAVEFILE.Upgrade)
         {
@@ -102,7 +104,9 @@ public class SaveLoad : MonoBehaviour {
                     upgradeStrings.Add(s);
                 }
             }
-            catch (System.Exception e) { }
+            catch (System.Exception e) {
+				Debug.LogError (e);
+			}
         }
     }
 

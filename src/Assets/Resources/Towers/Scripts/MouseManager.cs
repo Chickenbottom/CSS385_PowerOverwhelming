@@ -59,7 +59,6 @@ public class MouseManager : MonoBehaviour
     // Private Methods and Variables
     ///////////////////////////////////////////////////////////////////////////////////
     private List<Selectable> mSelected;
-    private Target mTarget = null;
     private bool mWasJustSelected = false;
     
     private void UseTargetedAbility (Target target)
@@ -126,6 +125,5 @@ public class MouseManager : MonoBehaviour
         CheckTowerHotkey("SelectBoost", "BoostTower");
             
         mWasJustSelected = false;
-        mTarget = null;
     }
 }
