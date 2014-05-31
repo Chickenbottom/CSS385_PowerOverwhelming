@@ -322,6 +322,7 @@ public class Squad : MonoBehaviour, Selectable
         for (int i = 0; i < mSquadMembers.Count; ++i) {
             mSquadMembers [i].Disengage ();
         }
+        UpdateSquadCoherency ();
     }
     
     public void EngageInMelee ()
