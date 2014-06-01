@@ -99,16 +99,20 @@ public class Unit : Target
     {
         mHealth -= damage;
         if (mHealth <= 0) {
-            this.Squad.Notify (SquadAction.UnitDied, this);
             GameObject o = GameObject.Instantiate(mWarpPrefab) as GameObject;
             o.transform.position = this.Position;
-            Destroy (this.gameObject);
+            
+            Despawn ();
         }
     }
     
     public void Despawn ()
     {
         this.Squad.Notify (SquadAction.UnitDied, this);
+        
+        if (this.GetComponent<IceBlock>() != null)
+            this.GetComponent<IceBlock>().Unfreeze();
+        
         Destroy (this.gameObject);
     }
     
