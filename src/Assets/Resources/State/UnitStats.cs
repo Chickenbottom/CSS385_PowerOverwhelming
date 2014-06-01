@@ -22,6 +22,9 @@ public static class EnumUtil {
 
 public static class UnitStats
 {   
+    private static string kUnitDataPath = "Data/unitstats.txt";
+    private static string kUnitLevelPath = "Data/unitlevels.txt";
+    
     ///////////////////////////////////////////////////////////////////////////////////
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
@@ -32,23 +35,12 @@ public static class UnitStats
         int numStats = Enum.GetValues(typeof(UnitStat)).Length;
         mUnitStats = new float[numUnitTypes, numStats];      
         
-        for (int i = 0; i < numUnitTypes; i ++)
-            for (int j = 0; j < numStats; j++)
-                mUnitStats [i, j] = 0f;
-        
         int numEras = Enum.GetValues(typeof(UnitStat)).Length;
         mUnitLevels = new int[numUnitTypes, numEras];
         mUnitExperience = new int[numUnitTypes, numEras];
         
-        for (int i = 0; i < numUnitTypes; i ++) {
-            for (int j = 0; j < numEras; j++) {
-                mUnitLevels [i, j] = 0;
-                mUnitExperience [i, j] = 0;
-            }
-        }
-        
-        LoadStatsFromFile ("Data/unitstats.txt");
-        LoadLevelsFromFile ("Data/unitlevels.txt");
+        LoadStatsFromFile (kUnitDataPath);
+        LoadLevelsFromFile (kUnitLevelPath);
     }
     
     public static float GetStat (UnitType unit, UnitStat stat)
@@ -93,20 +85,28 @@ public static class UnitStats
         return unitLevel * 5 + 15;
     }
     
-    /*
-    public static void WriteStats ()
+    public static void ResetLevels()
     {
-        StreamWriter writer = new StreamWriter (filepath);
+        int numUnitTypes = Enum.GetValues(typeof(UnitType)).Length;
+        int numEras = Enum.GetValues(typeof(UnitStat)).Length;
+        mUnitLevels = new int[numUnitTypes, numEras];
+        mUnitExperience = new int[numUnitTypes, numEras];
         
-        foreach (string sub in Enum.GetNames(typeof(GameType))) {
-            foreach (string bon in Enum.GetNames(typeof(UnitStat))) {
-                writer.WriteLine (sub + "," + bon + "," +
-                                  mstatArray [(int)Enum.Parse (typeof(GameType), sub), 
-                             (int)Enum.Parse (typeof(UnitStat), bon)].ToString ());
+        for (int i = 0; i < numUnitTypes; i ++) {
+            for (int j = 0; j < numEras; j++) {
+                mUnitLevels [i, j] = 1;
+                mUnitExperience [i, j] = 0;
             }
         }
-        writer.Close ();
-    }*/
+        
+        SaveLevels();
+    }
+    
+    public static void SaveLevels()
+    {
+        // TODO create temporary backup before writing to file
+        WriteLevels(kUnitLevelPath);
+    }
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Private
@@ -124,6 +124,37 @@ public static class UnitStats
         
         mUnitLevels[(int) unit, (int) currentEra] += 1;
         mUnitExperience[(int) unit, (int) currentEra] = 0;
+    }
+    
+    private static void WriteLevels (string filepath)
+    {
+        StreamWriter writer = new StreamWriter (filepath);
+        
+        foreach (Era era in EnumUtil.GetValues<Era>()) {
+            if (era == Era.None)
+                continue;
+            
+            writer.WriteLine(FormatLevelData(UnitType.Swordsman, era));
+            writer.WriteLine(FormatLevelData(UnitType.Archer, era));
+            writer.WriteLine(FormatLevelData(UnitType.Mage, era));
+            writer.WriteLine();
+        }
+        
+        writer.Close ();
+    }
+    
+    private static string FormatLevelData(UnitType unitType, Era era)
+    {
+        string data = "";
+        data += String.Format("{0,-20}", unitType.ToString());
+        data += " ";
+        data += String.Format("{0,-20}", era.ToString());
+        data += " ";
+        data += String.Format("{0,5}", mUnitLevels[(int) unitType, (int) era]);
+        data += " ";
+        data += String.Format("{0,5}", mUnitExperience[(int) unitType, (int) era]);
+        
+        return data;
     }
     
     private static void LoadStatsFromFile (string filepath)
@@ -164,7 +195,7 @@ public static class UnitStats
             if (values.Length == 0 || values[0]== "#") // Ignore comments and blank lines
                 continue;
             
-            // FileFormat: "<UnitType>,<Era> <Level> <Experience>"
+            // FileFormat: "<UnitType>  <Era>   <Level>   <Experience>"
             UnitType unitType = EnumHelper.FromString<UnitType>(values[0]);
             Era era = EnumHelper.FromString<Era>(values[1]);
             

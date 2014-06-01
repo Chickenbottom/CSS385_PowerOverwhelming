@@ -72,7 +72,7 @@ public static class WeaponStats
             string line = file.ReadLine ();
             
             string [] values = line.Split (delim, StringSplitOptions.RemoveEmptyEntries);
-            if (values[0]== "#")
+            if (values.Length == 0 || values[0]== "#")
                 continue;
             
             WeaponType WeaponType = EnumHelper.FromString<WeaponType>(values[0]);
