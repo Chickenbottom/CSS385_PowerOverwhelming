@@ -107,6 +107,12 @@ public class ControlPanel : MonoBehaviour
             
         if (GameState.IsDebug && Input.GetKeyDown ("s"))
             Time.timeScale -= 0.5f;
+            
+        if (GameState.IsDebug && Input.GetKeyDown ("b"))
+            UnitStats.SaveLevels ();
+            
+        if (GameState.IsDebug && Input.GetKeyDown ("x"))
+            UnitStats.ResetLevels ();
 	}
     
     private void UpdateCooldownTimer(GUIText text, AbilityTower tower)

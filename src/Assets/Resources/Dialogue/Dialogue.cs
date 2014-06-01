@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public struct Message
 {
     public float Duration;
-    public Speaker Who;
+    public string Who;
     public string Text;
     public SpeakerLocation Location;
     public SpeakerState State;
@@ -108,7 +108,7 @@ public class Dialogue
     // when, how, who, where, what
     // ex. for <5> seconds, <Nervous> <King> (<Left> side), says <"Hello world!">, 
     //     for <3.2> seconds, <Normal> <Peasant> (<Right> side), says <"....blargh.">
-    public void AddMessage (float duration, SpeakerState state, Speaker speaker, SpeakerLocation location, string text)
+    public void AddMessage (float duration, SpeakerState state, string speaker, SpeakerLocation location, string text)
     {
         Message message = new Message ();
         message.Duration = duration;
