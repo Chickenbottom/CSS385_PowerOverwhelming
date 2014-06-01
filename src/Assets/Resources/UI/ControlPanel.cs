@@ -30,6 +30,10 @@ public class ControlPanel : MonoBehaviour
     
     private Dictionary<UnitType, Progressbar> mExpBars;
     private Dictionary<UnitType, GUIText> mLevelText;
+    
+    private Dictionary<BonusSubject, GUIText> mCooldownText;
+    private Dictionary<BonusSubject, Progressbar> mCooldownBars;
+    private Dictionary<BonusSubject, AbilityTower> mAbilityTowers;
 
     void Awake ()
     {
@@ -41,6 +45,16 @@ public class ControlPanel : MonoBehaviour
             
         if (BoostTower == null)
             Destroy (BoostCooldownBar);
+            
+        mCooldownText = new Dictionary<BonusSubject, GUIText>();
+        mCooldownText.Add(BonusSubject.HealTower, GameObject.Find("txtHealCooldown").GetComponent<GUIText>());
+        mCooldownText.Add(BonusSubject.AOETower, GameObject.Find("txtAoeCooldown").GetComponent<GUIText>());
+        mCooldownText.Add(BonusSubject.BuffTower, GameObject.Find("txtBoostCooldown").GetComponent<GUIText>());
+        
+        mCooldownBars = new Dictionary<BonusSubject, Progressbar>();
+        mCooldownBars.Add(BonusSubject.HealTower, GameObject.Find("HealCooldownBar").GetComponent<Progressbar>());
+        mCooldownBars.Add(BonusSubject.AOETower, GameObject.Find("AoeCooldownBar").GetComponent<Progressbar>());
+        mCooldownBars.Add(BonusSubject.BuffTower, GameObject.Find("BoostCooldownBar").GetComponent<Progressbar>());
     }
     
     void Start ()
@@ -76,8 +90,13 @@ public class ControlPanel : MonoBehaviour
         }
         
         UpdateCooldownBar(HealCooldownBar, HealTower);
+        UpdateCooldownTimer(mCooldownText[BonusSubject.HealTower], HealTower);
+        
         UpdateCooldownBar(AoeCooldownBar, AoeTower);
+        UpdateCooldownTimer(mCooldownText[BonusSubject.AOETower], AoeTower);
+        
         UpdateCooldownBar(BoostCooldownBar, BoostTower);
+        UpdateCooldownTimer(mCooldownText[BonusSubject.BuffTower], BoostTower);
         
         KingsHealthBar.UpdateValue (GameState.KingsHealth);
         GoldCounterText.text = GameState.Gold.ToString ();
@@ -89,6 +108,27 @@ public class ControlPanel : MonoBehaviour
         if (GameState.IsDebug && Input.GetKeyDown ("s"))
             Time.timeScale -= 0.5f;
 	}
+    
+    private void UpdateCooldownTimer(GUIText text, AbilityTower tower)
+    {        
+        if (text == null || tower == null) 
+            return;
+        
+        float cooldown = tower.ability.CooldownTimer - tower.ability.CoolDown;
+        cooldown = Mathf.Min(0, cooldown) * -1; // convert to a countdown
+        
+        string cooldownDisplay;
+        
+        if (cooldown <= 0) {
+            cooldownDisplay = '\u2605'.ToString();
+            // PlayGlowAnimation(); // TODO add this glow
+        }
+
+        else 
+            cooldownDisplay = ((int)cooldown + 1).ToString();
+            
+        text.text = cooldownDisplay;
+    }
     
     private void UpdateCooldownBar(Progressbar cooldownBar, AbilityTower tower)
     {
