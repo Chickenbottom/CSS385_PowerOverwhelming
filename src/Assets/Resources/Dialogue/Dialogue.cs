@@ -14,6 +14,7 @@ public struct Message
 
 public class Dialogue
 {   
+    public bool IsEnabled = true;
     private const float kLetterDisplayTime = .05f;
     public bool IsDone = false;
     Queue<Message> mMessages;
@@ -55,8 +56,9 @@ public class Dialogue
                 return false;
             }
         }
+                
+        while (AdvanceLetterAnimation (deltaTime)) {};
         
-        AdvanceLetterAnimation ();
         message = mCurrentMessage;
         return true;
     }
@@ -73,16 +75,17 @@ public class Dialogue
         mCurrentMessage = mMessages.Peek ();
         mTimeUntilNextMessage = mCurrentMessage.Duration;
         mCurrentText = mCurrentMessage.Text;
-        mDialogueTimer = 0;
         mStringLength = 1;
+        mDialogueTimer = 0;
+        mPreviousLetterTime = -kLetterDisplayTime;
     }
     
-    private void AdvanceLetterAnimation ()
+    private bool AdvanceLetterAnimation (float deltaTime)
     {
-        if (mStringLength >= mCurrentText.Length || Time.time - mPreviousLetterTime < kLetterDisplayTime)        
-            return;
+        if (mStringLength >= mCurrentText.Length || mDialogueTimer - mPreviousLetterTime < kLetterDisplayTime) 
+            return false;
         
-        mPreviousLetterTime = Time.time;
+        mPreviousLetterTime += kLetterDisplayTime;
         mStringLength++;
         
         // TODO only add newlines between words, get rid of extra space after newline
@@ -95,16 +98,9 @@ public class Dialogue
         }
         
         mCurrentMessage.Text = mCurrentText.Substring (0, mStringLength);
+        return true;
     }
-    
-    // Returns false to indicate that there is no valid message
-    private bool EmptyDialogue (out Message message)
-    {
-        IsDone = true;
-        message = new Message ();
-        return false;
-    }
-    
+        
     // when, how, who, where, what
     // ex. for <5> seconds, <Nervous> <King> (<Left> side), says <"Hello world!">, 
     //     for <3.2> seconds, <Normal> <Peasant> (<Right> side), says <"....blargh.">
@@ -118,6 +114,19 @@ public class Dialogue
         message.State = state;
         
         mMessages.Enqueue (message);
+    }
+    
+    public Dialogue Clone()
+    {
+        Dialogue dialogue = new Dialogue();
+        
+        foreach (Message m in mMessages) {
+            if (m.Duration == 0)
+                continue;
+            dialogue.AddMessage(m.Duration, m.State, m.Who, m.Location, m.Text);
+        }
+
+        return dialogue;
     }
     
     /*private string FormatString (string text, int textWidth)

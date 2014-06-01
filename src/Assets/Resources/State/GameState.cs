@@ -60,6 +60,9 @@ public class GameState
     
     public static void TriggerLoss ()
     {
+        GameObject.Find("Dialogue").GetComponent<DialogueManager>().TriggerRealtimeDialogue("GameLost");
+        Time.timeScale = 0;
+    
 		LostGame = true;
         SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
         s.Clear(SaveLoad.SAVEFILE.Level);
@@ -70,6 +73,9 @@ public class GameState
     
     public static void TriggerWin ()
     {
+        GameObject.Find("Dialogue").GetComponent<DialogueManager>().TriggerRealtimeDialogue("GameWon");
+        Time.timeScale = 0;
+        
 		WonGame = true;
         SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
         s.Clear(SaveLoad.SAVEFILE.Level);
@@ -84,10 +90,10 @@ public class GameState
         float maxHealth = UnitStats.GetStat(UnitType.King, UnitStat.Health);
         
         if (mKingsHealth < (int)(0.75 * maxHealth))
-            GameObject.Find("Dialogue").GetComponent<DialogueManager>().TriggerDialogue("KingDamaged");
+            GameObject.Find("Dialogue").GetComponent<DialogueManager>().TriggerWarning("KingDamaged");
         
         if (mKingsHealth < (int)(0.35 * maxHealth))
-            GameObject.Find("Dialogue").GetComponent<DialogueManager>().TriggerDialogue("KingInjured");
+            GameObject.Find("Dialogue").GetComponent<DialogueManager>().TriggerWarning("KingInjured");
         
         if (mKingsHealth <= 0)
             TriggerLoss ();

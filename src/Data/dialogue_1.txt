@@ -18,8 +18,8 @@
 
 >>> Tutorial Standard # begin tutorial dialogue
 4 Normal Swordsman Right --- This is a test of swordsman dialogue!
-4 Normal Saemus Right --- Hey, wanna buy some towers?
-4 Normal Swordsman Left --- I am a mysterious stranger!
+5 Normal Saemus Right --- Hey, wanna buy some towers?
+6 Normal Swordsman Left --- I am a mysterious stranger!
 15 Normal King Left       --- Welcome to my castle.  Click the towers to select them, and a location in the castle to send units there.
 15 Normal King Left       --- If you click the 'X' on the ground your units will ignore enemies and go to that point.
 15 Normal Advisor Right   --- Hit 'Escape' to pause the game.
@@ -39,13 +39,22 @@
 <<< ArcherMage  # end conversation between archer and mage
 
 >>> Pause Realtime # played when the game is paused
-5.0 Nervous King    Left    --- Oh, sure, this is a GREAT time to just sit back and watch the action.
+100 Nervous King    Left    --- Oh, sure, this is a GREAT time to just sit back and watch the action.
 <<< Pause
 
->>> KingDamaged Standard
-5.0 Angry King Left        --- Arrrgh, that hurt!! Defend me!
+>>> GameLost Realtime # played when the user loses a level
+10  Dying   King    Left    --- Woe is me! test text txtererere.
+<<< GameLost
+
+>>> GameWon Realtime # played when the user wins a level
+10 Happy   King    Left    --- The peasants are dead!
+20 Normal  Saemus  Right   --- Now that they're gone, how about some nice tower upgrades?
+<<< GameWon
+
+>>> KingDamaged Warning
+10 Angry King Left        --- Arrrgh, that hurt!! Defend me!
 <<< KingDamaged
 
->>> KingInjured Standard
-5.0 Nervous King Left      --- Quick! Heal me! And don't let those peasants get so close!
+>>> KingInjured Warning
+10 Nervous King Left      --- Quick! Heal me! And don't let those peasants get so close!
 <<< KingInjured

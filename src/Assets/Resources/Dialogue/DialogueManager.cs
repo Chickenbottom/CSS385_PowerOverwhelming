@@ -8,6 +8,7 @@ public enum DialogueType {
     Realtime, // played when the game is paused
     Standard, // triggered via events
     Chatter,  // selects randomly from the available chatter dialogue
+    Warning,  // high priority messages. these are played immediately
 }
 
 public class DialogueManager : MonoBehaviour
@@ -30,9 +31,37 @@ public class DialogueManager : MonoBehaviour
     // TODO add priority
     public void TriggerDialogue(string trigger)
     {
-        if (mStandard.ContainsKey(trigger)) {
-            mDialogueQueue.Enqueue(mStandard[trigger]);
-            mStandard.Remove(trigger); // only plays once
+        Dictionary<string, Dialogue> triggers = mTriggers[DialogueType.Standard];
+        if (triggers.ContainsKey(trigger) && triggers[trigger].IsEnabled) {
+            mDialogueQueue[DialogueType.Standard].Enqueue(triggers[trigger].Clone());
+            triggers[trigger].IsEnabled = false; // triggers once before requiring re-enabling
+        }
+    }
+    
+    // Allows the dialogue to be re-queued by calling TriggerDialogue
+    public void ReenableTrigger(string trigger)
+    {
+        Dictionary<string, Dialogue> triggers = mTriggers[DialogueType.Standard];
+        if (triggers.ContainsKey(trigger)) {
+            triggers[trigger].IsEnabled = true; 
+        }
+    }
+    
+    public void TriggerWarning(string trigger)
+    {
+        Dictionary<string, Dialogue> triggers = mTriggers[DialogueType.Warning];
+        if (triggers.ContainsKey(trigger) && triggers[trigger].IsEnabled) {
+            mDialogueQueue[DialogueType.Warning].Enqueue(triggers[trigger].Clone());
+            triggers[trigger].IsEnabled = false;
+        }
+    }
+    
+    public void TriggerRealtimeDialogue(string trigger)
+    {
+        Dictionary<string, Dialogue> triggers = mTriggers[DialogueType.Realtime];
+        if (triggers.ContainsKey(trigger) && triggers[trigger].IsEnabled) {
+            mDialogueQueue[DialogueType.Realtime].Clear(); // only one real-time trigger at a time
+            mDialogueQueue[DialogueType.Realtime].Enqueue(triggers[trigger].Clone());
         }
     }
     
@@ -50,13 +79,14 @@ public class DialogueManager : MonoBehaviour
 
     private Dictionary<string, Speaker> mSpeakers;
     
-    private Dictionary<string, Dialogue> mStandard;
-    private Dictionary<string, Dialogue> mChatter;
-    private Dictionary<string, Dialogue> mRealtime;
+    private Dictionary<DialogueType, Dictionary<string, Dialogue>> mTriggers;    
+    private Dictionary<DialogueType, Queue<Dialogue>> mDialogueQueue;
     
-    private Queue<Dialogue> mDialogueQueue;
-    
+    private DialogueType mDialogueType;
     private Dialogue mDialogue;
+    
+    private bool mIsIdle; // true if there are no messages to display
+    private float mRealtimeStamp;
   
     // See src/dialogue_1.txt for formatting the file
     // TODO load the dialogue file for the current level instead of hardcoding dialogue_1.txt
@@ -78,27 +108,11 @@ public class DialogueManager : MonoBehaviour
                 DialogueType type = EnumHelper.FromString<DialogueType>(values[2]);
                 
                 Dialogue dialogue = GetMessagesFromFile(file);
-                
-                AddToTriggerMap(type, trigger, dialogue);
+                mTriggers[type].Add(trigger, dialogue);
             }
         }
         
         file.Close ();
-    } 
-    
-    private void AddToTriggerMap(DialogueType type, string trigger, Dialogue dialogue)
-    {
-        switch (type) {
-        case(DialogueType.Chatter):
-            mChatter.Add(trigger, dialogue);
-            break;
-        case(DialogueType.Realtime):
-            mRealtime.Add(trigger, dialogue);
-            break;
-        case(DialogueType.Standard):
-            mStandard.Add(trigger, dialogue);
-            break;
-        }
     }
     
     private Dialogue GetMessagesFromFile(StreamReader file)
@@ -167,16 +181,52 @@ public class DialogueManager : MonoBehaviour
             mSpeakers[s].Deactivate();
     }
     
+    private void UpdateDialogueQueue(DialogueType type)
+    {            
+        if (mDialogueQueue[type].Count == 0) // no messages to display
+            return;
+            
+        if (type != mDialogueType) { // a different type of dialogue needs to be                
+            mDialogueType = type;
+            mIsIdle = true;
+        }
+        
+        if (mIsIdle) {
+            mDialogue = mDialogueQueue[mDialogueType].Peek();
+            mIsIdle = false;
+        }
+        
+        float deltaTime;
+        if (type == DialogueType.Realtime)
+            deltaTime = Time.realtimeSinceStartup - mRealtimeStamp;
+        else
+            deltaTime = Time.deltaTime;
+        
+        Message message;
+        bool isValid = mDialogue.AdvanceMessage(deltaTime, out message);
+        
+        if (isValid) {
+            DisplayMessage(message);
+            mIsIdle = false;
+        } else { // indicate that the current dialogue is complete
+            mDialogueQueue[mDialogueType].Dequeue();
+            mIsIdle = true;
+        }
+    }
+    
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
     ///////////////////////////////////////////////////////////////////////////////////
 
     void Start ()
     {
-        mDialogueQueue = new Queue<Dialogue>();
-        mStandard = new Dictionary<string, Dialogue>();
-        mChatter = new Dictionary<string, Dialogue>();
-        mRealtime = new Dictionary<string, Dialogue>();
+        mDialogueQueue = new Dictionary<DialogueType, Queue<Dialogue>>();
+        foreach (DialogueType d in EnumUtil.GetValues<DialogueType>())
+            mDialogueQueue[d] = new Queue<Dialogue>();
+        
+        mTriggers = new Dictionary<DialogueType, Dictionary<string, Dialogue>>();
+        foreach (DialogueType d in EnumUtil.GetValues<DialogueType>())
+            mTriggers[d] = new Dictionary<string, Dialogue>();
     
         mTextBoxes = new Dictionary<SpeakerLocation, GUIText>();
         mNameBoxes = new Dictionary<SpeakerLocation, GUIText>();
@@ -201,28 +251,26 @@ public class DialogueManager : MonoBehaviour
         LoadDialogueFromFile("Data/dialogue_1.txt");
         this.TriggerDialogue("ArcherMage");
         this.TriggerDialogue("Tutorial");
+        
+        mIsIdle = true;
+        mDialogueType = DialogueType.Standard;
+        mRealtimeStamp = Time.realtimeSinceStartup;
+        TriggerRealtimeDialogue("Pause");
+        //mDialogue = mDialogueQueue[DialogueType.Standard].Dequeue();
     }
     
     void Update ()
     {
-        // no dialogue to play
-        if (mDialogue == null && mDialogueQueue.Count == 0) { 
-            return;
+        UpdateDialogueQueue(mDialogueType);
+        
+        if (Time.timeScale == 0) {// game is paused
+            UpdateDialogueQueue(DialogueType.Realtime);
+        } else if (mDialogueQueue[DialogueType.Warning].Count != 0) {
+            UpdateDialogueQueue(DialogueType.Warning);
+        } else {
+            UpdateDialogueQueue(DialogueType.Standard);
         }
         
-        // No dialgoue is currently playing, grab one from the queue
-        if (mDialogue == null)
-            mDialogue = mDialogueQueue.Dequeue();
-        
-        Message message;
-        bool isValid = mDialogue.AdvanceMessage(Time.deltaTime, out message);
-        
-        if (isValid) {
-            DisplayMessage(message);
-            // CheckForHigherPriorityDialogues();
-        } else { // indicate that more dialogue needs to be read
-            //ResetGui();
-            mDialogue = null;
-        }
+        mRealtimeStamp = Time.realtimeSinceStartup;
     }
 }
