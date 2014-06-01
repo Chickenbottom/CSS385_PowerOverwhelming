@@ -6,12 +6,12 @@ using System;
 
 public enum UnitStat
 {
-    Level = 0,
-    Experience,
-    Health,
+    Health = 0,
     MovementSpeed,
     ChargeSpeed,
     SightRange,
+    Level,
+    Experience,
 }
 
 public static class EnumUtil {
@@ -53,27 +53,44 @@ public static class UnitStats
     
     public static float GetStat (UnitType unit, UnitStat stat)
     {
+        Era currentEra = GameState.GameEra;
+        
+        if (stat == UnitStat.Level)
+            return mUnitLevels[(int) unit, (int) currentEra];
+        
+        if (stat == UnitStat.Experience)
+            return mUnitExperience[(int) unit, (int) currentEra];
+                    
         return mUnitStats [(int)unit, (int)stat];
     }
     
     public static void SetStat (UnitType subject, UnitStat stat, float value)
     {
+        if (stat == UnitStat.Level || stat == UnitStat.Experience)
+            return;
+            
         mUnitStats [(int)subject, (int)stat] = value;
     }
     
-    public static void AddToExperience (UnitType subject, float value)
+    public static void AddToExperience (UnitType subject, int value)
     {
         if (subject == UnitType.Peasant)
             return;
-        mUnitStats [(int)subject, (int)UnitStat.Experience] += value;
-        if (mUnitStats [(int)subject, (int)UnitStat.Experience] > GetExpToNextLevel(subject)) {
+            
+        Era currentEra = GameState.GameEra;
+        
+        mUnitExperience [(int)subject, (int)currentEra] += value;
+        if (mUnitExperience [(int)subject, (int)currentEra] > GetExpToNextLevel(subject)) {
             IncreaseUnitLevel(subject);
         }
     }
     
     public static int GetExpToNextLevel(UnitType unit)
     {
-        return (int)mUnitStats[(int) unit, (int) UnitStat.Level] * 5 + 15;
+        Era currentEra = GameState.GameEra;
+        int unitLevel = (int)mUnitLevels[(int) unit, (int) currentEra];
+        
+        return unitLevel * 5 + 15;
     }
     
     /*
@@ -101,9 +118,12 @@ public static class UnitStats
     
     private static void IncreaseUnitLevel(UnitType unit)
     {
-        mUnitStats[(int) unit, (int) UnitStat.Level] += 1;
+        Era currentEra = GameState.GameEra;
+        
         mUnitStats[(int) unit, (int) UnitStat.Health] += 1;
-        mUnitStats[(int) unit, (int) UnitStat.Experience] = 0;
+        
+        mUnitLevels[(int) unit, (int) currentEra] += 1;
+        mUnitExperience[(int) unit, (int) currentEra] = 0;
     }
     
     private static void LoadStatsFromFile (string filepath)
@@ -122,10 +142,13 @@ public static class UnitStats
             
             int statIndex = 1;
             foreach (UnitStat s in EnumUtil.GetValues<UnitStat>()) {
+                if (s == UnitStat.Level || s == UnitStat.Experience)
+                    continue;
                 mUnitStats [(int)unitType, (int)s] = float.Parse (values [statIndex]);
                 statIndex ++;
             }
         }
+        
         file.Close ();
     }  
     
