@@ -81,7 +81,7 @@ public class GameState
     public static void UpdateKingsHealth (int value)
     {
         mKingsHealth = value;
-        float maxHealth = UnitUpgrades.GetStat(UnitType.King, UnitStat.Health);
+        float maxHealth = UnitStats.GetStat(UnitType.King, UnitStat.Health);
         
         if (mKingsHealth < (int)(0.75 * maxHealth))
             GameObject.Find("Dialogue").GetComponent<DialogueManager>().TriggerDialogue("KingDamaged");

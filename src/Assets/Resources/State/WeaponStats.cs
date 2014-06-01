@@ -13,13 +13,13 @@ public enum WeaponStat
     Accuracy = 4,
 }
 
-public static class WeaponUpgrades
+public static class WeaponStats
 {   
     ///////////////////////////////////////////////////////////////////////////////////
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
     
-    static WeaponUpgrades ()
+    static WeaponStats ()
     {
         int numWeaponTypes = Enum.GetValues(typeof(WeaponType)).Length;
         int numStats = Enum.GetValues(typeof(WeaponStat)).Length;

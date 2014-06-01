@@ -243,7 +243,7 @@ public class Squad : MonoBehaviour, Selectable
         GameState.Gold += 5;
         
         if (this.mAllegiance == Allegiance.Rodelle)
-            UnitUpgrades.AddToExperience (this.UnitType, 1);
+            UnitStats.AddToExperience (this.UnitType, 1);
             
         List<Unit> mEnemies = mTargetSquad.mSquadMembers;
         int numEnemies = mEnemies.Count;

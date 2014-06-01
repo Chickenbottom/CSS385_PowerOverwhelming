@@ -56,8 +56,8 @@ public class Unit : Target
     
     public void RestoreStat()
     {
-        mMovementSpeed = UnitUpgrades.GetStat(this.mUnitType, UnitStat.MovementSpeed);
-        mChargeSpeed = UnitUpgrades.GetStat(this.mUnitType, UnitStat.ChargeSpeed);
+        mMovementSpeed = UnitStats.GetStat(this.mUnitType, UnitStat.MovementSpeed);
+        mChargeSpeed = UnitStats.GetStat(this.mUnitType, UnitStat.ChargeSpeed);
     }
     
     /// <summary>
@@ -297,12 +297,12 @@ public class Unit : Target
     // Pulls the unit stat information from the Global UnitUpgrades class
     protected virtual void InitializeStats()
     {
-        mMaxHealth = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.Health);
+        mMaxHealth = (int)UnitStats.GetStat(mUnitType, UnitStat.Health);
         mHealth = mMaxHealth;
-        mMovementSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.MovementSpeed);
-        mChargeSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.ChargeSpeed);
-        mLevel = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.Level);
-        this.SightRange = UnitUpgrades.GetStat(mUnitType, UnitStat.SightRange);
+        mMovementSpeed = (int)UnitStats.GetStat(mUnitType, UnitStat.MovementSpeed);
+        mChargeSpeed = (int)UnitStats.GetStat(mUnitType, UnitStat.ChargeSpeed);
+        mLevel = (int)UnitStats.GetStat(mUnitType, UnitStat.Level);
+        this.SightRange = UnitStats.GetStat(mUnitType, UnitStat.SightRange);
     }
     
 ///////////////////////////////////////////////////////////////////////////////////

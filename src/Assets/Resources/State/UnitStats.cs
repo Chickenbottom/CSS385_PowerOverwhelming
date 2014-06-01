@@ -20,13 +20,13 @@ public static class EnumUtil {
     }
 }
 
-public static class UnitUpgrades
+public static class UnitStats
 {   
     ///////////////////////////////////////////////////////////////////////////////////
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
     
-    static UnitUpgrades ()
+    static UnitStats ()
     {
         int numUnitTypes = Enum.GetValues(typeof(UnitType)).Length;
         int numStats = Enum.GetValues(typeof(UnitStat)).Length;
@@ -35,8 +35,20 @@ public static class UnitUpgrades
         for (int i = 0; i < numUnitTypes; i ++)
             for (int j = 0; j < numStats; j++)
                 mUnitStats [i, j] = 0f;
-                
+        
+        int numEras = Enum.GetValues(typeof(UnitStat)).Length;
+        mUnitLevels = new int[numUnitTypes, numEras];
+        mUnitExperience = new int[numUnitTypes, numEras];
+        
+        for (int i = 0; i < numUnitTypes; i ++) {
+            for (int j = 0; j < numEras; j++) {
+                mUnitLevels [i, j] = 0;
+                mUnitExperience [i, j] = 0;
+            }
+        }
+        
         LoadStatsFromFile ("Data/unitstats.txt");
+        LoadLevelsFromFile ("Data/unitlevels.txt");
     }
     
     public static float GetStat (UnitType unit, UnitStat stat)
@@ -84,6 +96,8 @@ public static class UnitUpgrades
     ///////////////////////////////////////////////////////////////////////////////////
     
     static float[,] mUnitStats;
+    static int[,] mUnitLevels;
+    static int[,] mUnitExperience;
     
     private static void IncreaseUnitLevel(UnitType unit)
     {
@@ -114,6 +128,29 @@ public static class UnitUpgrades
         }
         file.Close ();
     }  
+    
+    private static void LoadLevelsFromFile (string filepath)
+    {
+        StreamReader file = new StreamReader (filepath);
+        char[] delim = { ' ', ',' };
+        
+        while (!file.EndOfStream) {
+            string line = file.ReadLine ();
+            
+            string [] values = line.Split (delim, StringSplitOptions.RemoveEmptyEntries);
+            if (values.Length == 0 || values[0]== "#") // Ignore comments and blank lines
+                continue;
+            
+            // FileFormat: "<UnitType>,<Era> <Level> <Experience>"
+            UnitType unitType = EnumHelper.FromString<UnitType>(values[0]);
+            Era era = EnumHelper.FromString<Era>(values[1]);
+            
+            mUnitLevels[(int)unitType, (int)era] = int.Parse(values[2]);
+            mUnitExperience[(int)unitType, (int)era] = int.Parse(values[3]);
+        }
+
+        file.Close ();
+    }
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides

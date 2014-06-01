@@ -84,9 +84,9 @@ public class ControlPanel : MonoBehaviour
     void Update ()
     {
         foreach (UnitType u in mExpBars.Keys) {
-            mExpBars [u].MaxValue = UnitUpgrades.GetExpToNextLevel(u);
-            mExpBars [u].UpdateValue ((int)UnitUpgrades.GetStat(u, UnitStat.Experience));
-            mLevelText [u].text = ((int)UnitUpgrades.GetStat(u, UnitStat.Level)).ToString();
+            mExpBars [u].MaxValue = UnitStats.GetExpToNextLevel(u);
+            mExpBars [u].UpdateValue ((int)UnitStats.GetStat(u, UnitStat.Experience));
+            mLevelText [u].text = ((int)UnitStats.GetStat(u, UnitStat.Level)).ToString();
         }
         
         UpdateCooldownBar(HealCooldownBar, HealTower);

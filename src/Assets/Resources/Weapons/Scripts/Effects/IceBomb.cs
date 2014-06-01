@@ -64,11 +64,11 @@ public class IceBomb : MonoBehaviour
             f.target = target.GetComponent<Target> ();
             f.Freeze ();
     
-            int damage = (int)WeaponUpgrades.GetStat(WeaponType.IceWand, WeaponStat.Damage);
+            int damage = (int)WeaponStats.GetStat(WeaponType.IceWand, WeaponStat.Damage);
                                                                                                                                         
             target.Damage (damage);
             if (target.IsDead && mSource.Allegiance == Allegiance.Rodelle)
-                UnitUpgrades.AddToExperience (mSource.UnitType, 1);
+                UnitStats.AddToExperience (mSource.UnitType, 1);
         }
     
     }
