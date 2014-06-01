@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 
+public enum DialogueType {
+    Realtime, // played when the game is paused
+    Standard, // triggered via events
+    Chatter,  // selects randomly from the available chatter dialogue
+}
+
 public class DialogueManager : MonoBehaviour
 {
     ///////////////////////////////////////////////////////////////////////////////////
@@ -24,9 +30,9 @@ public class DialogueManager : MonoBehaviour
     // TODO add priority
     public void TriggerDialogue(string trigger)
     {
-        if (mTriggers.ContainsKey(trigger)) {
-            mDialogueQueue.Enqueue(mTriggers[trigger]);
-            mTriggers.Remove(trigger); // only plays once
+        if (mStandard.ContainsKey(trigger)) {
+            mDialogueQueue.Enqueue(mStandard[trigger]);
+            mStandard.Remove(trigger); // only plays once
         }
     }
     
@@ -44,7 +50,10 @@ public class DialogueManager : MonoBehaviour
 
     private Dictionary<string, Speaker> mSpeakers;
     
-    private Dictionary<string, Dialogue> mTriggers;
+    private Dictionary<string, Dialogue> mStandard;
+    private Dictionary<string, Dialogue> mChatter;
+    private Dictionary<string, Dialogue> mRealtime;
+    
     private Queue<Dialogue> mDialogueQueue;
     
     private Dialogue mDialogue;
@@ -66,14 +75,31 @@ public class DialogueManager : MonoBehaviour
             
             if (values[0].Contains(">>>")) { // start trigger
                 string trigger = values[1];
+                DialogueType type = EnumHelper.FromString<DialogueType>(values[2]);
                 
                 Dialogue dialogue = GetMessagesFromFile(file);
-                mTriggers.Add(trigger, dialogue);
+                
+                AddToTriggerMap(type, trigger, dialogue);
             }
         }
         
         file.Close ();
-    }  
+    } 
+    
+    private void AddToTriggerMap(DialogueType type, string trigger, Dialogue dialogue)
+    {
+        switch (type) {
+        case(DialogueType.Chatter):
+            mChatter.Add(trigger, dialogue);
+            break;
+        case(DialogueType.Realtime):
+            mRealtime.Add(trigger, dialogue);
+            break;
+        case(DialogueType.Standard):
+            mStandard.Add(trigger, dialogue);
+            break;
+        }
+    }
     
     private Dialogue GetMessagesFromFile(StreamReader file)
     {
@@ -148,7 +174,9 @@ public class DialogueManager : MonoBehaviour
     void Start ()
     {
         mDialogueQueue = new Queue<Dialogue>();
-        mTriggers = new Dictionary<string, Dialogue>();
+        mStandard = new Dictionary<string, Dialogue>();
+        mChatter = new Dictionary<string, Dialogue>();
+        mRealtime = new Dictionary<string, Dialogue>();
     
         mTextBoxes = new Dictionary<SpeakerLocation, GUIText>();
         mNameBoxes = new Dictionary<SpeakerLocation, GUIText>();
