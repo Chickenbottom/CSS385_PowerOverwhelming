@@ -4,7 +4,6 @@ using System.Collections;
 public class AbilityTower: Tower
 {
     public Ability ability;
-    public Progressbar CooldownBar;
 
     public override void UseTargetedAbility (Target target)
     {
@@ -18,17 +17,4 @@ public class AbilityTower: Tower
     {
         ability.UsePositionalAbility(destination);
     }
-    
-    protected virtual void Update()
-    {
-        CooldownBar.UpdateValue((int)(ability.CooldownTimer));
-    }
-    
-    protected virtual void Start ()
-    {
-        base.Awake ();
-        CooldownBar.MaxValue = (int)(ability.CoolDown);
-        CooldownBar.UpdateValue((int)(ability.CooldownTimer));
-    }
-    
 }
