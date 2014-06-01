@@ -180,6 +180,7 @@ public class Unit : Target
     protected Target mAttackTarget;
     protected Vector3 mAttackVector; // direction to attack target from
     protected Vector3 mDestination;  // location to move to when no other actions are taking place
+    protected Vector3 mPreviousLocation;
     
     protected MovementState mMovementState;
     protected AttackState mAttackState;
@@ -263,7 +264,8 @@ public class Unit : Target
         
         Vector3 targetDir = targetLocation - Position;
         targetDir.Normalize ();
-            
+     
+        mPreviousLocation = Position;      
         Position += speed * Time.deltaTime * targetDir;
     }
     
@@ -282,7 +284,9 @@ public class Unit : Target
             direction = mDestination - this.Position;
 
         if (mAttackState == AttackState.Idle || mAttackState == AttackState.Engaging) {
-            if (direction.x >= 0)
+            if (Vector3.Distance(Position, mPreviousLocation) < .05f)
+                mUnitAnimator.Idle ();
+            else if (direction.x >= 0)
                 mUnitAnimator.WalkRight ();
             else 
                 mUnitAnimator.WalkLeft ();
