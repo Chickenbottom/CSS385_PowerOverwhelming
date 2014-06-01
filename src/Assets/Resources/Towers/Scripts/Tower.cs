@@ -93,12 +93,4 @@ public abstract class Tower : Target
         this.Deselect();
         UpdateAnimation ();
     }
-    
-    void OnMouseDown ()
-    {
-        if (this.Allegiance == Allegiance.Rodelle) {
-            GameObject.Find ("Towers").GetComponent<MouseManager> ().SetAbilityTarget (this);
-            GameObject.Find ("Towers").GetComponent<MouseManager> ().Select (this);
-        }   
-    }
 }
