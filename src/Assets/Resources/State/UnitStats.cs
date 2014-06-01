@@ -14,12 +14,6 @@ public enum UnitStat
     Experience,
 }
 
-public static class EnumUtil {
-    public static IEnumerable<T> GetValues<T>() {
-        return (T[])Enum.GetValues(typeof(T));
-    }
-}
-
 public static class UnitStats
 {   
     private static string kUnitDataPath = "Data/unitstats.txt";
@@ -169,7 +163,7 @@ public static class UnitStats
             if (values[0]== "#")
                 continue;
                 
-            UnitType unitType = EnumHelper.FromString<UnitType>(values[0]);
+            UnitType unitType = EnumUtil.FromString<UnitType>(values[0]);
             
             int statIndex = 1;
             foreach (UnitStat s in EnumUtil.GetValues<UnitStat>()) {
@@ -196,8 +190,8 @@ public static class UnitStats
                 continue;
             
             // FileFormat: "<UnitType>  <Era>   <Level>   <Experience>"
-            UnitType unitType = EnumHelper.FromString<UnitType>(values[0]);
-            Era era = EnumHelper.FromString<Era>(values[1]);
+            UnitType unitType = EnumUtil.FromString<UnitType>(values[0]);
+            Era era = EnumUtil.FromString<Era>(values[1]);
             
             mUnitLevels[(int)unitType, (int)era] = int.Parse(values[2]);
             mUnitExperience[(int)unitType, (int)era] = int.Parse(values[3]);

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -105,7 +105,7 @@ public class DialogueManager : MonoBehaviour
             
             if (values[0].Contains(">>>")) { // start trigger
                 string trigger = values[1];
-                DialogueType type = EnumHelper.FromString<DialogueType>(values[2]);
+                DialogueType type = EnumUtil.FromString<DialogueType>(values[2]);
                 
                 Dialogue dialogue = GetMessagesFromFile(file);
                 mTriggers[type].Add(trigger, dialogue);
@@ -130,9 +130,9 @@ public class DialogueManager : MonoBehaviour
             
             // read the message
             float duration = float.Parse(values[0]);
-            SpeakerState state = EnumHelper.FromString<SpeakerState>(values[1]);
+            SpeakerState state = EnumUtil.FromString<SpeakerState>(values[1]);
             string speaker = values[2];
-            SpeakerLocation location = EnumHelper.FromString<SpeakerLocation>(values[3]);
+            SpeakerLocation location = EnumUtil.FromString<SpeakerLocation>(values[3]);
             // ignore the literal "---"
             string message = values[5];
             

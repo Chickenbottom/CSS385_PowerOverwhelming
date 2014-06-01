@@ -39,14 +39,6 @@ public enum SquadBehavior
     ForceMove,
 }
 
-public static class EnumHelper
-{    
-    public static T FromString<T> (string value)
-    {
-        return (T)Enum.Parse (typeof(T), value);
-    }
-}
-
 public class EnemyAI : MonoBehaviour
 {
     public Dictionary<Waypoint, Vector3> Waypoints;
@@ -194,8 +186,8 @@ public class EnemyAI : MonoBehaviour
         string[] param = input.Split (delimiters, StringSplitOptions.RemoveEmptyEntries);
         
         spawnTime = float.Parse (param [0]);
-        size = EnumHelper.FromString<SquadSize> (param [1]);
-        Waypoint wp = EnumHelper.FromString<Waypoint> (param [4]);
+        size = EnumUtil.FromString<SquadSize> (param [1]);
+        Waypoint wp = EnumUtil.FromString<Waypoint> (param [4]);
         spawnLocation = Waypoints[wp];
         //preset = EnumHelper.FromString<SquadPreset> (param [2]);
         //behavior = EnumHelper.FromString<SquadBehavior> (param [3]);
@@ -203,7 +195,7 @@ public class EnemyAI : MonoBehaviour
         EnemySquad es = new EnemySquad ((int)size, spawnTime, spawnLocation);
         
         for (int i = 5; i < param.Length; ++i) {
-            wp = EnumHelper.FromString<Waypoint> (param [i]);
+            wp = EnumUtil.FromString<Waypoint> (param [i]);
             es.AddWaypoint (Waypoints [wp]);
         }
         es.AddWaypoint (Waypoints [Waypoint.King]);
