@@ -53,6 +53,10 @@ public class EnemyAI : MonoBehaviour
     public int GameLevel;
     public Era GameEra;
     
+    // If a wave is finished early, the AI waits this amount of seconds before 
+    // spawning the next wave
+    private float kWaitTimeBeforeWave = 5f; 
+    
     private void ValidatePresets ()
     {
         if (GameLevel == 0) {// || CurrentErra == Era.None
@@ -73,9 +77,16 @@ public class EnemyAI : MonoBehaviour
     
     void Update ()
     {
-        if (mCurrentWave <= mMaxWaves && Time.time > mWaveSpawnTime) {
+        float timeToNextWave = mWaveSpawnTime - Time.time;
+        
+        if (timeToNextWave < 0 && mCurrentWave <= mMaxWaves) {
             mCurrentWave ++;
             this.SpawnWave (mCurrentWave);
+        }
+        
+        if (units.Count == 0 && mCurrentWave <= mMaxWaves && timeToNextWave > kWaitTimeBeforeWave) {
+            mWaveSpawnTime = Time.time + kWaitTimeBeforeWave;
+            GameObject.Find("Dialogue").GetComponent<DialogueManager>().TriggerChatter();
         }
         
         for (int i = units.Count - 1; i >= 0; --i) {

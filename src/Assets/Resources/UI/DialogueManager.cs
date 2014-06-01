@@ -53,6 +53,11 @@ public class DialogueManager : MonoBehaviour
             mTriggers.Remove(trigger); // only plays once
         }
     }
+    
+    public void TriggerChatter()
+    {
+    
+    }
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Private
