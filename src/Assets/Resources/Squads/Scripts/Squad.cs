@@ -26,8 +26,8 @@ public class Squad : MonoBehaviour, Selectable
     ///////////////////////////////////////////////////////////////////////////////////
     // Public Methods
     ///////////////////////////////////////////////////////////////////////////////////
-    public int NumSquadMembers = 0;
     public UnitType UnitType;
+    public int NumSquadMembers = 0;
     public Vector3 SquadCenter;
     public Vector3 RallyPoint;
     
@@ -128,13 +128,12 @@ public class Squad : MonoBehaviour, Selectable
     
     public void Spawn (UnitType type, Vector3 location, int count, Allegiance allegiance)
     {
-        UnitType = type;
         NumSquadMembers = count;
         mAllegiance = allegiance;
         
         this.transform.position = location; 
         
-        mUnitPrefab = TextureResource.GetUnitPrefab(this.UnitType, (allegiance == Allegiance.Rodelle));
+        mUnitPrefab = TextureResource.GetUnitPrefab(type, (allegiance == Allegiance.Rodelle));
         
         if (mSquadMembers != null) {
             foreach (Unit u in mSquadMembers)
@@ -160,6 +159,46 @@ public class Squad : MonoBehaviour, Selectable
             u.transform.position = memberPosition;
             u.Allegiance = mAllegiance;
             
+        }
+        
+        float sightRadius = SquadLeader.SightRange;
+        
+        this.GetComponent<CircleCollider2D> ().radius = 3;
+        this.GetComponent<SpriteRenderer>().transform.localScale = new Vector3(sightRadius / 3, sightRadius / 3, 0f);
+        
+        this.SetDestination (this.RallyPoint);
+        this.ShowSelector(false);
+    }
+    
+    public void AddUnits(UnitType type, Vector3 location, int count, Allegiance allegiance)
+    {
+        if (count == 0)
+            return;
+        
+        if (mSquadMembers == null)
+            mSquadMembers = new List<Unit>();
+        
+        NumSquadMembers += count;
+        mAllegiance = allegiance;
+        
+        this.transform.position = location; 
+        
+        GameObject unitPrefab = TextureResource.GetUnitPrefab(type, (allegiance == Allegiance.Rodelle));
+        
+        List<Vector3> randomPositions = this.RandomSectionLocations (NumSquadMembers, kSquadMemberWidth * 1.5f);
+        
+        for (int i = 0; i < count; ++i) {
+            // instantiate the unit from the prefab
+            GameObject o = (GameObject)Instantiate (unitPrefab);
+            Unit u = (Unit)o.GetComponent<Unit>();
+            u.Squad = this;
+            mSquadMembers.Add (u);
+            u.Allegiance = mAllegiance;
+            
+            // offset from squad center
+            Vector3 memberPosition = this.transform.position;
+            memberPosition += randomPositions [i];
+            u.transform.position = memberPosition;
         }
         
         float sightRadius = SquadLeader.SightRange;
@@ -240,10 +279,10 @@ public class Squad : MonoBehaviour, Selectable
         
     private void AssignNewTarget (Unit who)
     {
-        GameState.Gold += 5;
-        
-        if (this.mAllegiance == Allegiance.Rodelle)
-            UnitStats.AddToExperience (this.UnitType, 1);
+        if (this.mAllegiance == Allegiance.Rodelle) {
+            GameState.Gold += 5;
+            UnitStats.AddToExperience (who.UnitType, 1);
+        }
             
         List<Unit> mEnemies = mTargetSquad.mSquadMembers;
         int numEnemies = mEnemies.Count;
