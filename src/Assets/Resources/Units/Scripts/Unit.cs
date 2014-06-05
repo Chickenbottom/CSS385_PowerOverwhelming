@@ -284,9 +284,7 @@ public class Unit : Target
             direction = mDestination - this.Position;
 
         if (mAttackState == AttackState.Idle || mAttackState == AttackState.Engaging) {
-            if (Vector3.Distance(Position, mPreviousLocation) < .05f)
-                mUnitAnimator.Idle ();
-            else if (direction.x >= 0)
+            if (direction.x >= 0) 
                 mUnitAnimator.WalkRight ();
             else 
                 mUnitAnimator.WalkLeft ();
@@ -311,9 +309,6 @@ public class Unit : Target
         mChargeSpeed = (int)UnitStats.GetStat(mUnitType, UnitStat.ChargeSpeed);
         mLevel = (int)UnitStats.GetStat(mUnitType, UnitStat.Level);
         this.SightRange = UnitStats.GetStat(mUnitType, UnitStat.SightRange);
-        
-        if (this.Allegiance == Allegiance.AI)
-            this.SightRange = UnitStats.GetStat(UnitType.Peasant, UnitStat.SightRange);
     }
     
 ///////////////////////////////////////////////////////////////////////////////////
