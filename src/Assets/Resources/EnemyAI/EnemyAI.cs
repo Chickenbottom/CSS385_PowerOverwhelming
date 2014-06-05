@@ -151,6 +151,8 @@ public class EnemyAI : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////
     // Private Methods and Variables
     /////////////////////////////////////////////////////////////////////////////////// 
+    private int kMaxNumWaves = 20; // Cannot create more than 20 waves
+    
     private float mWaveSpawnTime;
     private int mCurrentWave = 0;
     private int mMaxWaves;
@@ -208,10 +210,8 @@ public class EnemyAI : MonoBehaviour
         string input;
         try {
             file = new StreamReader (filepath);
-            input = file.ReadLine ();
-            mMaxWaves = int.Parse (input);
-            mEnemyWaves = new List<string>[mMaxWaves + 1]; // 0 based array
-            mWaveTimers = new float[mMaxWaves + 1];
+            mEnemyWaves = new List<string>[kMaxNumWaves + 1]; // 0 based array
+            mWaveTimers = new float[kMaxNumWaves + 1];
             
         } catch (System.Exception e) {
             Debug.LogError (e.ToString ());
@@ -223,7 +223,7 @@ public class EnemyAI : MonoBehaviour
         string[] waveData;
         while (true) {
             input = file.ReadLine ();
-            if (file.EndOfStream)
+            if (file.EndOfStream || input == "ENDWAVES")
                 break;
             
             if (input == "" || input [0] == '#') // ignore comments and blank lines
@@ -239,5 +239,7 @@ public class EnemyAI : MonoBehaviour
                 mEnemyWaves [waveNumber].Add (input);
             }
         }
+        
+        mMaxWaves = waveNumber;
     }
 }
