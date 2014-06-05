@@ -83,8 +83,8 @@ class EnemySquad
         Squad squad = o.GetComponent<Squad> ();
         
         //squad.Spawn(mUnitType, mSpawnLocation.Value, size, Allegiance.AI);
-        squad.AddUnits(UnitType.Swordsman, mSpawnLocation.Value, 1, Allegiance.AI);
-        squad.AddUnits(UnitType.Archer, mSpawnLocation.Value, 1, Allegiance.AI);
+        //squad.AddUnits(UnitType.Swordsman, mSpawnLocation.Value, 1, Allegiance.AI);
+        //squad.AddUnits(UnitType.Archer, mSpawnLocation.Value, 1, Allegiance.AI);
         squad.AddUnits(mUnitType, mSpawnLocation.Value, size, Allegiance.AI);
         
         

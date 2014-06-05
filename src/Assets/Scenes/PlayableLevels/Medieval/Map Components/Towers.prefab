@@ -567,7 +567,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -98, y: -57.7957077, z: 0}
+  m_LocalPosition: {x: -84.3974991, y: -68.2297134, z: 0}
   m_LocalScale: {x: 13, y: 13, z: 1}
   m_Children:
   - {fileID: 400024}
@@ -592,7 +592,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100.386795, y: -38.1239777, z: .00390625}
+  m_LocalPosition: {x: -85.4295807, y: -50.8653412, z: .00390625}
   m_LocalScale: {x: 16, y: 16, z: 1}
   m_Children: []
   m_Father: {fileID: 400008}
@@ -603,7 +603,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.8161888, y: -35.8025818, z: .00390625}
+  m_LocalPosition: {x: 6.87314224, y: -50.7598267, z: .00390625}
   m_LocalScale: {x: 16, y: 16, z: 1}
   m_Children: []
   m_Father: {fileID: 400008}
@@ -664,7 +664,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77, y: -57, z: 0}
+  m_LocalPosition: {x: 63.9300766, y: -68.4917603, z: 0}
   m_LocalScale: {x: 13, y: 13, z: 1}
   m_Children:
   - {fileID: 400012}
@@ -759,7 +759,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77, y: 53, z: 0}
+  m_LocalPosition: {x: 75.8920593, y: 52.4460182, z: 0}
   m_LocalScale: {x: 13, y: 13, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -918,12 +918,18 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: 2.31451583, y: 2.52461052}
-      - {x: 2.50613379, y: -.663379669}
-      - {x: 2.29387355, y: -.867670655}
-      - {x: 2.25877619, y: -2.6212523}
-      - {x: -5.48854399, y: -2.60642385}
-      - {x: -5.62483597, y: 2.61333442}
+    - - {x: -2.32857466, y: 2.65759754}
+      - {x: -2.22338748, y: 2.33534598}
+      - {x: -1.16659546, y: 2.32325721}
+      - {x: -1.1630826, y: 2.6056478}
+      - {x: 2.14628005, y: 2.53923965}
+      - {x: 2.05262947, y: -1.23391783}
+      - {x: 1.46148551, y: -1.32656956}
+      - {x: 1.47826123, y: -3.04889059}
+      - {x: -4.63699293, y: -3.02133918}
+      - {x: -4.8082881, y: -1.37757242}
+      - {x: -5.24663687, y: -1.27348578}
+      - {x: -5.42734241, y: 2.50361562}
 --- !u!61 &6100000
 BoxCollider2D:
   m_ObjectHideFlags: 1
