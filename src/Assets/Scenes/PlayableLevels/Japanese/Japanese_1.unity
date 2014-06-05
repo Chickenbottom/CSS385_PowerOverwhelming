@@ -7017,8 +7017,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385ca6189d4000e4ead026f8abc473a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumSquadMembers: 1
   UnitType: 5
+  NumSquadMembers: 1
   SquadCenter: {x: 0, y: 0, z: 0}
   RallyPoint: {x: 0, y: 0, z: 0}
   IsIndependent: 1
