@@ -19,8 +19,9 @@ public enum Waypoint
     SpawnRight,
 }
 
-public enum SquadPreset
+public enum SquadLeaderType
 {
+    None,
     Default, // all peasants
     Melee,   // contains a melee unit
     Ranged,  // contains a ranged unit
@@ -190,10 +191,10 @@ public class EnemyAI : MonoBehaviour
         SquadSize size = EnumUtil.FromString<SquadSize> (param [1]);
         Waypoint wp = EnumUtil.FromString<Waypoint> (param [4]);
         spawnLocation = Waypoints[wp];
-        SquadPreset preset = EnumUtil.FromString<SquadPreset> (param [2]);
+        SquadLeaderType preset = EnumUtil.FromString<SquadLeaderType> (param [2]);
         //SquadBehavior behavior = EnumHelper.FromString<SquadBehavior> (param [3]);
         
-        EnemySquad es = new EnemySquad ((int)size, spawnTime, spawnLocation);
+        EnemySquad es = new EnemySquad ((int)size, spawnTime, spawnLocation, UnitType.Peasant, preset);
         
         for (int i = 5; i < param.Length; ++i) {
             wp = EnumUtil.FromString<Waypoint> (param [i]);

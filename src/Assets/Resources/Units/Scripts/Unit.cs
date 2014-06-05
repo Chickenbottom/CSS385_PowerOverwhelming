@@ -311,6 +311,9 @@ public class Unit : Target
         mChargeSpeed = (int)UnitStats.GetStat(mUnitType, UnitStat.ChargeSpeed);
         mLevel = (int)UnitStats.GetStat(mUnitType, UnitStat.Level);
         this.SightRange = UnitStats.GetStat(mUnitType, UnitStat.SightRange);
+        
+        if (this.Allegiance == Allegiance.AI)
+            this.SightRange = UnitStats.GetStat(UnitType.Peasant, UnitStat.SightRange);
     }
     
 ///////////////////////////////////////////////////////////////////////////////////

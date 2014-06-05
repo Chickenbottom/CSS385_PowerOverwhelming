@@ -161,8 +161,11 @@ public class Squad : MonoBehaviour, Selectable
             
         }
         
+        if (SquadLeader.Allegiance == Allegiance.AI) // Reduce the sight range of armed enemy peasants
+            SquadLeader.SightRange = UnitStats.GetStat(UnitType.Peasant, UnitStat.SightRange);
+
         float sightRadius = SquadLeader.SightRange;
-        
+                  
         this.GetComponent<CircleCollider2D> ().radius = 3;
         this.GetComponent<SpriteRenderer>().transform.localScale = new Vector3(sightRadius / 3, sightRadius / 3, 0f);
         
@@ -200,6 +203,9 @@ public class Squad : MonoBehaviour, Selectable
             memberPosition += randomPositions [i];
             u.transform.position = memberPosition;
         }
+        
+        if (SquadLeader.Allegiance == Allegiance.AI) // Reduce the sight range of armed enemy peasants
+            SquadLeader.SightRange = UnitStats.GetStat(UnitType.Peasant, UnitStat.SightRange);
         
         float sightRadius = SquadLeader.SightRange;
         
