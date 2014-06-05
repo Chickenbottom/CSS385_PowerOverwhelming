@@ -268,8 +268,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 786427541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 15.6499996, z: 0}
-  m_LocalScale: {x: 13.1999998, y: 13, z: 1}
+  m_LocalPosition: {x: 0, y: 17, z: 0}
+  m_LocalScale: {x: 12.3859892, y: 12.1983232, z: 1}
   m_Children:
   - {fileID: 1092445124}
   - {fileID: 2100831218}
@@ -297,7 +297,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 9
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 5dff263192866e84f81b9d313856b82b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a851219d865ee5e48a820d001b73969f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &925515167
 GameObject:
@@ -374,7 +374,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 934161667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0263534542, y: -3.30762815, z: 0}
+  m_LocalPosition: {x: -.0263534542, y: -3.60532999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 786427542}
@@ -475,7 +475,7 @@ MonoBehaviour:
   mEra: 4
   mLevelSelectionButtons: {fileID: 786427541}
   mEraButtons: {fileID: 1235969710}
-  mMultipleLevels: 0
+  mMultipleLevels: 1
 --- !u!212 &1020592367
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -506,8 +506,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1020592364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 85, y: 40, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: 85, y: 37, z: 0}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 1235969711}
 --- !u!1 &1060952841
@@ -547,7 +547,7 @@ MonoBehaviour:
   mEra: 2
   mLevelSelectionButtons: {fileID: 786427541}
   mEraButtons: {fileID: 1235969710}
-  mMultipleLevels: 0
+  mMultipleLevels: 1
 --- !u!212 &1060952843
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -578,8 +578,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1060952841}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 40, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: 5, y: 37, z: 0}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 1235969711}
 --- !u!61 &1060952845
@@ -707,9 +707,9 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 80f31059bcb922f4f9f85e4228dbd2a7, type: 3}
+  m_Sprite: {fileID: 21300004, guid: c1086fd26bdf3a54ba118ed201790395, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!61 &1134486429
 BoxCollider2D:
@@ -720,7 +720,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 2.52999973, y: 1.95999992}
+  m_Size: {x: 2.5, y: 2.5}
   m_Center: {x: 0, y: 0}
 --- !u!114 &1134486430
 MonoBehaviour:
@@ -733,8 +733,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2cae3bae74a2443bbe5268d826f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: 80f31059bcb922f4f9f85e4228dbd2a7, type: 3}
-  mButtonOver: {fileID: 21300002, guid: 80f31059bcb922f4f9f85e4228dbd2a7, type: 3}
+  mButton: {fileID: 21300004, guid: c1086fd26bdf3a54ba118ed201790395, type: 3}
+  mButtonOver: {fileID: 21300006, guid: c1086fd26bdf3a54ba118ed201790395, type: 3}
+  mDisplay: {fileID: 925515168}
+  mDisplayText: Galactic Tower Store
 --- !u!4 &1134486431
 Transform:
   m_ObjectHideFlags: 0
@@ -742,8 +744,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1134486427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 114.978638, y: -83.7804337, z: 0}
-  m_LocalScale: {x: 13.6999998, y: 13.6999998, z: 1}
+  m_LocalPosition: {x: 114.978638, y: -79, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1141439861
@@ -888,7 +890,7 @@ MonoBehaviour:
   mEra: 3
   mLevelSelectionButtons: {fileID: 786427541}
   mEraButtons: {fileID: 1235969710}
-  mMultipleLevels: 0
+  mMultipleLevels: 1
 --- !u!212 &1556733074
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -919,8 +921,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1556733071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41, y: -40, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: 41, y: -42, z: 0}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 1235969711}
 --- !u!1 &1730589137
@@ -971,7 +973,7 @@ MonoBehaviour:
   mEra: 0
   mLevelSelectionButtons: {fileID: 786427541}
   mEraButtons: {fileID: 1235969710}
-  mMultipleLevels: 0
+  mMultipleLevels: 1
 --- !u!212 &1730589140
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1002,8 +1004,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1730589137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: 40, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: -75, y: 37, z: 0}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 1235969711}
 --- !u!1 &1843354363
@@ -1054,7 +1056,7 @@ MonoBehaviour:
   mEra: 1
   mLevelSelectionButtons: {fileID: 786427541}
   mEraButtons: {fileID: 1235969710}
-  mMultipleLevels: 0
+  mMultipleLevels: 1
 --- !u!212 &1843354366
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1085,8 +1087,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1843354363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34, y: -40, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: -34, y: -42, z: 0}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 1235969711}
 --- !u!1 &2042267236
@@ -1128,7 +1130,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: d3ab93a3f725370439790a15c06b0bd9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c1086fd26bdf3a54ba118ed201790395, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!61 &2042267238
 BoxCollider2D:
@@ -1152,8 +1154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610c7c5f9a2aa98478b51df9cc6571ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300000, guid: d3ab93a3f725370439790a15c06b0bd9, type: 3}
-  mButtonOver: {fileID: 21300002, guid: d3ab93a3f725370439790a15c06b0bd9, type: 3}
+  mDisplayTextGUI: {fileID: 925515168}
+  mDisplayText: Return To Main Menu
+  mButton: {fileID: 21300000, guid: c1086fd26bdf3a54ba118ed201790395, type: 3}
+  mButtonOver: {fileID: 21300002, guid: c1086fd26bdf3a54ba118ed201790395, type: 3}
 --- !u!4 &2042267240
 Transform:
   m_ObjectHideFlags: 0
@@ -1161,8 +1165,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2042267236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -115, y: -83.7804337, z: 0}
-  m_LocalScale: {x: 13.6999998, y: 13.6999998, z: 1}
+  m_LocalPosition: {x: -114.451103, y: -79, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &2070375498
@@ -1202,7 +1206,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: a5d9b7da6b258c543b90791deb60c8fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59d7462ea5528524285e7e2989786680, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &2070375500
 Transform:
@@ -1238,8 +1242,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2100831217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.69937468, y: .336099058, z: 0}
-  m_LocalScale: {x: 1.79085827, y: 1.79085684, z: 1}
+  m_LocalPosition: {x: -3.76430154, y: .0462389216, z: 0}
+  m_LocalScale: {x: 1.52753353, y: 1.52753615, z: 1}
   m_Children: []
   m_Father: {fileID: 786427542}
 --- !u!212 &2100831219

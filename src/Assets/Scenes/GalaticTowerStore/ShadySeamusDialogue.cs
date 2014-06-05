@@ -9,17 +9,17 @@ public class ShadySeamusDialogue : MonoBehaviour
 	public GUIText mDialogueText;
 		
 	
-	const string path = "Data/ShadySeamusDialogue.txt"; //path of the txt file
 	StreamReader mFile;
 	string line; //used to read line from mfile and arrays
-
 	int index = 0;
 	bool isNegitive = false;
 	bool isPositive = false;
 	bool isFinishedSpeaking = false;
+    float mLastLetter = 0f;
 
 	const float kLetterDisplayTime = .05f;
-	float mLastLetter = 0f;
+    const int kMaxLineLength = 70;
+    const string path = "Data/ShadySeamusDialogue.txt"; //path of the txt file
 
 	ArrayList PosDialogue = new ArrayList();
 	ArrayList NegDialogue = new ArrayList();
@@ -32,6 +32,8 @@ public class ShadySeamusDialogue : MonoBehaviour
 		else
 			Debug.LogError("Could not find Shaddy Seamus's Dialogue.");
 		line = "Welcome to my Galatic Tower Store. Here you can find what you need to put your Kingdom in order m`Lord.";
+        line = InsertNewLine(line);
+        
 	}
 	void Update(){
 		if(!isFinishedSpeaking)
@@ -54,15 +56,16 @@ public class ShadySeamusDialogue : MonoBehaviour
 			
 			if(pos >= 0){
 				isPositive = true;
-				isNegitive = false;
+                isNegitive = false;
 				continue;
 			}
 			else if(neg >= 0){
-				isNegitive = true;
-				isPositive = false;
+                isNegitive = true;
+                isPositive = false;
 				continue;
 			}
 
+            line = InsertNewLine(line);
 			if(isPositive){
 				PosDialogue.Add(line);
 			}
@@ -73,7 +76,7 @@ public class ShadySeamusDialogue : MonoBehaviour
 		mFile.Close();
 	}	
 	public void WriteNegDialogue(){
-		if(NegDialogue.Count <=  0)
+		if(NegDialogue.Count <  0)
 			return;
 		if(isFinishedSpeaking){
 			line = NegDialogue[UnityEngine.Random.Range(0,NegDialogue.Count)].ToString();
@@ -82,7 +85,7 @@ public class ShadySeamusDialogue : MonoBehaviour
 		}
 	}
 	public void WritePosDialogue(){
-		if(PosDialogue.Count <=  0)
+		if(PosDialogue.Count <  0)
 			return;
 		if(isFinishedSpeaking){
 			line = PosDialogue[UnityEngine.Random.Range(0,PosDialogue.Count)].ToString();
@@ -97,12 +100,28 @@ public class ShadySeamusDialogue : MonoBehaviour
 			isFinishedSpeaking = true;
 			return;
 		}
-		if(index % 70 == 0)
-			mDialogueText.text += "\n"; 
+       // if(index % kMaxLineLength == 0)
+		//	mDialogueText.text += "\n"; 
 			
 		mDialogueText.text += line[index]; 
 		index++;
 	
 	}
-		
+    string InsertNewLine(string lineSegment){
+        if(lineSegment.Length < kMaxLineLength)
+            return lineSegment;
+        
+        int numOfNewLinesNeeded = lineSegment.Length / kMaxLineLength;
+        int curNewLineLocation = kMaxLineLength;
+        for(int j = 0; j < numOfNewLinesNeeded; j++)
+        for(int i = curNewLineLocation; i > 0; i--){
+            if(lineSegment[i] == ' '){
+                lineSegment = lineSegment.Insert(i, "\n");
+                curNewLineLocation += kMaxLineLength;
+                break;
+            }   
+        }
+        return lineSegment;
+    }
+    
 }

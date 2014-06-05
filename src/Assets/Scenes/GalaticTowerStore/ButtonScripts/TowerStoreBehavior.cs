@@ -17,6 +17,10 @@ public class TowerStoreBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        //gamestate testing
+        if(true){
+            GameState.Gold = 100000;
+        }
 		mCurBonusSubject = BonusSubject.Special;
 		DynamicUpgrades = new int[mSubjectMax, mBonusMax];
 		OriginalUpgrades = new int[mSubjectMax, mBonusMax];

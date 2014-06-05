@@ -8,8 +8,7 @@ public class PurchaseButton : ButtonBehaviour {
 	bool canAfford = true;
 	
 	void Start(){
-		//remove for game
-		//GameState.Gold = 100;
+
 		mTotalCost.text = "0";
 	}
 	void Update(){

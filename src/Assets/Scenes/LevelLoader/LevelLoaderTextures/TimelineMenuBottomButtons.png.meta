@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 799d806b987a4944fa27db5f18a448a7
+guid: c1086fd26bdf3a54ba118ed201790395
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -45,31 +45,40 @@ TextureImporter:
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: TimelineMenuReturnButtons_0
+    - name: TimelineMenuBottomButtons_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 210
-        width: 800
-        height: 90
+        y: 265
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: TimelineMenuReturnButtons_1
+    - name: TimelineMenuBottomButtons_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 104
-        width: 800
-        height: 92
+        x: 264
+        y: 265
+        width: 251
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: TimelineMenuReturnButtons_2
+    - name: TimelineMenuBottomButtons_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 800
-        height: 90
+        width: 250
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: TimelineMenuBottomButtons_3
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 0
+        width: 251
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
   spritePackingTag: 

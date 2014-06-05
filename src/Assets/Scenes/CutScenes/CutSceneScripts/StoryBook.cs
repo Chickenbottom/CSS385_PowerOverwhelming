@@ -35,6 +35,7 @@ public class StoryBook : MonoBehaviour {
     const float kFadeRate = 0.01f;
 	const float kLetterDisplayDelay = 0.03f;	
 	const float kSceneTransitionWaitTime = 1.5f;
+    const int kMaxLineLength = 73;
 
 
 	// Use this for initialization
@@ -75,14 +76,12 @@ public class StoryBook : MonoBehaviour {
 				mMyAction = Action.ChangingSet;
 			break;
 		case Action.Printing:
-			if(!mDialogueExists)
+			if(!mDialogueExists){
 				mMyAction = Action.Waiting;
-
-			if(mCurrentDialogueString.Length > 73)
-				if(mDialogueLetterIndex % 73 == 0 && !mCurrentDialogueString.Substring(0,73).Contains("\n") &&
-				   mDialogueLetterIndex != 0)
-					mDialogueText.text += "\n";
-			if(mDialogueLetterIndex < mCurrentDialogueString.Length){
+                break;
+            }
+			
+            if(mDialogueLetterIndex < mCurrentDialogueString.Length){
 				if(Time.time - mPreviousLetterDisplayTime > kLetterDisplayDelay){
 					mDialogueText.text += mCurrentDialogueString[mDialogueLetterIndex].ToString();
 					mDialogueLetterIndex++;
@@ -103,7 +102,7 @@ public class StoryBook : MonoBehaviour {
 
 				mCurrentDialogueString = mDialogueArray[mCurrentImageIndex].ToString();
 				mCurrentImage = mImageArray[mCurrentImageIndex];
-				mMyAction = Action.FadeIn;
+                mMyAction = Action.FadeIn;
 			}
 			else
 				mMyAction = Action.Finished;
@@ -131,8 +130,10 @@ public class StoryBook : MonoBehaviour {
 			string FullLine = "";
 			string line = mFile.ReadLine();
 			string[] Speakers = line.Split(char.Parse(">"));
-			foreach(string saying in Speakers)
-				FullLine += saying + "\n";
+            for(int i = 0; i < Speakers.Length; i++){
+                Speakers[i] = InsertNewLine(Speakers[i]);
+                FullLine += Speakers[i] + "\n";
+            }
 
 			mDialogueArray.Add(FullLine);
 		}
@@ -146,6 +147,8 @@ public class StoryBook : MonoBehaviour {
 	}
 	void setImageColor (float alpha)
 	{
+        if(mCurrentImage == null)
+            return;
 		mCurrentImage.material.color = new Color (mCurrentImage.material.color.r, 
 		                                          mCurrentImage.material.color.g,
 		                                          mCurrentImage.material.color.b, 
@@ -191,4 +194,20 @@ public class StoryBook : MonoBehaviour {
 	public void QuitNarative(){
 		mMyAction = Action.Finished;	
 	}
+    string InsertNewLine(string lineSegment){
+        if(lineSegment.Length < kMaxLineLength)
+            return lineSegment;
+
+        int numOfNewLinesNeeded = lineSegment.Length / kMaxLineLength;
+        int curNewLineLocation = kMaxLineLength;
+        for(int j = 0; j < numOfNewLinesNeeded; j++)
+            for(int i = curNewLineLocation; i > 0; i--){
+                if(lineSegment[i] == ' '){
+                    lineSegment = lineSegment.Insert(i, "\n");
+                    curNewLineLocation += kMaxLineLength;
+                    break;
+                }   
+            }
+        return lineSegment;
+    }
 }

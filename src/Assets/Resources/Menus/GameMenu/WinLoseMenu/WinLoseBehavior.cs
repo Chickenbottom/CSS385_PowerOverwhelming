@@ -10,7 +10,8 @@ public class WinLoseBehavior : MonoBehaviour {
 
 	bool TESTING = true;
 	
-	void Start(){
+	void Awake(){
+        GameState.WonGame = GameState.LostGame = false;
 		CloseAllFrames();
 	}
 	// Update is called once per frame

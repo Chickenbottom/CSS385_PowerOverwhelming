@@ -8,7 +8,7 @@ public class GTSButtonBehavior : ButtonBehaviour {
 		CoolDown = 1500,
 		SpawnRate = 1000,
 		SpawnSize = 2000,
-		TowerHealth = 10000,
+		TowerHealth = 1000,
 	};
 	public TowerStoreBehavior mStore;
 	public GUIText mText;
