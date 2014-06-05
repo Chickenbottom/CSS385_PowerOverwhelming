@@ -91,11 +91,8 @@ public class Squad : MonoBehaviour, Selectable
     private void CheckSquadIdle ()
     {
         int idleCount = 0;
-        foreach (Unit u in mSquadMembers)
-            if (u.IsIdle)
-                idleCount ++;
-
-        if ((float)idleCount / (float)mSquadMembers.Count > 0.25)
+        
+        if (SquadLeader.IsIdle)
             this.SquadState = SquadState.Idle;
     }
     
