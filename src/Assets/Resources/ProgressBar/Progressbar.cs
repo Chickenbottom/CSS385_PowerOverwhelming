@@ -74,6 +74,9 @@ public class Progressbar : MonoBehaviour
     
     void OnGUI ()
     {
+		if (Time.timeScale == 0)
+			return; 
+
         GUI.BeginGroup (mGuiBox);
         {
             GUI.DrawTexture (new Rect (0, 0, mGuiBox.width, mGuiBox.height), 

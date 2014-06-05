@@ -56,8 +56,8 @@ public class Unit : Target
     
     public void RestoreStat()
     {
-        mMovementSpeed = UnitUpgrades.GetStat(this.mUnitType, UnitStat.MovementSpeed);
-        mChargeSpeed = UnitUpgrades.GetStat(this.mUnitType, UnitStat.ChargeSpeed);
+        mMovementSpeed = UnitStats.GetStat(this.mUnitType, UnitStat.MovementSpeed);
+        mChargeSpeed = UnitStats.GetStat(this.mUnitType, UnitStat.ChargeSpeed);
     }
     
     /// <summary>
@@ -99,16 +99,20 @@ public class Unit : Target
     {
         mHealth -= damage;
         if (mHealth <= 0) {
-            this.Squad.Notify (SquadAction.UnitDied, this);
             GameObject o = GameObject.Instantiate(mWarpPrefab) as GameObject;
             o.transform.position = this.Position;
-            Destroy (this.gameObject);
+            
+            Despawn ();
         }
     }
     
     public void Despawn ()
     {
         this.Squad.Notify (SquadAction.UnitDied, this);
+        
+        if (this.GetComponent<IceBlock>() != null)
+            this.GetComponent<IceBlock>().Unfreeze();
+        
         Destroy (this.gameObject);
     }
     
@@ -176,6 +180,7 @@ public class Unit : Target
     protected Target mAttackTarget;
     protected Vector3 mAttackVector; // direction to attack target from
     protected Vector3 mDestination;  // location to move to when no other actions are taking place
+    protected Vector3 mPreviousLocation;
     
     protected MovementState mMovementState;
     protected AttackState mAttackState;
@@ -259,7 +264,8 @@ public class Unit : Target
         
         Vector3 targetDir = targetLocation - Position;
         targetDir.Normalize ();
-            
+     
+        mPreviousLocation = Position;      
         Position += speed * Time.deltaTime * targetDir;
     }
     
@@ -278,7 +284,9 @@ public class Unit : Target
             direction = mDestination - this.Position;
 
         if (mAttackState == AttackState.Idle || mAttackState == AttackState.Engaging) {
-            if (direction.x >= 0)
+            if (Vector3.Distance(Position, mPreviousLocation) < .05f)
+                mUnitAnimator.Idle ();
+            else if (direction.x >= 0)
                 mUnitAnimator.WalkRight ();
             else 
                 mUnitAnimator.WalkLeft ();
@@ -297,12 +305,12 @@ public class Unit : Target
     // Pulls the unit stat information from the Global UnitUpgrades class
     protected virtual void InitializeStats()
     {
-        mMaxHealth = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.Health);
+        mMaxHealth = (int)UnitStats.GetStat(mUnitType, UnitStat.Health);
         mHealth = mMaxHealth;
-        mMovementSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.MovementSpeed);
-        mChargeSpeed = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.ChargeSpeed);
-        mLevel = (int)UnitUpgrades.GetStat(mUnitType, UnitStat.Level);
-        this.SightRange = UnitUpgrades.GetStat(mUnitType, UnitStat.SightRange);
+        mMovementSpeed = (int)UnitStats.GetStat(mUnitType, UnitStat.MovementSpeed);
+        mChargeSpeed = (int)UnitStats.GetStat(mUnitType, UnitStat.ChargeSpeed);
+        mLevel = (int)UnitStats.GetStat(mUnitType, UnitStat.Level);
+        this.SightRange = UnitStats.GetStat(mUnitType, UnitStat.SightRange);
     }
     
 ///////////////////////////////////////////////////////////////////////////////////

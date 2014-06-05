@@ -26,8 +26,8 @@ public class Squad : MonoBehaviour, Selectable
     ///////////////////////////////////////////////////////////////////////////////////
     // Public Methods
     ///////////////////////////////////////////////////////////////////////////////////
-    public int NumSquadMembers = 0;
     public UnitType UnitType;
+    public int NumSquadMembers = 0;
     public Vector3 SquadCenter;
     public Vector3 RallyPoint;
     
@@ -128,16 +128,12 @@ public class Squad : MonoBehaviour, Selectable
     
     public void Spawn (UnitType type, Vector3 location, int count, Allegiance allegiance)
     {
-        UnitType = type;
         NumSquadMembers = count;
         mAllegiance = allegiance;
         
         this.transform.position = location; 
         
-        if (allegiance == Allegiance.Rodelle)
-            mUnitPrefab = mUnitPrefabs [this.UnitType];
-        else 
-            mUnitPrefab = mEnemyPrefabs [this.UnitType];
+        mUnitPrefab = TextureResource.GetUnitPrefab(type, (allegiance == Allegiance.Rodelle));
         
         if (mSquadMembers != null) {
             foreach (Unit u in mSquadMembers)
@@ -163,6 +159,46 @@ public class Squad : MonoBehaviour, Selectable
             u.transform.position = memberPosition;
             u.Allegiance = mAllegiance;
             
+        }
+        
+        float sightRadius = SquadLeader.SightRange;
+        
+        this.GetComponent<CircleCollider2D> ().radius = 3;
+        this.GetComponent<SpriteRenderer>().transform.localScale = new Vector3(sightRadius / 3, sightRadius / 3, 0f);
+        
+        this.SetDestination (this.RallyPoint);
+        this.ShowSelector(false);
+    }
+    
+    public void AddUnits(UnitType type, Vector3 location, int count, Allegiance allegiance)
+    {
+        if (count == 0)
+            return;
+        
+        if (mSquadMembers == null)
+            mSquadMembers = new List<Unit>();
+        
+        NumSquadMembers += count;
+        mAllegiance = allegiance;
+        
+        this.transform.position = location; 
+        
+        GameObject unitPrefab = TextureResource.GetUnitPrefab(type, (allegiance == Allegiance.Rodelle));
+        
+        List<Vector3> randomPositions = this.RandomSectionLocations (NumSquadMembers, kSquadMemberWidth * 1.5f);
+        
+        for (int i = 0; i < count; ++i) {
+            // instantiate the unit from the prefab
+            GameObject o = (GameObject)Instantiate (unitPrefab);
+            Unit u = (Unit)o.GetComponent<Unit>();
+            u.Squad = this;
+            mSquadMembers.Add (u);
+            u.Allegiance = mAllegiance;
+            
+            // offset from squad center
+            Vector3 memberPosition = this.transform.position;
+            memberPosition += randomPositions [i];
+            u.transform.position = memberPosition;
         }
         
         float sightRadius = SquadLeader.SightRange;
@@ -243,10 +279,10 @@ public class Squad : MonoBehaviour, Selectable
         
     private void AssignNewTarget (Unit who)
     {
-        GameState.Gold += 5;
-        
-        if (this.mAllegiance == Allegiance.Rodelle)
-            UnitUpgrades.AddToExperience (this.UnitType, 1);
+        if (this.mAllegiance == Allegiance.Rodelle) {
+            GameState.Gold += 5;
+            UnitStats.AddToExperience (who.UnitType, 1);
+        }
             
         List<Unit> mEnemies = mTargetSquad.mSquadMembers;
         int numEnemies = mEnemies.Count;
@@ -325,6 +361,7 @@ public class Squad : MonoBehaviour, Selectable
         for (int i = 0; i < mSquadMembers.Count; ++i) {
             mSquadMembers [i].Disengage ();
         }
+        UpdateSquadCoherency ();
     }
     
     public void EngageInMelee ()
@@ -427,35 +464,6 @@ public class Squad : MonoBehaviour, Selectable
         return surroundingPositions;
     }
     
-    static Dictionary<UnitType, GameObject> mUnitPrefabs = null;
-    static Dictionary<UnitType, GameObject> mEnemyPrefabs = null;
-    
-    private static void InitializePrefabs ()
-    {
-        mUnitPrefabs = new Dictionary<UnitType, GameObject> ();
-        mUnitPrefabs.Add (UnitType.Swordsman, UnitPrefab(GameState.CurrentEra, "SwordsmanPrefab"));
-        mUnitPrefabs.Add (UnitType.Archer, UnitPrefab(GameState.CurrentEra, "ArcherPrefab"));
-        mUnitPrefabs.Add (UnitType.Mage, UnitPrefab(GameState.CurrentEra, "MagePrefab"));
-        mUnitPrefabs.Add (UnitType.King, UnitPrefab(GameState.CurrentEra, "KingPrefab"));
-        
-        mEnemyPrefabs = new Dictionary<UnitType, GameObject> ();
-        mEnemyPrefabs.Add (UnitType.Swordsman, UnitPrefab(GameState.CurrentEra, "EnemySwordsmanPrefab"));
-        mEnemyPrefabs.Add (UnitType.Archer, UnitPrefab(GameState.CurrentEra, "EnemyArcherPrefab"));
-        mEnemyPrefabs.Add (UnitType.Peasant, UnitPrefab(GameState.CurrentEra, "EnemyPeasantPrefab"));
-        mEnemyPrefabs.Add (UnitType.Mage, UnitPrefab(GameState.CurrentEra, "EnemyMagePrefab"));
-    }
-    
-    private static GameObject UnitPrefab(Era era, string name)
-    {
-        string prefabPath = "Units/Prefabs/";
-        
-        prefabPath += era.ToString();
-        prefabPath += "/";
-        prefabPath += name;
-        
-        return Resources.Load (prefabPath) as GameObject;
-    }
-    
     private bool HasLowerPriority (Target target)
     {
         int targetPriority = TargetPriority (target);
@@ -543,10 +551,7 @@ public class Squad : MonoBehaviour, Selectable
     
     // Use this for initialization
     void Awake ()
-    {
-        if (null == mUnitPrefabs) 
-            InitializePrefabs ();
-    
+    {    
         this.SquadState = SquadState.Idle;
         if (IsIndependent) {
             this.Spawn (this.UnitType, this.transform.position, 1, Allegiance.Rodelle);

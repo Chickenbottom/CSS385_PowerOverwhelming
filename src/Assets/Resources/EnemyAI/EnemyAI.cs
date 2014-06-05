@@ -39,23 +39,19 @@ public enum SquadBehavior
     ForceMove,
 }
 
-public static class EnumHelper
-{    
-    public static T FromString<T> (string value)
-    {
-        return (T)Enum.Parse (typeof(T), value);
-    }
-}
-
 public class EnemyAI : MonoBehaviour
 {
     public Dictionary<Waypoint, Vector3> Waypoints;
-    public int CurrentLevel;
-    public Era CurrentEra;
+    public int GameLevel;
+    public Era GameEra;
+    
+    // If a wave is finished early, the AI waits this amount of seconds before 
+    // spawning the next wave
+    private float kWaitTimeBeforeWave = 5f; 
     
     private void ValidatePresets ()
     {
-        if (CurrentLevel == 0) {// || CurrentErra == Era.None
+        if (GameLevel == 0) {// || CurrentErra == Era.None
             Debug.LogError("The level or era was not set in the Unity Inspector.");
         }
     }
@@ -67,15 +63,22 @@ public class EnemyAI : MonoBehaviour
     void Awake ()
     {
         this.ValidatePresets();
-        GameState.CurrentEra = this.CurrentEra;
-        GameState.CurrentLevel = this.CurrentLevel;
+        GameState.GameEra = this.GameEra;
+        GameState.GameLevel = this.GameLevel;
     }
     
     void Update ()
     {
-        if (mCurrentWave <= mMaxWaves && Time.time > mWaveSpawnTime) {
+        float timeToNextWave = mWaveSpawnTime - Time.time;
+        
+        if (timeToNextWave < 0 && mCurrentWave <= mMaxWaves) {
             mCurrentWave ++;
             this.SpawnWave (mCurrentWave);
+        }
+        
+        if (units.Count == 0 && mCurrentWave <= mMaxWaves && timeToNextWave > kWaitTimeBeforeWave) {
+            mWaveSpawnTime = Time.time + kWaitTimeBeforeWave;
+            GameObject.Find("Dialogue").GetComponent<DialogueManager>().TriggerChatter();
         }
         
         for (int i = units.Count - 1; i >= 0; --i) {
@@ -89,9 +92,9 @@ public class EnemyAI : MonoBehaviour
             GameState.TriggerWin ();
         }
         
-        /*if (Input.GetButtonDown ("Fire1")) {
+        if (GameState.IsDebug && Input.GetButtonDown ("Fire1")) {
             SpawnWave (3);
-        }*/
+        }
     }
     
     void Start ()
@@ -114,12 +117,12 @@ public class EnemyAI : MonoBehaviour
         
         GameObject.Find ("Waypoints").SetActive(false);
         
-        Debug.Log ("Loading " + CurrentEra.ToString() + " AI level " + CurrentLevel);
+        Debug.Log ("Loading " + GameEra.ToString() + " AI level " + GameLevel);
         
         string aiDataPath = "Data/AI/AI_";
-        aiDataPath += CurrentEra.ToString ();
+        aiDataPath += GameEra.ToString ();
         aiDataPath += "_";
-        aiDataPath += CurrentLevel.ToString ();
+        aiDataPath += GameLevel.ToString ();
         aiDataPath += ".txt";
         ReadWavesFromFile (aiDataPath);
         
@@ -183,8 +186,8 @@ public class EnemyAI : MonoBehaviour
         string[] param = input.Split (delimiters, StringSplitOptions.RemoveEmptyEntries);
         
         spawnTime = float.Parse (param [0]);
-        size = EnumHelper.FromString<SquadSize> (param [1]);
-        Waypoint wp = EnumHelper.FromString<Waypoint> (param [4]);
+        size = EnumUtil.FromString<SquadSize> (param [1]);
+        Waypoint wp = EnumUtil.FromString<Waypoint> (param [4]);
         spawnLocation = Waypoints[wp];
         //preset = EnumHelper.FromString<SquadPreset> (param [2]);
         //behavior = EnumHelper.FromString<SquadBehavior> (param [3]);
@@ -192,7 +195,7 @@ public class EnemyAI : MonoBehaviour
         EnemySquad es = new EnemySquad ((int)size, spawnTime, spawnLocation);
         
         for (int i = 5; i < param.Length; ++i) {
-            wp = EnumHelper.FromString<Waypoint> (param [i]);
+            wp = EnumUtil.FromString<Waypoint> (param [i]);
             es.AddWaypoint (Waypoints [wp]);
         }
         es.AddWaypoint (Waypoints [Waypoint.King]);

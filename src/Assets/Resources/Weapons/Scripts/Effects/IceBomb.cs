@@ -1,36 +1,20 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class IceBomb : MonoBehaviour
-{
-    public GameObject emitter;
-    
+{   
+    public IceBlock IceBlockPrefab;
     // TODO replace with states
     bool explosionDone = false;
-    
-    // Use this for initialization
-    void Start ()
-    {
-        /*
-        if (mTarget is Unit) {
-            mTarget.gameObject.AddComponent ("FrozenEffect");
-            FrozenEffect f = mTarget.gameObject.GetComponent<FrozenEffect> ();
-            f.target = mTarget.GetComponent<Target> ();
-            f.Freeze ();
-        }
-          */  
-            
-    }
-    
+        
     float kLiveTimer = 1.8f;
     float kExplosionDuration = 0.1f;
     float kStartTime;
-    GameObject mEmitterPrefab = null;
     
     void Update ()
     {
         if (Time.time - kStartTime > kLiveTimer) {
-            Destroy (mEmitterPrefab.gameObject);
             Destroy (this.gameObject);
         }
         
@@ -49,28 +33,43 @@ public class IceBomb : MonoBehaviour
             return;
             
         Target target = other.gameObject.GetComponent<Target> ();
-        FrozenEffect f = other.gameObject.GetComponent<FrozenEffect> ();
         
-        // do not retarget frozen targets
-        if (f != null) 
+        if (target == null || target.Allegiance == mSource.Allegiance)
             return;
-
+        
+        int damage = (int)WeaponStats.GetStat(WeaponType.IceWand, WeaponStat.Damage);
+        if (target is Tower) {
+            target.Damage (damage);
+            return;
+        }
+        
         if (! (target is Unit))
             return;
+            
+        // assuming that the target is a Unit
+        
+        IceBlock f = other.gameObject.GetComponent<IceBlock> ();
+        
+        // do not retarget frozen units
+        if (f != null) 
+            return;
+            
+        Unit unit = (Unit) target;
 
-        if (target != null && target.Allegiance != mSource.Allegiance) {
-            target.gameObject.AddComponent ("FrozenEffect");
-            f = other.gameObject.GetComponent<FrozenEffect> ();
-            f.target = target.GetComponent<Target> ();
-            f.Freeze ();
-    
-            int damage = (int)WeaponUpgrades.GetStat(WeaponType.IceWand, WeaponStat.Damage);
-                                                                                                                                        
-            target.Damage (damage);
-            if (target.IsDead && mSource.Allegiance == Allegiance.Rodelle)
-                UnitUpgrades.AddToExperience (mSource.UnitType, 1);
+        for (int i = unit.Squad.SquadMembers.Count - 1; i >= 0; --i) {
+            Unit u = unit.Squad.SquadMembers[i];
+            
+            u.gameObject.AddComponent ("IceBlock");
+            f = u.gameObject.GetComponent<IceBlock> ();
+            f.Freeze (u);
+                                                                                                                   
+            u.Damage (damage);
+            if (u.IsDead)
+                f.Unfreeze ();
+            
+            if (u.IsDead && mSource.Allegiance == Allegiance.Rodelle)
+                UnitStats.AddToExperience (mSource.UnitType, 1);
         }
-    
     }
     
     Unit mSource;
@@ -79,19 +78,6 @@ public class IceBomb : MonoBehaviour
     {
         mSource = src;
         transform.position = target.Position;
-        StartExplosion ();
-    }
-    
-    private void StartExplosion ()
-    {
-        mEmitterPrefab = (GameObject)Instantiate (emitter);
-        mEmitterPrefab.transform.position = this.transform.position;
-        
-        int sortingOrder = (int)(4 * (-this.transform.position.y + Camera.main.orthographicSize));
-        mEmitterPrefab.GetComponent<Renderer> ().sortingOrder = (int)(sortingOrder);        
-        
         kStartTime = Time.time;
-    }
-    
-    
+    }   
 }

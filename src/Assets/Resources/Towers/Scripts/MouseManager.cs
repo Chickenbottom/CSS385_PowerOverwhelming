@@ -112,10 +112,9 @@ public class MouseManager : MonoBehaviour
             SetDestination (mousePos);
         }
         
-        // #ifdef DEBUG
-        /*if (Input.GetButtonDown ("Fire2") && mSelected[0] is UnitSpawningTower) {
+        if (GameState.IsDebug && Input.GetButtonDown ("Fire2") && mSelected[0] is UnitSpawningTower) {
             ((UnitSpawningTower)mSelected[0]).SpawnUnit ();
-        }*/
+        }
         
         CheckTowerHotkey("SelectRanged", "ArcherTower");
         CheckTowerHotkey("SelectMelee", "SwordsmanTower");

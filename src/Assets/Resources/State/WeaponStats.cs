@@ -13,13 +13,13 @@ public enum WeaponStat
     Accuracy = 4,
 }
 
-public static class WeaponUpgrades
+public static class WeaponStats
 {   
     ///////////////////////////////////////////////////////////////////////////////////
     // Public
     ///////////////////////////////////////////////////////////////////////////////////
     
-    static WeaponUpgrades ()
+    static WeaponStats ()
     {
         int numWeaponTypes = Enum.GetValues(typeof(WeaponType)).Length;
         int numStats = Enum.GetValues(typeof(WeaponStat)).Length;
@@ -72,10 +72,10 @@ public static class WeaponUpgrades
             string line = file.ReadLine ();
             
             string [] values = line.Split (delim, StringSplitOptions.RemoveEmptyEntries);
-            if (values[0]== "#")
+            if (values.Length == 0 || values[0]== "#")
                 continue;
             
-            WeaponType WeaponType = EnumHelper.FromString<WeaponType>(values[0]);
+            WeaponType WeaponType = EnumUtil.FromString<WeaponType>(values[0]);
             
             int statIndex = 1;
             foreach (WeaponStat s in EnumUtil.GetValues<WeaponStat>()) {

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public enum WeaponType
@@ -62,11 +62,11 @@ public abstract class Weapon
     
     protected void InitializeStats()
     {
-        this.Damage = (int)WeaponUpgrades.GetStat(mWeaponType, WeaponStat.Damage);
-        this.Range = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.Range);
-        this.ReloadTime = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.ReloadTime);
-        this.ReloadVariance = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.ReloadVariance);
-        this.Accuracy = WeaponUpgrades.GetStat(mWeaponType, WeaponStat.Accuracy);
+        this.Damage = (int)WeaponStats.GetStat(mWeaponType, WeaponStat.Damage);
+        this.Range = WeaponStats.GetStat(mWeaponType, WeaponStat.Range);
+        this.ReloadTime = WeaponStats.GetStat(mWeaponType, WeaponStat.ReloadTime);
+        this.ReloadVariance = WeaponStats.GetStat(mWeaponType, WeaponStat.ReloadVariance);
+        this.Accuracy = WeaponStats.GetStat(mWeaponType, WeaponStat.Accuracy);
         
         this.UpgradeWeapon(mLevel);
         Reset ();
