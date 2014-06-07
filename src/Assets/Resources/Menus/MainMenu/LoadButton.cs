@@ -7,6 +7,7 @@ public class LoadButton : ButtonBehaviour {
 	public GameObject mLoadFrameObject;
 	public GameObject mMenuFrameObject;
     private bool isActive;
+    public Sprite noLoad;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,31 @@ public class LoadButton : ButtonBehaviour {
     public void setInactive()
     {
         isActive = false;
-        // set sprite to greyed out
+        gameObject.GetComponent<SpriteRenderer>().sprite = noLoad;
     }
+
+    void OnMouseOver()
+    {
+        if (isActive)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = mButtonOver;
+        }
+        
+    }
+    void OnMouseExit()
+    {
+        if (isActive)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = mButton;
+        }
+    }
+
+    public void ChangeScreen()
+    {
+        if (isActive)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = mButton;
+        }
+    }
+
 }

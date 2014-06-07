@@ -18,7 +18,7 @@ public class SaveLoad : MonoBehaviour {
     private List<string> levelStrings;
     private List<string> upgradeStrings;
 
-    bool loadSuccess;
+    private bool loadSuccess;
 
     void Awake()
     {
@@ -119,7 +119,7 @@ public class SaveLoad : MonoBehaviour {
 
     public bool LoadSuccessful()
     {
-        return loadSuccessful;
+        return loadSuccess;
     }
 
     public List<string> GetInfo(SAVEFILE type)
