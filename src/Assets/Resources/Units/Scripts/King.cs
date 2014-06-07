@@ -20,10 +20,7 @@ public class King : Unit
     }
     
     public override void Damage (int damage)
-    {
-        if (GameState.GameEra == Era.Prehistoric)
-            return;
-            
+    {            
         base.Damage (damage);
         GameState.KingsHealth = mHealth;
         HealthBar.UpdateValue(mHealth);
