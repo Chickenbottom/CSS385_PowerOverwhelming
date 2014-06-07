@@ -10,6 +10,7 @@ public enum UnitType
     Archer,
     Mage,
     King,
+    Elite,
 }
 
 public class Unit : Target

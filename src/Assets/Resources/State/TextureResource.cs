@@ -43,6 +43,7 @@ public static class TextureResource
         mEnemyUnitPrefabs.Add (UnitType.Archer, UnitPrefab(era, "EnemyArcherPrefab"));
         mEnemyUnitPrefabs.Add (UnitType.Peasant, UnitPrefab(era, "EnemyPeasantPrefab"));
         mEnemyUnitPrefabs.Add (UnitType.Mage, UnitPrefab(era, "EnemyMagePrefab"));
+        mEnemyUnitPrefabs.Add (UnitType.Elite, UnitPrefab(era, "EnemyElitePrefab"));
     }
     
     private static GameObject UnitPrefab(Era era, string name)

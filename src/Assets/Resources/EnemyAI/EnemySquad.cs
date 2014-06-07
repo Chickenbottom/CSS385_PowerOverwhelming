@@ -106,7 +106,7 @@ class EnemySquad
         case (SquadLeaderType.Special):
             return UnitType.Mage;
         case (SquadLeaderType.Elite):
-            return UnitType.Swordsman;
+            return UnitType.Elite;
         default:
             return UnitType.None;
         }

@@ -8,6 +8,7 @@ public enum WeaponType
     IceWand,
     Sword,
     Pitchfork,
+    RaptorClaws,
 }
 
 public abstract class Weapon
