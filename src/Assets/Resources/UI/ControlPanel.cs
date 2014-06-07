@@ -79,6 +79,12 @@ public class ControlPanel : MonoBehaviour
         }
         
         KingsHealthBar.MaxValue = GameState.KingsHealth;
+        
+        // TODO refactor these hard coded values
+        SpriteRenderer sr = GameObject.Find ("ControlPanel").GetComponent<SpriteRenderer>();
+        Era era = GameState.GameEra;
+        string controlPanelSpritePath = "UI/Textures/" + era.ToString() + "UI";
+        sr.sprite = Resources.Load<Sprite>(controlPanelSpritePath);
     }
     
     void Update ()
