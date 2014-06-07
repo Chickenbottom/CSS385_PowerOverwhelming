@@ -67,7 +67,11 @@ public class UnitAnimation : MonoBehaviour
     {
         if (mAnimator == null)
             return;
-            
+        
+        // state is already set, no need to continue
+        if (mAnimationStates[state])
+            return;
+        
         string property = state.ToString ();
         
         foreach (UnitAnimationState s in mAnimationStates.Keys.ToList()) {
