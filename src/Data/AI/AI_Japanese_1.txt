@@ -10,7 +10,7 @@
 18 Large     Default AttackMove SpawnRight,CenterRight
 
 @EnemyWave 30
-0 Individual Default AttackMove SpawnLeft,BottomLeft,TopLeft
+0 Single    Default AttackMove SpawnLeft,BottomLeft,TopLeft
 1 Large     Default AttackMove SpawnLeft,BottomLeft,TopLeft
 2 Large     Default AttackMove SpawnRight,BottomRight
 #3 Medium     Default AttackMove SpawnLeft,BottomLeft
