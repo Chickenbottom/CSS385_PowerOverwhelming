@@ -4,3 +4,4 @@ Swordsman  150      12              13          35
 Mage       40       06              08          35
 Peasant    65       10              10          8
 King       1000     00              00          00
+Elite      500      13              15          10
