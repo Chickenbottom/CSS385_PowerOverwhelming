@@ -8,6 +8,9 @@ public class AbilityTower: Tower
 
     public override void UseTargetedAbility (Target target)
     {
+        if (this.Allegiance != Allegiance.Rodelle)
+            return;
+            
         if (target == this) 
             return;
             
@@ -16,6 +19,9 @@ public class AbilityTower: Tower
 
     public override void SetDestination (Vector3 destination)
     {
+        if (this.Allegiance != Allegiance.Rodelle)
+            return;
+            
         ability.UsePositionalAbility(destination);
     }
     

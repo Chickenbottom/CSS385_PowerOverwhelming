@@ -97,7 +97,7 @@ public class EnemySpawningTower : Tower
         
         Unit unit = other.gameObject.GetComponent<Unit> ();
         
-        if (unit != null && unit.Squad.UnitType == UnitType.Peasant) {
+        if (unit != null && unit.UnitType == UnitType.Peasant) {
             unit.Despawn ();
             mGarrisonedPeasants ++;
         }
