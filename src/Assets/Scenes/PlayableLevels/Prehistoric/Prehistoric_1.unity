@@ -146,8 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385ca6189d4000e4ead026f8abc473a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumSquadMembers: 1
   UnitType: 5
+  NumSquadMembers: 1
   SquadCenter: {x: 0, y: 0, z: 0}
   RallyPoint: {x: 0, y: 0, z: 0}
   IsIndependent: 1
@@ -274,6 +274,7 @@ MonoBehaviour:
   canTargetTowers: 1
   SpawnPoint: {fileID: 101411935}
   ability: {fileID: 1222511153}
+  Glow: {fileID: 0}
 --- !u!212 &17470441
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -306,7 +307,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 19914664}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CooldownBars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +515,7 @@ GameObject:
   - 4: {fileID: 83381005}
   - 114: {fileID: 83381006}
   - 212: {fileID: 83381007}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_NoneLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -744,7 +745,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1100
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 78efde4a947a26e418315aa86f05654f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6effb3a0de016142aa316f7fbf323fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &126011414
 GameObject:
@@ -1067,7 +1068,7 @@ Transform:
   m_PrefabInternal: {fileID: 217875329}
   m_GameObject: {fileID: 169510762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.0206299, y: 25.4238205, z: 0}
+  m_LocalPosition: {x: 98.0206299, y: 37.2000008, z: 0}
   m_LocalScale: {x: 7.5, y: 10.2872515, z: 1}
   m_Children: []
   m_Father: {fileID: 355869235}
@@ -1173,7 +1174,7 @@ GameObject:
   - 4: {fileID: 183362219}
   - 212: {fileID: 183362221}
   - 114: {fileID: 183362220}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: HealCooldownBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1438,7 +1439,7 @@ Transform:
   m_PrefabInternal: {fileID: 217875329}
   m_GameObject: {fileID: 247872815}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.8321877, y: 6.80608082, z: -.31640625}
+  m_LocalPosition: {x: 19.8321877, y: 6.68599987, z: -.31640625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1474576641}
@@ -1925,7 +1926,7 @@ GameObject:
   - 4: {fileID: 487104098}
   - 114: {fileID: 487104100}
   - 114: {fileID: 487104099}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SaveLoad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2388,7 +2389,7 @@ Transform:
   m_PrefabInternal: {fileID: 217875329}
   m_GameObject: {fileID: 659249676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.8322887, y: 6.74608088, z: -.31640625}
+  m_LocalPosition: {x: 19.8322887, y: 6.80499983, z: -.31640625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1474576641}
@@ -2609,7 +2610,7 @@ GameObject:
   - 4: {fileID: 751079277}
   - 114: {fileID: 751079279}
   - 212: {fileID: 751079278}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_Swordsman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3109,7 +3110,7 @@ GameObject:
   - 4: {fileID: 862576461}
   - 212: {fileID: 862576463}
   - 114: {fileID: 862576462}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: AoeCooldownBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3176,6 +3177,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 865861350}
+  - 82: {fileID: 865861351}
   m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
@@ -3196,6 +3198,64 @@ Transform:
   - {fileID: 292482547}
   - {fileID: 1358584955}
   m_Father: {fileID: 0}
+--- !u!82 &865861351
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 865861349}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: ffda012b7b86d3c4b8d8fee5e2bc75e0, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &867613252
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,7 +3802,7 @@ Transform:
   m_PrefabInternal: {fileID: 217875329}
   m_GameObject: {fileID: 1052593724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.2660141, y: 37.202137, z: 0}
+  m_LocalPosition: {x: 98.2660141, y: 13.6000004, z: 0}
   m_LocalScale: {x: 7.5, y: 10.2872515, z: 1}
   m_Children: []
   m_Father: {fileID: 355869235}
@@ -4599,7 +4659,7 @@ GameObject:
   - 4: {fileID: 1306135961}
   - 212: {fileID: 1306135960}
   - 114: {fileID: 1306135959}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: BoostCooldownBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5490,7 +5550,7 @@ GameObject:
   - 4: {fileID: 1471086256}
   - 114: {fileID: 1471086257}
   - 212: {fileID: 1471086258}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_MageRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5558,7 +5618,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1474576641}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PanelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5636,7 +5696,7 @@ GameObject:
   - 4: {fileID: 1485271084}
   - 114: {fileID: 1485271085}
   - 212: {fileID: 1485271086}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_King
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5842,7 +5902,7 @@ GameObject:
   - 4: {fileID: 1558154616}
   - 114: {fileID: 1558154618}
   - 212: {fileID: 1558154617}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_Saemus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6470,7 +6530,7 @@ GameObject:
   - 4: {fileID: 1827402276}
   - 114: {fileID: 1827402277}
   - 212: {fileID: 1827402278}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_NoneRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6635,7 +6695,7 @@ Transform:
   m_PrefabInternal: {fileID: 217875329}
   m_GameObject: {fileID: 1833077461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.0206146, y: 13.645505, z: 0}
+  m_LocalPosition: {x: 98.0206146, y: 25.2999992, z: 0}
   m_LocalScale: {x: 7.5, y: 10.2872515, z: 1}
   m_Children: []
   m_Father: {fileID: 355869235}
@@ -6841,7 +6901,7 @@ GameObject:
   - 4: {fileID: 1906710353}
   - 114: {fileID: 1906710354}
   - 212: {fileID: 1906710355}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_ArcherLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6924,7 +6984,7 @@ Transform:
   m_PrefabInternal: {fileID: 217875329}
   m_GameObject: {fileID: 1918331634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.8321877, y: 6.68608093, z: -.31640625}
+  m_LocalPosition: {x: 19.8321877, y: 6.74499989, z: -.31640625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1474576641}
@@ -7126,7 +7186,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2012805014}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speakers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
