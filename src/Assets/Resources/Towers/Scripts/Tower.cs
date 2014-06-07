@@ -35,7 +35,7 @@ public abstract class Tower : Target
     public abstract override void SetDestination(Vector3 destination);
     public abstract override void UseTargetedAbility(Target Target);
 
-    public override void Damage (int damage)
+    public override void Damage (int damage, Weapon weapon = null)
     {
         if (damage > 1) // makes towers stronger
             damage = 1;

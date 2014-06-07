@@ -49,12 +49,20 @@ public class TowerBombEffect : MonoBehaviour
         Target target = other.gameObject.GetComponent<Target> ();
         
         if (target is Unit)
-            target.Damage (mDamage);
+            target.Damage (mDamage, new AoePortal(0));
     }
    
     void FixedUpdate()
     {
         if (mExplosionState == ExplosionState.Started)
             mExplosionState = ExplosionState.Finished;
+    }
+}
+
+public class AoePortal : Weapon 
+{
+    public AoePortal (int level) : base (level)
+    {                
+        mWeaponType = WeaponType.AoePortal;
     }
 }
