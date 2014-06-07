@@ -67,8 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385ca6189d4000e4ead026f8abc473a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumSquadMembers: 0
   UnitType: 0
+  NumSquadMembers: 0
   SquadCenter: {x: 0, y: 0, z: 0}
   RallyPoint: {x: 0, y: 0, z: 0}
   IsIndependent: 0
@@ -95,7 +95,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 50
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 3901954d9d462794aa486ac455006168, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 332d0d057112072478530a0bfff2cc3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
