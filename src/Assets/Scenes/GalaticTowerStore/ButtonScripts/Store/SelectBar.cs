@@ -11,16 +11,20 @@ public class SelectBar : MonoBehaviour {
 	public TowerStoreBehavior mStore;
 
 	void Start(){
-		for(int i = 0; i < mAllTabs.Count; i++){
+
+        SetLockedTabs();
+
+
+        for(int i = 0; i < mAllTabs.Count; i++){
 			GameObject tempTab = (GameObject)mAllTabs[i];
 			GameObject tempTabButtons = (GameObject)mAllTabButtons[i];
-			if(tempTab.name.Equals("TabsSpecial")){
+            if(tempTab.name.Equals("TabsMelee")){
 				mCurrentTab = tempTab;
 				mCurrentTab.renderer.sortingOrder = 10;
 			}
 			else
 				tempTab.renderer.sortingOrder = 1;
-			if(tempTabButtons.name.Equals("SpecialTabButtons")){
+            if(tempTabButtons.name.Equals("MeleeTabButtons")){
 				mCurrentTabButtons = tempTabButtons;
 				mCurrentTabButtons.SetActive(true);
 			}
@@ -45,6 +49,23 @@ public class SelectBar : MonoBehaviour {
 		mStore.mCurBonusSubject = curSub;
 	}
 
-
+    void SetLockedTabs(){
+        if((int)GameState.CurrentEra >= (int)Era.Medieval){
+            GameObject.Find("TabsSpecialLocked").SetActive(false);
+            GameObject.Find("TabsSpecial").SetActive(true);
+        }
+        else{
+            GameObject.Find("TabsSpecialLocked").SetActive(true);
+            GameObject.Find("TabsSpecial").SetActive(false);
+        }
+        if((int)GameState.CurrentEra >= (int)Era.Japanese){
+            GameObject.Find("TabsAOELocked").SetActive(false);
+            GameObject.Find("TabsAOE").SetActive(true);
+        }
+        else{
+            GameObject.Find("TabsAOELocked").SetActive(true);
+            GameObject.Find("TabsAOE").SetActive(false);
+        }
+    }
 
 }

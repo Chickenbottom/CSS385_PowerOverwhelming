@@ -7,7 +7,8 @@ public class IndividualTab : MonoBehaviour {
 	public GameObject TabButtons;
 	public BonusSubject mBonusSubject;
 
-	void OnMouseDown(){
-		mSelectBar.SetTab(this.gameObject, TabButtons, mBonusSubject);
+
+	void OnMouseDown(){ 
+    		mSelectBar.SetTab(this.gameObject, TabButtons, mBonusSubject);
 	}
 }

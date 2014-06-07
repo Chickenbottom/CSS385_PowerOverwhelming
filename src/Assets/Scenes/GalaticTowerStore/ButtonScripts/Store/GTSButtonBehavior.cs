@@ -12,9 +12,11 @@ public class GTSButtonBehavior : ButtonBehaviour {
 	};
 	public TowerStoreBehavior mStore;
 	public GUIText mText;
+    public GUIText mCurrentLevelText;
 	public BonusType mBonusType;
 
 	protected int mBonusLevel;
+    protected int mCurrentLevel;
 	protected int mCost;
 	protected const int kBonusMax = 5;
 	protected const int kBonusMin = 0;
@@ -24,6 +26,8 @@ public class GTSButtonBehavior : ButtonBehaviour {
 	void Update(){
 		mBonusLevel = mStore.GetUpgrade(mStore.mCurBonusSubject, mBonusType);	
 		mText.text = mBonusLevel.ToString();
+        mCurrentLevel = mStore.GetOringalValue(mStore.mCurBonusSubject,mBonusType);
+        mCurrentLevelText.text = mCurrentLevel.ToString();
 	}
 	public void NewValue(int newLevel){
 		mBonusLevel += newLevel;

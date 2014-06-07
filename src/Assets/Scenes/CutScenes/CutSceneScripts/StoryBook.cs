@@ -15,7 +15,7 @@ public class StoryBook : MonoBehaviour {
 		Waiting,
 	};
 
-	public string NextScene;
+    public GameScenes mScenes;
     public List<SpriteRenderer> mImageArray;
 	public string FilePath;
 	public GUIText mDialogueText;
@@ -108,7 +108,9 @@ public class StoryBook : MonoBehaviour {
 				mMyAction = Action.Finished;
 			break;
 		case Action.Finished:
-			Application.LoadLevel(NextScene);
+            if(mScenes == null)
+                Application.LoadLevel("LevelLoader");
+			Application.LoadLevel(mScenes.GetNextLevelAndCutScenes(Application.loadedLevelName));
 			break;
 		case Action.Waiting:
 			if(!mWaitedCalled){

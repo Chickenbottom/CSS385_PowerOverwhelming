@@ -5,16 +5,16 @@ public class GTSButton : MonoBehaviour {
 
     public Sprite mButton;
     public Sprite mButtonOver;
-    public GUIText mDisplay;
+    public GUIText mDisplayTextGUI;
     public string mDisplayText;
 
 
     void OnMouseOver(){
-        mDisplay.text = mDisplayText;
+        mDisplayTextGUI.text = mDisplayText;
         gameObject.GetComponent<SpriteRenderer> ().sprite = mButtonOver;
     }
     void OnMouseExit(){
-        mDisplay.text = "";
+        mDisplayTextGUI.text = "";
         gameObject.GetComponent<SpriteRenderer> ().sprite = mButton;
     }
     void OnMouseDown(){
