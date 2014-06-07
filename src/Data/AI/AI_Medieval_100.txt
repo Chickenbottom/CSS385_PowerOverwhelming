@@ -49,14 +49,15 @@
 
 @EnemyWave 2  # enemy wave 1
 0 Medium Elite AttackMove SpawnLeft,Center,TopRight
+0 Medium Elite AttackMove SpawnRight,TopRight
 
 @EnemyWave 2  # enemy wave 2
-0 Medium Special AttackMove SpawnLeft,Center,TopRight
+0 Medium Special AttackMove SpawnLeft,Center,TopLeft
 
 @EnemyWave 2  # enemy wave 3
-0 Medium Melee AttackMove SpawnRight,Center,TopRight
+0 Medium Melee AttackMove SpawnRight,Center,BottomRight
 
 @EnemyWave 2  # enemy wave 4
-0 Medium Ranged AttackMove SpawnRight,Center,TopRight
+0 Medium Ranged AttackMove SpawnRight,Center,BottomLeft
 
 ENDWAVES # used to mark the end of the file
