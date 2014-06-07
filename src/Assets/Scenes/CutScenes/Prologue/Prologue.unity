@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1708d63dc416d244c87983863e02590e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: Medieval_1
+  mScenes: {fileID: 859273592}
   mImageArray:
   - {fileID: 2019786742}
   - {fileID: 829478718}
@@ -591,6 +591,44 @@ Transform:
   m_LocalScale: {x: 13.1999998, y: 13.1999998, z: 1}
   m_Children: []
   m_Father: {fileID: 1446194197}
+--- !u!1 &859273591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 859273593}
+  - 114: {fileID: 859273592}
+  m_Layer: 0
+  m_Name: SceneNavigation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &859273592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 859273591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7eee76ac978d46449390cf819d24f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &859273593
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 859273591}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 67.8367844, y: -26.9872837, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &932429602
 GameObject:
   m_ObjectHideFlags: 0

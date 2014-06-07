@@ -3,16 +3,12 @@ using System.Collections;
 using System;
 
 public class WinSkipButton : ButtonBehaviour {
-	public string mNextStep;
-	void OnMouseDown(){
 
+    public GameScenes mScenes;
+    void OnMouseDown(){
 		GameState.WonGame = GameState.LostGame = false;
-		try{
-		Application.LoadLevel(mNextStep);
-		}
-		catch(Exception e){
-			Application.LoadLevel("LevelLoader");
-			Debug.LogError (e);
-		}
+        if(mScenes == null)
+            Application.LoadLevel("LevelLoader");
+        Application.LoadLevel(mScenes.GetNextLevelOnly(Application.loadedLevelName));
 	}
 }

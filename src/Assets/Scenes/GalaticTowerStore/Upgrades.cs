@@ -23,20 +23,14 @@ public enum BonusType : int{
 public class Upgrades : MonoBehaviour
 {
 
-	#region Variables
-	#region const variables
 
 	const float kLetterDisplayTime = 0.5f;
-	#endregion
 
     //string[] subjectName = ;
 	int mSubjectMax = Enum.GetNames(typeof(BonusSubject)).Length;
 	int mBonusMax = Enum.GetNames(typeof(BonusType)).Length;
-
+    float mBonusMagnitude = 0.2f;
 	
-	//int mCurSubject = -1;
-	//int mCurBonus = -1;
-
 	private const string path = "Bonus.txt"; //path of the txt file
 	StreamReader mFile;
 	string line; //used to read line from mfile and arrays
@@ -44,7 +38,6 @@ public class Upgrades : MonoBehaviour
 	
 	int[,] mBonusArray;
 
-	#endregion
 	
 	// Use this for initialization
 	void Start()
@@ -118,13 +111,19 @@ public class Upgrades : MonoBehaviour
 	}	
 	float GetBonus(BonusSubject subject, BonusType bonus){
 		float bonusLevel = mBonusArray[(int)subject ,(int) bonus];
-		if(bonusLevel <= 0)
+		//no bonuses purchases
+        if(bonusLevel <= 0)
 			return 1.0f;
+        //max bonuses cap
 		if(bonusLevel >= 5)
 		   return 2.0f;
+        //spawn size needs to return a whole number
+        if(bonus == BonusType.SpawnSize)
+            return bonusLevel;
+
 
 		//each level represents 20%
-		return 1 + bonusLevel * 0.2f;
+		return 1 + bonusLevel * mBonusMagnitude;
 	}
 	public void SetBonus(BonusSubject subject, BonusType bonus, int value){
 		mBonusArray[(int)subject ,(int) bonus] = value;
