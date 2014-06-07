@@ -32,7 +32,7 @@ public abstract class Target : MonoBehaviour, Selectable
         get { return mHealth <= 0; }
     }
 
-    public abstract void Damage (int damage);
+    public abstract void Damage (int damage, Weapon weapon = null);
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Interface: Selectable

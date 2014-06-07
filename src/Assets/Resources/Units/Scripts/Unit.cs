@@ -96,12 +96,14 @@ public class Unit : Target
     /// Reduces the health of the unit by the given amount.
     /// </summary>
     /// <param name="damage">Damage. The amount of damage taken.</param>
-    public override void Damage (int damage)
+    public override void Damage (int damage, Weapon weapon = null)
     {
         mHealth -= damage;
         if (mHealth <= 0) {
-            GameObject o = GameObject.Instantiate(mWarpPrefab) as GameObject;
-            o.transform.position = this.Position;
+            if (weapon != null && weapon.WeaponType != WeaponType.AoePortal) {
+                GameObject o = GameObject.Instantiate(mWarpPrefab) as GameObject;
+                o.transform.position = this.Position;
+            }
             
             Despawn ();
         }

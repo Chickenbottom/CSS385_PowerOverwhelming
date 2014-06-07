@@ -19,7 +19,7 @@ public class King : Unit
         GameState.KingsHealth = mMaxHealth;
     }
     
-    public override void Damage (int damage)
+    public override void Damage (int damage, Weapon weapon = null)
     {            
         base.Damage (damage);
         GameState.KingsHealth = mHealth;
