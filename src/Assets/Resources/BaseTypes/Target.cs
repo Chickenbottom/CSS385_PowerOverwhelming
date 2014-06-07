@@ -24,6 +24,10 @@ public abstract class Target : MonoBehaviour, Selectable
         set { mMaxHealth = value; }
     }
     
+    public virtual int Health {
+        get { return mHealth; }
+    }
+    
     public bool IsDead {
         get { return mHealth <= 0; }
     }
