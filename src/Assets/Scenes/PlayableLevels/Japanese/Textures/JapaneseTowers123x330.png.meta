@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59b36891c16c91b478d59a4fc9257784
+guid: 784bc31cda0c50442b5f6f65a12063c0
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -49,7 +49,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 1035
         width: 123
         height: 330
       alignment: 0
@@ -58,7 +58,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 137
-        y: 0
+        y: 1035
         width: 124
         height: 330
       alignment: 0
@@ -67,7 +67,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 275
-        y: 0
+        y: 1035
         width: 124
         height: 330
       alignment: 0
@@ -76,12 +76,147 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 413
-        y: 0
+        y: 1035
         width: 124
         height: 330
       alignment: 0
       pivot: {x: 0, y: 0}
     - name: JapaneseTowers123x330_4
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 1035
+        width: 123
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 690
+        width: 123
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_6
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 690
+        width: 124
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_7
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 690
+        width: 124
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_8
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 690
+        width: 124
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_9
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 690
+        width: 123
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 344
+        width: 123
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_11
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 344
+        width: 124
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_12
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 344
+        width: 124
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_13
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 344
+        width: 124
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_14
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 344
+        width: 123
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 123
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_16
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 0
+        width: 124
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_17
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 0
+        width: 124
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_18
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 0
+        width: 124
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: JapaneseTowers123x330_19
       rect:
         serializedVersion: 2
         x: 551
