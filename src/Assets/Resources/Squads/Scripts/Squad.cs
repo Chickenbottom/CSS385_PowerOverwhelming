@@ -201,6 +201,15 @@ public class Squad : MonoBehaviour, Selectable
             u.transform.position = memberPosition;
         }
         
+        float squadSpeed = UnitStats.GetStat(SquadLeader.UnitType, UnitStat.MovementSpeed);
+        
+        // Sets the speed of the squad to the speed of the squad leader
+        for (int i = 0; i < mSquadMembers.Count; ++i) {
+            // TODO refactor this process. Remove the public access to MoveSpeed and implement a better method of 
+            // modifying a unit's base stats
+            mSquadMembers[i].MoveSpeed = squadSpeed;
+        }
+        
         if (SquadLeader.Allegiance == Allegiance.AI) // Reduce the sight range of armed enemy peasants
             SquadLeader.SightRange = UnitStats.GetStat(UnitType.Peasant, UnitStat.SightRange);
         
