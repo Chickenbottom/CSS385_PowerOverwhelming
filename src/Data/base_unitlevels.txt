@@ -1,6 +1,6 @@
-Swordsman            Prehistoric             10     0
-Archer               Prehistoric             10     0
-Mage                 Prehistoric             10     0
+Swordsman            Prehistoric              10     0
+Archer               Prehistoric              10     0
+Mage                 Prehistoric              10     0
 
 Swordsman            Medieval                 7     0
 Archer               Medieval                 7     0

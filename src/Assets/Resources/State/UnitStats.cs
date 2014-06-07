@@ -17,6 +17,8 @@ public enum UnitStat
 public static class UnitStats
 {   
     private static string kUnitDataPath = "Data/unitstats.txt";
+    
+    private static string kBaseUnitLevelPath = "Data/base_unitlevels.txt";
     private static string kUnitLevelPath = "Data/unitlevels.txt";
     
     ///////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +36,11 @@ public static class UnitStats
         mUnitExperience = new int[numUnitTypes, numEras];
         
         LoadStatsFromFile (kUnitDataPath);
-        LoadLevelsFromFile (kUnitLevelPath);
+
+        if (File.Exists(kUnitLevelPath))
+            LoadLevelsFromFile (kUnitLevelPath);
+        else
+            LoadLevelsFromFile (kBaseUnitLevelPath);
     }
     
     public static float GetStat (UnitType unit, UnitStat stat)
@@ -85,14 +91,8 @@ public static class UnitStats
         int numEras = Enum.GetValues(typeof(UnitStat)).Length;
         mUnitLevels = new int[numUnitTypes, numEras];
         mUnitExperience = new int[numUnitTypes, numEras];
-        
-        for (int i = 0; i < numUnitTypes; i ++) {
-            for (int j = 0; j < numEras; j++) {
-                mUnitLevels [i, j] = 1;
-                mUnitExperience [i, j] = 0;
-            }
-        }
-        
+                
+        LoadLevelsFromFile (kBaseUnitLevelPath);
         SaveLevels();
     }
     
