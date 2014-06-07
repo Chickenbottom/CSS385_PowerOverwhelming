@@ -5,6 +5,7 @@
 1 Medium    Default AttackMove SpawnLeft,BottomLeft
 10 Large    Default AttackMove SpawnRight,
 12 Large    Default AttackMove SpawnLeft,BottomLeft
+#5 Large     Default AttackMove SpawnLeft,BottomLeft
 16 Medium    Default AttackMove SpawnLeft,BottomLeft
 17 Medium    Default AttackMove SpawnRight,CenterRight
 18 Large     Default AttackMove SpawnRight,CenterRight
