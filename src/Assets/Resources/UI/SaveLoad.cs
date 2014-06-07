@@ -18,6 +18,8 @@ public class SaveLoad : MonoBehaviour {
     private List<string> levelStrings;
     private List<string> upgradeStrings;
 
+    bool loadSuccess;
+
     void Awake()
     {
         Instantiate();
@@ -30,6 +32,7 @@ public class SaveLoad : MonoBehaviour {
         upgradePath = "upgrades.save";
         levelStrings = new List<string>();
         upgradeStrings = new List<string>();
+        loadSuccess = false;
     }
 
     public void Clear(SAVEFILE file)
@@ -88,9 +91,11 @@ public class SaveLoad : MonoBehaviour {
                 {
                     levelStrings.Add(s);
                 }
+                loadSuccess = true;
             }
             catch (System.Exception e) { 
 				Debug.LogError (e);
+                loadSuccess = false;
 			}
         }
         else if (file == SAVEFILE.Upgrade)
@@ -103,11 +108,18 @@ public class SaveLoad : MonoBehaviour {
                 {
                     upgradeStrings.Add(s);
                 }
+                loadSuccess = true;
             }
             catch (System.Exception e) {
 				Debug.LogError (e);
+                loadSuccess = false;
 			}
         }
+    }
+
+    public bool LoadSuccessful()
+    {
+        return loadSuccessful;
     }
 
     public List<string> GetInfo(SAVEFILE type)
