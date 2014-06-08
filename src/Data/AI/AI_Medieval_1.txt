@@ -32,7 +32,7 @@
 0 Medium      Special AttackMove SpawnLeft,TopLeft
 8 Large       Default AttackMove SpawnLeft,BottomLeft,Center
 
-0 Large       Melee AttackMove SpawnRight,CenterKing
+0 Large       Melee AttackMove SpawnRight,Center,
 1 Medium      Ranged AttackMove SpawnRight,TopRight,BottomRight
 2 Medium      Ranged AttackMove SpawnRight,BottomLeft
 3 Medium      Elite AttackMove SpawnRight,Center,King
