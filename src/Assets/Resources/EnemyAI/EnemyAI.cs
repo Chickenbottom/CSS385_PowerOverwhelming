@@ -123,9 +123,7 @@ public class EnemyAI : MonoBehaviour
         Waypoints.Add (Waypoint.SpawnRight, GameObject.Find("WP_SpawnRight").transform.position);
         
         GameObject.Find ("Waypoints").SetActive(false);
-        
-        Debug.Log ("Loading " + GameEra.ToString() + " AI level " + GameLevel);
-        
+                
         string aiDataPath = "Data/AI/AI_";
         aiDataPath += GameEra.ToString ();
         aiDataPath += "_";
@@ -170,7 +168,6 @@ public class EnemyAI : MonoBehaviour
         if (waveNumber > mMaxWaves)
             return;
         
-        Debug.Log ("Spawning Enemy Wave " + waveNumber + " for " + mWaveTimers [waveNumber] + " seconds.");
         GameState.RemainingWaves = mMaxWaves - mCurrentWave;
         
         mWaveSpawnTime = Time.time + mWaveTimers [waveNumber];
