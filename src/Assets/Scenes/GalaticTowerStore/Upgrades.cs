@@ -111,16 +111,17 @@ public class Upgrades : MonoBehaviour
 	}	
 	float GetBonus(BonusSubject subject, BonusType bonus){
 		float bonusLevel = mBonusArray[(int)subject ,(int) bonus];
-		//no bonuses purchases
+		
+        //spawn size needs to return a whole number
+        if(bonus == BonusType.SpawnSize)
+            return bonusLevel;
+
+        //no bonuses purchases
         if(bonusLevel <= 0)
 			return 1.0f;
         //max bonuses cap
 		if(bonusLevel >= 5)
 		   return 2.0f;
-        //spawn size needs to return a whole number
-        if(bonus == BonusType.SpawnSize)
-            return bonusLevel;
-
 
 		//each level represents 20%
 		return 1 + bonusLevel * mBonusMagnitude;
