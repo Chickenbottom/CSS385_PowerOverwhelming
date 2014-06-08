@@ -7,7 +7,7 @@ public class LoadButton : MonoBehaviour {
     public Sprite mButtonOver;
 	public GameObject mLoadFrameObject;
 	public GameObject mMenuFrameObject;
-    private bool isActive;
+    private bool isActive = true;
     public Sprite noLoad;
 
 	// Use this for initialization
