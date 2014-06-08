@@ -1354,7 +1354,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: 1.5
+  m_Radius: 1.25
   m_Center: {x: 0, y: -.479999989}
 --- !u!58 &5800002
 CircleCollider2D:
@@ -1569,7 +1569,9 @@ MonoBehaviour:
   - {fileID: 100000}
   - {fileID: 100006}
   - {fileID: 100004}
+  - {fileID: 100006}
   SpawnWaypoint:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
