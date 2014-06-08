@@ -735,7 +735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mButton: {fileID: 21300004, guid: c1086fd26bdf3a54ba118ed201790395, type: 3}
   mButtonOver: {fileID: 21300006, guid: c1086fd26bdf3a54ba118ed201790395, type: 3}
-  mDisplay: {fileID: 925515168}
+  mDisplayTextGUI: {fileID: 925515168}
   mDisplayText: Galactic Tower Store
 --- !u!4 &1134486431
 Transform:
