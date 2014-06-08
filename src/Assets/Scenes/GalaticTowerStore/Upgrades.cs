@@ -76,7 +76,9 @@ public class Upgrades : MonoBehaviour
 			int ability = ci.CompareInfo.IndexOf(numbers[0], "Heal", System.Globalization.CompareOptions.IgnoreCase);
 			int melee = ci.CompareInfo.IndexOf(numbers[0], "Melee", System.Globalization.CompareOptions.IgnoreCase);
 			int ranged = ci.CompareInfo.IndexOf(numbers[0], "Ranged", System.Globalization.CompareOptions.IgnoreCase);
-			int magic = ci.CompareInfo.IndexOf(numbers[0], "Special", System.Globalization.CompareOptions.IgnoreCase);
+            int magic = ci.CompareInfo.IndexOf(numbers[0], "Special", System.Globalization.CompareOptions.IgnoreCase);
+            int AOE = ci.CompareInfo.IndexOf(numbers[0], "AOETower", System.Globalization.CompareOptions.IgnoreCase);
+            int Buff = ci.CompareInfo.IndexOf(numbers[0], "BuffTower", System.Globalization.CompareOptions.IgnoreCase);
 
 			int health = ci.CompareInfo.IndexOf(numbers[1], "Health", System.Globalization.CompareOptions.IgnoreCase);
 			int coolD = ci.CompareInfo.IndexOf(numbers[1], "CoolDown", System.Globalization.CompareOptions.IgnoreCase);
@@ -90,8 +92,12 @@ public class Upgrades : MonoBehaviour
 				curSubject = (int)BonusSubject.Melee;
 			else if(ranged >= 0)
 				curSubject = (int)BonusSubject.Ranged;
-			else if(magic >= 0)
-				curSubject = (int)BonusSubject.Special;
+            else if(magic >= 0)
+                curSubject = (int)BonusSubject.Special;
+            else if(AOE >= 0)
+                curSubject = (int)BonusSubject.AOETower;
+            else if(Buff >= 0)
+                curSubject = (int)BonusSubject.BuffTower;
 
 			if(health >= 0)
 				curBonus = (int)BonusType.Health;
