@@ -29,7 +29,7 @@ public static class WeaponStats
             for (int j = 0; j < numStats; j++)
                 mWeaponStats [i, j] = 0f;
         
-        LoadStatsFromFile ("Data/weaponstats.txt");
+        LoadStatsFromFile ("Data/default_weaponstats.txt");
     }
     
     public static float GetStat (WeaponType weapon, WeaponStat stat)

@@ -19,9 +19,9 @@ public static class UnitStats
     private static int kLevelSoftCap = 10; // levels become harder to earn after this level
     public static int kLevelHardCap = 20;
 
-    private static string kUnitDataPath = "Data/unitstats.txt";
+    private static string kUnitDataPath = "Data/default_unitstats.txt";
     
-    private static string kBaseUnitLevelPath = "Data/base_unitlevels.txt";
+    private static string kBaseUnitLevelPath = "Data/default_unitlevels.txt";
     private static string kUnitLevelPath = SaveLoad.kSaveFileDirectory + "SavedUnitLevels.save";
     
     ///////////////////////////////////////////////////////////////////////////////////
