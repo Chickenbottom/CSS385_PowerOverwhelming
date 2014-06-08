@@ -21,6 +21,7 @@ public class SelectBar : MonoBehaviour {
             if(tempTab.name.Equals("TabsMelee")){
 				mCurrentTab = tempTab;
 				mCurrentTab.renderer.sortingOrder = 10;
+                mStore.mCurBonusSubject = BonusSubject.Melee;
 			}
 			else
 				tempTab.renderer.sortingOrder = 1;

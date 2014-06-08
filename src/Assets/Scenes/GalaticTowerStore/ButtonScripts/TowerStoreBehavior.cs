@@ -24,7 +24,7 @@ public class TowerStoreBehavior : MonoBehaviour {
             //GameState.CurrentEra = Era.Prehistoric;
         }
 
-		mCurBonusSubject = BonusSubject.Special;
+		mCurBonusSubject = BonusSubject.Melee;
 		DynamicUpgrades = new int[mSubjectMax, mBonusMax];
 		OriginalUpgrades = new int[mSubjectMax, mBonusMax];
 		mCurUpgrades =  GameObject.Find("Store").GetComponent<Upgrades>();
