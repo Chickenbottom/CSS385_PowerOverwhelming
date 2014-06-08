@@ -22,7 +22,6 @@ public class WinLoseBehavior : MonoBehaviour {
         }
 
         if (GameState.WonGame){
-            Debug.Log("YAY");
             GameObject.Find("Background").GetComponent<AudioSource>().mute = true;
 			WinGameFrame.SetActive(true);
         }
