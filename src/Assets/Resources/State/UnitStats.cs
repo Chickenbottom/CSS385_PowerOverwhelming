@@ -22,7 +22,7 @@ public static class UnitStats
     private static string kUnitDataPath = "Data/unitstats.txt";
     
     private static string kBaseUnitLevelPath = "Data/base_unitlevels.txt";
-    private static string kUnitLevelPath = "Data/unitlevels.txt";
+    private static string kUnitLevelPath = SaveLoad.kSaveFileDirectory + "SavedUnitLevels.save";
     
     ///////////////////////////////////////////////////////////////////////////////////
     // Public

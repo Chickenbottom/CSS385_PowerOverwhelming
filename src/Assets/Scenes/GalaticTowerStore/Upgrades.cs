@@ -31,7 +31,7 @@ public class Upgrades : MonoBehaviour
 	int mBonusMax = Enum.GetNames(typeof(BonusType)).Length;
     float mBonusMagnitude = 0.2f;
 	
-	private const string path = "Bonus.txt"; //path of the txt file
+    private static string path = SaveLoad.kSaveFileDirectory + "Bonus.save"; //path of the txt file
 	StreamReader mFile;
 	string line; //used to read line from mfile and arrays
 	

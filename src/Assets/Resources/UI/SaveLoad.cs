@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class SaveLoad : MonoBehaviour {
+    public static readonly string kSaveFileDirectory = "Data/Saves/";
 
     public enum SAVEFILE
     {
@@ -28,8 +29,8 @@ public class SaveLoad : MonoBehaviour {
 
     private void Instantiate()
     {
-        levelPath = "game.save";
-        upgradePath = "upgrades.save";
+        levelPath = kSaveFileDirectory + "game.save";
+        upgradePath = kSaveFileDirectory + "upgrades.save";
         levelStrings = new List<string>();
         upgradeStrings = new List<string>();
         loadSuccess = false;
@@ -94,7 +95,6 @@ public class SaveLoad : MonoBehaviour {
                 loadSuccess = true;
             }
             catch (System.Exception e) { 
-				Debug.LogError (e);
                 loadSuccess = false;
 			}
         }
@@ -111,7 +111,6 @@ public class SaveLoad : MonoBehaviour {
                 loadSuccess = true;
             }
             catch (System.Exception e) {
-				Debug.LogError (e);
                 loadSuccess = false;
 			}
         }
