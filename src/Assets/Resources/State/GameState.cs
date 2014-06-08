@@ -64,13 +64,7 @@ public class GameState
         Time.timeScale = 0;
     
 		LostGame = true;
-        SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
-        s.Clear(SaveLoad.SAVEFILE.Level);
-        s.Add("" + (int)CurrentEra, SaveLoad.SAVEFILE.Level);
-        s.Add("" + Gold, SaveLoad.SAVEFILE.Level);
-        s.Save();
-
-        UnitStats.SaveLevels ();
+        SaveLoad.SaveGameState ();
     }
     
     public static void TriggerWin ()
@@ -79,13 +73,7 @@ public class GameState
         Time.timeScale = 0;
         
 		WonGame = true;
-        SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
-        s.Clear(SaveLoad.SAVEFILE.Level);
-        s.Add("" + (int)CurrentEra + 1, SaveLoad.SAVEFILE.Level);
-        s.Add("" + Gold, SaveLoad.SAVEFILE.Level);
-        s.Save();
-
-        UnitStats.SaveLevels ();
+        SaveLoad.SaveGameState ();
     }
     
     public static void UpdateKingsHealth (int value)

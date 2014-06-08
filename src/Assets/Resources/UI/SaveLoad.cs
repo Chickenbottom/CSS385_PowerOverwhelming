@@ -1,9 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class SaveLoad : MonoBehaviour {
     public static readonly string kSaveFileDirectory = "Data/Saves/";
+
+    public static void ResetGameState () 
+    {
+        Upgrades.ResetTowerUpgrades ();
+        UnitStats.ResetLevels ();
+        
+        if(File.Exists(kLevelPath))
+            File.Delete(kLevelPath);
+            
+        if(File.Exists(kUpgradesPath))
+            File.Delete(kUpgradesPath);
+            
+        GameState.Gold = 0;
+        GameState.CurrentEra = Era.None;
+    }
+    
+    public static void SaveGameState ()
+    {
+        SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
+        
+        string savedEra = ((int)GameState.CurrentEra + 1).ToString();
+        string savedGold = GameState.Gold.ToString();
+        
+        s.Clear(SaveLoad.SAVEFILE.Level);
+        s.Add(savedEra, SaveLoad.SAVEFILE.Level);
+        s.Add(savedGold, SaveLoad.SAVEFILE.Level);
+        s.Save();
+        
+        UnitStats.SaveLevels ();
+    }
 
     public enum SAVEFILE
     {
@@ -11,8 +42,8 @@ public class SaveLoad : MonoBehaviour {
         Upgrade
     }
 
-    private string levelPath;
-    private string upgradePath;
+    private static readonly string kLevelPath = kSaveFileDirectory + "game.save";
+    private static readonly string kUpgradesPath = kSaveFileDirectory + "upgrades.save";
     // Level file contains
     // line 1: highest level
     // line 2: gold
@@ -29,8 +60,6 @@ public class SaveLoad : MonoBehaviour {
 
     private void Instantiate()
     {
-        levelPath = kSaveFileDirectory + "game.save";
-        upgradePath = kSaveFileDirectory + "upgrades.save";
         levelStrings = new List<string>();
         upgradeStrings = new List<string>();
         loadSuccess = false;
@@ -76,8 +105,8 @@ public class SaveLoad : MonoBehaviour {
             upgrade[i] = s;
             i++;
         }
-        System.IO.File.WriteAllLines(upgradePath, upgrade);
-        System.IO.File.WriteAllLines(levelPath, level);
+        System.IO.File.WriteAllLines(kUpgradesPath, upgrade);
+        System.IO.File.WriteAllLines(kLevelPath, level);
     }
 
     public void Load(SAVEFILE file)
@@ -86,7 +115,7 @@ public class SaveLoad : MonoBehaviour {
         {
             try
             {
-                string[] level = System.IO.File.ReadAllLines(levelPath);
+                string[] level = System.IO.File.ReadAllLines(kLevelPath);
                 Clear(file);
                 foreach (string s in level)
                 {
@@ -95,6 +124,7 @@ public class SaveLoad : MonoBehaviour {
                 loadSuccess = true;
             }
             catch (System.Exception e) { 
+                Debug.Log (e);
                 loadSuccess = false;
 			}
         }
@@ -102,7 +132,7 @@ public class SaveLoad : MonoBehaviour {
         {
             try
             {
-                string[] upgrades = System.IO.File.ReadAllLines(upgradePath);
+                string[] upgrades = System.IO.File.ReadAllLines(kUpgradesPath);
                 Clear(file);
                 foreach (string s in upgrades)
                 {
@@ -111,6 +141,7 @@ public class SaveLoad : MonoBehaviour {
                 loadSuccess = true;
             }
             catch (System.Exception e) {
+                Debug.Log (e);
                 loadSuccess = false;
 			}
         }

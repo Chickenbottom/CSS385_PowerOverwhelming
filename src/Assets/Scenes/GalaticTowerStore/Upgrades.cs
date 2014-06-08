@@ -22,7 +22,11 @@ public enum BonusType : int{
 
 public class Upgrades : MonoBehaviour
 {
-
+    public static void ResetTowerUpgrades ()
+    {
+        if(File.Exists(kTowerUpgradesPath))
+            File.Delete(kTowerUpgradesPath);
+    }
 
 	const float kLetterDisplayTime = 0.5f;
 
@@ -31,7 +35,7 @@ public class Upgrades : MonoBehaviour
 	int mBonusMax = Enum.GetNames(typeof(BonusType)).Length;
     float mBonusMagnitude = 0.2f;
 	
-    private static string path = SaveLoad.kSaveFileDirectory + "Bonus.save"; //path of the txt file
+    private static string kTowerUpgradesPath = SaveLoad.kSaveFileDirectory + "Bonus.save"; //path of the txt file
 	StreamReader mFile;
 	string line; //used to read line from mfile and arrays
 	
@@ -44,7 +48,7 @@ public class Upgrades : MonoBehaviour
 	{
 		mBonusArray = new int[mSubjectMax, mBonusMax];
 		
-		if(File.Exists(path)){
+		if(File.Exists(kTowerUpgradesPath)){
 			LoadBonuses();		
 		}
 		else{
@@ -57,7 +61,7 @@ public class Upgrades : MonoBehaviour
 
 	void LoadBonuses()
 	{
-		mFile = new StreamReader(path);	
+		mFile = new StreamReader(kTowerUpgradesPath);	
 		System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en");
 		char[] delim = new char[1];
 		delim[0] = ',';
@@ -136,7 +140,7 @@ public class Upgrades : MonoBehaviour
 		mBonusArray[(int)subject ,(int) bonus] = value;
 	}
 	public void WriteBonuses(){
-		StreamWriter writer = new StreamWriter(path);
+		StreamWriter writer = new StreamWriter(kTowerUpgradesPath);
 
 			foreach(string sub in Enum.GetNames(typeof(BonusSubject))){
 				foreach(string bon in Enum.GetNames(typeof(BonusType))){
