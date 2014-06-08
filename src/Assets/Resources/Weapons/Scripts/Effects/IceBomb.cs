@@ -39,7 +39,6 @@ public class IceBomb : MonoBehaviour
         
         int damage = (int)WeaponStats.GetStat(WeaponType.IceWand, WeaponStat.Damage);
         if (target is Tower) {
-            target.Damage (damage);
             return;
         }
         
