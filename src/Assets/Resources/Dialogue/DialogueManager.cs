@@ -218,7 +218,7 @@ public class DialogueManager : MonoBehaviour
     // Unity Overrides
     ///////////////////////////////////////////////////////////////////////////////////
 
-    void Start ()
+    void Awake ()
     {
         mDialogueQueue = new Dictionary<DialogueType, Queue<Dialogue>>();
         foreach (DialogueType d in EnumUtil.GetValues<DialogueType>())

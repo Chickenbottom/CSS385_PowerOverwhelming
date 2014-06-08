@@ -103,9 +103,9 @@ public class EnemySpawningTower : Tower
         }
     }
     
-    protected override void Awake ()
+    protected override void Start ()
     {
-        base.Awake ();
+        base.Start ();
         this.Allegiance = Allegiance.Rodelle;
         mEnemySpawnTimer = mEnemySpawnTime;
     }

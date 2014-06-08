@@ -32,4 +32,22 @@ public class AbilityTower: Tower
         
         Glow.enabled = (ability.CountdownTimer <= 0);
     }
+    
+    protected override void Start ()
+    {
+        if (ability is TowerBomb)
+            mTowerType = BonusSubject.AOETower;
+        else if (ability is Heal)
+            mTowerType = BonusSubject.HealTower;
+        
+        base.Start ();
+        
+        Upgrades upgrades = GameObject.Find ("UI").GetComponent<Upgrades> ();
+        float cooldownBonus = upgrades.GetBonus(this.mTowerType, BonusType.Health);
+        
+        Debug.Log (this + " cooldown " + ability.CoolDown);
+        ability.CoolDown /= cooldownBonus;
+        
+        Debug.Log (this + " cooldown " + ability.CoolDown);
+    }
 }
