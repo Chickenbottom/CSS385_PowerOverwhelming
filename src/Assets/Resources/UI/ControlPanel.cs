@@ -25,7 +25,7 @@ public class ControlPanel : MonoBehaviour
     public AbilityTower AoeTower;
     public AbilityTower BoostTower;
        
-	//private float mMusicVolume = 1;
+	private float mMusicVolume = 1;
 	//private float mSFXVolume = 1;
     
     private Dictionary<UnitType, Progressbar> mExpBars;
