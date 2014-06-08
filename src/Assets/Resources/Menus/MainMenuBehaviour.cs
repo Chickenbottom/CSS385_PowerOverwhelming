@@ -23,6 +23,10 @@ public class MainMenuBehaviour : MonoBehaviour {
             Debug.Log("No Save file");
             GameObject.Find("LoadGameButton").GetComponent<LoadButton>().setInactive();
         }
+        else
+        {
+            GameState.Gold = int.Parse(s.GetInfo(SaveLoad.SAVEFILE.Level)[1]);
+        }
 	}
 	
 	// Update is called once per frame

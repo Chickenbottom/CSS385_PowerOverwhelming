@@ -1,6 +1,6 @@
 Melee,Health,2
 Melee,CoolDown,0
-Melee,SpawnSize,3
+Melee,SpawnSize,4
 Melee,TowerModifier,0
 Ranged,Health,0
 Ranged,CoolDown,0
