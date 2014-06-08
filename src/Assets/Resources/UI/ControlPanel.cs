@@ -26,7 +26,7 @@ public class ControlPanel : MonoBehaviour
     public AbilityTower BoostTower;
        
 	private float mMusicVolume = 1;
-	//private float mSFXVolume = 1;
+	public float mSFXVolume{get; set;}
     
     private Dictionary<UnitType, Progressbar> mExpBars;
     private Dictionary<UnitType, GUIText> mLevelText;
@@ -37,6 +37,7 @@ public class ControlPanel : MonoBehaviour
 
     void Awake ()
     {
+        mSFXVolume = 1f;
         if (HealTower == null)
             Destroy (HealCooldownBar);
             
@@ -157,5 +158,7 @@ public class ControlPanel : MonoBehaviour
 	public void SetMusicVolume(float v)
     {
 		Music.volume = v;
+        GameObject.Find("Background").GetComponent<AudioSource>().volume = v;
 	}
+
 }

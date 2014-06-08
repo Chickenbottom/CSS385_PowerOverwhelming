@@ -256,7 +256,15 @@ public class Unit : Target
             return;
         }
         
-        mCurrentWeapon.Attack (this, target);
+        bool attackSuccess = mCurrentWeapon.Attack (this, target);
+        if (attackSuccess)
+        {
+            AudioSource sfx = gameObject.GetComponent<AudioSource>();
+            if (sfx == null) { return; }
+            sfx.volume = 0f;
+            sfx.volume = GameObject.Find("GameManager").GetComponent<ControlPanel>().mSFXVolume;
+            sfx.Play();
+        }
     }
     
     private void UpdateMovement (Vector3 targetLocation, float speed)

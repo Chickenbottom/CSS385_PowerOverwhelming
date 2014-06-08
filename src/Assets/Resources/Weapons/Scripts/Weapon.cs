@@ -36,15 +36,17 @@ public abstract class Weapon
         mLevel = level;
     }
     
-    public virtual void Attack (Target src, Target target)
+    public virtual bool Attack (Target src, Target target)
     {
         if (target == null || src == null)
-            return;
+            return false;
         
         reloadTimer -= Time.deltaTime;
         if (reloadTimer < 0) {
             PerformAttack (src, target);
+            return true;
         }
+        return false;
     }
     
     public virtual void Reset ()
