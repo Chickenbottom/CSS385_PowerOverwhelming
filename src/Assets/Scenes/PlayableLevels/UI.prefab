@@ -88,6 +88,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400010}
+  - 114: {fileID: 11400026}
   m_Layer: 12
   m_Name: UI
   m_TagString: Untagged
@@ -1334,6 +1335,17 @@ MonoBehaviour:
   BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
   BorderColor: {r: 0, g: 0, b: 0, a: 0}
   BorderWidth: 3
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a772b1b2b37cd09459a669450eb352fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1
