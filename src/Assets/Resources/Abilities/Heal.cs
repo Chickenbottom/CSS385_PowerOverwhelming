@@ -13,6 +13,9 @@ public class Heal : Ability
 
     public override void UseAbility (Target target)
     {
+        if (target.Health == target.MaxHealth)
+            return; // do not heal full health targets
+            
         if (Time.time - mUseTimer > mCooldown) {
             target.Damage((int)(-mHealRate * target.MaxHealth));
             mUseTimer = Time.time;

@@ -1,4 +1,3 @@
-4
 @EnemyWave 30
 0 Medium     Default AttackMove SpawnCenter
 1 Medium    Default AttackMove SpawnCenter,BottomLeft

@@ -19,15 +19,19 @@ public enum Waypoint
     SpawnRight,
 }
 
-public enum SquadPreset
+public enum SquadLeaderType
 {
+    None,
     Default, // all peasants
-    Elite,   // with an elite
+    Melee,   // contains a melee unit
+    Ranged,  // contains a ranged unit
+    Special, // contains a special unit
+    Elite,   // has a raptor!
 }
 
 public enum SquadSize
 {
-    Individual = 1,
+    Single = 1,
     Small = 2,
     Medium = 4,
     Large = 7,
@@ -148,6 +152,8 @@ public class EnemyAI : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////
     // Private Methods and Variables
     /////////////////////////////////////////////////////////////////////////////////// 
+    private int kMaxNumWaves = 20; // Cannot create more than 20 waves
+    
     private float mWaveSpawnTime;
     private int mCurrentWave = 0;
     private int mMaxWaves;
@@ -174,11 +180,7 @@ public class EnemyAI : MonoBehaviour
     // "2.5 Large Default AttackMove ArcherTower,SwordsmanTower"
     // "1 Individual Elite ForcedMove AbilityTower"
     private void AddSquad (string input)
-    {
-        SquadSize size;
-        //SquadPreset preset;
-        //SquadBehavior behavior;
-        
+    {        
         float spawnTime;
         Vector3 spawnLocation;
         
@@ -186,13 +188,13 @@ public class EnemyAI : MonoBehaviour
         string[] param = input.Split (delimiters, StringSplitOptions.RemoveEmptyEntries);
         
         spawnTime = float.Parse (param [0]);
-        size = EnumUtil.FromString<SquadSize> (param [1]);
+        SquadSize size = EnumUtil.FromString<SquadSize> (param [1]);
         Waypoint wp = EnumUtil.FromString<Waypoint> (param [4]);
         spawnLocation = Waypoints[wp];
-        //preset = EnumHelper.FromString<SquadPreset> (param [2]);
-        //behavior = EnumHelper.FromString<SquadBehavior> (param [3]);
+        SquadLeaderType preset = EnumUtil.FromString<SquadLeaderType> (param [2]);
+        //SquadBehavior behavior = EnumHelper.FromString<SquadBehavior> (param [3]);
         
-        EnemySquad es = new EnemySquad ((int)size, spawnTime, spawnLocation);
+        EnemySquad es = new EnemySquad ((int)size, spawnTime, spawnLocation, UnitType.Peasant, preset);
         
         for (int i = 5; i < param.Length; ++i) {
             wp = EnumUtil.FromString<Waypoint> (param [i]);
@@ -209,10 +211,8 @@ public class EnemyAI : MonoBehaviour
         string input;
         try {
             file = new StreamReader (filepath);
-            input = file.ReadLine ();
-            mMaxWaves = int.Parse (input);
-            mEnemyWaves = new List<string>[mMaxWaves + 1]; // 0 based array
-            mWaveTimers = new float[mMaxWaves + 1];
+            mEnemyWaves = new List<string>[kMaxNumWaves + 1]; // 0 based array
+            mWaveTimers = new float[kMaxNumWaves + 1];
             
         } catch (System.Exception e) {
             Debug.LogError (e.ToString ());
@@ -224,7 +224,7 @@ public class EnemyAI : MonoBehaviour
         string[] waveData;
         while (true) {
             input = file.ReadLine ();
-            if (file.EndOfStream)
+            if (file.EndOfStream || input == "ENDWAVES")
                 break;
             
             if (input == "" || input [0] == '#') // ignore comments and blank lines
@@ -240,5 +240,7 @@ public class EnemyAI : MonoBehaviour
                 mEnemyWaves [waveNumber].Add (input);
             }
         }
+        
+        mMaxWaves = waveNumber;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TowerBomb : Ability
 {
-    protected int mDamage = 60;
+    protected int mDamage = 200;
     protected static GameObject mTowerBombPrefab;
     
     void Awake()

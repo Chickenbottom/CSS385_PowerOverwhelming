@@ -1,6 +1,5 @@
-4
 @EnemyWave 25
-0 Individual Default AttackMove SpawnCenter,TopRight
+0 Single Default AttackMove SpawnCenter,TopRight
 1 Large      Default AttackMove SpawnCenter,
 3 Medium      Default AttackMove SpawnCenter,TopRight
 5 Medium      Default AttackMove SpawnCenter,CenterRight,TopLeft
@@ -9,9 +8,9 @@
 @EnemyWave 35
 0 Medium      Default AttackMove SpawnCenter,
 0 Medium     Default AttackMove SpawnCenter,
-0 Individual Default AttackMove SpawnCenter,BottomLeft,TopLeft
-1 Individual Default AttackMove SpawnCenter,BottomLeft,TopLeft
-1 Individual Default AttackMove SpawnCenter,BottomLeft,TopLeft
+0 Single Default AttackMove SpawnCenter,BottomLeft,TopLeft
+1 Single Default AttackMove SpawnCenter,BottomLeft,TopLeft
+1 Single Default AttackMove SpawnCenter,BottomLeft,TopLeft
 1 Small     Default AttackMove SpawnCenter,BottomLeft,TopLeft
 2 Medium     Default AttackMove SpawnCenter,Center,TopRight
 6 Medium      Default AttackMove SpawnCenter,TopLeft

@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PanelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ GameObject:
   - 4: {fileID: 400002}
   - 114: {fileID: 11400000}
   - 212: {fileID: 21200000}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_Swordsman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - 4: {fileID: 400012}
   - 114: {fileID: 11400006}
   - 212: {fileID: 21200002}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_Saemus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400028}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speakers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400030}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CooldownBars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - 4: {fileID: 400032}
   - 114: {fileID: 11400010}
   - 212: {fileID: 21200004}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_MageRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - 4: {fileID: 400036}
   - 114: {fileID: 11400014}
   - 212: {fileID: 21200008}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_ArcherLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - 4: {fileID: 400040}
   - 114: {fileID: 11400016}
   - 212: {fileID: 21200010}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_NoneLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - 4: {fileID: 400044}
   - 114: {fileID: 11400018}
   - 212: {fileID: 21200016}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_King
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ GameObject:
   - 4: {fileID: 400048}
   - 114: {fileID: 11400020}
   - 212: {fileID: 21200014}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Speaker_NoneRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   - 4: {fileID: 400068}
   - 212: {fileID: 21200032}
   - 114: {fileID: 11400028}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: BoostCooldownBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   - 4: {fileID: 400080}
   - 212: {fileID: 21200044}
   - 114: {fileID: 11400034}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: HealCooldownBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - 4: {fileID: 400082}
   - 212: {fileID: 21200046}
   - 114: {fileID: 11400036}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: AoeCooldownBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +568,7 @@ GameObject:
   - 4: {fileID: 400106}
   - 114: {fileID: 11400062}
   - 114: {fileID: 11400064}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SaveLoad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.8321877, y: 6.68608093, z: -.31640625}
+  m_LocalPosition: {x: 19.8321877, y: 6.74499989, z: -.31640625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -798,7 +798,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.0206299, y: 25.4238205, z: 0}
+  m_LocalPosition: {x: 98.0206299, y: 37.2000008, z: 0}
   m_LocalScale: {x: 7.5, y: 10.2872515, z: 1}
   m_Children: []
   m_Father: {fileID: 400016}
@@ -864,7 +864,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.8321877, y: 6.80608082, z: -.31640625}
+  m_LocalPosition: {x: 19.8321877, y: 6.68599987, z: -.31640625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -897,7 +897,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.0206146, y: 13.645505, z: 0}
+  m_LocalPosition: {x: 98.0206146, y: 25.2999992, z: 0}
   m_LocalScale: {x: 7.5, y: 10.2872515, z: 1}
   m_Children: []
   m_Father: {fileID: 400016}
@@ -919,7 +919,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.8322887, y: 6.74608088, z: -.31640625}
+  m_LocalPosition: {x: 19.8322887, y: 6.80499983, z: -.31640625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -930,7 +930,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.2660141, y: 37.202137, z: 0}
+  m_LocalPosition: {x: 98.2660141, y: 13.6000004, z: 0}
   m_LocalScale: {x: 7.5, y: 10.2872515, z: 1}
   m_Children: []
   m_Father: {fileID: 400016}
@@ -1846,7 +1846,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1100
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 78efde4a947a26e418315aa86f05654f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6effb3a0de016142aa316f7fbf323fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200014
 SpriteRenderer:

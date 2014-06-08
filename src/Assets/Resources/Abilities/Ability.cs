@@ -5,8 +5,10 @@ public abstract class Ability : MonoBehaviour
 {
     public float CoolDown {
         get { return mCooldown; } }
-    public float CooldownTimer {
+    public float CooldownTimer { // >= mCooldown if the ability is ready to use
         get { return Time.time - mUseTimer; } }
+    public float CountdownTimer { // <= 0 if the ability is ready to use
+        get { return mCooldown - (Time.time - mUseTimer); } }
     
     protected float mCooldown;
     protected float mUseTimer;

@@ -15,6 +15,13 @@ public class MainMenuBehaviour : MonoBehaviour {
 			else
 				mList[i].SetActive(false);
 		}
+        SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
+        s.Clear(SaveLoad.SAVEFILE.Level);
+        s.Load(SaveLoad.SAVEFILE.Level);
+        if (!s.LoadSuccessful())
+        {
+            GameObject.Find("LoadButton").GetComponent<LoadButton>().setInactive();
+        }
 	}
 	
 	// Update is called once per frame

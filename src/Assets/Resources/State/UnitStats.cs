@@ -16,7 +16,12 @@ public enum UnitStat
 
 public static class UnitStats
 {   
+    private static int kLevelSoftCap = 10; // levels become harder to earn after this level
+    public static int kLevelHardCap = 20;
+
     private static string kUnitDataPath = "Data/unitstats.txt";
+    
+    private static string kBaseUnitLevelPath = "Data/base_unitlevels.txt";
     private static string kUnitLevelPath = "Data/unitlevels.txt";
     
     ///////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +39,11 @@ public static class UnitStats
         mUnitExperience = new int[numUnitTypes, numEras];
         
         LoadStatsFromFile (kUnitDataPath);
-        LoadLevelsFromFile (kUnitLevelPath);
+
+        if (File.Exists(kUnitLevelPath))
+            LoadLevelsFromFile (kUnitLevelPath);
+        else
+            LoadLevelsFromFile (kBaseUnitLevelPath);
     }
     
     public static float GetStat (UnitType unit, UnitStat stat)
@@ -62,8 +71,11 @@ public static class UnitStats
     {
         if (subject == UnitType.Peasant)
             return;
-            
+     
         Era currentEra = GameState.GameEra;
+        int unitLevel = (int)mUnitLevels[(int) subject, (int) currentEra];
+        if (unitLevel >= kLevelHardCap)
+            return;      
         
         mUnitExperience [(int)subject, (int)currentEra] += value;
         if (mUnitExperience [(int)subject, (int)currentEra] > GetExpToNextLevel(subject)) {
@@ -75,8 +87,15 @@ public static class UnitStats
     {
         Era currentEra = GameState.GameEra;
         int unitLevel = (int)mUnitLevels[(int) unit, (int) currentEra];
+
+        // exp = 30 + 2x + (max(x,10) - 9)^2
+        // levels become exponentially more difficult to attain after reaching the level soft cap
+        // exp from  5 to  6 is 41
+        // exp from 10 to 11 is 51
+        // exp from 15 to 16 is 96
         
-        return unitLevel * 5 + 15;
+        int softCapPenalty = Math.Max (unitLevel, kLevelSoftCap) - kLevelSoftCap - 1;
+        return softCapPenalty * softCapPenalty + unitLevel * 2 + 30;
     }
     
     public static void ResetLevels()
@@ -85,14 +104,8 @@ public static class UnitStats
         int numEras = Enum.GetValues(typeof(UnitStat)).Length;
         mUnitLevels = new int[numUnitTypes, numEras];
         mUnitExperience = new int[numUnitTypes, numEras];
-        
-        for (int i = 0; i < numUnitTypes; i ++) {
-            for (int j = 0; j < numEras; j++) {
-                mUnitLevels [i, j] = 1;
-                mUnitExperience [i, j] = 0;
-            }
-        }
-        
+                
+        LoadLevelsFromFile (kBaseUnitLevelPath);
         SaveLevels();
     }
     

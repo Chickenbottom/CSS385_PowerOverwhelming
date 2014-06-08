@@ -8,6 +8,8 @@ public enum WeaponType
     IceWand,
     Sword,
     Pitchfork,
+    RaptorClaws,
+    AoePortal,
 }
 
 public abstract class Weapon
@@ -21,6 +23,10 @@ public abstract class Weapon
     public float ReloadVariance { get; set; }
 
     public float Accuracy { get; set; }
+    
+    public WeaponType WeaponType { 
+        get { return mWeaponType; }
+    }
     
     protected float reloadTimer;
     protected int mLevel;

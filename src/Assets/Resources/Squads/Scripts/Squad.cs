@@ -91,11 +91,8 @@ public class Squad : MonoBehaviour, Selectable
     private void CheckSquadIdle ()
     {
         int idleCount = 0;
-        foreach (Unit u in mSquadMembers)
-            if (u.IsIdle)
-                idleCount ++;
-
-        if ((float)idleCount / (float)mSquadMembers.Count > 0.25)
+        
+        if (SquadLeader.IsIdle)
             this.SquadState = SquadState.Idle;
     }
     
@@ -161,8 +158,11 @@ public class Squad : MonoBehaviour, Selectable
             
         }
         
+        if (SquadLeader.Allegiance == Allegiance.AI) // Reduce the sight range of armed enemy peasants
+            SquadLeader.SightRange = UnitStats.GetStat(UnitType.Peasant, UnitStat.SightRange);
+
         float sightRadius = SquadLeader.SightRange;
-        
+                  
         this.GetComponent<CircleCollider2D> ().radius = 3;
         this.GetComponent<SpriteRenderer>().transform.localScale = new Vector3(sightRadius / 3, sightRadius / 3, 0f);
         
@@ -200,6 +200,18 @@ public class Squad : MonoBehaviour, Selectable
             memberPosition += randomPositions [i];
             u.transform.position = memberPosition;
         }
+        
+        float squadSpeed = UnitStats.GetStat(SquadLeader.UnitType, UnitStat.MovementSpeed);
+        
+        // Sets the speed of the squad to the speed of the squad leader
+        for (int i = 0; i < mSquadMembers.Count; ++i) {
+            // TODO refactor this process. Remove the public access to MoveSpeed and implement a better method of 
+            // modifying a unit's base stats
+            mSquadMembers[i].MoveSpeed = squadSpeed;
+        }
+        
+        if (SquadLeader.Allegiance == Allegiance.AI) // Reduce the sight range of armed enemy peasants
+            SquadLeader.SightRange = UnitStats.GetStat(UnitType.Peasant, UnitStat.SightRange);
         
         float sightRadius = SquadLeader.SightRange;
         

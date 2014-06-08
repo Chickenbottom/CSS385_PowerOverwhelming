@@ -1,0 +1,28 @@
+@EnemyWave 50
+0 Large     Default AttackMove SpawnRight,CenterRight
+0 Medium    Default AttackMove SpawnLeft,CenterLeft
+1 Medium    Default AttackMove SpawnRight,BottomRight
+1 Medium    Default AttackMove SpawnLeft,BottomLeft
+10 Large    Default AttackMove SpawnRight,
+12 Large    Default AttackMove SpawnLeft,BottomLeft
+#5 Large     Default AttackMove SpawnLeft,BottomLeft
+16 Medium    Default AttackMove SpawnLeft,BottomLeft
+17 Medium    Default AttackMove SpawnRight,CenterRight
+18 Large     Default AttackMove SpawnRight,CenterRight
+
+@EnemyWave 30
+0 Single   Default AttackMove SpawnLeft,BottomLeft,TopLeft
+1 Large     Default AttackMove SpawnLeft,BottomLeft,TopLeft
+2 Large     Default AttackMove SpawnRight,BottomRight
+#3 Medium     Default AttackMove SpawnLeft,BottomLeft
+6 Large     Default AttackMove SpawnLeft,BottomLeft
+
+@EnemyWave 30
+0 Large    Default AttackMove SpawnRight,CenterRight
+1 Large     Default AttackMove SpawnLeft,CenterLeft
+2 Medium    Default AttackMove SpawnLeft,BottomLeft
+3 Medium    Default AttackMove SpawnRight,BottomRight
+#4 Medium    Default AttackMove SpawnCenter,BottomLeft
+#5 Medium    Default AttackMove SpawnCenter,BottomRight
+#6 Medium    Default AttackMove SpawnCenter,TopRight
+#7 Medium    Default AttackMove SpawnCenter,TopLeft

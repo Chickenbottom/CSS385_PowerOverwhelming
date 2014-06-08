@@ -6,23 +6,60 @@ public class LoadButton : ButtonBehaviour {
 
 	public GameObject mLoadFrameObject;
 	public GameObject mMenuFrameObject;
+    private bool isActive;
+    public Sprite noLoad;
 
 	// Use this for initialization
 	void Start () {
-	
+        isActive = true;
 	}
 
 	void OnMouseDown(){
-		SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
-		s.Clear(SaveLoad.SAVEFILE.Level);
-		s.Load(SaveLoad.SAVEFILE.Level);
-		//ChangeScreen();
+        //SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
+		
+        //s.Clear(SaveLoad.SAVEFILE.Level);
+        //s.Load(SaveLoad.SAVEFILE.Level);
+        //ChangeScreen();
 		//mLoadMenuFrame.SetActive(false);
 		//mNarativeContinueMenuFrame.SetActive(true);
-		Application.LoadLevel("LevelLoader");
-
+        if (isActive)
+        {
+            Application.LoadLevel("LevelLoader"); 
+        }
+        
 		//mLoadFrameObject.SetActive(true);
 		//mMenuFrameObject.SetActive(false);
 		//ChangeScreen();
 	}
+
+    public void setInactive()
+    {
+        isActive = false;
+        gameObject.GetComponent<SpriteRenderer>().sprite = noLoad;
+    }
+
+    void OnMouseOver()
+    {
+        if (isActive)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = mButtonOver;
+        }
+        
+    }
+    void OnMouseExit()
+    {
+        if (isActive)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = mButton;
+        }
+    }
+
+    public void ChangeScreen()
+    {
+        if (isActive)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = mButton;
+        }
+    }
+
 }
