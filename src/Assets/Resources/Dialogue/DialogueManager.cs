@@ -28,7 +28,6 @@ public class DialogueManager : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////
     
     // Queues the related dialogue for play
-    // TODO add priority
     public void TriggerDialogue(string trigger)
     {
         Dictionary<string, Dialogue> triggers = mTriggers[DialogueType.Standard];
@@ -75,6 +74,7 @@ public class DialogueManager : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////
 
     private Dictionary<SpeakerLocation, GUIText> mTextBoxes;
+    private Dictionary<SpeakerLocation, float> mTextWidth;
     private Dictionary<SpeakerLocation, GUIText> mNameBoxes;
 
     private Dictionary<string, Speaker> mSpeakers;
@@ -89,7 +89,6 @@ public class DialogueManager : MonoBehaviour
     private float mRealtimeStamp;
   
     // See src/dialogue_1.txt for formatting the file
-    // TODO load the dialogue file for the current level instead of hardcoding dialogue_1.txt
     private void LoadDialogueFromFile (string filepath)
     {
         StreamReader file = new StreamReader (filepath);
@@ -160,8 +159,10 @@ public class DialogueManager : MonoBehaviour
         
         SpeakerLocation location = message.Location;
         
+        string messageText = Utility.WordWrappedString(message.Text, mTextBoxes[location], mTextWidth[location]);
+        
         mTextBoxes[location].enabled = true;
-        mTextBoxes[location].text = message.Text;
+        mTextBoxes[location].text = messageText;
         
         mNameBoxes[location].enabled = true;
         mNameBoxes[location].text = speaker.DisplayedName;
@@ -230,11 +231,13 @@ public class DialogueManager : MonoBehaviour
     
         mTextBoxes = new Dictionary<SpeakerLocation, GUIText>();
         mNameBoxes = new Dictionary<SpeakerLocation, GUIText>();
+        mTextWidth = new Dictionary<SpeakerLocation, float>();
         
         for (int i = 0; i < SpeakerLocations.Count; ++i) {
             SpeakerLocation location = SpeakerLocations[i];
             
             mTextBoxes.Add (location, DialogueTextBoxes[i]);
+            mTextWidth[location] = mTextBoxes[location].GetScreenRect ().width;
             mTextBoxes[location].text = "";
             
             mNameBoxes.Add (location, NameTextBoxes[i]);

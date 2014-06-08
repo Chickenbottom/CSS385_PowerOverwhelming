@@ -91,15 +91,6 @@ public class Dialogue
         mPreviousLetterTime += kLetterDisplayTime;
         mStringLength++;
         
-        // TODO only add newlines between words, get rid of extra space after newline
-        // TODO dynamically calculate this width based on the font?
-        if (mStringLength % 60 == 0) { // add a newline every 60 characters
-            string modifiedText = mCurrentText.Substring (0, mStringLength);
-            modifiedText += "\n";
-            mCurrentText = modifiedText + 
-                mCurrentText.Substring (mStringLength, mCurrentText.Length - mStringLength);            
-        }
-        
         mCurrentMessage.Text = mCurrentText.Substring (0, mStringLength);
         return true;
     }
@@ -131,36 +122,4 @@ public class Dialogue
 
         return dialogue;
     }
-    
-    /*private string FormatString (string text, int textWidth)
-    { 
-        string[] words = text.Split(" "); //Split the string into seperate words 
-        
-        GUIText t = new GUIText();
-        
-        string result = ""; 
-        for (var index = 0; index < words.Length; index++) { 
-            var word = words[index].Trim();
-            
-            if (index == 0) { 
-                result = words[0]; 
-                guiText.text = result; 
-            } 
-            
-            if (index > 0) { 
-                result += " " + word; 
-                guiText.text = result; 
-            } 
-            
-            TextSize = guiText.GetScreenRect(); 
-            
-            if (TextSize.width > lineLength)
-            {
-                result = result.Substring(0,result.Length-(word.Length)); 
-                result += "\n" + word; 
-                numberOfLines += 1; 
-                guiText.text = result; 
-            } 
-        } 
-    }*/
 }
