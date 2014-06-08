@@ -95,8 +95,6 @@ public abstract class Tower : Target
         mHealth = (int)(kDefaultHealth * healthBonus);
         mMaxHealth = mHealth;
         
-        Debug.Log (this + "Tower Health: " + mHealth);
-        
         TowermHealthBar.MaxValue = mMaxHealth;
         TowermHealthBar.Value = mHealth;
         this.Deselect();

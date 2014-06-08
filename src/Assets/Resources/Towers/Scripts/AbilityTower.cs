@@ -44,10 +44,7 @@ public class AbilityTower: Tower
         
         Upgrades upgrades = GameObject.Find ("UI").GetComponent<Upgrades> ();
         float cooldownBonus = upgrades.GetBonus(this.mTowerType, BonusType.Health);
-        
-        Debug.Log (this + " cooldown " + ability.CoolDown);
+       
         ability.CoolDown /= cooldownBonus;
-        
-        Debug.Log (this + " cooldown " + ability.CoolDown);
     }
 }
