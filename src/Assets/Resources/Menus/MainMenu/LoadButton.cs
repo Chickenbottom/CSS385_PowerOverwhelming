@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LoadButton : ButtonBehaviour {
+public class LoadButton : MonoBehaviour {
 
-
+    public Sprite mButton;
+    public Sprite mButtonOver;
 	public GameObject mLoadFrameObject;
 	public GameObject mMenuFrameObject;
     private bool isActive;
@@ -11,7 +12,6 @@ public class LoadButton : ButtonBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        isActive = true;
 	}
 
 	void OnMouseDown(){
@@ -40,6 +40,7 @@ public class LoadButton : ButtonBehaviour {
 
     void OnMouseOver()
     {
+        Debug.Log(isActive);
         if (isActive)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = mButtonOver;

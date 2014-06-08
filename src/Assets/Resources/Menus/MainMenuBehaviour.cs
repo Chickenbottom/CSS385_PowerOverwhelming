@@ -20,7 +20,8 @@ public class MainMenuBehaviour : MonoBehaviour {
         s.Load(SaveLoad.SAVEFILE.Level);
         if (!s.LoadSuccessful())
         {
-            GameObject.Find("LoadButton").GetComponent<LoadButton>().setInactive();
+            Debug.Log("No Save file");
+            GameObject.Find("LoadGameButton").GetComponent<LoadButton>().setInactive();
         }
 	}
 	
