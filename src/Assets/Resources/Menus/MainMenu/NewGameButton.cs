@@ -12,6 +12,7 @@ public class NewGameButton : ButtonBehaviour {
 
 		//after save / load game is up and running
 		//mSaveMenuObject.SetActive(true);
+        UnitStats.ResetLevels();
         SaveLoad s = GameObject.Find("SaveLoad").GetComponent<SaveLoad>();
         s.Clear(SaveLoad.SAVEFILE.Level);
         s.Add("1", SaveLoad.SAVEFILE.Level);
