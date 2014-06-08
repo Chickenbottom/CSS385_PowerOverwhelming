@@ -1027,6 +1027,10 @@ Prefab:
       propertyPath: mStoryBook
       value: 
       objectReference: {fileID: 758807217}
+    - target: {fileID: 8100002, guid: e86e0227228c71945bc6b3518b5aeb3d, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e86e0227228c71945bc6b3518b5aeb3d, type: 2}
   m_RootGameObject: {fileID: 2013004952}

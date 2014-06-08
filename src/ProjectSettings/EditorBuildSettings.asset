@@ -27,3 +27,5 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayableLevels/Japanese/Japanese_1.unity
   - enabled: 1
     path: Assets/Scenes/PlayableLevels/Japanese/Japanese_2.unity
+  - enabled: 1
+    path: Assets/Scenes/CutScenes/Medieval/Medieval_1_CutScene.unity

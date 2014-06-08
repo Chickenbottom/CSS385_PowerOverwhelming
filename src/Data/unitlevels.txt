@@ -2,9 +2,9 @@ Swordsman            Prehistoric             12    21
 Archer               Prehistoric             11    40
 Mage                 Prehistoric             10     0
 
-Swordsman            Medieval                 7     0
-Archer               Medieval                 7     0
-Mage                 Medieval                 7     0
+Swordsman            Medieval                11    39
+Archer               Medieval                 8    44
+Mage                 Medieval                 8    13
 
 Swordsman            Japanese                 5     0
 Archer               Japanese                 5     0
