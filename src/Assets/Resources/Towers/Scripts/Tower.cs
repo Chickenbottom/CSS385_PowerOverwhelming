@@ -62,6 +62,9 @@ public abstract class Tower : Target
     // Private Methods and Variables
     ///////////////////////////////////////////////////////////////////////////////////
     
+    protected const int kDefaultHealth = 45;
+    protected BonusSubject mTowerType;
+    
     private void UpdateAnimation ()
     {
         SpriteRenderer sr = this.GetComponent<SpriteRenderer> ();
@@ -81,12 +84,18 @@ public abstract class Tower : Target
     ///////////////////////////////////////////////////////////////////////////////////
     // Unity Overrides
     /////////////////////////////////////////////////////////////////////////////////// 
-    protected virtual void Awake ()
+    
+    protected virtual void Start ()
     {
         mAllegiance = Allegiance.Rodelle;
         
-        mHealth = 45;
-        mMaxHealth = 45;
+        Upgrades upgrades = GameObject.Find ("UI").GetComponent<Upgrades> ();
+        float healthBonus = upgrades.GetBonus(this.mTowerType, BonusType.Health);
+        
+        mHealth = (int)(kDefaultHealth * healthBonus);
+        mMaxHealth = mHealth;
+        
+        Debug.Log (this + "Tower Health: " + mHealth);
         
         TowermHealthBar.MaxValue = mMaxHealth;
         TowermHealthBar.Value = mHealth;

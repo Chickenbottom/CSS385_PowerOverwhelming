@@ -4,7 +4,8 @@ using System.Collections;
 public abstract class Ability : MonoBehaviour
 {
     public float CoolDown {
-        get { return mCooldown; } }
+        get { return mCooldown; }
+        set { mCooldown = value;} }
     public float CooldownTimer { // >= mCooldown if the ability is ready to use
         get { return Time.time - mUseTimer; } }
     public float CountdownTimer { // <= 0 if the ability is ready to use

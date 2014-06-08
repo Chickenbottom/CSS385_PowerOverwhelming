@@ -90,8 +90,6 @@ public class Squad : MonoBehaviour, Selectable
 
     private void CheckSquadIdle ()
     {
-        int idleCount = 0;
-        
         if (SquadLeader.IsIdle)
             this.SquadState = SquadState.Idle;
     }

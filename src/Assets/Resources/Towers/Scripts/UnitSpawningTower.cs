@@ -130,9 +130,21 @@ public class UnitSpawningTower : Tower
         GameObject.Find ("AI").GetComponent<EnemyAI> ().AddSquad (squadSize, this.transform.position, this.UnitSpawnType);
     }
     
-    protected override void Awake ()
+    protected override void Start ()
     {
-        base.Awake ();
+        switch (this.UnitSpawnType) {
+        case (UnitType.Archer):
+            mTowerType = BonusSubject.Ranged;
+            break;
+        case (UnitType.Mage):
+            mTowerType = BonusSubject.Special;
+            break;
+        case (UnitType.Swordsman):
+            mTowerType = BonusSubject.Melee;
+            break;
+        }
+    
+        base.Start ();
         mSpawnTime = GameState.SpawnTimes [this.UnitSpawnType];
         mSpawnTimer = Time.time;
         mMaxNumSquads = 2; // TODO get from game state
@@ -140,15 +152,12 @@ public class UnitSpawningTower : Tower
 
         int squadSizeBonus = 0;
         mSquadSize = GameState.UnitSquadCount [this.UnitSpawnType] + squadSizeBonus;
-    }
-    
-    void Start ()
-    {
+        
         this.SpawnUnit();
         Invoke ("SpawnUnit", 2);
         mSpawnTimer = mSpawnTime;
     }
-    
+        
     void OnTriggerStay2D (Collider2D other)
     {
         if (this.Allegiance == Allegiance.Rodelle)
