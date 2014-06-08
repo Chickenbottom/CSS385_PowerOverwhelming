@@ -95,6 +95,10 @@ public class ControlPanel : MonoBehaviour
             mLevelText [u].text = ((int)UnitStats.GetStat(u, UnitStat.Level)).ToString();
         }
         
+        // There is no special unit in the prehistoric era
+        if (GameState.GameEra == Era.Prehistoric)
+            mLevelText [UnitType.Mage].text = "";
+        
         UpdateCooldownBar(HealCooldownBar, HealTower);
         UpdateCooldownTimer(mCooldownText[BonusSubject.HealTower], HealTower);
         
