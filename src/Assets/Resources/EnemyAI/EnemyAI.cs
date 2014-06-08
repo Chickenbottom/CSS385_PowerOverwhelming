@@ -69,6 +69,9 @@ public class EnemyAI : MonoBehaviour
         this.ValidatePresets();
         GameState.GameEra = this.GameEra;
         GameState.GameLevel = this.GameLevel;
+        
+        // TODO replace with GameState.PauseGame ()
+        Time.timeScale = 1; // unpause game
     }
     
     void Update ()

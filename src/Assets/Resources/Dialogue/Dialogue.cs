@@ -82,6 +82,9 @@ public class Dialogue
     
     private bool AdvanceLetterAnimation (float deltaTime)
     {
+        if (mCurrentText == null)
+            return false;
+            
         if (mStringLength >= mCurrentText.Length || mDialogueTimer - mPreviousLetterTime < kLetterDisplayTime) 
             return false;
         
