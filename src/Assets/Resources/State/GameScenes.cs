@@ -10,7 +10,8 @@ public class GameScenes : MonoBehaviour{
     
 	// Use this for initialization
 	void Start () {
-        LevelsOnly.Add("Prehistoric_1","Medieval_1");
+        LevelsOnly.Add("Prehistoric_1","Prehistoric_2");
+        LevelsOnly.Add("Prehistoric_2","Medieval_1");
         LevelsOnly.Add("Medieval_1","Medieval_2");
         LevelsOnly.Add("Medieval_2","Japanese_1");
         LevelsOnly.Add("Japanese_1","Japanese_2");
