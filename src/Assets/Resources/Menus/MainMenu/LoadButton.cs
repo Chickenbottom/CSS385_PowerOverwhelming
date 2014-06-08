@@ -40,7 +40,6 @@ public class LoadButton : MonoBehaviour {
 
     void OnMouseOver()
     {
-        Debug.Log(isActive);
         if (isActive)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = mButtonOver;

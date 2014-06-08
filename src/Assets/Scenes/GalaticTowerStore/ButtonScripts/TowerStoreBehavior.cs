@@ -18,11 +18,6 @@ public class TowerStoreBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //gamestate testing
-        if(GameState.IsDebug){
-            GameState.Gold = 100000;
-            GameState.CurrentEra = Era.Future;
-            //GameState.CurrentEra = Era.Prehistoric;
-        }
 
 		mCurBonusSubject = BonusSubject.Melee;
 		DynamicUpgrades = new int[mSubjectMax, mBonusMax];
@@ -52,4 +47,12 @@ public class TowerStoreBehavior : MonoBehaviour {
 		return OriginalUpgrades[(int)sub, (int)typ];
 	}
 
+    void Update ()
+    {
+        if(GameState.IsDebug && Input.GetKeyDown("g")){
+            GameState.Gold = 100000;
+            GameState.CurrentEra = Era.Future;
+            //GameState.CurrentEra = Era.Prehistoric;
+        }
+    }
 }
