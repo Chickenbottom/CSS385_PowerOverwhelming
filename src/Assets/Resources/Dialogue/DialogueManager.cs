@@ -248,7 +248,9 @@ public class DialogueManager : MonoBehaviour
             mSpeakers.Add (speakerKey, Speakers[i]);
         }
         
-        LoadDialogueFromFile("Data/dialogue_1.txt");
+        string dialoguePath = "Data/IngameDialogue/dialogue_" + GameState.GameEra.ToString() + ".txt";
+        
+        LoadDialogueFromFile(dialoguePath);
         this.TriggerDialogue("ArcherMage");
         this.TriggerDialogue("Tutorial");
         
