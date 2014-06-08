@@ -25,6 +25,8 @@ public class PurchaseButton : ButtonBehaviour {
 	void OnMouseDown(){
 		if(canAfford){
 			TowerStoreFrame.GetComponent<TowerStoreBehavior>().Purchase();
+            TowerStoreFrame.GetComponent<TowerStoreBehavior>().mCurCost = 0;
+            
             mTotalGold.text = GameState.Gold.ToString();
             mTotalCost.text = "0";
 		}

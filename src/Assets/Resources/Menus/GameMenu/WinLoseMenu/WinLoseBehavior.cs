@@ -21,14 +21,15 @@ public class WinLoseBehavior : MonoBehaviour {
                 GameState.LostGame = true;
         }
 
-        if (GameState.WonGame)
+        if (GameState.WonGame){
             Debug.Log("YAY");
             GameObject.Find("Background").GetComponent<AudioSource>().mute = true;
 			WinGameFrame.SetActive(true);
-		if(GameState.LostGame)
+        }
+		if(GameState.LostGame){
             GameObject.Find("Background").GetComponent<AudioSource>().mute = true;
             LoseGameFrame.SetActive(true);
-
+        }
 
 	}
 	public void CloseAllFrames(){
