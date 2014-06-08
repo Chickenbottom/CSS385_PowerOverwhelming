@@ -40,7 +40,7 @@ public class Upgrades : MonoBehaviour
 
 	
 	// Use this for initialization
-	void Start()
+	void Awake ()
 	{
 		mBonusArray = new int[mSubjectMax, mBonusMax];
 		
@@ -109,7 +109,7 @@ public class Upgrades : MonoBehaviour
 		}
 		mFile.Close();
 	}	
-	float GetBonus(BonusSubject subject, BonusType bonus){
+	public float GetBonus(BonusSubject subject, BonusType bonus){
 		float bonusLevel = mBonusArray[(int)subject ,(int) bonus];
 		
         //spawn size needs to return a whole number
