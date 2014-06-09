@@ -75,10 +75,6 @@ public class ControlPanel : MonoBehaviour
         mLevelText.Add(UnitType.Swordsman, SwordsmanLevel);
         mLevelText.Add(UnitType.Mage, MageLevel);
         
-        foreach (UnitType u in mExpBars.Keys) {
-            mExpBars [u].MaxValue = GameState.RequiredUnitExperience [u];
-        }
-        
         KingsHealthBar.MaxValue = GameState.KingsHealth;
         
         // TODO refactor these hard coded values
