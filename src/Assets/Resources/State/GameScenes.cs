@@ -22,7 +22,8 @@ public class GameScenes : MonoBehaviour{
         LevelsAndCutScenes.Add("Prologue","Medieval_1");
         LevelsAndCutScenes.Add("Medieval_1","Medieval_1_CutScene");
         LevelsAndCutScenes.Add("Medieval_1_CutScene","TowerStore");
-        LevelsAndCutScenes.Add("Medieval_2","Japanese_1");
+        LevelsAndCutScenes.Add("Medieval_2","Japanese_1_CutScene");
+        LevelsAndCutScenes.Add("Japanese_1_CutScene","Japanese_1");
         LevelsAndCutScenes.Add("Japanese_1","Japanese_2");
 	}
 	
