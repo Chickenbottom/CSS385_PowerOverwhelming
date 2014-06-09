@@ -39,14 +39,9 @@ public class GameState
         UnitSquadCount.Add (UnitType.Swordsman, 3);
         UnitSquadCount.Add (UnitType.Mage, 1);
         
-        RequiredUnitExperience = new Dictionary<UnitType, int> ();
-        RequiredUnitExperience.Add (UnitType.Archer, 20);
-        RequiredUnitExperience.Add (UnitType.Swordsman, 20);
-        RequiredUnitExperience.Add (UnitType.Mage, 20);
-        
         SpawnTimes = new Dictionary<UnitType, float> ();
-        SpawnTimes.Add (UnitType.Archer, 10f);
-        SpawnTimes.Add (UnitType.Swordsman, 10f);
+        SpawnTimes.Add (UnitType.Archer, 15f);
+        SpawnTimes.Add (UnitType.Swordsman, 15f);
         SpawnTimes.Add (UnitType.Mage, 20f);
         
         Gold = 0;
@@ -73,6 +68,10 @@ public class GameState
         Time.timeScale = 0;
         
 		WonGame = true;
+        if ((int)CurrentEra == 6 || (int)CurrentEra == (int)GameEra)
+        {
+            CurrentEra = (Era)((int)GameEra + 1);
+        }
         SaveLoad.SaveGameState ();
     }
     

@@ -85,7 +85,7 @@ public abstract class Weapon
         float newDamage = (this.Damage * (1 + (float)level / 10f)); // 10% increase every level
         this.Damage = (int)(newDamage); 
         
-        float newAccuracy = this.Accuracy + ((level-1) / 10) / 10f; // 10% increase every 10 levels
+        float newAccuracy = this.Accuracy + ((level-1) / 5) / 5f; // 5% increase every 5 levels
         this.Accuracy = newAccuracy; 
     }
 }

@@ -27,7 +27,7 @@ public class Squad : MonoBehaviour, Selectable
     // Public Methods
     ///////////////////////////////////////////////////////////////////////////////////
     public UnitType UnitType;
-    public int NumSquadMembers = 0;
+    public int NumSquadMembers { get { return mSquadMembers.Count; } }
     public Vector3 SquadCenter;
     public Vector3 RallyPoint;
     
@@ -123,7 +123,6 @@ public class Squad : MonoBehaviour, Selectable
     
     public void Spawn (UnitType type, Vector3 location, int count, Allegiance allegiance)
     {
-        NumSquadMembers = count;
         mAllegiance = allegiance;
         
         this.transform.position = location; 
@@ -137,11 +136,11 @@ public class Squad : MonoBehaviour, Selectable
         
         mSquadMembers = new List<Unit> ();
         
-        List<Vector3> randomPositions = this.RandomSectionLocations (NumSquadMembers, kSquadMemberWidth * 1.5f);
+        List<Vector3> randomPositions = this.RandomSectionLocations (count, kSquadMemberWidth * 1.5f);
         
         // Instantiates and initializes the position of each member in the squad
         // TODO fix the placement for large numbers of squad members
-        for (int i = 0; i < NumSquadMembers; ++i) {
+        for (int i = 0; i < count; ++i) {
             // instantiate the unit from the prefab
             GameObject o = (GameObject)Instantiate (mUnitPrefab);
             Unit u = (Unit)o.GetComponent (typeof(Unit));
@@ -160,7 +159,8 @@ public class Squad : MonoBehaviour, Selectable
             SquadLeader.SightRange = UnitStats.GetStat(UnitType.Peasant, UnitStat.SightRange);
 
         float sightRadius = SquadLeader.SightRange;
-                  
+        
+        InitializeSightCircleSprite ();
         this.GetComponent<CircleCollider2D> ().radius = 3;
         this.GetComponent<SpriteRenderer>().transform.localScale = new Vector3(sightRadius / 3, sightRadius / 3, 0f);
         
@@ -176,14 +176,13 @@ public class Squad : MonoBehaviour, Selectable
         if (mSquadMembers == null)
             mSquadMembers = new List<Unit>();
         
-        NumSquadMembers += count;
         mAllegiance = allegiance;
         
         this.transform.position = location; 
         
         GameObject unitPrefab = TextureResource.GetUnitPrefab(type, (allegiance == Allegiance.Rodelle));
         
-        List<Vector3> randomPositions = this.RandomSectionLocations (NumSquadMembers, kSquadMemberWidth * 1.5f);
+        List<Vector3> randomPositions = this.RandomSectionLocations (count, kSquadMemberWidth * 1.5f);
         
         for (int i = 0; i < count; ++i) {
             // instantiate the unit from the prefab
@@ -290,7 +289,6 @@ public class Squad : MonoBehaviour, Selectable
     private void AssignNewTarget (Unit who)
     {
         if (this.mAllegiance == Allegiance.Rodelle) {
-            GameState.Gold += 5;
             UnitStats.AddToExperience (who.UnitType, 1);
         }
             
@@ -309,7 +307,6 @@ public class Squad : MonoBehaviour, Selectable
             return;
             
         mSquadMembers.Remove (who);
-        NumSquadMembers --;
         
         if (mSquadMembers.Count <= 0) {
             Destroy (this.gameObject);
@@ -385,10 +382,10 @@ public class Squad : MonoBehaviour, Selectable
     {
         // Randomize the squad's new position around the central location
         List<Vector3> randomPositions = 
-            RandomSectionLocations (NumSquadMembers, kSquadMemberWidth * 1.5f);
+            RandomSectionLocations (mSquadMembers.Count, kSquadMemberWidth * 1.5f);
         
         // Move each squad member to their new location
-        for (int i = 0; i < NumSquadMembers; ++i) {
+        for (int i = 0; i < mSquadMembers.Count; ++i) {
             Vector3 memberPosition = RallyPoint;
             memberPosition += randomPositions [i];
             mSquadMembers [i].MoveTo (memberPosition);
@@ -526,6 +523,18 @@ public class Squad : MonoBehaviour, Selectable
         
         this.GetComponent<CircleCollider2D> ().radius = 3;
         this.GetComponent<SpriteRenderer>().transform.localScale = new Vector3(sightRadius / 3, sightRadius / 3, 0f);
+    }
+    
+    private void InitializeSightCircleSprite ()
+    {
+        Sprite[] rangeCircleTextures = Resources.LoadAll<Sprite>("Squads/Textures/RangeCircles255x255");
+        SpriteRenderer sr = this.GetComponent<SpriteRenderer> ();
+        if (this.UnitType == UnitType.Swordsman)
+            sr.sprite = rangeCircleTextures[0];
+        if (this.UnitType == UnitType.Archer)
+            sr.sprite = rangeCircleTextures[1];
+        if (this.UnitType == UnitType.Mage)
+            sr.sprite = rangeCircleTextures[2];
     }
     
     ///////////////////////////////////////////////////////////////////////////////////

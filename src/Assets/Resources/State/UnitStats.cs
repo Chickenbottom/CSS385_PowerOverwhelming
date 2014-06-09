@@ -12,6 +12,7 @@ public enum UnitStat
     SightRange,
     Level,
     Experience,
+    GoldReward,
 }
 
 public static class UnitStats

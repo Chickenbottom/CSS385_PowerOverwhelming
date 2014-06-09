@@ -8,17 +8,18 @@ public class IceBlock : MonoBehaviour
     {         
         mUnit = unit;
         
-        if (mFrozenEffectPrefab == null)
-            mFrozenEffectPrefab = Resources.Load ("Weapons/IceBlockPrefab") as GameObject;
+        Era era = GameState.GameEra;
+        string iceBlockPrefab = "Weapons/" + era.ToString() + "_IceBlockPrefab";
+        mFrozenEffectPrefab = Resources.Load (iceBlockPrefab) as GameObject;
         
         mStartTimer = Time.time;
         
         mIceBlock = (GameObject) Instantiate (mFrozenEffectPrefab);
         
         if (unit is Elite)
-            unit.BuffMovement (0.5f, mDuration);
+            unit.BuffMovement (0.7f, mDuration);
         else
-            unit.BuffMovement(0f, mDuration);
+            unit.BuffMovement(0.3f, mDuration);
         
         FollowUnit ();
         mIsInitialized = true;
@@ -31,8 +32,8 @@ public class IceBlock : MonoBehaviour
     
     private Target mUnit;
     private GameObject mIceBlock;
-    
-    private static GameObject mFrozenEffectPrefab;
+       
+    private GameObject mFrozenEffectPrefab;
         
     void Update ()
     {
