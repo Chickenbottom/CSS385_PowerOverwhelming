@@ -107,6 +107,9 @@ public class Unit : Target
                 o.transform.position = this.Position;
             }
             
+            if (this.Allegiance == Allegiance.AI)
+                GameState.Gold += mGoldReward;
+            
             Despawn ();
         }
     }
@@ -177,6 +180,7 @@ public class Unit : Target
     protected float mMovementSpeed; // units per second
     protected float mChargeSpeed;   // speed used to engage enemies
     protected int mLevel;
+    protected int mGoldReward;
     
     protected Weapon mCurrentWeapon = null;
     protected Weapon mMeleeWeapon;
@@ -321,6 +325,7 @@ public class Unit : Target
         mMovementSpeed = (int)UnitStats.GetStat(mUnitType, UnitStat.MovementSpeed);
         mChargeSpeed = (int)UnitStats.GetStat(mUnitType, UnitStat.ChargeSpeed);
         mLevel = (int)UnitStats.GetStat(mUnitType, UnitStat.Level);
+        mGoldReward = (int)UnitStats.GetStat(mUnitType, UnitStat.GoldReward);
         this.SightRange = UnitStats.GetStat(mUnitType, UnitStat.SightRange);
     }
     

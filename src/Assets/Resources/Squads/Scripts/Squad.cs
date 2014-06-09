@@ -289,7 +289,6 @@ public class Squad : MonoBehaviour, Selectable
     private void AssignNewTarget (Unit who)
     {
         if (this.mAllegiance == Allegiance.Rodelle) {
-            GameState.Gold += 5;
             UnitStats.AddToExperience (who.UnitType, 1);
         }
             
