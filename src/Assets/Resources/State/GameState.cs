@@ -68,6 +68,10 @@ public class GameState
         Time.timeScale = 0;
         
 		WonGame = true;
+        if ((int)CurrentEra == 6 || (int)CurrentEra == (int)GameEra)
+        {
+            CurrentEra = (Era)((int)GameEra + 1);
+        }
         SaveLoad.SaveGameState ();
     }
     

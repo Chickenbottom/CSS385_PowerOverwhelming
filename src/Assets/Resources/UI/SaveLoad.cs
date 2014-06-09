@@ -18,7 +18,7 @@ public class SaveLoad : MonoBehaviour {
             File.Delete(kUpgradesPath);
             
         GameState.Gold = 0;
-        GameState.CurrentEra = Era.None;
+        GameState.CurrentEra = Era.Prehistoric;
     }
     
     public static void SaveGameState ()
