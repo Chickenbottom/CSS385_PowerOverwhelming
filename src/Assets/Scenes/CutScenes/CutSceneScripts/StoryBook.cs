@@ -34,7 +34,7 @@ public class StoryBook : MonoBehaviour {
 	bool mWaitedCalled = false;
 
     const float kFadeRate = 0.01f;
-	const float kLetterDisplayDelay = 0.03f;	
+	const float kLetterDisplayDelay = 0.1f;	
 	const float kSceneTransitionWaitTime = 2.5f;
     const int kMaxLineLength = 73;
 
@@ -165,7 +165,7 @@ public class StoryBook : MonoBehaviour {
 			return 1f;
 	}
 	public void NextFrame(){
-		if (mCurrentImageIndex + 1 >= mImageArray.Count && mMyAction == Action.ChangingSet){
+		if (mCurrentImageIndex + 1 >= mImageArray.Count){
 			return;
 		}
 		else{

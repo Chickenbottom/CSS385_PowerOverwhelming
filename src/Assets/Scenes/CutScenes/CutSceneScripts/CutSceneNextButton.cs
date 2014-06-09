@@ -5,6 +5,8 @@ public class CutSceneNextButton : ButtonBehaviour {
 
 	public StoryBook mStoryBook;
 	void OnMouseDown(){
-		mStoryBook.NextFrame();
+        if(mStoryBook.GetMyAction() != Action.ChangingSet || 
+           mStoryBook.GetMyAction() != Action.Waiting)
+		        mStoryBook.NextFrame();
 	}
 }
