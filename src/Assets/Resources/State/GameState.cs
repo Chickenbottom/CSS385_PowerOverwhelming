@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GameState
 {
-    public static bool IsDebug = true;
+    public static bool IsDebug = false;
 
     
     public static Era CurrentEra { get; set; }
