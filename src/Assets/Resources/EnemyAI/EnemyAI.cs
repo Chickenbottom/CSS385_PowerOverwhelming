@@ -14,6 +14,8 @@ public enum Waypoint
     Center,
     CenterLeft,
     CenterRight,
+    CenterDown,
+    CenterUp,
     SpawnLeft,
     SpawnCenter,
     SpawnRight,
@@ -115,7 +117,11 @@ public class EnemyAI : MonoBehaviour
         Waypoints.Add (Waypoint.TopRight, GameObject.Find("WP_TopRight").transform.position);
         Waypoints.Add (Waypoint.TopLeft, GameObject.Find("WP_TopLeft").transform.position);
         Waypoints.Add (Waypoint.CenterRight, GameObject.Find("WP_CenterRight").transform.position);
-        Waypoints.Add (Waypoint.CenterLeft, GameObject.Find("WP_CenterRight").transform.position);
+        Waypoints.Add (Waypoint.CenterLeft, GameObject.Find("WP_CenterLeft").transform.position);
+
+        Waypoints.Add (Waypoint.CenterDown, GameObject.Find("WP_CenterDown").transform.position);
+        Waypoints.Add (Waypoint.CenterUp, GameObject.Find("WP_CenterUp").transform.position);
+
         Waypoints.Add (Waypoint.King, GameObject.Find("WP_King").transform.position);
         Waypoints.Add (Waypoint.Center, GameObject.Find("WP_Center").transform.position);
         Waypoints.Add (Waypoint.SpawnLeft, GameObject.Find("WP_SpawnLeft").transform.position);
