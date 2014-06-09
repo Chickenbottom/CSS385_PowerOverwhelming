@@ -41,7 +41,7 @@ public class LevelLoaderButtonBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //to be replaced with gamestate "testing".
-        if(true)
+        if(GameState.IsDebug)
     		GameState.CurrentEra = Era.Japanese;
 		
         if(mEra <= GameState.CurrentEra)

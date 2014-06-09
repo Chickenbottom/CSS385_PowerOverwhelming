@@ -3,24 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
+
+public enum Action{
+    FadeIn,
+    FadeOut,
+    Printing,
+    ChangingSet,
+    Finished,
+    Waiting,
+}; 
 public class StoryBook : MonoBehaviour {
 
 
-	enum Action{
-		FadeIn,
-		FadeOut,
-		Printing,
-		ChangingSet,
-		Finished,
-		Waiting,
-	};
 
     public GameScenes mScenes;
     public List<SpriteRenderer> mImageArray;
 	public string FilePath;
 	public GUIText mDialogueText;
 
-	Action mMyAction;
+    Action mMyAction;
 	int mCurrentImageIndex = 0;
 	int mDialogueLetterIndex = 0;	
 	private SpriteRenderer mCurrentImage;
@@ -34,7 +35,7 @@ public class StoryBook : MonoBehaviour {
 
     const float kFadeRate = 0.01f;
 	const float kLetterDisplayDelay = 0.03f;	
-	const float kSceneTransitionWaitTime = 1.5f;
+	const float kSceneTransitionWaitTime = 2.5f;
     const int kMaxLineLength = 73;
 
 
@@ -211,5 +212,8 @@ public class StoryBook : MonoBehaviour {
                 }   
             }
         return lineSegment;
+    }
+    public Action GetMyAction(){
+        return mMyAction;
     }
 }
