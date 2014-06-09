@@ -1,8 +1,6 @@
 >>> Tutorial Standard # begin tutorial dialogue
-15 Normal King Left       --- Welcome to my castle.  Click the towers to select them, and a location in the castle to send units there.
-15 Normal King Left       --- If you click the 'X' on the ground your units will ignore enemies and go to that point.
-15 Normal Swordsman Right   --- Hit 'Escape' to pause the game.
-15 Normal Swordsman Right   --- The white tower can heal your other towers if they become damaged.  Be careful though, the heal tower cannot heal itself.
+15 Normal King Left       --- Mages can slow down large groups of enemies making your swordsman and archers much more effective.
+15 Normal Swordsman Right   --- Sometimes, it's worthwhile to let enemies attack your towers while you regroup. The healing tower can fix it right back up.
 <<< Tutorial # end tutorial dialogue
 
 >>> Pause Realtime # played when the game is paused
