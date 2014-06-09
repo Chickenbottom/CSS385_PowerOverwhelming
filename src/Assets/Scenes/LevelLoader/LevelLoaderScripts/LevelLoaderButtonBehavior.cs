@@ -43,6 +43,10 @@ public class LevelLoaderButtonBehavior : MonoBehaviour {
         //to be replaced with gamestate "testing".
         if(false)
     		GameState.CurrentEra = Era.Japanese;
+        else
+        {
+            
+        }
 		
         if(mEra <= GameState.CurrentEra)
 			mLevelLocked = false;

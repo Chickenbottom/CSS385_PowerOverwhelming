@@ -25,6 +25,7 @@ public class MainMenuBehaviour : MonoBehaviour {
         }
         else
         {
+            GameState.CurrentEra = (Era)int.Parse(s.GetInfo(SaveLoad.SAVEFILE.Level)[0]);
             GameState.Gold = int.Parse(s.GetInfo(SaveLoad.SAVEFILE.Level)[1]);
         }
 	}
