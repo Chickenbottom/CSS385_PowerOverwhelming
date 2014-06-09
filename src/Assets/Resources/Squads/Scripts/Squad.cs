@@ -160,7 +160,8 @@ public class Squad : MonoBehaviour, Selectable
             SquadLeader.SightRange = UnitStats.GetStat(UnitType.Peasant, UnitStat.SightRange);
 
         float sightRadius = SquadLeader.SightRange;
-                  
+        
+        InitializeSightCircleSprite ();
         this.GetComponent<CircleCollider2D> ().radius = 3;
         this.GetComponent<SpriteRenderer>().transform.localScale = new Vector3(sightRadius / 3, sightRadius / 3, 0f);
         
@@ -526,6 +527,18 @@ public class Squad : MonoBehaviour, Selectable
         
         this.GetComponent<CircleCollider2D> ().radius = 3;
         this.GetComponent<SpriteRenderer>().transform.localScale = new Vector3(sightRadius / 3, sightRadius / 3, 0f);
+    }
+    
+    private void InitializeSightCircleSprite ()
+    {
+        Sprite[] rangeCircleTextures = Resources.LoadAll<Sprite>("Squads/Textures/RangeCircles255x255");
+        SpriteRenderer sr = this.GetComponent<SpriteRenderer> ();
+        if (this.UnitType == UnitType.Swordsman)
+            sr.sprite = rangeCircleTextures[0];
+        if (this.UnitType == UnitType.Archer)
+            sr.sprite = rangeCircleTextures[1];
+        if (this.UnitType == UnitType.Mage)
+            sr.sprite = rangeCircleTextures[2];
     }
     
     ///////////////////////////////////////////////////////////////////////////////////
