@@ -13,10 +13,9 @@
 0 Medium      Ranged AttackMove SpawnRight,BottomLeft
 7 Large       Special AttackMove SpawnRight,TopLeft,
 
-@EnemyWave 30
+@EnemyWave 40
 # overwhelm ranged units
 0 Large      Melee AttackMove SpawnRight,TopRight,
-3 Medium     Ranged AttackMove SpawnRight,Center,TopRight,
 4 Small      Melee AttackMove SpawnRight,TopRight,
 5 Small      Ranged AttackMove SpawnRight,TopRight,
 5 Small      Melee  AttackMove SpawnRight,TopRight,BottomRight
@@ -26,16 +25,13 @@
 5 Medium      Default AttackMove SpawnRight,Center,
 6 Medium      Special AttackMove SpawnRight,Center,
 
-@EnemyWave 30
+@EnemyWave 40
 # overwhelm melee units
 0 Medium      Melee AttackMove SpawnLeft,TopLeft
 1 Medium      Melee AttackMove SpawnLeft,TopLeft
 5 Large       Special AttackMove SpawnLeft,TopLeft,
-6 Medium      Special AttackMove SpawnLeft,TopLeft,
 8 Single      Ranged AttackMove SpawnLeft,TopLeft
 8 Single      Ranged AttackMove SpawnLeft,TopLeft
-8.5 Single    Ranged AttackMove SpawnLeft,TopLeft
-8.5 Single    Ranged AttackMove SpawnLeft,TopLeft
 
 # distract ranged side
 0 Medium      Default AttackMove SpawnRight,TopLeft,
@@ -44,7 +40,7 @@
 @EnemyWave 15
 # final push
 0 Large    Elite AttackMove SpawnRight,BottomRight,TopRight
-5 Large    Elite AttackMove SpawnRight,BottomRight,TopRight
+5 Large    Default AttackMove SpawnRight,BottomRight,TopRight
 
 5 Large    Elite AttackMove SpawnLeft,TopLeft,BottomLeft,BottomRight,TopRight,
 10 Large    Elite AttackMove SpawnLeft,TopLeft,BottomLeft,BottomRight,TopRight,

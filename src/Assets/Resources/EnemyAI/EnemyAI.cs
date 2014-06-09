@@ -53,7 +53,7 @@ public class EnemyAI : MonoBehaviour
     
     // If a wave is finished early, the AI waits this amount of seconds before 
     // spawning the next wave
-    private float kWaitTimeBeforeWave = 5f; 
+    private float kWaitTimeBeforeWave = 1f; 
     
     private void ValidatePresets ()
     {

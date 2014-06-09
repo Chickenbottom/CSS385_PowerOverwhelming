@@ -21,7 +21,6 @@
 # overwhelm armory
 0 Large      Melee AttackMove SpawnRight,Center,
 1 Medium     Melee AttackMove SpawnRight,Center,
-2 Small      Elite AttackMove SpawnRight,TopRight,
 3 Medium     Ranged AttackMove SpawnRight,Center,
 4 Small      Melee AttackMove SpawnRight,TopRight,
 5 Small      Ranged AttackMove SpawnRight,TopRight,
@@ -33,7 +32,7 @@
 
 @EnemyWave 30
 # overwhelm melee units
-0 Medium      Elite AttackMove SpawnLeft,TopLeft,Center,
+0 Medium      Default AttackMove SpawnLeft,TopLeft,Center,
 1 Medium      Melee AttackMove SpawnLeft,TopLeft,Center,
 2 Medium      Default AttackMove SpawnLeft,TopLeft,Center,
 3 Large       Special AttackMove SpawnLeft,TopLeft,Center,
@@ -50,9 +49,9 @@
 @EnemyWave 15
 # final push
 0 Large    Elite AttackMove SpawnLeft,TopLeft,BottomLeft,BottomRight,TopRight,
-1 Large    Default AttackMove SpawnLeft,BottomRight,TopRight
+1 Medium    Default AttackMove SpawnLeft,BottomRight,TopRight
 5 Large    Elite AttackMove SpawnLeft,TopLeft,BottomLeft,BottomRight,TopRight,
 
 5 Large    Elite AttackMove SpawnRight,BottomRight,TopRight
-6 Large    Default AttackMove SpawnRight,BottomRight,TopRight
+6 Medium    Default AttackMove SpawnRight,BottomRight,TopRight
 10 Large   Elite AttackMove SpawnRight,BottomRight,TopRight
