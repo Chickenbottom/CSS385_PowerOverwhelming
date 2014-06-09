@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 68d26ef5ae2c92d4e873692c5bec7f45
+guid: c827a2dc5f5059646a2571a98c661069
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -45,58 +45,40 @@ TextureImporter:
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: LevelSelectMenuLevelButtons_0
+    - name: LevelSelectLevelButtons_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 227
+        y: 228
         width: 678
-        height: 216
+        height: 215
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: LevelSelectMenuLevelButtons_1
+    - name: LevelSelectLevelButtons_1
       rect:
         serializedVersion: 2
         x: 688
-        y: 227
-        width: 680
-        height: 216
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: LevelSelectMenuLevelButtons_2
-      rect:
-        serializedVersion: 2
-        x: 1378
-        y: 227
+        y: 228
         width: 678
-        height: 216
+        height: 215
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: LevelSelectMenuLevelButtons_3
+    - name: LevelSelectLevelButtons_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 678
-        height: 216
+        height: 215
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: LevelSelectMenuLevelButtons_4
+    - name: LevelSelectLevelButtons_3
       rect:
         serializedVersion: 2
         x: 688
         y: 0
-        width: 680
-        height: 216
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: LevelSelectMenuLevelButtons_5
-      rect:
-        serializedVersion: 2
-        x: 1378
-        y: 0
         width: 678
-        height: 216
+        height: 215
       alignment: 0
       pivot: {x: 0, y: 0}
   spritePackingTag: 
