@@ -17,9 +17,9 @@ public class IceBlock : MonoBehaviour
         mIceBlock = (GameObject) Instantiate (mFrozenEffectPrefab);
         
         if (unit is Elite)
-            unit.BuffMovement (0.5f, mDuration);
+            unit.BuffMovement (0.7f, mDuration);
         else
-            unit.BuffMovement(0f, mDuration);
+            unit.BuffMovement(0.3f, mDuration);
         
         FollowUnit ();
         mIsInitialized = true;
