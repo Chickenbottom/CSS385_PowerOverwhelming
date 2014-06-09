@@ -1658,7 +1658,7 @@ Transform:
   m_PrefabInternal: {fileID: 906635867}
   m_GameObject: {fileID: 377610551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.66116762, y: 1.23742795, z: .00390625}
+  m_LocalPosition: {x: 4.71000004, y: 1.28999996, z: .00390625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1469558875}
@@ -1671,10 +1671,10 @@ GUIText:
   m_GameObject: {fileID: 377610551}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: Rodelle's GUI Text
+  m_Text: Fill up this text so that it's the max width of one line. xxxxxxxxx
   m_Anchor: 0
   m_Alignment: 0
-  m_PixelOffset: {x: 49.5699997, y: 36.5}
+  m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
   m_Font: {fileID: 12800000, guid: 30d04c5c7dde96243b278d1b3439ada8, type: 3}
@@ -1925,7 +1925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &420439445
 Transform:
   m_ObjectHideFlags: 0
@@ -3842,7 +3842,7 @@ Transform:
   m_PrefabInternal: {fileID: 906635867}
   m_GameObject: {fileID: 914291705}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.51116753, y: 1.23742795, z: -.476093739}
+  m_LocalPosition: {x: 4.55999994, y: 1.28999996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1469558875}
@@ -3855,10 +3855,10 @@ GUIText:
   m_GameObject: {fileID: 914291705}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: Advisors's GUI Text
+  m_Text: Fill up this text so that it's the max width of one line. xxxxxxxxx
   m_Anchor: 0
   m_Alignment: 0
-  m_PixelOffset: {x: 49.5699997, y: 36.5}
+  m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
   m_Font: {fileID: 12800000, guid: 30d04c5c7dde96243b278d1b3439ada8, type: 3}
@@ -5231,7 +5231,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 37df0a9310ee94b42beca4fa676d184e, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -5504,8 +5504,8 @@ Transform:
   m_PrefabInternal: {fileID: 96921438}
   m_GameObject: {fileID: 1278504680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.70000029, y: -3.5, z: 0}
-  m_LocalScale: {x: .74000001, y: .900000095, z: 1}
+  m_LocalPosition: {x: 2.63503742, y: -3.5, z: 0}
+  m_LocalScale: {x: 1.034006, y: 1.03400648, z: 1}
   m_Children: []
   m_Father: {fileID: 1531336495}
 --- !u!61 &1278504682
@@ -5518,8 +5518,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 6.82000065, y: 1.6700002}
-  m_Center: {x: 0, y: -2.38418579e-07}
+  m_Size: {x: 4.80999994, y: 1.40999985}
+  m_Center: {x: -2.5331974e-07, y: 0}
 --- !u!114 &1278504683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5532,8 +5532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caeb41138ba081046b129e9cb3030a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300006, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
-  mButtonOver: {fileID: 21300010, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
+  mButton: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
+  mButtonOver: {fileID: 21300022, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
 --- !u!212 &1278504684
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5556,7 +5556,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2001
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300006, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1289813297
 GameObject:
@@ -6616,7 +6616,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 8d9c319b3c1827e44aa8c80945482d0e, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -7732,8 +7732,8 @@ Transform:
   m_PrefabInternal: {fileID: 96921438}
   m_GameObject: {fileID: 1934304188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.70000005, y: -4.3499999, z: 0}
-  m_LocalScale: {x: .74000001, y: .899999976, z: 1}
+  m_LocalPosition: {x: 2.71300697, y: -4.3499999, z: 0}
+  m_LocalScale: {x: 1.05689383, y: 1.05689442, z: 1}
   m_Children: []
   m_Father: {fileID: 1208579743}
 --- !u!61 &1934304190
@@ -7746,8 +7746,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 6.82000065, y: 1.6700002}
-  m_Center: {x: 0, y: -2.38418579e-07}
+  m_Size: {x: 4.80999994, y: 1.40999985}
+  m_Center: {x: -1.49011612e-08, y: -2.38418579e-07}
 --- !u!114 &1934304191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7760,8 +7760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caeb41138ba081046b129e9cb3030a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mButton: {fileID: 21300006, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
-  mButtonOver: {fileID: 21300010, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
+  mButton: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
+  mButtonOver: {fileID: 21300022, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
 --- !u!212 &1934304192
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7784,7 +7784,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2001
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300006, guid: 6a4df28a3f9242644bfca1c4e80a1153, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 7081ec6a2f361414c9e2261885cdda1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1937908930
 Prefab:

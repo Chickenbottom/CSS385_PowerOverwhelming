@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a27ca0462a072354a89a69131e1ab503
+guid: 11ffcc6fb72d98d4bb5600de4bb452f1
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -45,31 +45,49 @@ TextureImporter:
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: AboutMenuButtons_0
+    - name: AboutMenuButtons 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 124
+        width: 201
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: AboutMenuButtons 1_1
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 124
+        width: 200
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: AboutMenuButtons 1_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 366
-        height: 200
+        width: 201
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: AboutMenuButtons_1
+    - name: AboutMenuButtons 1_3
       rect:
         serializedVersion: 2
-        x: 379
+        x: 215
         y: 0
-        width: 368
-        height: 200
+        width: 200
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: AboutMenuButtons_2
+    - name: AboutMenuButtons 1_4
       rect:
         serializedVersion: 2
-        x: 759
+        x: 430
         y: 0
-        width: 366
-        height: 200
+        width: 200
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
   spritePackingTag: 
