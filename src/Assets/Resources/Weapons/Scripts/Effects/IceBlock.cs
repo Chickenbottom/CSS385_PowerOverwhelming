@@ -8,8 +8,9 @@ public class IceBlock : MonoBehaviour
     {         
         mUnit = unit;
         
-        if (mFrozenEffectPrefab == null)
-            mFrozenEffectPrefab = Resources.Load ("Weapons/IceBlockPrefab") as GameObject;
+        Era era = GameState.GameEra;
+        string iceBlockPrefab = "Weapons/" + era.ToString() + "_IceBlockPrefab";
+        mFrozenEffectPrefab = Resources.Load (iceBlockPrefab) as GameObject;
         
         mStartTimer = Time.time;
         
@@ -31,8 +32,8 @@ public class IceBlock : MonoBehaviour
     
     private Target mUnit;
     private GameObject mIceBlock;
-    
-    private static GameObject mFrozenEffectPrefab;
+       
+    private GameObject mFrozenEffectPrefab;
         
     void Update ()
     {
