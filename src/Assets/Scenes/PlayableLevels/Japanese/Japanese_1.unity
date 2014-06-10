@@ -2034,7 +2034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a957869481de8fe49b707c7c83b2fbf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WinGameFrame: {fileID: 0}
+  WinGameFrame: {fileID: 643213537}
   LoseGameFrame: {fileID: 1316879231}
   mAllFrames:
   - {fileID: 392363991}

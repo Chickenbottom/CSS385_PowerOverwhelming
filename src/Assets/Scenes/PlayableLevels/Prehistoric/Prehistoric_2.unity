@@ -7678,7 +7678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WinGameFrame: {fileID: 710130727}
-  LoseGameFrame: {fileID: 0}
+  LoseGameFrame: {fileID: 252085922}
   mAllFrames:
   - {fileID: 2011582130}
   - {fileID: 1789011079}
